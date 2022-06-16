@@ -1,5 +1,6 @@
 <template>
   <q-select
+    class="full-width"
     outlined
     dense
     v-model="search"
@@ -86,6 +87,10 @@ export default {
     };
 
     const search = ref(null);
+
+    onMounted(() => {
+      search.value = props.modelValue;
+    });
 
     watch(
       () => {

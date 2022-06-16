@@ -10,6 +10,7 @@ export function setEditItem(state, payload) {
   state.editItem.id = payload.id;
   state.editItem.name = payload.name;
   state.editItem.email = payload.email;
+  state.editItem.role = payload.user_role.role.role;
 }
 
 export function setEditModal(state, payload) {

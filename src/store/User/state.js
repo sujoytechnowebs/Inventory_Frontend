@@ -17,6 +17,13 @@ export default function () {
         field: "email",
         sortable: true,
       },
+      {
+        name: "role",
+        align: "left",
+        label: "Role",
+        field: (row) => row.user_role.role.role,
+        sortable: true,
+      },
       { name: "actions", align: "right", label: "Actions" },
     ],
     visibleColumns: [
@@ -50,7 +57,7 @@ export default function () {
     editItem: {
       name: "",
       email: "",
-      role_id: null,
+      role: null,
     },
     modals: {
       createItem: false,
