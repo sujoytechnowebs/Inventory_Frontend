@@ -6,6 +6,10 @@ import auth from "./Auth";
 import login from "./Login";
 import user from "./User";
 import register from "./Register";
+import city from "./City";
+import state from "./State";
+import branch from "./Branch";
+import group from "./Group";
 
 /*
  * If not building with SSR mode, you can
@@ -24,6 +28,10 @@ export default store(function (/* { ssrContext } */) {
       user,
       login,
       register,
+      city,
+      state,
+      branch,
+      group,
     },
 
     // enable strict mode (adds overhead!)

@@ -280,7 +280,7 @@ export default defineComponent({
     const onClickDelete = (params) => {
       $q.dialog({
         title: "Delete Confirmation",
-        message: "Are you sure you wna to Delete",
+        message: "Are you sure you want to Delete",
         ok: {
           label: "Delete",
           unelevated: true,
