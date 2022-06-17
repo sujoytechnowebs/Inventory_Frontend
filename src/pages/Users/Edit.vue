@@ -16,6 +16,12 @@
               v-model="name"
               dense
               label="Full Name"
+              :rules="[
+                (val) =>
+                  (val && !validationErrors.name > 0) || validationErrors.name
+                    ? validationErrors.name
+                    : 'Please write something',
+              ]"
             />
           </div>
           <div class="col-12">
@@ -35,7 +41,7 @@
           </div>
           <div class="col-12">
             <QSearch
-              v-model="modelValue"
+              v-model="role"
               label="Role"
               option-value="id"
               option-label="role"
@@ -56,21 +62,16 @@ import { mapFields } from "vuex-map-fields";
 
 export default {
   name: "UsersEditPage",
+  computed: {
+    ...mapFields("user", ["editItem.name", "editItem.email", "editItem.role"]),
+  },
   setup() {
     return {
       modal: true,
       dataStore: "user",
       saveaction: "user/updateItem",
       validationErrors: ref({}),
-      modelValue: ref(),
     };
-  },
-  computed: {
-    ...mapFields("user", [
-      "editItem.name",
-      "editItem.email",
-      "editItem.role_id",
-    ]),
   },
 };
 </script>

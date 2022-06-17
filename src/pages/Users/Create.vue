@@ -16,6 +16,12 @@
               v-model="name"
               dense
               label="Full Name"
+              :rules="[
+                (val) =>
+                  (val && !validationErrors.names > 0) || validationErrors.names
+                    ? validationErrors.names
+                    : 'Please write something',
+              ]"
             />
           </div>
           <div class="col-12">
@@ -33,25 +39,34 @@
               ]"
             />
           </div>
-          <!-- <div class="col-12">
-            <q-select
-              ref="role_id"
-              outlined
-              v-model="role_id"
-              :options="options"
-              map-options
-              emit-value
-              dense
-              label="Role"
+          <div class="col-12">
+            <q-field
+              ref="role"
+              v-model="role"
+              input-debounce="0"
+              borderless
+              lazy-rules
               :rules="[
                 (val) =>
-                  (val && !validationErrors.role_id > 0) ||
-                  validationErrors.role_id
-                    ? validationErrors.role_id
-                    : 'Please write something',
+                  (val && val != 0 && !validationErrors.role > 0) ||
+                  validationErrors.role
+                    ? validationErrors.role
+                    : 'Please select role',
               ]"
-            />
-          </div> -->
+            >
+              <template v-slot:control>
+                <QSearch
+                  v-model="role"
+                  label="Role"
+                  option-value="id"
+                  option-label="role"
+                  :data-store="dataStore"
+                  action="getRoles"
+                  :multiple="false"
+                />
+              </template>
+            </q-field>
+          </div>
         </div>
       </QCreateForm>
     </q-card>
@@ -73,7 +88,7 @@ export default {
   },
 
   computed: {
-    ...mapFields("user", ["newItem.name", "newItem.email", "newItem.role_id"]),
+    ...mapFields("user", ["newItem.name", "newItem.email", "newItem.role"]),
   },
 };
 </script>
