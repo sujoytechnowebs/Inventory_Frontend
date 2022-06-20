@@ -101,25 +101,31 @@ const linksList = [
   {
     title: "Branch",
     icon: "share",
-    link: "/users",
+    // link: "/cities",
     show: true,
     childs: [
       {
         title: "State",
         icon: "hlw",
-        link: "/users",
+        link: "/states",
+        show: true,
+      },
+      {
+        title: "Branch",
+        icon: "hlw",
+        link: "/branches",
         show: true,
       },
       {
         title: "City",
         icon: "hlw",
-        link: "/users",
+        link: "/cities",
         show: true,
       },
       {
         title: "Staff",
         icon: "hlw",
-        link: "/users",
+        link: "/cities",
         show: true,
       },
     ],
@@ -133,7 +139,7 @@ const linksList = [
       {
         title: "Group Name",
         icon: "hlw",
-        link: "/users",
+        link: "/groups",
         show: true,
       },
       {

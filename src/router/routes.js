@@ -22,6 +22,43 @@ const routes = [
         },
       },
       {
+        path: "cities",
+        component: () => import("pages/City/Index.vue"),
+        meta: {
+          name: "city",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "states",
+        component: () => import("pages/State/Index.vue"),
+        meta: {
+          name: "state",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "branches",
+        component: () => import("pages/Branch/Index.vue"),
+        meta: {
+          name: "branch",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "groups",
+        component: () => import("pages/Group/Index.vue"),
+        meta: {
+          name: "group",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+
+      {
         path: "profile",
         component: () => import("pages/Profile/Index.vue"),
         meta: {
