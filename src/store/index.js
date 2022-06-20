@@ -10,6 +10,10 @@ import city from "./City";
 import state from "./State";
 import branch from "./Branch";
 import group from "./Group";
+import product from "./Product";
+import productcategory from "./ProductCategory";
+import stocktransfer from "./StockTransfer";
+import inventory from "./Inventory";
 
 /*
  * If not building with SSR mode, you can
@@ -32,6 +36,10 @@ export default store(function (/* { ssrContext } */) {
       state,
       branch,
       group,
+      product,
+      productcategory,
+      stocktransfer,
+      inventory,
     },
 
     // enable strict mode (adds overhead!)

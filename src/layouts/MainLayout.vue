@@ -173,13 +173,13 @@ const linksList = [
       {
         title: "Products Management",
         icon: "hlw",
-        link: "/users",
+        link: "/products",
         show: true,
       },
       {
         title: "Products Category",
         icon: "hlw",
-        link: "/users",
+        link: "/products-category",
         show: true,
       },
     ],
@@ -241,13 +241,13 @@ const linksList = [
       {
         title: "Inventory",
         icon: "hlw",
-        link: "/users",
+        link: "/inventory",
         show: true,
       },
       {
         title: "Stock Transfer",
         icon: "hlw",
-        link: "/users",
+        link: "/stock-transfer",
         show: true,
       },
     ],
