@@ -321,7 +321,7 @@ export default defineComponent({
     };
 
     onBeforeUnmount(() => {
-      unsubscribe();
+      // unsubscribe();
     });
 
     return {

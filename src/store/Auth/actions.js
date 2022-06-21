@@ -21,6 +21,20 @@ export function login({ context, commit }, payload) {
   });
 }
 
+export function check({ context, state }) {
+  return new Promise((resolve, reject) => {
+    var token = SessionStorage.getItem("token");
+
+    if (token === null) {
+      reject(false);
+    } else {
+      resolve(token);
+    }
+  });
+}
+
+/////////////////////
+
 export function checkEmailAvailability({ state, commit }) {
   return new Promise((resolve, reject) => {
     api
@@ -142,18 +156,18 @@ export function resetPasssword({ state, commit }) {
 }
 
 // Check Authentication
-export function check({ context, state }) {
-  return new Promise((resolve, reject) => {
-    var token = SessionStorage.getItem("token");
-    var authUserID = SessionStorage.getItem("authUserID");
+// export function check({ context, state }) {
+//   return new Promise((resolve, reject) => {
+//     var token = SessionStorage.getItem("token");
+//     var authUserID = SessionStorage.getItem("authUserID");
 
-    if (token === null) {
-      reject(false);
-    } else {
-      resolve(token);
-    }
-  });
-}
+//     if (token === null) {
+//       reject(false);
+//     } else {
+//       resolve(token);
+//     }
+//   });
+// }
 
 export function checkRoutePermission({ context, state }, routeAction) {
   return new Promise((resolve, reject) => {

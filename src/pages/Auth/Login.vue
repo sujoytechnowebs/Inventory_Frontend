@@ -31,10 +31,10 @@
               </template>
             </q-input>
             <div>
-              <p class="reset-line">
+              <!-- <p class="reset-line">
                 Don't Have An Account?
                 <router-link to="/register">Click To Register</router-link>
-              </p>
+              </p> -->
               <p class="reset-line">
                 Forget Your Password?
                 <router-link to="/forgot-password">Click To Reset</router-link>
@@ -64,6 +64,7 @@ import { mapFields } from "vuex-map-fields";
 
 // import { useState, useActions } from "vuex-composition-helpers";
 import { ref, onMounted, reactive } from "vue";
+import { useRouter, useRoute } from "vue-router";
 
 import { defineComponent } from "vue";
 
@@ -91,12 +92,14 @@ export default defineComponent({
     // const { getItems } = getAction("Register", ["getItems"]);
     const { login } = getAction("login", ["login"]);
     const loading = ref(false);
+    const router = useRouter();
 
     const onSubmit = () => {
       loading.value = true;
       login()
         .then((response) => {
           console.log("response", response);
+          router.push("/");
         })
         .catch((err) => {
           console.log("err", err);

@@ -6,6 +6,7 @@ import {
   createWebHashHistory,
 } from "vue-router";
 import routes from "./routes";
+import { LocalStorage as SessionStorage } from "quasar";
 
 /*
  * If not building with SSR mode, you can
@@ -37,57 +38,38 @@ export default route(function ({ store, ssrContext }) {
       process.env.MODE === "ssr" ? void 0 : process.env.VUE_ROUTER_BASE
     ),
   });
-
   Router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.requiresAuth)) {
-      next();
-      // store
-      //   .dispatch("auth/check")
-      //   .then((res) => {
-      //     if (to.meta.hasOwnProperty("acl")) {
-      //       store
-      //         .dispatch("auth/fetchAuthUser", to.meta.acl)
-      //         .then((res) => {
-      //           next();
-      //         })
-      //         .catch((e) => {});
-      //     } else {
-      //       store.dispatch("auth/checkAuthUserData");
-      //       next();
-      //     }
-      //   })
-      //   .catch((e) => {
-      //     next({
-      //       path: "/login",
-      //       query: {
-      //         redirect: to.fullPath,
-      //       },
-      //     });
-      //   });
+      store
+        .dispatch("auth/check")
+        .then((res) => {
+          // if (to.meta.hasOwnProperty("acl")) {
+          //   store
+          //     .dispatch("Auth/checkRoutePermission", to.meta.acl)
+          //     .then((res) => {
+          //       next();
+          //     })
+          //     .catch((e) => {});
+          // } else {
+          //   store.dispatch("Auth/checkAuthUserData");
+          //   next();
+          // }
+
+          next();
+        })
+        .catch((e) => {
+          next({
+            path: "/login",
+            query: { redirect: to.fullPath },
+          });
+        });
     } else {
-      // let location = window.location.hash;
-      // var res1 = location.split("#/");
-      // var res2 = location.split("/");
-
-      // let allowedPath = ['/login', '/#/login', '/forget-password', '#/forget-password', '#/confirm-password-reset-code', '#/reset-password'];
-
-      // if (allowedPath.indexOf('#/'+res2[1]) === -1) {
-      //   next()
-      // }
-      // else{
-      //   store
-      //   .dispatch('Auth/check')
-      //   .then(res => {
-      //     next({
-      //       path: '/',
-      //       // query: { redirect: to.fullPath }
-      //     })
-      //   })
-      //   .catch(e => {
-      //     next()
-      //   })
-      // }
-      next();
+      var token = SessionStorage.getItem("token");
+      if (token) {
+        window.history.back();
+      } else {
+        next();
+      }
     }
   });
 
