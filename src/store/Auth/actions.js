@@ -1,18 +1,32 @@
 import { LocalStorage as SessionStorage } from "quasar";
 import { api, axios } from "boot/axios";
 
-export function login({ context, commit }, payload) {
-  alert();
+// export function login({ context, commit }, payload) {
+//   alert();
+//   return new Promise((resolve, reject) => {
+//     api
+//       .post("login", {
+//         email: payload.email.value,
+//         password: payload.password.value,
+//         captcha_res: payload.captcha_res.value,
+//       })
+//       .then((response) => {
+//         SessionStorage.set("token", JSON.stringify(response.data.token));
+//         commit("setAuthUser", response.data.authUser);
+//         resolve(response);
+//       })
+//       .catch((err) => {
+//         reject(err);
+//       });
+//   });
+// }
+
+export function logOut({ state, commit }, payload) {
   return new Promise((resolve, reject) => {
-    api
-      .post("login", {
-        email: payload.email.value,
-        password: payload.password.value,
-        captcha_res: payload.captcha_res.value,
-      })
+    axios
+      .get("/logout")
       .then((response) => {
-        SessionStorage.set("token", JSON.stringify(response.data.token));
-        commit("setAuthUser", response.data.authUser);
+        SessionStorage.remove("token");
         resolve(response);
       })
       .catch((err) => {

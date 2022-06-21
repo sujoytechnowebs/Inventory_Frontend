@@ -25,12 +25,6 @@
                   label="Profile"
                   class="q-ma-sm"
                 />
-                <q-btn
-                  color="primary"
-                  size="sm"
-                  label="Profile"
-                  class="q-ma-sm"
-                />
               </div>
 
               <q-separator vertical inset class="q-mx-lg" />
@@ -47,7 +41,9 @@
                   label="Logout"
                   push
                   size="sm"
-                  v-close-popup
+                  :loading="loading"
+                  :disable="loading"
+                  @click="logOutUser()"
                 />
               </div>
             </div>
@@ -83,6 +79,7 @@
 <script>
 import { defineComponent, ref } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
+import useStoreModule from "../libs/useStoreModule.js";
 
 const linksList = [
   {
@@ -301,6 +298,25 @@ export default defineComponent({
 
   setup() {
     const leftDrawerOpen = ref(false);
+    const { getAction } = useStoreModule();
+    const { logOut } = getAction("auth", ["logOut"]);
+    const loading = ref(false);
+
+    const logOutUser = () => {
+      loading.value = true;
+      logOut()
+        .then((response) => {
+          console.log("response", response);
+          router.push("/");
+        })
+        .catch((err) => {
+          console.log("err", err);
+        })
+        .finally(() => {
+          console.log("finally", "finally");
+          loading.value = false;
+        });
+    };
 
     return {
       essentialLinks: linksList,
@@ -308,6 +324,8 @@ export default defineComponent({
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
+      loading,
+      logOutUser,
     };
   },
 });
