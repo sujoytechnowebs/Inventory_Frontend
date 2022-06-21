@@ -13,11 +13,11 @@
           <div
             class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
           >
-            User Table
+            Account Management Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-8">
-              <!-- <q-input
+              <q-input
                 outlined
                 dense
                 debounce="300"
@@ -28,20 +28,20 @@
                 <template v-slot:append>
                   <q-icon name="search" />
                 </template>
-              </q-input> -->
+              </q-input>
             </div>
           </div>
         </template>
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'user-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'account-form' : ''">
           <CreateUser v-bind:modal="true"></CreateUser>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'user-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'account-form' : ''">
           <EditUser v-bind:modal="true"></EditUser>
         </div>
       </q-dialog>
@@ -67,16 +67,16 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("user", ["filter"]),
+    ...mapFields("account", ["filter"]),
   },
   setup() {
     const { getGetters } = useStoreModule();
-    const { showEditModal } = getGetters("user", ["showEditModal"]);
-    const { showCreateModal } = getGetters("user", ["showCreateModal"]);
+    const { showEditModal } = getGetters("account", ["showEditModal"]);
+    const { showCreateModal } = getGetters("account", ["showCreateModal"]);
 
     return {
       hasEditPermission: true,
-      dataStore: "user",
+      dataStore: "account",
       aditionalActions: false,
       showEditModal,
       showCreateModal,
@@ -86,7 +86,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.user-form {
+.account-form {
   width: 80%;
   max-width: 80%;
 }

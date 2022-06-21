@@ -13,7 +13,7 @@
           <div
             class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
           >
-            User Table
+            Loan Management Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-8">
@@ -35,13 +35,13 @@
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'user-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'loan-form' : ''">
           <CreateUser v-bind:modal="true"></CreateUser>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'user-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'loan-form' : ''">
           <EditUser v-bind:modal="true"></EditUser>
         </div>
       </q-dialog>
@@ -67,16 +67,16 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("user", ["filter"]),
+    ...mapFields("loan", ["filter"]),
   },
   setup() {
     const { getGetters } = useStoreModule();
-    const { showEditModal } = getGetters("user", ["showEditModal"]);
-    const { showCreateModal } = getGetters("user", ["showCreateModal"]);
+    const { showEditModal } = getGetters("loan", ["showEditModal"]);
+    const { showCreateModal } = getGetters("loan", ["showCreateModal"]);
 
     return {
       hasEditPermission: true,
-      dataStore: "user",
+      dataStore: "loan",
       aditionalActions: false,
       showEditModal,
       showCreateModal,
@@ -86,7 +86,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.user-form {
+.loan-form {
   width: 80%;
   max-width: 80%;
 }

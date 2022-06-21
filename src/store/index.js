@@ -14,6 +14,9 @@ import product from "./Product";
 import productcategory from "./ProductCategory";
 import stocktransfer from "./StockTransfer";
 import inventory from "./Inventory";
+import account from "./Account";
+import checkin from "./CheckIn";
+import loan from "./Loan";
 
 /*
  * If not building with SSR mode, you can
@@ -40,6 +43,9 @@ export default store(function (/* { ssrContext } */) {
       productcategory,
       stocktransfer,
       inventory,
+      account,
+      checkin,
+      loan,
     },
 
     // enable strict mode (adds overhead!)
