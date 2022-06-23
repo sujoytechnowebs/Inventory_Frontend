@@ -67,6 +67,42 @@ const routes = [
           // acl: "user.index",
         },
       },
+      {
+        path: "products",
+        component: () => import("pages/Product/Index.vue"),
+        meta: {
+          name: "product-page",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "products-category",
+        component: () => import("pages/ProductCategory/Index.vue"),
+        meta: {
+          name: "productcategory-page",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "stock-transfer",
+        component: () => import("pages/StockTransfer/Index.vue"),
+        meta: {
+          name: "productcategory-page",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "inventory",
+        component: () => import("pages/Inventory/Index.vue"),
+        meta: {
+          name: "inventory-page",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
     ],
   },
 

@@ -1,0 +1,57 @@
+<template>
+  <div class="div">
+    <q-card class="my-card">
+      <QEditForm
+        :modal="modal"
+        :widgets="true"
+        :save-action="saveaction"
+        :data-store="dataStore"
+        title="Edit Products Category"
+      >
+        <div class="row q-col-gutter-md">
+          <div class="col-12">
+            <q-input
+              ref="name"
+              outlined
+              v-model="name"
+              dense
+              label="Category Name"
+            >
+            </q-input>
+          </div>
+          <div class="col-12">
+            <QSearch
+              v-model="parent_id"
+              label="Parent Category"
+              option-value="id"
+              option-label="name"
+              data-store="productcategory"
+              action="getItems"
+              :multiple="false"
+            ></QSearch>
+          </div>
+        </div>
+      </QEditForm>
+    </q-card>
+  </div>
+</template>
+
+<script>
+import { ref } from "vue";
+import { mapFields } from "vuex-map-fields";
+
+export default {
+  name: "ProductsCategoryEditPage",
+  computed: {
+    ...mapFields("productcategory", ["editItem.name", "editItem.parent_id"]),
+  },
+  setup() {
+    return {
+      modal: true,
+      dataStore: "productcategory",
+      saveaction: "productcategory/updateItem",
+      validationErrors: ref({}),
+    };
+  },
+};
+</script>
