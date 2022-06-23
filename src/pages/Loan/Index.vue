@@ -8,16 +8,26 @@
         :aditionalActions="aditionalActions"
         :columns="columns"
         :filter="filter"
+        :customDelete="true"
       >
         <template v-slot:top>
           <div
-            class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
+            class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-4 col-md-4"
           >
             Loan Management Table
           </div>
-          <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
-            <div class="col-8">
-              <!-- <q-input
+          <div
+            class="text-h6 text-weight-bold q-mt-sm q-mb-sm text-grey-8 col-xs-12 col-sm-4 col-md-4"
+          >
+            <q-btn
+              color="purple"
+              label="Calculator"
+              @click="calculator = true"
+            />
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-4 row justify-end items-center">
+            <div class="col-12">
+              <q-input
                 outlined
                 dense
                 debounce="300"
@@ -28,20 +38,138 @@
                 <template v-slot:append>
                   <q-icon name="search" />
                 </template>
-              </q-input> -->
+              </q-input>
             </div>
           </div>
         </template>
+        <template v-slot:aditionalActions="actionsRow">
+          <!-- Document Preview -->
+
+          <span>
+            <q-btn
+              flat
+              color="blue-10"
+              dense
+              class="q-ml-sm"
+              icon="download"
+              @click="download()"
+            >
+              <q-tooltip>
+                {{ $t("Download Document") }}
+              </q-tooltip>
+            </q-btn>
+          </span>
+
+          <!-- Document Preview -->
+
+          <span v-if="actionsRow.row.status === 'Applied'">
+            <q-btn
+              flat
+              dense
+              color="green-10"
+              class="q-ml-sm"
+              icon="task_alt"
+              round
+              @click="OnVerify(actionsRow.row)"
+            >
+              <q-tooltip>
+                {{ $t("Verify") }}
+              </q-tooltip>
+            </q-btn>
+          </span>
+
+          <span v-if="actionsRow.row.status === 'Varified'">
+            <q-btn
+              flat
+              color="green-10"
+              class="q-ml-sm"
+              icon="task"
+              round
+              @click="OnApprove(actionsRow.row)"
+            >
+              <q-tooltip>
+                {{ $t("Approve") }}
+              </q-tooltip>
+            </q-btn>
+          </span>
+
+          <span v-if="actionsRow.row.status === 'Approved'">
+            <q-btn
+              flat
+              color="green-10"
+              class="q-ml-sm"
+              icon="verified_user"
+              round
+              @click="OnDisburse(actionsRow.row)"
+            >
+              <q-tooltip>
+                {{ $t("Disburse") }}
+              </q-tooltip>
+            </q-btn>
+          </span>
+
+          <span>
+            <q-btn
+              flat
+              color="negative"
+              class="q-ml-sm"
+              icon="cancel"
+              round
+              @click="cancel = true"
+            >
+              <q-tooltip>
+                {{ $t("Cancel") }}
+              </q-tooltip>
+            </q-btn>
+          </span>
+        </template>
       </QDataTable>
 
+      <q-dialog v-model="calculator">
+        <div :class="$q.platform.is.desktop ? 'calculator' : ''">
+          <q-card>
+            <q-card-section>
+              <div><Calculator /></div>
+            </q-card-section>
+          </q-card>
+        </div>
+      </q-dialog>
+
+      <q-dialog v-model="showdisburseModal">
+        <div :class="$q.platform.is.desktop ? 'disburse-form-width' : ''">
+          <div><Disburse /></div>
+        </div>
+      </q-dialog>
+
+      <q-dialog v-model="showApproveModal">
+        <div :class="$q.platform.is.desktop ? 'approve-form-width' : ''">
+          <div><Approve /></div>
+        </div>
+      </q-dialog>
+      <q-dialog v-model="showVerifyModal">
+        <div :class="$q.platform.is.desktop ? 'verify-form-width' : ''">
+          <div><Verify /></div>
+        </div>
+      </q-dialog>
+
+      <q-dialog v-model="cancel">
+        <div :class="$q.platform.is.desktop ? '' : ''">
+          <q-card>
+            <q-card-section>
+              <div class="text-h6">This loan is cancel</div>
+            </q-card-section>
+          </q-card>
+        </div>
+      </q-dialog>
+
       <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'loan-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'loan-create-form' : ''">
           <CreateUser v-bind:modal="true"></CreateUser>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'loan-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'loan-create-form' : ''">
           <EditUser v-bind:modal="true"></EditUser>
         </div>
       </q-dialog>
@@ -50,13 +178,26 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
+import { showHideCreateModal } from "src/store/Loan/mutations.js";
+import { showHideApproveModal } from "src/store/Loan/mutations.js";
+import { showHideDisburseModal } from "src/store/Loan/mutations.js";
 
 const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
 const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+
+const Verify = defineAsyncComponent(() => import("./_components/verify.vue"));
+const Approve = defineAsyncComponent(() => import("./_components/approve.vue"));
+const Disburse = defineAsyncComponent(() =>
+  import("./_components/disburse.vue")
+);
+const Calculator = defineAsyncComponent(() =>
+  import("./_components/calculator.vue")
+);
 
 export default defineComponent({
   name: "IndexPage",
@@ -64,6 +205,10 @@ export default defineComponent({
   components: {
     EditUser,
     CreateUser,
+    Verify,
+    Approve,
+    Disburse,
+    Calculator,
   },
 
   computed: {
@@ -73,21 +218,70 @@ export default defineComponent({
     const { getGetters } = useStoreModule();
     const { showEditModal } = getGetters("loan", ["showEditModal"]);
     const { showCreateModal } = getGetters("loan", ["showCreateModal"]);
+    const { showVerifyModal } = getGetters("loan", ["showVerifyModal"]);
+    const { showApproveModal } = getGetters("loan", ["showApproveModal"]);
+    const { showDisburseModal } = getGetters("loan", ["showDisburseModal"]);
 
     return {
       hasEditPermission: true,
       dataStore: "loan",
-      aditionalActions: false,
+      aditionalActions: true,
       showEditModal,
       showCreateModal,
+      showVerifyModal,
+      showApproveModal,
+      showDisburseModal,
+      verify: ref(false),
+      approve: ref(false),
+      disburse: ref(false),
+      calculator: ref(false),
+      cancel: ref(false),
+      preview: ref(false),
     };
+  },
+
+  methods: {
+    OnVerify(payload) {
+      console.log("on verify clicked", payload);
+      this.$store.commit("loan/showHideVerifyModal", true);
+      this.$store.commit("loan/setVerificationData", payload);
+    },
+    OnApprove(payload) {
+      this.$store.commit("loan/showHideApproveModal", true);
+      this.$store.commit("loan/setApproveData", payload);
+    },
+    OnDisburse(payload) {
+      this.$store.commit("loan/showHideDisburseModal", true);
+      this.$store.commit("loan/setDisburseData", payload);
+    },
+    download() {
+      window.open(
+        "http://127.0.0.1:8000/storage/media/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721_6.jpg.href",
+        "_blank"
+      );
+    },
   },
 });
 </script>
 
 <style scoped>
-.loan-form {
-  width: 80%;
-  max-width: 80%;
+.loan-create-form {
+  width: 50%;
+  max-width: 50%;
+}
+
+.calculator {
+  width: 40%;
+  max-width: 40%;
+}
+
+.verify-form-width {
+  width: 50%;
+  max-width: 50%;
+}
+
+.approve-form-width {
+  width: 50%;
+  max-width: 50%;
 }
 </style>

@@ -85,6 +85,10 @@ export default {
       default: "Save",
       type: String,
     },
+    closeModalMutation: {
+      default: "setEditModal",
+      type: String,
+    },
   },
   data() {
     return {
@@ -148,7 +152,7 @@ export default {
       }
     },
     setEditModal(val) {
-      this.$store.commit(`${this.dataStore}/setEditModal`, val);
+      this.$store.commit(`${this.dataStore}/${this.closeModalMutation}`, val);
     },
   },
 };

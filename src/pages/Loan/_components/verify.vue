@@ -1,61 +1,17 @@
 <template>
-  <div>
+  <div class="div">
     <q-card class="my-card">
-      <QCreateForm
+      <QEditForm
         :modal="modal"
         :widgets="true"
-        save-action="loan/createItem"
+        :save-action="saveaction"
         :data-store="dataStore"
-        title="Add Loans"
+        title="Verify Loan"
+        closeModalMutation="showHideVerifyModal"
       >
         <q-separator />
-        <p class="head q-pt-md">Upload Your Identity</p>
-        <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-select
-              outlined
-              dense
-              v-model="type"
-              :options="identitytype"
-              label="Identity Type"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.type > 0) || validationErrors.type
-                    ? validationErrors.type
-                    : 'Please choose the Identity Type',
-              ]"
-            ></q-select>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-select
-              outlined
-              dense
-              v-model="document_type"
-              :options="documentType"
-              label="Identity Proof"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.document_type > 0) ||
-                  validationErrors.document_type
-                    ? validationErrors.document_type
-                    : 'Please choose the Document proof',
-              ]"
-            ></q-select>
-          </div>
-        </div>
-        <div class="col-12 q-pb-md">
-          <q-uploader
-            label="Upload Document/Image"
-            square
-            flat
-            bordered
-            class="full-width"
-            :factory="factoryFn"
-          />
-        </div>
-        <q-separator />
-        <p class="head q-pt-md">Branch Details</p>
-        <div class="row q-col-gutter-md">
+        <p class="form-heading q-pt-md">Branch Details</p>
+        <div class="row q-mb-lg q-col-gutter-md">
           <div class="col-12 col-md-6 col-lg-6">
             <QSearch
               v-model="customers_id"
@@ -65,13 +21,7 @@
               data-store="user"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.customers_id > 0) ||
-                  validationErrors.customers_id
-                    ? validationErrors.customers_id
-                    : 'Please choose the Customer name',
-              ]"
+              readonly
             ></QSearch>
           </div>
 
@@ -84,19 +34,13 @@
               data-store="branch"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.branch_id > 0) ||
-                  validationErrors.branch_id
-                    ? validationErrors.branch_id
-                    : 'Please choose the Branch name',
-              ]"
+              readonly
             ></QSearch>
           </div>
         </div>
         <q-separator />
         <p class="head q-pt-md">Loan Details</p>
-        <div class="row q-pb-md q-col-gutter-md">
+        <div class="row q-mb-md q-col-gutter-md">
           <div class="col-12">
             <q-input
               outlined
@@ -109,8 +53,9 @@
                   (val && !validationErrors.ewi_start_date > 0) ||
                   validationErrors.ewi_start_date
                     ? validationErrors.ewi_start_date
-                    : 'Please Choose The EWI Starting Date',
+                    : 'Please Choose The EWI Start Date',
               ]"
+              readonly
             >
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
@@ -136,20 +81,23 @@
           </div>
 
           <div class="col-12">
-            <q-select
+            <q-input
+              ref="no_of_ewi"
               outlined
               v-model="no_of_ewi"
               dense
-              :options="noEwi"
-              label="Number of EWI"
+              type="number"
+              label="Number Of EWI"
               :rules="[
                 (val) =>
                   (val && !validationErrors.no_of_ewi > 0) ||
                   validationErrors.no_of_ewi
                     ? validationErrors.no_of_ewi
-                    : 'Please Choose The Number of EWI',
+                    : 'Please Write the number of EWI',
               ]"
-            ></q-select>
+              readonly
+            >
+            </q-input>
           </div>
 
           <div class="col-12">
@@ -165,8 +113,9 @@
                   (val && !validationErrors.loan_amount > 0) ||
                   validationErrors.loan_amount
                     ? validationErrors.loan_amount
-                    : 'Please write number of Loan Amount',
+                    : 'Please Write the Loan Amount',
               ]"
+              readonly
             >
             </q-input>
           </div>
@@ -184,8 +133,9 @@
                   (val && !validationErrors.processing_fees > 0) ||
                   validationErrors.processing_fees
                     ? validationErrors.processing_fees
-                    : 'Please write the processing fees',
+                    : 'Please Write the Processing Fees',
               ]"
+              readonly
             >
             </q-input>
           </div>
@@ -203,17 +153,19 @@
                   (val && !validationErrors.down_payment > 0) ||
                   validationErrors.down_payment
                     ? validationErrors.down_payment
-                    : 'Please write the Down Payment',
+                    : 'Please Write the down payment',
               ]"
+              readonly
             >
             </q-input>
           </div>
         </div>
         <q-separator />
         <p class="head q-pt-md">Application Receive</p>
-        <div class="row q-col-gutter-md">
+        <div class="row q-pb-md q-col-gutter-md">
           <div class="col-12 col-md-6 col-lg-6">
             <q-input
+              ref="application_received_date"
               outlined
               dense
               v-model="application_received_date"
@@ -224,8 +176,9 @@
                   (val && !validationErrors.application_received_date > 0) ||
                   validationErrors.application_received_date
                     ? validationErrors.application_received_date
-                    : 'Please Choose The Application Receive Date',
+                    : 'Please Write The Application Receive Date',
               ]"
+              readonly
             >
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
@@ -259,17 +212,58 @@
               data-store="user"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.application_received_by > 0) ||
-                  validationErrors.application_received_by
-                    ? validationErrors.application_received_by
-                    : 'Please choose the User name',
-              ]"
+              readonly
             ></QSearch>
           </div>
         </div>
-      </QCreateForm>
+        <q-separator />
+        <p class="head q-pt-md">Application Verification</p>
+        <div class="row q-col-gutter-md">
+          <div class="col-12 col-md-6 col-lg-6">
+            <q-input
+              outlined
+              dense
+              v-model="application_verified_date"
+              mask="date"
+              label="Application Verified Date"
+              :rules="['date']"
+            >
+              <template v-slot:prepend>
+                <q-icon name="event" class="cursor-pointer">
+                  <q-popup-proxy
+                    cover
+                    transition-show="scale"
+                    transition-hide="scale"
+                  >
+                    <q-date v-model="application_verified_date">
+                      <div class="row items-center justify-end">
+                        <q-btn
+                          v-close-popup
+                          label="Close"
+                          color="primary"
+                          flat
+                        />
+                      </div>
+                    </q-date>
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-6">
+            <QSearch
+              v-model="application_verified_by"
+              label="Application Verified By"
+              option-value="id"
+              option-label="name"
+              data-store="user"
+              action="getItems"
+              :multiple="false"
+            ></QSearch>
+          </div>
+        </div>
+      </QEditForm>
     </q-card>
   </div>
 </template>
@@ -277,69 +271,40 @@
 <script>
 import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
-import { mapActions } from "vuex";
 
 export default {
-  name: "LoanCreatePage",
+  name: "LoansEditPage",
   setup() {
     return {
-      modal: ref(true),
+      modal: true,
       dataStore: "loan",
+      saveaction: "loan/verifyUpdate",
       validationErrors: ref({}),
       modelValue: ref(),
-      options: ["Receive", "Accept", "Disburse", "Cancel"],
-      identitytype: ["Identity Proof", "Residential"],
-      documentType: [
-        "Voter Id",
-        "Aadhaar Id",
-        "Pan Id",
-        "Driving Licence",
-        "Others",
-      ],
-      noEwi: ["25", "34", "44", "52"],
+      options: ["Varified", "Applied", "Reject"],
     };
   },
-
   computed: {
     ...mapFields("loan", [
-      "newItem.customers_id",
-      "newItem.branch_id",
-      "newItem.application_received_date",
-      "newItem.application_received_by",
-      "newItem.ewi_start_date",
-      "newItem.no_of_ewi",
-      "newItem.loan_amount",
-      "newItem.processing_fees",
-      "newItem.down_payment",
-      "newItem.status",
-      "newItem.document_type",
-      "newItem.type",
+      "verifyItem.customers_id",
+      "verifyItem.branch_id",
+      "verifyItem.application_received_date",
+      "verifyItem.application_received_by",
+      "verifyItem.application_verified_date",
+      "verifyItem.application_verified_by",
+      "verifyItem.ewi_start_date",
+      "verifyItem.no_of_ewi",
+      "verifyItem.loan_amount",
+      "verifyItem.processing_fees",
+      "verifyItem.down_payment",
+      "verifyItem.status",
     ]),
-  },
-
-  methods: {
-    ...mapActions("loan", ["media"]),
-
-    factoryFn(files) {
-      let formData = new FormData();
-      formData.append("attachment_type", "document");
-      formData.append("file", files[0]);
-      return new Promise((resolve) => {
-        this.media(formData)
-          .then((res) => {
-            resolve({
-              url: res.data.media.url,
-            });
-          })
-          .finally(() => {});
-      });
-    },
   },
 };
 </script>
 
 <style scoped>
-.head {
+.form-heading {
   font-size: large;
 }
 </style>
