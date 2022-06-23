@@ -11,18 +11,22 @@ export function columns(state) {
   return state.columns;
 }
 
-// export function filter(state) {
-//   return state.items.filter;
-// }
-
-// export function lastUpdated(state) {
-//   return state.items.lastUpdated;
-// }
-
 export function showCreateModal(state) {
   return state.modals.createItem;
 }
 
 export function showEditModal(state) {
   return state.modals.editItem;
+}
+
+export function showVerifyModal(state) {
+  return state.modals.verify;
+}
+
+export function showApproveModal(state) {
+  return state.modals.approve;
+}
+
+export function showDisburseModal(state) {
+  return state.modals.disburse;
 }

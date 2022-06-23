@@ -33,8 +33,9 @@
           icon="edit"
           class="q-ml-sm"
           @click="onClickEdit(props.row)"
+          :disable="!canDelete"
+          v-if="hasEditPermission"
         >
-          <!-- v-if="editRoute != '' && hasEditPermission" -->
           <q-tooltip>
             {{ $t("edit") }}
           </q-tooltip>
@@ -170,6 +171,10 @@ export default defineComponent({
     },
     aditionalActions: {
       default: false,
+      type: Boolean,
+    },
+    canEdit: {
+      default: true,
       type: Boolean,
     },
     canDelete: {
