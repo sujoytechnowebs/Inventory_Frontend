@@ -130,6 +130,24 @@ const routes = [
           // acl: "user.index",
         },
       },
+      {
+        path: "tax",
+        component: () => import("pages/Tax/Index.vue"),
+        meta: {
+          name: "tax-page",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "purchase",
+        component: () => import("pages/Purchase/Index.vue"),
+        meta: {
+          name: "purchase-page",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
     ],
   },
 
