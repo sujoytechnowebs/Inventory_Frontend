@@ -11,7 +11,7 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Inventory Management </q-toolbar-title>
+        <q-toolbar-title> Amar Furniture </q-toolbar-title>
 
         <div>
           <q-btn-dropdown flat label="Accounts">
@@ -165,6 +165,12 @@ const linksList = [
         link: "/check-in",
         show: true,
       },
+      {
+        title: "Tax",
+        icon: "hlw",
+        link: "/tax",
+        show: true,
+      },
     ],
   },
   {
@@ -196,23 +202,11 @@ const linksList = [
       {
         title: "Purchase",
         icon: "hlw",
-        link: "/users",
-        show: true,
-      },
-      {
-        title: "Purchase Details",
-        icon: "hlw",
-        link: "/users",
+        link: "/purchase",
         show: true,
       },
       {
         title: "Purchase Return",
-        icon: "hlw",
-        link: "/users",
-        show: true,
-      },
-      {
-        title: "Purchase Return Details",
         icon: "hlw",
         link: "/users",
         show: true,
