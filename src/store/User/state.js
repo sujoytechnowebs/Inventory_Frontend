@@ -1,7 +1,6 @@
 export default function () {
   return {
     // items: {
-    testDemo: "www",
     columns: [
       {
         name: "name",
@@ -53,11 +52,33 @@ export default function () {
       name: "",
       email: "",
       role_id: null,
+      password: "",
+      account_name: "",
+      phone: null,
+      city_id: null,
+      address_1: "",
+      address_2: "",
+      postcode: null,
+      adhaar_media_id: null,
+      account_no: null,
+      ifsc: "",
+      branch: "",
     },
     editItem: {
       name: "",
       email: "",
-      role: null,
+      role_id: null,
+      password: "",
+      account_name: "",
+      phone: null,
+      city_id: null,
+      address_1: "",
+      address_2: "",
+      postcode: null,
+      adhaar_media_id: null,
+      account_no: null,
+      ifsc: "",
+      branch: "",
     },
     modals: {
       createItem: false,

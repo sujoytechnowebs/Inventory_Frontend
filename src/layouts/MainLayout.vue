@@ -154,9 +154,15 @@ const linksList = [
     show: true,
     childs: [
       {
+        title: "Accounts",
+        icon: "hlw",
+        link: "/accounts",
+        show: true,
+      },
+      {
         title: "Check In",
         icon: "hlw",
-        link: "/users",
+        link: "/check-in",
         show: true,
       },
     ],
@@ -258,7 +264,7 @@ const linksList = [
       {
         title: "Loan Management",
         icon: "hlw",
-        link: "/users",
+        link: "/loans",
         show: true,
       },
       {

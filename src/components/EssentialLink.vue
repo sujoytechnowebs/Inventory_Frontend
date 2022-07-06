@@ -20,7 +20,9 @@
           :key="child.title"
           v-show="child.show"
           v-bind:class="
-            $route.path == child.link ? 'bg-secondary text-white' : ''
+            $route.path == child.link
+              ? 'bg-secondary text-white'
+              : 'bg-primary text-white'
           "
         >
           <q-item-section v-if="child.icon" avatar>
@@ -39,8 +41,8 @@
         v-show="essentialLink.show"
         v-bind:class="
           $route.path == essentialLink.link
-            ? 'bg-accent text-white'
-            : 'text-black'
+            ? 'bg-secondary text-white'
+            : 'bg-primary text-white'
         "
       >
         <q-item-section v-if="essentialLink.icon" avatar>

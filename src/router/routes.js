@@ -57,6 +57,33 @@ const routes = [
           // acl: "user.index",
         },
       },
+      {
+        path: "accounts",
+        component: () => import("pages/Account/Index.vue"),
+        meta: {
+          name: "account",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "check-in",
+        component: () => import("pages/CheckIn/Index.vue"),
+        meta: {
+          name: "checkin",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "loans",
+        component: () => import("pages/Loan/Index.vue"),
+        meta: {
+          name: "loan",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
 
       {
         path: "profile",
