@@ -70,7 +70,7 @@
       </q-td>
     </template>
   </q-table>
-  <q-page-sticky position="bottom-right" :offset="[18, 18]">
+  <q-page-sticky v-if="canAdd" position="bottom-right" :offset="[18, 18]">
     <q-btn fab icon="add" color="primary" @click="setCreateModal(true)" />
   </q-page-sticky>
 </template>
@@ -173,6 +173,10 @@ export default defineComponent({
       type: Boolean,
     },
     canDelete: {
+      default: true,
+      type: Boolean,
+    },
+    canAdd: {
       default: true,
       type: Boolean,
     },
