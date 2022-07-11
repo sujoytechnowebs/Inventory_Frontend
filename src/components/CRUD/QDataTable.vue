@@ -300,7 +300,7 @@ export default defineComponent({
     //   this.$router.push({ name: this.viewLink, params: { id: props.id } });
     // },
 
-    const onClickDelete = (params) => {
+    function onClickDelete(param) {
       $q.dialog({
         title: "Delete Confirmation",
         message: "Are you sure you want to Delete",
@@ -316,12 +316,13 @@ export default defineComponent({
         },
         persistent: true,
       }).onOk(() => {
+        loading.value = false;
         store
-          .dispatch(dataStore + "/deleteItem", params)
+          .dispatch(props.dataStore + "/deleteItem", param)
           .then((res) => {
-            this.onRequest({
+            onRequest({
               pagination: pagination,
-              filter: filters,
+              filter: props.filter,
             });
             Tnotify(
               {
@@ -341,7 +342,7 @@ export default defineComponent({
             );
           });
       });
-    };
+    }
 
     onBeforeUnmount(() => {
       // unsubscribe();

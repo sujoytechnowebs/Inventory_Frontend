@@ -21,7 +21,7 @@ export function setEditItem(state, payload) {
   state.editItem.adhaar_media_id = payload.adhaar_media_id;
   state.editItem.account_no = payload.account_no;
   state.editItem.ifsc = payload.ifsc;
-  state.editItem.branch = payload.branch;
+  state.editItem.bank_branch = payload.bank_branch;
 }
 
 export function setEditModal(state, payload) {

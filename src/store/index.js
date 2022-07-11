@@ -24,6 +24,8 @@ import purchasereturn from "./PurchaseReturn";
 import ewi from "./EWI";
 import receipt from "./Receipt";
 import payment from "./Payment";
+import sale from "./Sale";
+import salereturn from "./SaleReturn";
 
 /*
  * If not building with SSR mode, you can
@@ -60,6 +62,8 @@ export default store(function (/* { ssrContext } */) {
       ewi,
       receipt,
       payment,
+      sale,
+      salereturn,
     },
 
     // enable strict mode (adds overhead!)

@@ -220,25 +220,13 @@ const linksList = [
       {
         title: "Sales",
         icon: "hlw",
-        link: "/users",
-        show: true,
-      },
-      {
-        title: "Sales Details",
-        icon: "hlw",
-        link: "/users",
+        link: "/sale",
         show: true,
       },
       {
         title: "Sales Return",
         icon: "hlw",
-        link: "/users",
-        show: true,
-      },
-      {
-        title: "Sales Return Details",
-        icon: "hlw",
-        link: "/users",
+        link: "/sale-return",
         show: true,
       },
       {
