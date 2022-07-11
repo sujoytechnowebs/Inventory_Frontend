@@ -13,7 +13,7 @@
           <div
             class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
           >
-            Purchase Management Table
+            Purchase Return Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-8">
@@ -32,36 +32,17 @@
             </div>
           </div>
         </template>
-        <!-- <template v-slot:aditionalActions>
-          <q-btn
-            flat
-            color="primary"
-            label="Product Details"
-            @click="productEdit()"
-          />
-        </template> -->
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'purchase-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
           <CreateUser v-bind:modal="true"></CreateUser>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'purchase-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
           <EditUser v-bind:modal="true"></EditUser>
-        </div>
-      </q-dialog>
-
-      <q-dialog
-        v-model="showProductDetailModel"
-        persistent
-        transition-show="slide-up"
-        transition-hide="slide-down"
-      >
-        <div :class="$q.platform.is.desktop ? 'purchase-form' : ''">
-          <Products />
         </div>
       </q-dialog>
     </q-card-section>
@@ -86,39 +67,29 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("purchase", ["filter"]),
+    ...mapFields("purchasereturn", ["filter"]),
   },
   setup() {
-    const { getGetters, getMutations } = useStoreModule();
-    const { showEditModal } = getGetters("purchase", ["showEditModal"]);
-    const { showCreateModal } = getGetters("purchase", ["showCreateModal"]);
-    const { showProductDetailModel } = getGetters("purchase", [
-      "showProductDetailModel",
+    const { getGetters } = useStoreModule();
+    const { showEditModal } = getGetters("purchasereturn", ["showEditModal"]);
+    const { showCreateModal } = getGetters("purchasereturn", [
+      "showCreateModal",
     ]);
-    const { setProductDetailModel } = getMutations("purchase", [
-      "setProductDetailModel",
-    ]);
-
-    const productEdit = (params) => {
-      setProductDetailModel(true);
-    };
 
     return {
       hasEditPermission: true,
-      dataStore: "purchase",
-      aditionalActions: true,
+      dataStore: "purchasereturn",
+      aditionalActions: false,
       showEditModal,
       showCreateModal,
-      showProductDetailModel,
-      productEdit,
     };
   },
 });
 </script>
 
 <style scoped>
-.purchase-form {
-  width: 100%;
-  max-width: 100%;
+.branch-form {
+  width: 70%;
+  max-width: 70%;
 }
 </style>

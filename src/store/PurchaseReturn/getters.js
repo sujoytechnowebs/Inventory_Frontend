@@ -26,7 +26,3 @@ export function showCreateModal(state) {
 export function showEditModal(state) {
   return state.modals.editItem;
 }
-
-export function showProductDetailModel(state) {
-  return state.modals.productModel;
-}

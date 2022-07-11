@@ -15,6 +15,10 @@
       <slot name="top"></slot>
     </template>
 
+    <template v-slot:body="props" v-if="customBodySlot">
+      <slot name="customBodySlot" v-bind:row="props.row"></slot>
+    </template>
+
     <template v-slot:body-cell-actions="props" v-if="customAction">
       <slot name="actions" v-bind:row="props.row"></slot>
     </template>
@@ -178,6 +182,9 @@ export default defineComponent({
     },
     canAdd: {
       default: true,
+    },
+    customBodySlot: {
+      default: false,
       type: Boolean,
     },
   },
