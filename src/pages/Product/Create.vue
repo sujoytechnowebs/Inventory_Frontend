@@ -62,11 +62,27 @@
           </div>
           <div class="col-12 col-md-6 col-lg-6">
             <q-input
-              ref="item_description"
+              ref="sale_price"
               outlined
-              v-model="item_description"
+              type="number"
+              v-model="sale_price"
               dense
-              label="Product Description"
+              label="Sale Price"
+              :rules="[
+                (val) =>
+                  (val && !validationErrors.sale_price > 0) ||
+                  validationErrors.sale_price
+                    ? validationErrors.sale_price
+                    : 'Please write the Sale Price',
+              ]"
+            >
+            </q-input>
+          </div>
+          <div class="col-12">
+            <q-editor
+              placeholder="Please write the product description."
+              v-model="item_description"
+              min-height="5rem"
               :rules="[
                 (val) =>
                   (val && !validationErrors.item_description > 0) ||
@@ -74,8 +90,10 @@
                     ? validationErrors.item_description
                     : 'Please write the Product Description',
               ]"
-            >
-            </q-input>
+            ></q-editor>
+            <q-card flat bordered>
+              <q-card-section v-html="editor" />
+            </q-card>
           </div>
         </div>
       </QCreateForm>
@@ -102,6 +120,7 @@ export default {
       "newItem.name",
       "newItem.category_id",
       "newItem.barcode",
+      "newItem.sale_price",
       "newItem.item_description",
     ]),
   },

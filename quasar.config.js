@@ -50,10 +50,13 @@ module.exports = configure(function (ctx) {
         ? {
             // so on dev we'll have
             API: "http://127.0.0.1:8000/api",
+            // API: "https://inventory-api.staging.technowebs.in/api",
           }
         : {
             // and on build (production):
-            API: JSON.stringify("https://prod.api.com"),
+            API: JSON.stringify(
+              "https://inventory-api.staging.technowebs.in/api"
+            ),
           },
 
       // transpile: false,

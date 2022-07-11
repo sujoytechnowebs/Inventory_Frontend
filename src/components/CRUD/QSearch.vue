@@ -45,7 +45,7 @@ const lastPage = Math.ceil(allOptions.length / pageSize);
 export default {
   props: {
     modelValue: {
-      type: String,
+      type: [String, Object, Array],
       default: "",
     },
     optionValue: {
@@ -67,6 +67,10 @@ export default {
     multiple: {
       type: Boolean,
       default: false,
+    },
+    dataType: {
+      type: String,
+      default: "string",
     },
   },
   setup(props, { emit }) {
@@ -97,7 +101,15 @@ export default {
         return search.value;
       },
       (first, second) => {
-        emit("update:modelValue", search.value);
+        if (props.dataType == "object") {
+          var filteredArray = options.value.filter(function (itm) {
+            return search.value == itm.id;
+          });
+          if (filteredArray.length > 0)
+            emit("update:modelValue", filteredArray[0]);
+        } else {
+          emit("update:modelValue", search.value);
+        }
       },
       { deep: true }
     );

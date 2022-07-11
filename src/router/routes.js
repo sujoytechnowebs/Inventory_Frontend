@@ -148,6 +148,15 @@ const routes = [
           // acl: "user.index",
         },
       },
+      {
+        path: "purchase-return",
+        component: () => import("pages/PurchaseReturn/Index.vue"),
+        meta: {
+          name: "purchase-return-page",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
     ],
   },
 

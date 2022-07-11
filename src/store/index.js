@@ -19,6 +19,8 @@ import checkin from "./CheckIn";
 import loan from "./Loan";
 import tax from "./Tax";
 import purchase from "./Purchase";
+import purchasedetails from "./PurchaseDetails";
+import purchasereturn from "./PurchaseReturn";
 
 /*
  * If not building with SSR mode, you can
@@ -50,6 +52,8 @@ export default store(function (/* { ssrContext } */) {
       loan,
       tax,
       purchase,
+      purchasedetails,
+      purchasereturn,
     },
 
     // enable strict mode (adds overhead!)
