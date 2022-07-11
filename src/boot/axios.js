@@ -8,7 +8,9 @@ import { LocalStorage as SessionStorage } from "quasar";
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-// const api = axios.create({ baseURL: "http://127.0.0.1:8000/api/" });
+// const api = axios.create({
+//   baseURL: "https://inventory-api.staging.technowebs.in/api",
+// });
 const api = axios.create({
   baseURL: process.env.API,
 });
@@ -17,7 +19,7 @@ export default boot(({ app, router }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
   // Add a request interceptor
-  // axios.defaults.baseURL = "http://127.0.0.1:8000/api/";
+  // axios.defaults.baseURL = "https://inventory-api.staging.technowebs.in/api/";
   axios.defaults.baseURL = process.env.API;
 
   axios.interceptors.request.use(function (config) {
