@@ -10,25 +10,39 @@
       >
         <div class="row q-mt-md q-mb-md q-col-gutter-md">
           <div class="col-12">
-            <q-input
-              ref="city_name"
-              outlined
-              v-model="city_name"
-              dense
-              label="City Name"
-            >
-            </q-input>
-          </div>
-          <div class="col-12">
             <QSearch
-              v-model="state_id"
-              label="State"
+              v-model="branch_id"
+              label="Branch"
               option-value="id"
-              option-label="state_name"
-              data-store="state"
+              option-label="name"
+              data-store="branch"
               action="getItems"
               :multiple="false"
             ></QSearch>
+          </div>
+
+          <div class="col-12">
+            <q-input
+              ref="opening_balance"
+              outlined
+              v-model="opening_balance"
+              dense
+              type="number"
+              label="Opening Balance"
+            >
+            </q-input>
+          </div>
+
+          <div class="col-12">
+            <q-input
+              ref="closing_balance"
+              outlined
+              v-model="closing_balance"
+              dense
+              type="number"
+              label="Closing Balance"
+            >
+            </q-input>
           </div>
         </div>
       </QEditForm>
@@ -52,7 +66,11 @@ export default {
     };
   },
   computed: {
-    ...mapFields("checkin", ["editItem.city_name", "editItem.state_id"]),
+    ...mapFields("checkin", [
+      "editItem.branch_id",
+      "editItem.opening_balance",
+      "editItem.closing_balance",
+    ]),
   },
 };
 </script>

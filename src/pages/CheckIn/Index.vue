@@ -17,7 +17,7 @@
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-8">
-              <!-- <q-input
+              <q-input
                 outlined
                 dense
                 debounce="300"
@@ -28,7 +28,7 @@
                 <template v-slot:append>
                   <q-icon name="search" />
                 </template>
-              </q-input> -->
+              </q-input>
             </div>
           </div>
         </template>
@@ -87,7 +87,7 @@ export default defineComponent({
 
 <style scoped>
 .checkin-form {
-  width: 60%;
-  max-width: 60%;
+  width: 40%;
+  max-width: 40%;
 }
 </style>
