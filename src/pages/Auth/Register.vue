@@ -1,51 +1,67 @@
 <template>
   <q-page class="items-center full-height flex flex-center">
-    <div class="login-section">
-      <q-card flat bordered>
-        <q-card-section>
-          <div class="text-h5 text-center">Register</div>
-        </q-card-section>
-        <q-form @submit="onSubmit">
-          <q-card-section class="q-gutter-y-md">
-            <q-input outlined dense v-model="name" label="User Name">
-              <template v-slot:prepend>
-                <q-icon name="account_circle" />
-              </template>
-            </q-input>
-            <q-input outlined dense v-model="email" label="Email">
-              <template v-slot:prepend>
-                <q-icon name="mail" />
-              </template>
-            </q-input>
-            <q-input
-              outlined
-              dense
-              v-model="password"
-              label="comfirm_password"
-              type="password"
-            >
-              <template v-slot:prepend>
-                <q-icon name="lock" />
-              </template>
-            </q-input>
-            <q-input outlined dense v-model="password" label="Confirm Password">
-              <template v-slot:prepend>
-                <q-icon name="lock" />
-              </template>
-            </q-input>
+    <div class="container">
+      <div class="login-section">
+        <q-card flat bordered>
+          <q-card-section>
+            <div class="text-h5 text-center register-text">Register</div>
           </q-card-section>
+          <q-form @submit="onSubmit">
+            <q-card-section class="q-gutter-y-md">
+              <q-input outlined dense v-model="name" label="User Name">
+                <template v-slot:prepend>
+                  <q-icon name="account_circle" />
+                </template>
+              </q-input>
+              <q-input outlined dense v-model="email" label="Email">
+                <template v-slot:prepend>
+                  <q-icon name="mail" />
+                </template>
+              </q-input>
+              <q-input
+                outlined
+                dense
+                v-model="password"
+                label="Password"
+                type="password"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="lock" />
+                </template>
+              </q-input>
+              <q-input
+                outlined
+                dense
+                v-model="password"
+                label="Confirm Password"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="lock" />
+                </template>
+              </q-input>
+              <q-btn
+                color="primary"
+                class="full-width"
+                unelevated
+                rounded
+                :loading="loading"
+                :disable="loading"
+                type="submit"
+                >Create Account</q-btn
+              >
+            </q-card-section>
 
-          <q-card-actions align="right" class="q-pb-lg q-pl-lg q-pr-lg">
-            <q-btn
-              color="primary"
-              :loading="loading"
-              :disable="loading"
-              type="submit"
-              >Register</q-btn
-            >
-          </q-card-actions>
-        </q-form>
-      </q-card>
+            <q-card-section>
+              <p align="center" class="signup-link">Already have an account?</p>
+              <p align="center">
+                <router-link to="/login" class="text-underline-for-redirect"
+                  >LOGIN</router-link
+                >
+              </p>
+            </q-card-section>
+          </q-form>
+        </q-card>
+      </div>
     </div>
   </q-page>
 </template>
@@ -96,6 +112,22 @@ export default defineComponent({
 .login-section {
   max-width: 30.5em;
   margin: 0 auto;
-  min-width: 35em;
+}
+
+.signup-link {
+  margin-bottom: 0px;
+}
+
+.text-underline-for-redirect {
+  text-decoration: none !important;
+  color: #000000;
+}
+
+.text-underline-for-redirect:hover {
+  color: rgb(55, 0, 255);
+}
+
+.register-text {
+  font-weight: 600;
 }
 </style>

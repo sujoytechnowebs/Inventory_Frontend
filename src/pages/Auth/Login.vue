@@ -1,58 +1,83 @@
 <template>
   <q-page class="items-center full-height flex flex-center">
-    <div class="login-section">
-      <q-card flat bordered>
-        <q-form @submit="onSubmit">
-          <q-card-section>
-            <div class="text-h5 text-center">Login</div>
-          </q-card-section>
-          <q-card-section class="q-gutter-y-md">
-            <q-input ref="test" outlined dense v-model="email" label="Email">
-              <template v-slot:prepend>
-                <q-icon name="mail" />
-              </template>
-            </q-input>
-            <q-input
-              outlined
-              dense
-              v-model="password"
-              :type="isPwd ? 'password' : 'text'"
-              label="Password"
-            >
-              <template v-slot:prepend>
-                <q-icon name="lock" />
-              </template>
-              <template v-slot:append>
-                <q-icon
-                  :name="isPwd ? 'visibility_off' : 'visibility'"
-                  class="cursor-pointer"
-                  @click="isPwd = !isPwd"
-                />
-              </template>
-            </q-input>
-            <div>
-              <!-- <p class="reset-line">
-                Don't Have An Account?
-                <router-link to="/register">Click To Register</router-link>
-              </p> -->
-              <p class="reset-line">
-                Forget Your Password?
-                <router-link to="/forgot-password">Click To Reset</router-link>
-              </p>
-            </div>
-          </q-card-section>
+    <div class="container">
+      <div class="login-section">
+        <q-card flat bordered>
+          <q-form @submit="onSubmit">
+            <q-card-section>
+              <div class="text-h5 text-center login-text">LOGIN</div>
+            </q-card-section>
 
-          <q-card-actions align="right" class="q-pb-lg q-px-lg">
-            <q-btn
-              color="primary"
-              type="submit"
-              :loading="loading"
-              :disable="loading"
-              >Login</q-btn
-            >
-          </q-card-actions>
-        </q-form>
-      </q-card>
+            <q-card-section class="q-gutter-y-md">
+              <q-input
+                ref="test"
+                outlined
+                dense
+                v-model="email"
+                label="Email"
+                :rules="[
+                  (val) =>
+                    (val && !validationErrors.email > 0) ||
+                    validationErrors.email
+                      ? validationErrors.email
+                      : 'Please Enter Your Email',
+                ]"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="mail" />
+                </template>
+              </q-input>
+              <q-input
+                dense
+                outlined
+                v-model="password"
+                :type="isPwd ? 'password' : 'text'"
+                label="Password"
+                :rules="[
+                  (val) =>
+                    (val && !validationErrors.password > 0) ||
+                    validationErrors.password
+                      ? validationErrors.password
+                      : 'Please Enter Your Password',
+                ]"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="lock" />
+                </template>
+                <template v-slot:append>
+                  <q-icon
+                    :name="isPwd ? 'visibility_off' : 'visibility'"
+                    class="cursor-pointer"
+                    @click="isPwd = !isPwd"
+                  />
+                </template>
+              </q-input>
+              <div></div>
+
+              <q-btn
+                class="full-width"
+                unelevated
+                rounded
+                color="primary"
+                type="submit"
+                :loading="loading"
+                :disable="loading"
+                >Login</q-btn
+              >
+            </q-card-section>
+
+            <q-card-section>
+              <p align="center">
+                <router-link
+                  to="/forgot-password"
+                  class="text-underline-for-redirect"
+                  >Forgot Password?</router-link
+                >
+              </p>
+            </q-card-section>
+          </q-form>
+        </q-card>
+      </div>
     </div>
   </q-page>
 </template>
@@ -140,18 +165,32 @@ export default defineComponent({
       // email,
       isPwd: ref(true),
       loading,
+
+      validationErrors: ref({}),
     };
   },
 });
 </script>
 <style scoped>
 .login-section {
-  max-width: 30.5em;
+  max-width: 25.5em;
   margin: 0 auto;
-  min-width: 35em;
 }
 
-.reset-line {
-  margin-bottom: 0.5rem !important;
+.signup-link {
+  margin-bottom: 0px;
+}
+
+.text-underline-for-redirect {
+  text-decoration: none !important;
+  color: #000000;
+}
+
+.text-underline-for-redirect:hover {
+  color: rgb(55, 0, 255);
+}
+
+.login-text {
+  font-weight: 600;
 }
 </style>

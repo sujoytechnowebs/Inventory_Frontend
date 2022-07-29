@@ -173,14 +173,6 @@ const routes = [
         },
       },
       {
-        path: "register",
-        component: () => import("pages/Auth/Register.vue"),
-        meta: {
-          name: "register",
-          requiresAuth: false,
-        },
-      },
-      {
         path: "set-password",
         component: () => import("pages/Auth/SetPassword.vue"),
         meta: {
