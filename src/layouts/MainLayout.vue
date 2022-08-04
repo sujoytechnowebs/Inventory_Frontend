@@ -208,7 +208,7 @@ const linksList = [
       {
         title: "Purchase Return",
         icon: "hlw",
-        link: "/users",
+        link: "/purchase-return",
         show: true,
       },
       {

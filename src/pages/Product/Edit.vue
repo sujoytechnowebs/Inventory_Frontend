@@ -42,13 +42,23 @@
           </div>
           <div class="col-12 col-md-6 col-lg-6">
             <q-input
-              ref="item_description"
+              ref="sale_price"
               outlined
-              v-model="item_description"
+              v-model="sale_price"
               dense
-              label="Product Description"
+              label="Sale Price"
             >
             </q-input>
+          </div>
+          <div class="col-12">
+            <q-editor
+              placeholder="Please write the product description."
+              v-model="item_description"
+              min-height="5rem"
+            ></q-editor>
+            <q-card flat bordered>
+              <q-card-section v-html="editor" />
+            </q-card>
           </div>
         </div>
       </QEditForm>
@@ -67,6 +77,7 @@ export default {
       "editItem.name",
       "editItem.category_id",
       "editItem.barcode",
+      "editItem.sale_price",
       "editItem.item_description",
     ]),
   },
