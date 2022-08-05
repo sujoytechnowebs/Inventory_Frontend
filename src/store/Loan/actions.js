@@ -1,6 +1,11 @@
 import { api, axios } from "boot/axios";
 
-const endPoint = "/cities";
+const endPoint = "/loans";
+const verifypoint = "/loan-varification";
+const approvepoint = "/loan-final-approval";
+const disbursepoint = "/loan-disburst";
+const mediaEndPoint = "/media";
+
 import moment from "moment";
 
 export function getItems({ commit, state }, props) {
@@ -109,6 +114,122 @@ export function deleteItem({ commit, state }, item) {
       .then((response) => {
         commit("setLastUpdated", moment());
         resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+// Media
+
+export function media({ commit, state }, props) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(mediaEndPoint, props, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        commit("setMedia", response.data);
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+// Update Document
+
+export function mediaUpdate({ commit, state }) {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(mediaEndPoint + "/" + state.editItem.id, state.editItem, props, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        if (response.data) {
+          commit("setLastUpdated", moment());
+          commit("setEditModal", false);
+          resolve(response);
+        } else {
+          reject({
+            message: "Item not found",
+          });
+        }
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+//Verify Item Function
+
+export function verifyUpdate({ commit, state }) {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(verifypoint + "/" + state.verifyItem.id, state.verifyItem)
+      .then((response) => {
+        if (response.data) {
+          commit("setLastUpdated", moment());
+          commit("setEditModal", false);
+          resolve(response);
+        } else {
+          reject({
+            message: "Item not found",
+          });
+        }
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+//Approve Item Function
+
+export function approveUpdate({ commit, state }) {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`loan-final-approval/${state.approveItem.id}`, state.approveItem)
+      .then((response) => {
+        if (response.data) {
+          commit("setLastUpdated", moment());
+          commit("setEditModal", false);
+          resolve(response);
+        } else {
+          reject({
+            message: "Item not found",
+          });
+        }
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+//Disburse Item Function
+
+export function disburseUpdate({ commit, state }) {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(disbursepoint + "/" + state.verifyItem.id, state.verifyItem)
+      .then((response) => {
+        if (response.data) {
+          commit("setLastUpdated", moment());
+          commit("setEditModal", false);
+          resolve(response);
+        } else {
+          reject({
+            message: "Item not found",
+          });
+        }
       })
       .catch((err) => {
         reject(err);
