@@ -11,9 +11,9 @@
         <div class="row q-col-gutter-md">
           <div class="col-12 col-md-9 col-lg-9 scroll-bar q-pr-sm">
             <div class="row q-col-gutter-md">
-              <div class="col-12 col-md-3 col-lg-3">
+              <div class="col-12 col-md-6 col-lg-6">
                 <QSearch
-                  v-model="customers_id"
+                  v-model="customer_id"
                   label="Customer Name"
                   option-value="id"
                   option-label="name"
@@ -29,7 +29,25 @@
                   ]"
                 ></QSearch>
               </div>
-              <div class="col-12 col-md-3 col-lg-3">
+              <div class="col-12 col-md-6 col-lg-6">
+                <QSearch
+                  v-model="loan_id"
+                  label="Loan Application Number"
+                  option-value="id"
+                  option-label="application_no"
+                  data-store="loan"
+                  action="getItems"
+                  :multiple="false"
+                  :rules="[
+                    (val) =>
+                      (val && !validationErrors.branch_id > 0) ||
+                      validationErrors.branch_id
+                        ? validationErrors.branch_id
+                        : 'Please choose the Branch name',
+                  ]"
+                ></QSearch>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6">
                 <QSearch
                   v-model="branch_id"
                   label="Branch"
@@ -47,7 +65,7 @@
                   ]"
                 ></QSearch>
               </div>
-              <div class="col-12 col-md-2 col-lg-2">
+              <div class="col-12 col-md-6 col-lg-6">
                 <q-input
                   dense
                   outlined
@@ -144,6 +162,7 @@
 import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 import { defineAsyncComponent } from "vue";
+import { mapGetters } from "vuex";
 
 const addSales = defineAsyncComponent(() =>
   import("./_components/AddSalesDetails.vue")
@@ -156,15 +175,19 @@ export default {
     addSales,
   },
 
-  setup() {
+  data() {
     return {
       modal: ref(true),
       dataStore: "sale",
       validationErrors: ref({}),
       modelValue: ref(),
-      payment: ["Bank", "Cash", "EWI"],
-      options: ["Accepted", "Received"],
+      payment: ["cash", "bank", "due", "ewi"],
+      options: ["received", "deliverd"],
     };
+  },
+
+  created() {
+    this.branch_id = this.getActiveBranch;
   },
 
   computed: {
@@ -176,6 +199,7 @@ export default {
       "newItem.note",
       "newItem.status",
     ]),
+    ...mapGetters("auth", ["getActiveBranch"]),
   },
 };
 </script>
