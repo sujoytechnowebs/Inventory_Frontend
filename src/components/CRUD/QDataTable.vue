@@ -187,11 +187,11 @@ export default defineComponent({
       default: true,
       type: Boolean,
     },
-    canDelete: {
+    canAdd: {
       default: true,
       type: Boolean,
     },
-    canAdd: {
+    canDelete: {
       default: true,
       type: Boolean,
     },

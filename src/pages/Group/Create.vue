@@ -84,16 +84,21 @@
 <script>
 import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
+import { mapGetters } from "vuex";
 
 export default {
   name: "GroupCreatePage",
-  setup() {
+  data() {
     return {
       modal: ref(true),
       dataStore: "group",
       validationErrors: ref({}),
       modelValue: ref(),
     };
+  },
+
+  created() {
+    this.branch_id = this.getActiveBranch;
   },
 
   computed: {
@@ -103,6 +108,7 @@ export default {
       "newItem.branch_id",
       "newItem.address",
     ]),
+    ...mapGetters("auth", ["getActiveBranch"]),
   },
 };
 </script>

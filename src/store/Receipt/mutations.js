@@ -25,15 +25,11 @@ export function setReceiptDetailModel(state, payload) {
 }
 
 export function setReceiptDetails(state, payload) {
-  // console.error("setReceiptDetails", payload)
-
   state.newItem.receiptsDetails.push({
     from_account_id: null,
     date_of_transaction: "",
     note: "",
     amount: "",
-
-    to_account: null,
   });
 }
 

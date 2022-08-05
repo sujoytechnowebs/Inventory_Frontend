@@ -51,6 +51,9 @@
         </q-input>
       </div>
       <div class="col-2">
+        <q-checkbox v-model="data.custom_price" label="Custom Price" />
+      </div>
+      <div class="col-2">
         <q-input
           ref="discount"
           outlined
@@ -69,18 +72,6 @@
           label="Quantity"
         >
         </q-input>
-      </div>
-      <div class="col-2">
-        <QSearch
-          v-model="data.tax_class_id"
-          label="Tax"
-          option-value="id"
-          option-label="name"
-          data-store="tax"
-          action="getItems"
-          :multiple="false"
-          dataType="object"
-        ></QSearch>
       </div>
       <div class="col-12 col-md-2 col-lg-2">
         <q-btn icon="delete" color="red" round @click="deleteProduct(index)" />

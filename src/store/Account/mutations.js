@@ -30,3 +30,7 @@ export function setEditModal(state, payload) {
 export function setLastUpdated(state, payload) {
   state.lastUpdated = payload;
 }
+
+export function setViewMoreDetailsMutation(state, payload) {
+  state.modals.ViewMoreDetails = payload;
+}

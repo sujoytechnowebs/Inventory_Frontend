@@ -6,7 +6,7 @@ export default function () {
         name: "by_account",
         align: "left",
         label: "From",
-        field: "by_account",
+        field: (row) => row?.by_account?.account_name,
         sortable: true,
       },
       {
@@ -56,6 +56,7 @@ export default function () {
     lastUpdated: "",
     // },
     newItem: {
+      from_account: null,
       paymentsDetails: [],
     },
     editItem: {},

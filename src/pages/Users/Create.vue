@@ -59,20 +59,22 @@ import { mapFields } from "vuex-map-fields";
 import { defineAsyncComponent } from "vue";
 
 const customer = defineAsyncComponent(() =>
-  import("./_components/customer.vue")
+  import("./_componentsCreate/customer.vue")
 );
 
-const vendor = defineAsyncComponent(() => import("./_components/vendor.vue"));
+const vendor = defineAsyncComponent(() =>
+  import("./_componentsCreate/vendor.vue")
+);
 
 const incharge = defineAsyncComponent(() =>
-  import("./_components/incharge.vue")
+  import("./_componentsCreate/incharge.vue")
 );
 
 const investor = defineAsyncComponent(() =>
-  import("./_components/investor.vue")
+  import("./_componentsCreate/investor.vue")
 );
 
-const user = defineAsyncComponent(() => import("./_components/user.vue"));
+const user = defineAsyncComponent(() => import("./_componentsCreate/user.vue"));
 
 export default {
   name: "UsersCreatePage",

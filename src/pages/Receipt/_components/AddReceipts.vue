@@ -1,17 +1,16 @@
 <template>
   <div class="row q-col-gutter-md">
-    <!-- <div class="col-6">
+    <div class="col-6">
       <QSearch
         v-model="to_account"
         label="To Account"
         option-value="id"
-        option-label="name"
-        data-store="user"
+        option-label="account_name"
+        data-store="account"
         action="getItems"
         :multiple="false"
-        dataType="object"
       ></QSearch>
-    </div> -->
+    </div>
 
     <div class="col-12">
       <q-btn
@@ -27,25 +26,25 @@
       v-for="(data, index) in receiptsDetails"
       :key="data.id"
     >
-      <div class="col-12">
+      <!-- <div class="col-12">
         <QSearch
           v-model="data.to_account"
           label="To Account"
           option-value="id"
-          option-label="name"
-          data-store="user"
+          option-label="account_name"
+          data-store="account"
           action="getItems"
           :multiple="false"
         ></QSearch>
-      </div>
+      </div> -->
 
       <div class="col-12 col-md-4 col-lg-4">
         <QSearch
           v-model="data.from_account_id"
           label="From Account"
           option-value="id"
-          option-label="name"
-          data-store="user"
+          option-label="account_name"
+          data-store="account"
           action="getItems"
           :multiple="false"
         ></QSearch>
@@ -91,17 +90,6 @@
         </q-input>
       </div>
 
-      <!-- <div class="col-12">
-        <q-input
-          ref="reference_no"
-          outlined
-          v-model="data.reference_no"
-          dense
-          label="Reference Number"
-        >
-        </q-input>
-      </div> -->
-
       <div class="col-10">
         <q-editor v-model="data.note" ref="note" />
         <q-card-section v-html="editor" />
@@ -129,6 +117,8 @@ export default defineComponent({
   },
 
   computed: {
+    ...mapFields("receipt", ["newItem.to_account"]),
+
     ...mapMultiRowFields("receipt", ["newItem.receiptsDetails"]),
   },
 
@@ -161,7 +151,6 @@ export default defineComponent({
     };
 
     return {
-      to_account,
       addReceipt,
       deleteReceipt,
       date_of_transaction: ref("2019/02/01"),
