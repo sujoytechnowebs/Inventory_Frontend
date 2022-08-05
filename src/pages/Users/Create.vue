@@ -273,16 +273,16 @@
           </div>
           <div class="col-12 col-md-4 col-lg-4">
             <q-input
-              ref="branch"
+              ref="bank_branch"
               outlined
-              v-model="branch"
+              v-model="bank_branch"
               dense
               label="Bank Branch"
               :rules="[
                 (val) =>
-                  (val && !validationErrors.branch > 0) ||
-                  validationErrors.branch
-                    ? validationErrors.branch
+                  (val && !validationErrors.bank_branch > 0) ||
+                  validationErrors.bank_branch
+                    ? validationErrors.bank_branch
                     : 'Please Write The Bank Branch',
               ]"
             />
@@ -323,7 +323,7 @@ export default {
       "newItem.adhaar_media_id",
       "newItem.account_no",
       "newItem.ifsc",
-      "newItem.branch",
+      "newItem.bank_branch",
     ]),
   },
 };

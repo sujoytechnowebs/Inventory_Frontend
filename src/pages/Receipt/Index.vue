@@ -13,7 +13,7 @@
           <div
             class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
           >
-            Purchase Management Table
+            Receipt Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-8">
@@ -32,40 +32,17 @@
             </div>
           </div>
         </template>
-        <!-- <template v-slot:aditionalActions>
-          <q-btn
-            flat
-            color="primary"
-            label="Product Details"
-            @click="productEdit()"
-          />
-        </template> -->
       </QDataTable>
 
-      <q-dialog
-        fullscreen
-        v-model="showCreateModal"
-        class="purchase-form-dialog"
-      >
-        <div :class="$q.platform.is.desktop ? 'purchase-form' : ''">
+      <q-dialog v-model="showCreateModal">
+        <div :class="$q.platform.is.desktop ? 'receipt-form' : ''">
           <CreateUser v-bind:modal="true"></CreateUser>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'purchase-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'receipt-form' : ''">
           <EditUser v-bind:modal="true"></EditUser>
-        </div>
-      </q-dialog>
-
-      <q-dialog
-        v-model="showProductDetailModel"
-        persistent
-        transition-show="slide-up"
-        transition-hide="slide-down"
-      >
-        <div :class="$q.platform.is.desktop ? 'purchase-form' : ''">
-          <Products />
         </div>
       </q-dialog>
     </q-card-section>
@@ -90,49 +67,39 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("purchase", ["filter"]),
+    ...mapFields("receipt", ["filter"]),
   },
   setup() {
-    const { getGetters, getMutations } = useStoreModule();
-    const { showEditModal } = getGetters("purchase", ["showEditModal"]);
-    const { showCreateModal } = getGetters("purchase", ["showCreateModal"]);
-    const { showProductDetailModel } = getGetters("purchase", [
-      "showProductDetailModel",
-    ]);
-    const { setProductDetailModel } = getMutations("purchase", [
-      "setProductDetailModel",
-    ]);
+    const { getGetters } = useStoreModule();
+    const { showEditModal } = getGetters("receipt", ["showEditModal"]);
+    const { showCreateModal } = getGetters("receipt", ["showCreateModal"]);
+    // const { showReceiptDetailModel } = getGetters("receipt", [
+    //   "showReceiptDetailModel",
+    // ]);
+    // const { setReceiptDetailModel } = getMutations("receipt", [
+    //   "setReceiptDetailModel",
+    // ]);
 
-    const productEdit = (params) => {
-      setProductDetailModel(true);
-    };
+    // const ReceiptEdit = (params) => {
+    //   setReceiptDetailModel(true);
+    // };
 
     return {
       hasEditPermission: true,
-      dataStore: "purchase",
-      aditionalActions: true,
+      dataStore: "receipt",
+      aditionalActions: false,
       showEditModal,
       showCreateModal,
-      showProductDetailModel,
-      productEdit,
+      // showReceiptDetailModel,
+      // ReceiptEdit,
     };
   },
 });
 </script>
 
 <style scoped>
-.purchase-form {
-  width: 100%;
-  max-width: 100%;
-}
-</style>
-
-<style>
-.purchase-form-dialog .q-dialog__inner {
-  padding: 0 !important;
-  background: white;
-}
-.purchase-form-dialog .q-dialog__inner.q-dialog__inner--minimized > div {
-  max-height: 100vh !important;
+.receipt-form {
+  width: 70%;
+  max-width: 70%;
 }
 </style>

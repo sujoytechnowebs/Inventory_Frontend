@@ -62,7 +62,7 @@ export default function () {
       adhaar_media_id: null,
       account_no: null,
       ifsc: "",
-      branch: "",
+      bank_branch: "",
     },
     editItem: {
       name: "",

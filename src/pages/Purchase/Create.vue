@@ -130,9 +130,6 @@
               <addProducts v-model="purchase_details" />
             </div>
           </div>
-          <div class="col-12 col-md-4 col-lg-4">
-            <p>Hello Test</p>
-          </div>
         </div>
       </QCreateForm>
     </q-card>
@@ -162,7 +159,7 @@ export default {
       validationErrors: ref({}),
       modelValue: ref(),
       options: ["Received", "Pending"],
-      pays: ["Bank", "Cash"],
+      pays: ["bank", "cash"],
     };
   },
 

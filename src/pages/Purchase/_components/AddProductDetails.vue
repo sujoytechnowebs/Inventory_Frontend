@@ -109,6 +109,7 @@ export default defineComponent({
     const product = ref([]);
 
     const { getMutations } = useStoreModule();
+
     const { setProductDetails } = getMutations("purchase", [
       "setProductDetails",
     ]);
@@ -117,7 +118,9 @@ export default defineComponent({
       "removeProductDetails",
     ]);
 
-    onMounted(() => {});
+    onMounted(() => {
+      //
+    });
 
     const addProduct = () => {
       console.log("product.value", product.value.id);

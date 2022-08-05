@@ -6,9 +6,47 @@
         :widgets="true"
         :save-action="saveaction"
         :data-store="dataStore"
-        closeModalMutation="showHideApproveModal"
+        title="Disburse Loan"
+        closeModalMutation="showHideDisburseModal"
       >
-        <p class="form-heading q-pt-md">Branch Details</p>
+        <div class="row q-mb-md q-col-gutter-md">
+          <div class="col-12">
+            <q-input
+              dense
+              outlined
+              v-model="ewi_start_date"
+              mask="date"
+              :rules="[
+                (val) =>
+                  (val && !validationErrors.ewi_start_date > 0) ||
+                  validationErrors.ewi_start_date
+                    ? validationErrors.ewi_start_date
+                    : 'Please Write The EWI starting date',
+              ]"
+            >
+              <template v-slot:prepend>
+                <q-icon name="event" class="cursor-pointer">
+                  <q-popup-proxy
+                    cover
+                    transition-show="scale"
+                    transition-hide="scale"
+                  >
+                    <q-date v-model="ewi_start_date">
+                      <div class="row items-center justify-end">
+                        <q-btn
+                          v-close-popup
+                          label="Close"
+                          color="primary"
+                          flat
+                        />
+                      </div>
+                    </q-date>
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+          </div>
+        </div>
       </QEditForm>
     </q-card>
   </div>
@@ -19,7 +57,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "LoansEditPage",
+  name: "DisbursePage",
   setup() {
     return {
       modal: true,
@@ -27,33 +65,10 @@ export default {
       saveaction: "loan/disburseUpdate",
       validationErrors: ref({}),
       modelValue: ref(),
-      options: ["Approved", "Reject"],
     };
   },
   computed: {
-    ...mapFields("loan", [
-      "approveItem.customers_id",
-      "approveItem.branch_id",
-      "approveItem.application_received_date",
-      "approveItem.application_received_by",
-      "approveItem.application_verified_date",
-      "approveItem.application_verified_by",
-      "approveItem.application_approve_date",
-      "approveItem.application_approved_by",
-      "approveItem.ewi_start_date",
-      "approveItem.no_of_ewi",
-      "approveItem.loan_amount",
-      "approveItem.processing_fees",
-      "approveItem.down_payment",
-      "approveItem.status",
-    ]),
+    ...mapFields("loan", ["disburseItem.ewi_start_date"]),
   },
 };
 </script>
-
-<style scoped>
-.form-heading {
-  text-align: center;
-  font-size: large;
-}
-</style>

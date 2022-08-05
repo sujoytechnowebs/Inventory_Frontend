@@ -154,7 +154,10 @@ export default function () {
       processing_fees: null,
     },
 
-    disburseItem: {},
+    disburseItem: {
+      id: "",
+      ewi_start_date: "",
+    },
 
     modals: {
       createItem: false,

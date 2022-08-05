@@ -219,7 +219,7 @@ export function approveUpdate({ commit, state }) {
 export function disburseUpdate({ commit, state }) {
   return new Promise((resolve, reject) => {
     axios
-      .put(disbursepoint + "/" + state.verifyItem.id, state.verifyItem)
+      .put(`loan-disburst/${state.disburseItem.id}`, state.disburseItem)
       .then((response) => {
         if (response.data) {
           commit("setLastUpdated", moment());
