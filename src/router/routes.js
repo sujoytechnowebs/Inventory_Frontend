@@ -141,6 +141,15 @@ const routes = [
         },
       },
       {
+        path: "stack-holder",
+        component: () => import("pages/StackHolder/Index.vue"),
+        meta: {
+          name: "stackholder-page",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
         path: "stock-transfer",
         component: () => import("pages/StockTransfer/Index.vue"),
         meta: {
