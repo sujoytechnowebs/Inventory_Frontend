@@ -17,7 +17,7 @@
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-8">
-              <!-- <q-input
+              <q-input
                 outlined
                 dense
                 debounce="300"
@@ -28,38 +28,46 @@
                 <template v-slot:append>
                   <q-icon name="search" />
                 </template>
-              </q-input> -->
+              </q-input>
             </div>
           </div>
         </template>
-        <template v-slot:aditionalActions>
-          <q-btn flat color="primary" label="Add Member" />
+        <template v-slot:aditionalActions="props">
+          <q-btn label="View Members" flat @click="setViewMembers(props.row)" />
         </template>
       </QDataTable>
-
-      <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'group-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
-        </div>
-      </q-dialog>
-
-      <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'group-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
-        </div>
-      </q-dialog>
     </q-card-section>
+
+    <q-dialog v-model="showCreateModal">
+      <div :class="$q.platform.is.desktop ? 'group-form' : ''">
+        <CreateUser v-bind:modal="true"></CreateUser>
+      </div>
+    </q-dialog>
+
+    <q-dialog v-model="showEditModal">
+      <div :class="$q.platform.is.desktop ? 'group-form' : ''">
+        <EditUser v-bind:modal="true"></EditUser>
+      </div>
+    </q-dialog>
+    <q-dialog v-model="showViewMembersModal">
+      <div :class="$q.platform.is.desktop ? 'group-form' : ''">
+        <addMembers></addMembers>
+      </div>
+    </q-dialog>
   </div>
 </template>
 
 <script>
+import { ref, defineComponent, defineAsyncComponent } from "vue";
 import { mapFields } from "vuex-map-fields";
-import { defineComponent } from "vue";
-import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
 const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
 const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+
+const addMembers = defineAsyncComponent(() =>
+  import("./_components/AddMembers.vue")
+);
 
 export default defineComponent({
   name: "IndexPage",
@@ -67,15 +75,28 @@ export default defineComponent({
   components: {
     EditUser,
     CreateUser,
+    addMembers,
   },
 
   computed: {
     ...mapFields("group", ["filter"]),
   },
   setup() {
-    const { getGetters } = useStoreModule();
+    const { getGetters, getMutations } = useStoreModule();
     const { showEditModal } = getGetters("group", ["showEditModal"]);
     const { showCreateModal } = getGetters("group", ["showCreateModal"]);
+    const { showViewMembersModal } = getGetters("groupuser", [
+      "showViewMembersModal",
+    ]);
+    const { setViewMembersModal } = getMutations("groupuser", [
+      "setViewMembersModal",
+    ]);
+    const { setModalItem } = getMutations("groupuser", ["setModalItem"]);
+
+    const setViewMembers = (payload) => {
+      setViewMembersModal(true);
+      setModalItem(payload);
+    };
 
     return {
       hasEditPermission: true,
@@ -83,6 +104,9 @@ export default defineComponent({
       aditionalActions: true,
       showEditModal,
       showCreateModal,
+      maximizedToggle: ref(true),
+      showViewMembersModal,
+      setViewMembers,
     };
   },
 });

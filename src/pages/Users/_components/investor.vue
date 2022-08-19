@@ -6,33 +6,33 @@
       <div class="row q-col-gutter-md">
         <div class="col-12 col-md-6 col-lg-6">
           <q-input
-            ref="name"
+            ref="account_name"
             outlined
-            v-model="name"
+            v-model="account_name"
             dense
             label="Investor Name"
             :rules="[
               (val) =>
-                (val && !validationErrors.names > 0) || validationErrors.names
-                  ? validationErrors.names
-                  : 'Please write something',
+                (val && !validationErrors.account_name > 0) ||
+                validationErrors.account_name
+                  ? validationErrors.account_name
+                  : 'Please Write The Investor Name',
             ]"
           />
         </div>
 
         <div class="col-12 col-md-6 col-lg-6">
           <q-input
-            ref="account_name"
+            ref="name"
             outlined
-            v-model="account_name"
+            v-model="name"
             dense
             label="User Name"
             :rules="[
               (val) =>
-                (val && !validationErrors.account_name > 0) ||
-                validationErrors.account_name
-                  ? validationErrors.account_name
-                  : 'Please write something',
+                (val && !validationErrors.name > 0) || validationErrors.name
+                  ? validationErrors.name
+                  : 'Please Write The User Name',
             ]"
           />
         </div>
@@ -49,7 +49,7 @@
               (val) =>
                 (val && !validationErrors.phone > 0) || validationErrors.phone
                   ? validationErrors.phone
-                  : 'Please write something',
+                  : 'Please Write The Mobile Number',
             ]"
           />
         </div>
@@ -60,12 +60,7 @@
             v-model="email"
             dense
             label="Email"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.email > 0) || validationErrors.email
-                  ? validationErrors.email
-                  : 'Please write something',
-            ]"
+            :rules="[email]"
           />
         </div>
       </div>
@@ -82,13 +77,7 @@
         dense
         type="number"
         label="Account Number"
-        :rules="[
-          (val) =>
-            (val && !validationErrors.account_no > 0) ||
-            validationErrors.account_no
-              ? validationErrors.account_no
-              : 'Please write something',
-        ]"
+        :rules="[account_no]"
       />
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -99,12 +88,7 @@
         dense
         type="number"
         label="IFSC Number"
-        :rules="[
-          (val) =>
-            (val && !validationErrors.ifsc > 0) || validationErrors.ifsc
-              ? validationErrors.ifsc
-              : 'Please write something',
-        ]"
+        :rules="[ifsc]"
       />
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -114,13 +98,7 @@
         v-model="bank_branch"
         dense
         label="Bank Branch"
-        :rules="[
-          (val) =>
-            (val && !validationErrors.bank_branch > 0) ||
-            validationErrors.bank_branch
-              ? validationErrors.bank_branch
-              : 'Please write something',
-        ]"
+        :rules="[bank_branch]"
       />
     </div>
   </div>

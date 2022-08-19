@@ -60,21 +60,20 @@
             ></QSearch>
           </div>
           <div class="col-12">
-            <q-input
-              ref="address"
-              outlined
+            <q-editor
+              placeholder="Please Write The Address"
               v-model="address"
-              dense
-              label="Address"
+              min-height="10rem"
               :rules="[
                 (val) =>
                   (val && !validationErrors.address > 0) ||
                   validationErrors.address
                     ? validationErrors.address
-                    : 'Please write the address',
+                    : 'Please Write The Address',
               ]"
-            >
-            </q-input>
+            ></q-editor>
+
+            <q-card-section v-html="editor" />
           </div>
         </div>
       </QCreateForm>

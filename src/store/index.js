@@ -26,6 +26,7 @@ import receipt from "./Receipt";
 import payment from "./Payment";
 import sale from "./Sale";
 import salereturn from "./SaleReturn";
+import groupuser from "./GroupUser";
 
 /*
  * If not building with SSR mode, you can
@@ -64,6 +65,7 @@ export default store(function (/* { ssrContext } */) {
       payment,
       sale,
       salereturn,
+      groupuser,
     },
 
     // enable strict mode (adds overhead!)

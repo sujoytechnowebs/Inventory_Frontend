@@ -40,32 +40,32 @@
         </div>
         <div class="col-12 col-md-6 col-lg-6">
           <q-input
-            ref="name"
+            ref="account_name"
             outlined
-            v-model="name"
+            v-model="account_name"
             dense
             label="Customer Name"
             :rules="[
               (val) =>
-                (val && !validationErrors.name > 0) || validationErrors.name
-                  ? validationErrors.name
+                (val && !validationErrors.account_name > 0) ||
+                validationErrors.account_name
+                  ? validationErrors.account_name
                   : 'Please Write The Customer Name',
             ]"
           />
         </div>
         <div class="col-12 col-md-6 col-lg-6">
           <q-input
-            ref="account_name"
+            ref="name"
             outlined
-            v-model="account_name"
+            v-model="name"
             dense
             label="UserName"
             :rules="[
               (val) =>
-                (val && !validationErrors.account_name > 0) ||
-                validationErrors.account_name
-                  ? validationErrors.account_name
-                  : 'Please Write The Account Name',
+                (val && !validationErrors.name > 0) || validationErrors.name
+                  ? validationErrors.name
+                  : 'Please Write The User Name',
             ]"
           />
         </div>
@@ -287,7 +287,7 @@ export default {
   setup() {
     return {
       house_options: ["own", "rent", "tea estate"],
-      grp_role_options: ["Leader", "Member"],
+      grp_role_options: ["leader", "member"],
       modal: ref(true),
       validationErrors: ref({}),
     };

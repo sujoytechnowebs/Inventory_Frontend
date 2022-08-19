@@ -6,31 +6,31 @@
       <div class="row q-col-gutter-md">
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
-            ref="name"
+            ref="account_name"
             outlined
-            v-model="name"
+            v-model="account_name"
             dense
             label="Incharge Name"
             :rules="[
               (val) =>
-                (val && !validationErrors.name > 0) || validationErrors.name
-                  ? validationErrors.name
+                (val && !validationErrors.account_name > 0) ||
+                validationErrors.account_name
+                  ? validationErrors.account_name
                   : 'Please Write The Name',
             ]"
           />
         </div>
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
-            ref="account_name"
+            ref="name"
             outlined
-            v-model="account_name"
+            v-model="name"
             dense
             label="User Name"
             :rules="[
               (val) =>
-                (val && !validationErrors.account_name > 0) ||
-                validationErrors.account_name
-                  ? validationErrors.account_name
+                (val && !validationErrors.name > 0) || validationErrors.name
+                  ? validationErrors.name
                   : 'Please Write The User Name',
             ]"
           />

@@ -25,15 +25,16 @@
 
         <div class="col-12 col-md-6 col-lg-6">
           <q-input
-            ref="name"
+            ref="account_name"
             outlined
-            v-model="name"
+            v-model="account_name"
             dense
             label="Vendor Name"
             :rules="[
               (val) =>
-                (val && !validationErrors.name > 0) || validationErrors.name
-                  ? validationErrors.name
+                (val && !validationErrors.account_name > 0) ||
+                validationErrors.account_name
+                  ? validationErrors.account_name
                   : 'Please Write The Name',
             ]"
           ></q-input>
@@ -41,16 +42,15 @@
 
         <div class="col-12 col-md-6 col-lg-6">
           <q-input
-            ref="account_name"
+            ref="name"
             outlined
-            v-model="account_name"
+            v-model="name"
             dense
             label="User Name"
             :rules="[
               (val) =>
-                (val && !validationErrors.account_name > 0) ||
-                validationErrors.account_name
-                  ? validationErrors.account_name
+                (val && !validationErrors.name > 0) || validationErrors.name
+                  ? validationErrors.name
                   : 'Please Write The UserName',
             ]"
           ></q-input>
