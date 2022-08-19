@@ -75,8 +75,15 @@
       </q-td>
     </template>
   </q-table>
-  <q-page-sticky v-if="canAdd" position="bottom-right" :offset="[18, 18]">
-    <q-btn fab icon="add" color="primary" @click="setCreateModal(true)" />
+  <q-page-sticky position="bottom-right" :offset="[18, 18]">
+    <q-btn
+      fab
+      icon="add"
+      color="primary"
+      @click="setCreateModal(true)"
+      v-show="canAdd"
+      v-if="hasEditPermission"
+    />
   </q-page-sticky>
 </template>
 

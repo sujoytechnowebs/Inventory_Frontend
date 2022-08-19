@@ -47,14 +47,15 @@ export function setApproveData(state, payload) {
   state.approveItem = Object.assign({}, payload);
 }
 
+export function setMedia(state, payload) {
+  state.newItem.media_id = payload.media_id;
+}
+
 export function showHideDisburseModal(state, payload) {
   state.modals.disburse = payload;
 }
 
 export function setDisburseData(state, payload) {
-  state.disburseItem = Object.assign({}, payload);
-}
-
-export function setMedia(state, payload) {
-  state.newItem.media_id = payload.media_id;
+  state.disburseItem.id = payload.id;
+  state.disburseItem.ewi_start_date = payload.ewi_start_date;
 }

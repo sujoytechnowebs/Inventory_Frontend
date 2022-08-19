@@ -98,7 +98,7 @@
               flat
               color="green-10"
               class="q-ml-sm"
-              icon="verified_user"
+              icon="task"
               round
               @click="OnDisburse(actionsRow.row)"
             >
@@ -135,12 +135,6 @@
         </div>
       </q-dialog>
 
-      <q-dialog v-model="showdisburseModal">
-        <div :class="$q.platform.is.desktop ? 'disburse-form-width' : ''">
-          <div><Disburse /></div>
-        </div>
-      </q-dialog>
-
       <q-dialog v-model="showApproveModal">
         <div :class="$q.platform.is.desktop ? 'approve-form-width' : ''">
           <div><Approve /></div>
@@ -159,6 +153,12 @@
               <div class="text-h6">This loan is cancel</div>
             </q-card-section>
           </q-card>
+        </div>
+      </q-dialog>
+
+      <q-dialog v-model="showDisburseModal">
+        <div :class="$q.platform.is.desktop ? '' : ''">
+          <div><Disburse /></div>
         </div>
       </q-dialog>
 
@@ -185,18 +185,19 @@ import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 import { showHideCreateModal } from "src/store/Loan/mutations.js";
 import { showHideApproveModal } from "src/store/Loan/mutations.js";
-import { showHideDisburseModal } from "src/store/Loan/mutations.js";
 
 const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
 const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
 
 const Verify = defineAsyncComponent(() => import("./_components/verify.vue"));
 const Approve = defineAsyncComponent(() => import("./_components/approve.vue"));
-const Disburse = defineAsyncComponent(() =>
-  import("./_components/disburse.vue")
-);
+
 const Calculator = defineAsyncComponent(() =>
   import("./_components/calculator.vue")
+);
+
+const Disburse = defineAsyncComponent(() =>
+  import("./_components/disburse.vue")
 );
 
 export default defineComponent({
@@ -231,12 +232,13 @@ export default defineComponent({
       showVerifyModal,
       showApproveModal,
       showDisburseModal,
+
       verify: ref(false),
       approve: ref(false),
-      disburse: ref(false),
       calculator: ref(false),
       cancel: ref(false),
       preview: ref(false),
+      disburse: ref(false),
     };
   },
 
@@ -250,10 +252,12 @@ export default defineComponent({
       this.$store.commit("loan/showHideApproveModal", true);
       this.$store.commit("loan/setApproveData", payload);
     },
+
     OnDisburse(payload) {
       this.$store.commit("loan/showHideDisburseModal", true);
       this.$store.commit("loan/setDisburseData", payload);
     },
+
     download() {
       window.open(
         "http://127.0.0.1:8000/storage/media/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721_6.jpg.href",

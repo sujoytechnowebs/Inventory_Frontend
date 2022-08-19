@@ -247,6 +247,18 @@ const linksList = [
         link: "/stock-transfer",
         show: true,
       },
+      {
+        title: "Receipt",
+        icon: "hlw",
+        link: "/receipt",
+        show: true,
+      },
+      {
+        title: "Payment",
+        icon: "hlw",
+        link: "/payment",
+        show: true,
+      },
     ],
   },
   {
@@ -262,21 +274,9 @@ const linksList = [
         show: true,
       },
       {
-        title: "Loan Documents",
+        title: "EWI Details",
         icon: "hlw",
-        link: "/users",
-        show: true,
-      },
-      {
-        title: "Loan Product Details",
-        icon: "hlw",
-        link: "/users",
-        show: true,
-      },
-      {
-        title: "EWI",
-        icon: "hlw",
-        link: "/users",
+        link: "/ewi-details",
         show: true,
       },
     ],
@@ -284,7 +284,7 @@ const linksList = [
   {
     title: "Profile",
     icon: "manage_accounts",
-    link: "/users",
+    link: "/profile",
     show: true,
   },
 ];

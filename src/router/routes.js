@@ -86,6 +86,34 @@ const routes = [
       },
 
       {
+        path: "ewi-details",
+        component: () => import("pages/EWI/Index.vue"),
+        meta: {
+          name: "ewi-details",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "receipt",
+        component: () => import("pages/Receipt/Index.vue"),
+        meta: {
+          name: "receipt",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "payment",
+        component: () => import("pages/Payment/Index.vue"),
+        meta: {
+          name: "payment",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+
+      {
         path: "profile",
         component: () => import("pages/Profile/Index.vue"),
         meta: {
