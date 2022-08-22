@@ -28,6 +28,7 @@ import sale from "./Sale";
 import salereturn from "./SaleReturn";
 import groupuser from "./GroupUser";
 import investordetails from "./InvestorDetails";
+import profitloss from "./ProfitLoss";
 
 /*
  * If not building with SSR mode, you can
@@ -68,6 +69,7 @@ export default store(function (/* { ssrContext } */) {
       salereturn,
       groupuser,
       investordetails,
+      profitloss,
     },
 
     // enable strict mode (adds overhead!)
