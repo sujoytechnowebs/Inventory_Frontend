@@ -4,9 +4,9 @@
       <QCreateForm
         :modal="modal"
         :widgets="true"
-        save-action="purchase/createItem"
+        save-action="salereturn/createItem"
         :data-store="dataStore"
-        title="Add Purchase"
+        title="Add Sale Return"
       >
         <div class="row q-col-gutter-md q-pt-md">
           <div class="col-12 col-md-8 col-lg-8">
@@ -122,109 +122,15 @@
 
             <q-separator />
 
-            <p class="purchase-details-create-form-head q-pt-md">
+            <p class="sales-return-details-create-form-head q-pt-md">
               Product Details
             </p>
-
             <div>
-              <addProducts v-model="purchase_details" />
+              <addProducts v-model="sale_return_details" />
             </div>
           </div>
           <div class="col-12 col-md-4 col-lg-4">
-            <div v-for="data in purchase_details" :key="data.id">
-              <q-card flat bordered class="q-mt-md">
-                <q-card-section>
-                  <p class="purchase_title text-center">Total Cost</p>
-                  <q-separator />
-                  <div class="row flex justify-between">
-                    <div class="6">
-                      <p>Product Name:</p>
-                    </div>
-                    <div class="6">
-                      <q-input
-                        ref="product_name"
-                        borderless
-                        v-model="data.product_name"
-                        dense
-                      >
-                      </q-input>
-                    </div>
-                  </div>
-                  <div class="row flex justify-between">
-                    <div class="6">
-                      <p>Product Rate:</p>
-                    </div>
-                    <div class="6">
-                      <q-input
-                        ref="item_rate"
-                        borderless
-                        v-model="data.item_rate"
-                        dense
-                      >
-                      </q-input>
-                    </div>
-                  </div>
-                  <div class="row flex justify-between">
-                    <div class="6">
-                      <p>Product Discount:</p>
-                    </div>
-                    <div class="6">
-                      <q-input
-                        ref="discount"
-                        borderless
-                        v-model="data.discount"
-                        dense
-                      >
-                      </q-input>
-                    </div>
-                  </div>
-                  <div class="row flex justify-between">
-                    <div class="6">
-                      <p>Product Quantity:</p>
-                    </div>
-                    <div class="6">
-                      <q-input
-                        ref="quantity"
-                        borderless
-                        v-model="data.quantity"
-                        dense
-                      >
-                      </q-input>
-                    </div>
-                  </div>
-                  <div class="row flex justify-between">
-                    <div class="6">
-                      <p>Tax:</p>
-                    </div>
-                    <div class="6">
-                      <q-input
-                        ref="tax_class_id"
-                        borderless
-                        v-model="data.name"
-                        dense
-                      >
-                      </q-input>
-                    </div>
-                  </div>
-                  <div>
-                    <q-btn
-                      label="Calculate"
-                      color="primary"
-                      @click="calculate()"
-                    />
-                  </div>
-                  <q-separator />
-                  <div class="row flex justify-between">
-                    <div class="6">
-                      <p>Total Cost:</p>
-                    </div>
-                    <div class="6">
-                      <p>{{ result }}</p>
-                    </div>
-                  </div>
-                </q-card-section>
-              </q-card>
-            </div>
+            <p>Hello Test</p>
           </div>
         </div>
       </QCreateForm>
@@ -236,51 +142,43 @@
 import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 import { defineAsyncComponent } from "vue";
-import AddSalesDetailsVue from "../Sale/_components/AddSalesDetails.vue";
 
 const addProducts = defineAsyncComponent(() =>
   import("./_components/AddProductDetails.vue")
 );
 
 export default {
-  name: "PurchaseCreatePage",
+  name: "SaleReturnCreatePage",
 
   components: {
     addProducts,
   },
 
   setup() {
-    function calculate() {
-      this.result = parseFloat(this.item_rate) - 2;
-    }
-
     return {
       modal: ref(true),
-      dataStore: "purchase",
+      dataStore: "salereturn",
       validationErrors: ref({}),
       modelValue: ref(),
-      options: ["Received", "Pending"],
-      pays: ["bank", "cash"],
-      calculate,
     };
   },
 
   computed: {
-    ...mapFields("purchase", [
-      "newItem.vendor_id",
-      "newItem.branch_id",
-      "newItem.date_of_purchase",
+    ...mapFields("salereturn", [
+      "newItem.customer_id",
+      "newItem.branch",
+      "newItem.date_of_return",
       "newItem.note",
-      "newItem.status",
       "newItem.payment_method",
-      "newItem.purchase_details",
+      "newItem.status",
+      "newItem.sale_return_details",
     ]),
   },
 };
 </script>
 
 <style scoped>
-.purchase-details-create-form-head {
+.sales-return-details-create-form-head {
   font-size: 20px;
   text-align: center;
 }

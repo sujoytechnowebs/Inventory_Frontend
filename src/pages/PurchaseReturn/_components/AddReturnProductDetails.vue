@@ -21,37 +21,34 @@
       />
     </div>
   </div>
-
   <div
-    class="row q-pt-lg q-col-gutter-md"
+    class="row q-col-gutter-md q-pt-md"
     v-for="(data, index) in purchase_return_details"
-    :key="data.index"
+    :key="data.id"
   >
-    <div class="col-12 col-md-5 col-lg-5">
+    <div class="col-12 col-md-4 col-lg-4">
       <q-input
         ref="product_id"
         outlined
-        v-model="product_name"
+        v-model="data.product_name"
         dense
         label="Product"
         readonly
       >
       </q-input>
     </div>
-
-    <div class="col-12 col-md-5 col-lg-5">
+    <div class="col-12 col-md-4 col-lg-4">
       <q-input
-        ref="quantity"
+        ref="item_rate"
         outlined
-        v-model="quantity"
+        v-model="data.item_rate"
         dense
         type="number"
         label="Quantity"
       >
       </q-input>
     </div>
-
-    <div class="col-12 col-md-2 col-lg-2">
+    <div class="col-12 col-md-4 col-lg-4">
       <q-btn icon="delete" color="red" round @click="deleteProduct(index)" />
     </div>
   </div>
@@ -94,15 +91,18 @@ export default defineComponent({
       setProductDetails(product.value);
     };
 
+    // Testing Purpose
+
     const deleteProduct = (index) => {
       console.log("data", index);
       removeProductDetails(index);
     };
 
     return {
+      // arr_data,
       product,
       addProduct,
-
+      // editProduct,
       deleteProduct,
     };
   },

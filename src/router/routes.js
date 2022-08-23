@@ -194,6 +194,24 @@ const routes = [
           // acl: "user.index",
         },
       },
+      {
+        path: "sale",
+        component: () => import("pages/Sale/Index.vue"),
+        meta: {
+          name: "sale-page",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "sale-return",
+        component: () => import("pages/SaleReturn/Index.vue"),
+        meta: {
+          name: "sale-return-page",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
     ],
   },
 
