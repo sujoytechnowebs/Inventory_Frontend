@@ -1,24 +1,28 @@
 <template>
   <q-page class="items-center full-height flex flex-center">
-    <div class="login-section">
-      <q-card flat bordered>
-        <q-card-section>
-          <div class="text-h5 text-center">Forgot Password</div>
-        </q-card-section>
+    <div class="container">
+      <div class="forgot-password-section">
+        <q-card flat bordered>
+          <q-card-section>
+            <div class="text-h5 text-center forget-password-text">
+              Forgot Password
+            </div>
+          </q-card-section>
 
-        <q-card-section class="q-gutter-y-md">
-          <q-input outlined dense v-model="text" label="Email">
-            <template v-slot:prepend>
-              <q-icon name="mail" />
-            </template>
-          </q-input>
-        </q-card-section>
+          <q-card-section class="q-gutter-y-md">
+            <q-input outlined dense v-model="text" label="Email">
+              <template v-slot:prepend>
+                <q-icon name="mail" />
+              </template>
+            </q-input>
+          </q-card-section>
 
-        <q-card-actions class="flex justify-between q-pb-lg q-px-lg">
-          <q-btn flat>Back To Login</q-btn>
-          <q-btn color="primary">Click Here</q-btn>
-        </q-card-actions>
-      </q-card>
+          <q-card-actions class="flex justify-between q-pb-lg q-px-lg">
+            <q-btn flat to="login">Back To Login</q-btn>
+            <q-btn to="set-password" color="primary">Click Here</q-btn>
+          </q-card-actions>
+        </q-card>
+      </div>
     </div>
   </q-page>
 </template>
@@ -59,9 +63,12 @@ export default defineComponent({
 // }
 </script>
 <style scoped>
-.login-section {
+.forgot-password-section {
   max-width: 30.5em;
   margin: 0 auto;
-  min-width: 35em;
+}
+
+.forget-password-text {
+  font-weight: 600;
 }
 </style>
