@@ -93,6 +93,12 @@ const linksList = [
         link: "/users",
         show: true,
       },
+      {
+        title: "Stack Holder",
+        icon: "hlw",
+        link: "/stack-holder",
+        show: true,
+      },
     ],
   },
   {

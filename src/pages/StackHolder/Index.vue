@@ -13,7 +13,7 @@
           <div
             class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
           >
-            User Table
+            Branch Management Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-8">
@@ -35,14 +35,14 @@
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'user-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
+          <CreateStack v-bind:modal="true"></CreateStack>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'user-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
+          <EditStack v-bind:modal="true"></EditStack>
         </div>
       </q-dialog>
     </q-card-section>
@@ -55,28 +55,28 @@ import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditStack = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateStack = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "StackHolderIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditStack,
+    CreateStack,
   },
 
   computed: {
-    ...mapFields("user", ["filter"]),
+    ...mapFields("branch", ["filter"]),
   },
   setup() {
     const { getGetters } = useStoreModule();
-    const { showEditModal } = getGetters("user", ["showEditModal"]);
-    const { showCreateModal } = getGetters("user", ["showCreateModal"]);
+    const { showEditModal } = getGetters("branch", ["showEditModal"]);
+    const { showCreateModal } = getGetters("branch", ["showCreateModal"]);
 
     return {
       hasEditPermission: true,
-      dataStore: "user",
+      dataStore: "branch",
       aditionalActions: false,
       showEditModal,
       showCreateModal,
@@ -86,8 +86,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.user-form {
-  width: 60%;
-  max-width: 60%;
+.branch-form {
+  width: 80%;
+  max-width: 80%;
 }
 </style>

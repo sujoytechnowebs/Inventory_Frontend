@@ -1,7 +1,6 @@
 import { api, axios } from "boot/axios";
 
-const endPoint = "/users";
-const mediaEndPoint = "/media";
+const endPoint = "/branches";
 import moment from "moment";
 
 export function getItems({ commit, state }, props) {
@@ -109,26 +108,6 @@ export function deleteItem({ commit, state }, item) {
       .delete(endPoint + "/" + item.id, item)
       .then((response) => {
         commit("setLastUpdated", moment());
-        resolve(response);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
-}
-
-//Media
-
-export function media({ commit, state }, props) {
-  return new Promise((resolve, reject) => {
-    axios
-      .post(mediaEndPoint, props, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        commit("setMedia", response.data);
         resolve(response);
       })
       .catch((err) => {
