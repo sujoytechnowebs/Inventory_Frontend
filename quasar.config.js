@@ -23,7 +23,7 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
-    boot: ["i18n", "axios", "components"],
+    boot: ["i18n", "axios", "components", "validationHelper"],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
     css: ["app.scss"],
@@ -49,8 +49,8 @@ module.exports = configure(function (ctx) {
       env: ctx.dev
         ? {
             // so on dev we'll have
-            API: "http://127.0.0.1:8000/api",
-            // API: "https://inventory-api.staging.technowebs.in/api",
+            // API: "http://127.0.0.1:8000/api",
+            API: "https://inventory-api.staging.technowebs.in/api",
           }
         : {
             // and on build (production):

@@ -16,13 +16,8 @@
               v-model="state_name"
               dense
               label="State Name"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.state_name > 0) ||
-                  validationErrors.state_name
-                    ? validationErrors.state_name
-                    : 'Please write the state name',
-              ]"
+              :error-message="$getValidationErrors('state_name')"
+              :error="$hasValidationErrors('state_name')"
             >
             </q-input>
           </div>
@@ -38,11 +33,11 @@ import { mapFields } from "vuex-map-fields";
 
 export default {
   name: "StateCreatePage",
+
   setup() {
     return {
       modal: ref(true),
       dataStore: "state",
-      validationErrors: ref({}),
     };
   },
 
