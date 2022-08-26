@@ -1,6 +1,6 @@
 import { api, axios } from "boot/axios";
 
-const endPoint = "/checkins";
+const endPoint = "/checkinout-store";
 import moment from "moment";
 
 export function getItems({ commit, state }, props) {
@@ -20,7 +20,7 @@ export function getItems({ commit, state }, props) {
 
   return new Promise((resolve, reject) => {
     axios
-      .get(endPoint, {
+      .get("/checkinout", {
         params: params,
       })
       .then((response) => {
@@ -69,7 +69,7 @@ export function getItem({ commit, state }, id) {
 export function createItem({ commit, state }) {
   return new Promise((resolve, reject) => {
     axios
-      .post(endPoint, state.newItem)
+      .post("/checkinout-store", state.newItem)
       .then((response) => {
         commit("setLastUpdated", moment());
         commit("showHideCreateModal", false);
@@ -84,7 +84,7 @@ export function createItem({ commit, state }) {
 export function updateItem({ commit, state }) {
   return new Promise((resolve, reject) => {
     axios
-      .put(endPoint + "/" + state.editItem.id, state.editItem)
+      .put("/checkinout-update" + "/" + state.editItem.id, state.editItem)
       .then((response) => {
         if (response.data) {
           commit("setLastUpdated", moment());
@@ -105,7 +105,7 @@ export function updateItem({ commit, state }) {
 export function deleteItem({ commit, state }, item) {
   return new Promise((resolve, reject) => {
     axios
-      .delete(endPoint + "/" + item.id, item)
+      .delete("/checkinout-delete" + "/" + item.id, item)
       .then((response) => {
         commit("setLastUpdated", moment());
         resolve(response);
