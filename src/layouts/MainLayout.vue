@@ -145,12 +145,6 @@ const linksList = [
         link: "/groups",
         show: true,
       },
-      {
-        title: "Group User",
-        icon: "hlw",
-        link: "/users",
-        show: true,
-      },
     ],
   },
   {

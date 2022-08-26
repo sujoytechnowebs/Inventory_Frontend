@@ -37,8 +37,8 @@
           icon="edit"
           class="q-ml-sm"
           @click="onClickEdit(props.row)"
-          :disable="!canDelete"
           v-if="hasEditPermission"
+          v-show="canEdit"
         >
           <q-tooltip>
             {{ $t("edit") }}
@@ -59,14 +59,13 @@
           </q-tooltip>
         </q-btn>
         <q-btn
-          :disable="!canDelete"
-          v-if="!customDelete && hasEditPermission"
           flat
           round
           dense
           color="negative"
           icon="clear"
           @click="onClickDelete(props.row)"
+          v-show="canDelete"
         >
           <q-tooltip>
             {{ $t("delete") }}
@@ -194,6 +193,7 @@ export default defineComponent({
     },
     canAdd: {
       default: true,
+      type: Boolean,
     },
     customBodySlot: {
       default: false,

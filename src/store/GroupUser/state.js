@@ -5,29 +5,22 @@ export default function () {
       {
         name: "name",
         align: "left",
-        label: "Name",
-        field: "name",
+        label: "Group Name",
+        field: (row) => row?.group?.name,
         sortable: true,
       },
       {
         name: "code",
         align: "left",
-        label: "Code",
-        field: "code",
+        label: "Role",
+        field: (row) => row?.group_role,
         sortable: true,
       },
       {
-        name: "address",
+        name: "code",
         align: "left",
-        label: "Address",
-        field: "address",
-        sortable: true,
-      },
-      {
-        name: "branch_id",
-        align: "left",
-        label: "Branch",
-        field: (row) => row?.branch?.name,
+        label: "Customer Name",
+        field: (row) => row?.user?.name,
         sortable: true,
       },
       { name: "actions", align: "right", label: "Actions" },
@@ -48,13 +41,12 @@ export default function () {
     },
     lastUpdated: "",
     // },
-    newItem: {
-      name: "",
-      code: "",
-      branch_id: "",
-      address: "",
-    },
+    newItem: {},
     editItem: {
+      group_id: "",
+      group_role: "",
+    },
+    modalItem: {
       id: "",
       name: "",
       code: "",
@@ -64,6 +56,7 @@ export default function () {
     modals: {
       createItem: false,
       editItem: false,
+      viewMembersModal: false,
     },
   };
 }
