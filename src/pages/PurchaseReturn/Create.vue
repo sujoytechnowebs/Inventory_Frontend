@@ -31,10 +31,10 @@
           <div class="col-12 col-md-6 col-lg-6">
             <q-input
               outlined
+              dense
+              label="Purchase Return Date"
               v-model="date_of_return"
               mask="date"
-              placeholder="Sales Date"
-              dense
               :rules="[
                 (val) =>
                   (val && !validationErrors.date_of_return > 0) ||
@@ -50,7 +50,7 @@
                     transition-show="scale"
                     transition-hide="scale"
                   >
-                    <q-date v-model="date_of_purchase">
+                    <q-date v-model="date_of_return">
                       <div class="row items-center justify-end">
                         <q-btn
                           v-close-popup
