@@ -9,51 +9,6 @@
         title="Add Loans"
       >
         <q-separator />
-        <p class="head q-pt-md">Upload Your Identity</p>
-        <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-select
-              outlined
-              dense
-              v-model="type"
-              :options="identitytype"
-              label="Identity Type"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.type > 0) || validationErrors.type
-                    ? validationErrors.type
-                    : 'Please choose the Identity Type',
-              ]"
-            ></q-select>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-select
-              outlined
-              dense
-              v-model="document_type"
-              :options="documentType"
-              label="Identity Proof"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.document_type > 0) ||
-                  validationErrors.document_type
-                    ? validationErrors.document_type
-                    : 'Please choose the Document proof',
-              ]"
-            ></q-select>
-          </div>
-        </div>
-        <div class="col-12 q-pb-md">
-          <q-uploader
-            label="Upload Document/Image"
-            square
-            flat
-            bordered
-            class="full-width"
-            :factory="factoryFn"
-          />
-        </div>
-        <q-separator />
         <p class="head q-pt-md">Branch Details</p>
         <div class="row q-col-gutter-md">
           <div class="col-12 col-md-6 col-lg-6">

@@ -122,26 +122,6 @@
 
           <div class="col-12">
             <q-input
-              ref="processing_fees"
-              outlined
-              type="number"
-              v-model="processing_fees"
-              dense
-              label="Processing Fees"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.processing_fees > 0) ||
-                  validationErrors.processing_fees
-                    ? validationErrors.processing_fees
-                    : 'Please Write the Processing Fees',
-              ]"
-              readonly
-            >
-            </q-input>
-          </div>
-
-          <div class="col-12">
-            <q-input
               ref="down_payment"
               outlined
               type="number"
@@ -295,7 +275,6 @@ export default {
       "verifyItem.ewi_start_date",
       "verifyItem.no_of_ewi",
       "verifyItem.loan_amount",
-      "verifyItem.processing_fees",
       "verifyItem.down_payment",
       "verifyItem.status",
     ]),

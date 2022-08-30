@@ -114,8 +114,15 @@
                   outlined
                   dense
                   v-model="status"
-                  :options="options"
+                  :options="sale_status"
                   label="Status"
+                  :rules="[
+                    (val) =>
+                      (val && !validationErrors.status > 0) ||
+                      validationErrors.status
+                        ? validationErrors.status
+                        : 'Please Choose The Status',
+                  ]"
                 ></q-select>
               </div>
             </div>
@@ -160,6 +167,8 @@ export default {
       dataStore: "salereturn",
       validationErrors: ref({}),
       modelValue: ref(),
+      sale_status: ["received", "delivered"],
+      pays: ["bank", "cash"],
     };
   },
 

@@ -8,6 +8,8 @@
         :aditionalActions="aditionalActions"
         :columns="columns"
         :filter="filter"
+        :canEdit="false"
+        :canDelete="false"
       >
         <template v-slot:top>
           <div
