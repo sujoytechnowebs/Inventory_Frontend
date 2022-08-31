@@ -52,7 +52,7 @@
         </div>
       </q-dialog>
 
-      <q-dialog v-model="showEditModal">
+      <q-dialog class="purchase-form-dialog" v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'purchase-form' : ''">
           <EditUser v-bind:modal="true"></EditUser>
         </div>
@@ -133,6 +133,7 @@ export default defineComponent({
   background: white;
 }
 .purchase-form-dialog .q-dialog__inner.q-dialog__inner--minimized > div {
-  max-height: 100vh !important;
+  max-height: 100% !important;
+  overflow: hidden;
 }
 </style>

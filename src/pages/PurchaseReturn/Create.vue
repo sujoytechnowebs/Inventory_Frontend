@@ -8,8 +8,8 @@
         :data-store="dataStore"
         title="Add Purchase For Return"
       >
-        <div class="row q-col-gutter-md q-pt-md">
-          <div class="col-12 col-md-6 col-lg-6">
+        <div class="row q-col-gutter-md">
+          <div class="col-12 col-md-3 col-lg-3">
             <QSearch
               v-model="vendor_id"
               label="Vendor Name"
@@ -27,8 +27,7 @@
               ]"
             ></QSearch>
           </div>
-
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-3 col-lg-3">
             <q-input
               outlined
               dense
@@ -65,17 +64,7 @@
               </template>
             </q-input>
           </div>
-
-          <div class="col-12">
-            <q-editor
-              v-model="note"
-              placeholder="Please Write The Notes For Purchase"
-            />
-
-            <q-card-section v-html="editor" />
-          </div>
-
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-3 col-lg-3">
             <q-select
               outlined
               v-model="payment_method"
@@ -91,8 +80,7 @@
               ]"
             ></q-select>
           </div>
-
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-3 col-lg-3">
             <q-select
               outlined
               dense
@@ -110,10 +98,18 @@
           </div>
         </div>
         <q-separator />
-        <p class="purchase-details-create-form-head q-pt-md">Product Details</p>
 
+        <p class="purchase-details-create-form-head q-pt-md">Product Details</p>
         <div>
           <addReturnProducts v-model="purchase_details" />
+        </div>
+
+        <div class="col-12 q-pt-md">
+          <q-editor
+            v-model="note"
+            placeholder="Please Write The Notes For Purchase"
+          />
+          <div v-html="editor" />
         </div>
       </QCreateForm>
     </q-card>
@@ -164,5 +160,10 @@ export default {
 .purchase-details-create-form-head {
   font-size: 20px;
   text-align: center;
+}
+
+.scroll-bar {
+  max-height: 79vh !important;
+  overflow: scroll;
 }
 </style>

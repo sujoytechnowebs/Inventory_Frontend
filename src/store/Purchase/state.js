@@ -3,19 +3,20 @@ export default function () {
     // items: {
     columns: [
       {
-        name: "vendor_id",
-        align: "left",
-        label: "Vendor Name",
-        field: (row) => row.vendor.name,
-        sortable: true,
-      },
-      {
         name: "date_of_purchase",
         align: "left",
         label: "Purchase Date",
         field: "date_of_purchase",
         sortable: true,
       },
+      {
+        name: "vendor_id",
+        align: "left",
+        label: "Vendor Name",
+        field: (row) => row.vendor.name,
+        sortable: true,
+      },
+
       {
         name: "branch_id",
         align: "left",
@@ -35,13 +36,6 @@ export default function () {
         align: "left",
         label: "Total Quantity",
         field: "total_quantity",
-        sortable: true,
-      },
-      {
-        name: "note",
-        align: "left",
-        label: "Note",
-        field: "note",
         sortable: true,
       },
       {

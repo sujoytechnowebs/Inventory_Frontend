@@ -3,17 +3,17 @@ export default function () {
     // items: {
     columns: [
       {
-        name: "product_id",
-        align: "left",
-        label: "Product Name",
-        field: (row) => row?.inventoty_product?.product?.name,
-        sortable: true,
-      },
-      {
         name: "date",
         align: "left",
         label: "Date",
         field: "date",
+        sortable: true,
+      },
+      {
+        name: "product_id",
+        align: "left",
+        label: "Product Name",
+        field: (row) => row?.inventoty_product?.product?.name,
         sortable: true,
       },
       {

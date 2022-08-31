@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-card class="my-card">
+    <q-card class="scroll flat">
       <QCreateForm
         :modal="modal"
         :widgets="true"
@@ -8,10 +8,10 @@
         :data-store="dataStore"
         title="Add Purchase"
       >
-        <div class="row q-col-gutter-md q-pt-md">
-          <div class="col-12 col-md-8 col-lg-8">
-            <div class="row q-col-gutter-md q-pt-md">
-              <div class="col-12 col-md-4 col-lg-4">
+        <div class="row q-col-gutter-md">
+          <div class="col-12 col-sm-8 col-md-9 col-lg-9 scroll-bar q-pr-md">
+            <div class="row q-col-gutter-md">
+              <div class="col-12 col-md-3 col-lg-3">
                 <QSearch
                   v-model="vendor_id"
                   label="Vendor Name"
@@ -29,8 +29,7 @@
                   ]"
                 ></QSearch>
               </div>
-
-              <div class="col-12 col-md-4 col-lg-4">
+              <div class="col-12 col-md-3 col-lg-3">
                 <QSearch
                   v-model="branch_id"
                   label="Branch"
@@ -48,8 +47,7 @@
                   ]"
                 ></QSearch>
               </div>
-
-              <div class="col-12 col-md-4 col-lg-4">
+              <div class="col-12 col-md-2 col-lg-2">
                 <q-input
                   outlined
                   v-model="date_of_purchase"
@@ -80,19 +78,7 @@
                   </template>
                 </q-input>
               </div>
-
-              <div class="col-12">
-                <q-editor
-                  v-model="note"
-                  placeholder="Please Write The Notes For Purchase"
-                />
-
-                <q-card flat bordered>
-                  <q-card-section v-html="editor" />
-                </q-card>
-              </div>
-
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-md-2 col-lg-2">
                 <q-select
                   outlined
                   v-model="payment_method"
@@ -108,8 +94,7 @@
                   ]"
                 ></q-select>
               </div>
-
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-md-2 col-lg-2">
                 <q-select
                   outlined
                   dense
@@ -120,111 +105,69 @@
               </div>
             </div>
 
-            <q-separator />
-
-            <p class="purchase-details-create-form-head q-pt-md">
-              Product Details
-            </p>
-
-            <div>
+            <div class="column">
+              <p class="purchase-details-create-form-head q-pt-md">
+                Product Details
+              </p>
               <addProducts v-model="purchase_details" />
             </div>
-          </div>
-          <div class="col-12 col-md-4 col-lg-4">
-            <div v-for="data in purchase_details" :key="data.id">
-              <q-card flat bordered class="q-mt-md">
-                <q-card-section>
-                  <p class="purchase_title text-center">Total Cost</p>
-                  <q-separator />
-                  <div class="row flex justify-between">
-                    <div class="6">
-                      <p>Product Name:</p>
-                    </div>
-                    <div class="6">
-                      <q-input
-                        ref="product_name"
-                        borderless
-                        v-model="data.product_name"
-                        dense
-                      >
-                      </q-input>
-                    </div>
-                  </div>
-                  <div class="row flex justify-between">
-                    <div class="6">
-                      <p>Product Rate:</p>
-                    </div>
-                    <div class="6">
-                      <q-input
-                        ref="item_rate"
-                        borderless
-                        v-model="data.item_rate"
-                        dense
-                      >
-                      </q-input>
-                    </div>
-                  </div>
-                  <div class="row flex justify-between">
-                    <div class="6">
-                      <p>Product Discount:</p>
-                    </div>
-                    <div class="6">
-                      <q-input
-                        ref="discount"
-                        borderless
-                        v-model="data.discount"
-                        dense
-                      >
-                      </q-input>
-                    </div>
-                  </div>
-                  <div class="row flex justify-between">
-                    <div class="6">
-                      <p>Product Quantity:</p>
-                    </div>
-                    <div class="6">
-                      <q-input
-                        ref="quantity"
-                        borderless
-                        v-model="data.quantity"
-                        dense
-                      >
-                      </q-input>
-                    </div>
-                  </div>
-                  <div class="row flex justify-between">
-                    <div class="6">
-                      <p>Tax:</p>
-                    </div>
-                    <div class="6">
-                      <q-input
-                        ref="tax_class_id"
-                        borderless
-                        v-model="data.name"
-                        dense
-                      >
-                      </q-input>
-                    </div>
-                  </div>
-                  <div>
-                    <q-btn
-                      label="Calculate"
-                      color="primary"
-                      @click="calculate()"
-                    />
-                  </div>
-                  <q-separator />
-                  <div class="row flex justify-between">
-                    <div class="6">
-                      <p>Total Cost:</p>
-                    </div>
-                    <div class="6">
-                      <p>{{ result }}</p>
-                    </div>
-                  </div>
-                </q-card-section>
-              </q-card>
+
+            <div class="col-12 q-py-md">
+              <q-editor
+                v-model="note"
+                placeholder="Please Write The Notes For Purchase"
+              />
             </div>
+          </div>
+          <div class="col-12 col-sm-4 col-md-3 col-lg-3">
+            <q-card flat bordered>
+              <q-card-section>
+                <div class="row justify-between">
+                  <div class="col-6">
+                    <p class="q-ma-none text-weight-medium">Rate :</p>
+                  </div>
+                  <div class="col-6 text-right">
+                    <p>2.55%</p>
+                  </div>
+                </div>
+                <div class="row justify-between">
+                  <div class="col-6">
+                    <p class="q-ma-none text-weight-medium">Discount :</p>
+                  </div>
+                  <div class="col-6 text-right">
+                    <p>20%</p>
+                  </div>
+                </div>
+                <div class="row justify-between">
+                  <div class="col-6">
+                    <p class="q-ma-none text-weight-medium">Quantity :</p>
+                  </div>
+                  <div class="col-6 text-right">
+                    <p>200</p>
+                  </div>
+                </div>
+                <div class="row justify-between">
+                  <div class="col-6">
+                    <p class="q-ma-none text-weight-medium">Sales :</p>
+                  </div>
+                  <div class="col-6 text-right">
+                    <p>100</p>
+                  </div>
+                </div>
+
+                <div class="q-py-sm">
+                  <q-separator />
+                </div>
+                <div class="row justify-between">
+                  <div class="col-6">
+                    <p class="q-ma-none text-weight-medium">Grand Total :</p>
+                  </div>
+                  <div class="col-6 text-right">
+                    <p>30</p>
+                  </div>
+                </div>
+              </q-card-section>
+            </q-card>
           </div>
         </div>
       </QCreateForm>
@@ -281,7 +224,11 @@ export default {
 
 <style scoped>
 .purchase-details-create-form-head {
-  font-size: 20px;
-  text-align: center;
+  font-size: 16px;
+}
+
+.scroll-bar {
+  max-height: 79vh !important;
+  overflow: scroll;
 }
 </style>
