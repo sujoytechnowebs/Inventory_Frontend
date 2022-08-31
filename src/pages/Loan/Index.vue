@@ -8,7 +8,6 @@
         :aditionalActions="aditionalActions"
         :columns="columns"
         :filter="filter"
-        :customDelete="true"
       >
         <template v-slot:top>
           <div
@@ -43,25 +42,6 @@
           </div>
         </template>
         <template v-slot:aditionalActions="actionsRow">
-          <!-- Document Preview -->
-
-          <span>
-            <q-btn
-              flat
-              color="blue-10"
-              dense
-              class="q-ml-sm"
-              icon="download"
-              @click="download()"
-            >
-              <q-tooltip>
-                {{ $t("Download Document") }}
-              </q-tooltip>
-            </q-btn>
-          </span>
-
-          <!-- Document Preview -->
-
           <span v-if="actionsRow.row.status === 'Applied'">
             <q-btn
               flat
@@ -108,18 +88,8 @@
             </q-btn>
           </span>
 
-          <span>
-            <q-btn
-              flat
-              color="negative"
-              class="q-ml-sm"
-              icon="cancel"
-              round
-              @click="cancel = true"
-            >
-              <q-tooltip>
-                {{ $t("Cancel") }}
-              </q-tooltip>
+          <span v-if="actionsRow.row.status === 'Disbust'">
+            <q-btn flat class="q-ml-sm" label="sale product" to="/sale">
             </q-btn>
           </span>
         </template>
@@ -143,16 +113,6 @@
       <q-dialog v-model="showVerifyModal">
         <div :class="$q.platform.is.desktop ? 'verify-form-width' : ''">
           <div><Verify /></div>
-        </div>
-      </q-dialog>
-
-      <q-dialog v-model="cancel">
-        <div :class="$q.platform.is.desktop ? '' : ''">
-          <q-card>
-            <q-card-section>
-              <div class="text-h6">This loan is cancel</div>
-            </q-card-section>
-          </q-card>
         </div>
       </q-dialog>
 

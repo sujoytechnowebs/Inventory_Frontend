@@ -27,7 +27,7 @@ export default function () {
         name: "application_approved_by",
         align: "left",
         label: "Approved By",
-        field: "application_approved_by",
+        field: (row) => row?.application_approved_by?.name,
         sortable: true,
       },
       {
@@ -63,13 +63,6 @@ export default function () {
         align: "left",
         label: "status",
         field: "status",
-        sortable: true,
-      },
-      {
-        name: "document_type",
-        align: "left",
-        label: "Document",
-        field: (row) => row?.loan_document?.document_type,
         sortable: true,
       },
       { name: "actions", align: "right", label: "Actions" },
