@@ -16,6 +16,8 @@
               v-model="state_name"
               dense
               label="State Name"
+              :error-message="$getValidationErrors('state_name')"
+              :error="$hasValidationErrors('state_name')"
             >
             </q-input>
           </div>

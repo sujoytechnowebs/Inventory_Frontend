@@ -15,7 +15,7 @@
       </q-btn>
     </q-card-section>
     <q-card-section>
-      <slot></slot>
+      <slot ref="test_c"></slot>
     </q-card-section>
     <q-separator />
     <q-card-actions class="justify-end q-pa-md q-px-xs-sm">
@@ -49,6 +49,7 @@
 import { mapGetters, mapMutations } from "vuex";
 import { Tnotify } from "../../libs/custom.js";
 // import { i18n } from 'boot/i18n.js'
+import { onMounted } from "vue";
 
 export default {
   props: {
@@ -84,6 +85,7 @@ export default {
       type: String,
     },
   },
+
   data() {
     return {
       submitting: false,
@@ -93,6 +95,9 @@ export default {
   computed: {
     // ...mapState(`${this.dataStore}`, ['modals']),
   },
+  created() {
+    this.$clearValidationErrors();
+  },
   methods: {
     submitForm() {
       this.submitting = true;
@@ -100,7 +105,7 @@ export default {
         .dispatch(this.saveAction)
         .then((response) => {
           this.submitting = false;
-          // this.$refs.createForm.resetValidation()
+          this.$clearValidationErrors();
           Tnotify(
             {
               message: response.data.message,
@@ -111,32 +116,16 @@ export default {
         })
         .catch((error) => {
           this.submitting = false;
-          var formatted_message = error.response.data.message;
+          let formatted_message = error.response.data.message;
+          let errorMessages = {};
           if (error.response.data.errors) {
-            var errorMessages = error.response.data.errors;
-            // var childRefs = this.$scopedSlots.default()[0].context.$refs
-            // var childRefs = this.$slots.default()[0].context.$refs
-            var childRefs = this.$refs;
-
-            for (var refName in childRefs) {
-              var fieldRef = childRefs[refName];
-              if (errorMessages[refName]) {
-                fieldRef.innerError = true;
-                fieldRef.innerErrorMessage = errorMessages[refName][0];
-              } else {
-                fieldRef.innerError = false;
-                fieldRef.innerErrorMessage = "";
-              }
-            }
+            errorMessages = error.response.data.errors;
           }
-
-          Tnotify(
-            {
-              message: formatted_message,
-              type: "negative",
-            },
-            this
-          );
+          this.$setValidationErrors(errorMessages);
+          this.$Qnotify({
+            message: formatted_message,
+            type: "negative",
+          });
         });
     },
     onClickCancel() {

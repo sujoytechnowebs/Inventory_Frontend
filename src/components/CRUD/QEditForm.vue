@@ -99,6 +99,9 @@ export default {
       },
     };
   },
+  created() {
+    this.$clearValidationErrors();
+  },
   methods: {
     submitForm() {
       this.submitting = true;
@@ -106,9 +109,7 @@ export default {
         .dispatch(this.saveAction)
         .then((response) => {
           this.submitting = false;
-
-          // this.$refs.editForm.resetValidation()
-
+          this.$clearValidationErrors();
           Tnotify(
             {
               message: response.data.message,
@@ -119,31 +120,16 @@ export default {
         })
         .catch((error) => {
           this.submitting = false;
-          var errors = error.response.data.message;
-          this.validationErrors = errors;
+          let formatted_message = error.response.data.message;
+          let errorMessages = {};
           if (error.response.data.errors) {
-            var errorMessages = error.response.data.errors;
-            var childRefs = this.$slots.default()[0].context.$refs;
-
-            for (var refName in childRefs) {
-              var fieldRef = childRefs[refName];
-              if (errorMessages[refName]) {
-                fieldRef.innerError = true;
-                fieldRef.innerErrorMessage = errorMessages[refName][0];
-              } else {
-                fieldRef.innerError = false;
-                fieldRef.innerErrorMessage = "";
-              }
-            }
+            errorMessages = error.response.data.errors;
           }
-
-          Tnotify(
-            {
-              message: errors,
-              type: "negative",
-            },
-            this
-          );
+          this.$setValidationErrors(errorMessages);
+          this.$Qnotify({
+            message: formatted_message,
+            type: "negative",
+          });
         });
     },
     onClickCancel() {
