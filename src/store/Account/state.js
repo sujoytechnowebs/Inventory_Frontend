@@ -113,18 +113,10 @@ export default function () {
     // },
     newItem: {
       account_name: null,
-      phone: null,
-      email: "",
-      city_id: null,
-      address_1: "",
-      address_2: "",
-      postcode: null,
-      branch_id: "",
-      adhaar_media_id: "",
       type: "",
-      account_no: "",
-      ifsc: "",
-      bank_branch: "",
+      branch_id: null,
+      opening_balance: null,
+      balance_type: "",
     },
     editItem: {
       account_name: null,
@@ -141,9 +133,18 @@ export default function () {
       ifsc: "",
       bank_branch: "",
     },
+    ViewMoreDetails: {
+      name: "",
+      code: "",
+      address_1: "",
+      address_2: "",
+      postcode: "",
+      city_id: "",
+    },
     modals: {
       createItem: false,
       editItem: false,
+      ViewMoreDetails: false,
     },
   };
 }

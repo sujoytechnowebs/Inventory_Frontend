@@ -10,7 +10,7 @@ export function login({ state, commit }, payload) {
       })
       .then((response) => {
         SessionStorage.set("token", JSON.stringify(response.data.token));
-        // commit("setAuthUser", response.data.authUser);
+        commit("setAuthUser", response.data.authUser);
         resolve(response);
       })
       .catch((err) => {

@@ -28,7 +28,7 @@
             v-model="group_role"
             dense
             :options="grp_role_options"
-            label="Group Role"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.group_role > 0) ||
@@ -36,7 +36,12 @@
                   ? validationErrors.group_role
                   : 'Please Choose The Group Role',
             ]"
-          ></q-select>
+          >
+            <template v-slot:label>
+              Group Role
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-select>
         </div>
         <div class="col-12 col-md-6 col-lg-6">
           <q-input
@@ -44,7 +49,7 @@
             outlined
             v-model="account_name"
             dense
-            label="Customer Name"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.account_name > 0) ||
@@ -52,7 +57,12 @@
                   ? validationErrors.account_name
                   : 'Please Write The Customer Name',
             ]"
-          />
+          >
+            <template v-slot:label>
+              Customer Name
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-6 col-lg-6">
           <q-input
@@ -60,21 +70,26 @@
             outlined
             v-model="name"
             dense
-            label="UserName"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.name > 0) || validationErrors.name
                   ? validationErrors.name
                   : 'Please Write The User Name',
             ]"
-          />
+          >
+            <template v-slot:label>
+              UserName
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
             outlined
             dense
             v-model="DOB"
-            label="Date of Birth"
+            label
             mask="date"
             :rules="[
               (val) =>
@@ -98,6 +113,10 @@
                 </q-popup-proxy>
               </q-icon>
             </template>
+            <template v-slot:label>
+              Date of Birth
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
           </q-input>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
@@ -106,7 +125,7 @@
             outlined
             v-model="spouse_parent_name"
             dense
-            label="Spouse Name/Parent Name"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.spouse_parent_name > 0) ||
@@ -114,7 +133,12 @@
                   ? validationErrors.spouse_parent_name
                   : 'Please Write The Spouse / Parent Name',
             ]"
-          />
+          >
+            <template v-slot:label>
+              Spouse Name/Parent Name
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
@@ -122,7 +146,7 @@
             outlined
             v-model="phone"
             dense
-            label="Mobile Number"
+            label
             type="number"
             :rules="[
               (val) =>
@@ -130,7 +154,12 @@
                   ? validationErrors.phone
                   : 'Please Write The Phone Number',
             ]"
-          />
+          >
+            <template v-slot:label>
+              Mobile Number
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
@@ -148,7 +177,7 @@
             outlined
             v-model="occupation"
             dense
-            label="Occupation"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.occupation > 0) ||
@@ -156,7 +185,12 @@
                   ? validationErrors.occupation
                   : 'Please Write The Occupation',
             ]"
-          />
+          >
+            <template v-slot:label>
+              Occupation
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
           <q-select
@@ -164,14 +198,19 @@
             v-model="house"
             dense
             :options="house_options"
-            label="House"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.house > 0) || validationErrors.house
                   ? validationErrors.house
                   : 'Please Choose The House Type',
             ]"
-          ></q-select>
+          >
+            <template v-slot:label>
+              House
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-select>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
@@ -179,7 +218,7 @@
             outlined
             v-model="monthly_income"
             dense
-            label="Monthly Income"
+            label
             type="number"
             :rules="[
               (val) =>
@@ -188,7 +227,12 @@
                   ? validationErrors.monthly_income
                   : 'Please Write The Monthly Income',
             ]"
-          />
+          >
+            <template v-slot:label>
+              Monthly Income
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
           <QSearch
@@ -214,7 +258,7 @@
             outlined
             v-model="postcode"
             dense
-            label="Pin Code"
+            label
             type="number"
             :rules="[
               (val) =>
@@ -223,7 +267,12 @@
                   ? validationErrors.postcode
                   : 'Please Write The Pincode',
             ]"
-          />
+          >
+            <template v-slot:label>
+              Pin Code
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12">
           <q-editor
@@ -237,7 +286,8 @@
                   ? validationErrors.address_1
                   : 'Please Write The Address',
             ]"
-          ></q-editor>
+          >
+          </q-editor>
 
           <q-card-section v-html="editor" />
         </div>
@@ -254,7 +304,7 @@
         v-model="aadhar_card_no"
         dense
         type="number"
-        label="Aadhar Card Number"
+        label
         :rules="[
           (val) =>
             (val && !validationErrors.aadhar_card_no > 0) ||
@@ -262,7 +312,12 @@
               ? validationErrors.aadhar_card_no
               : 'Please Write The aadhar card number',
         ]"
-      />
+      >
+        <template v-slot:label>
+          Aadhar Card Number
+          <span class="text-weight-bold text-negative">*</span>
+        </template>
+      </q-input>
     </div>
     <div class="col-12">
       <q-uploader
@@ -295,21 +350,21 @@ export default {
 
   computed: {
     ...mapFields("user", [
-      "newItem.name",
-      "newItem.email",
-      "newItem.account_name",
-      "newItem.spouse_parent_name",
-      "newItem.phone",
-      "newItem.city_id",
-      "newItem.address_1",
-      "newItem.postcode",
-      "newItem.aadhar_card_no",
-      "newItem.occupation",
-      "newItem.house",
-      "newItem.monthly_income",
-      "newItem.group_id",
-      "newItem.group_role",
-      "newItem.DOB",
+      "editItem.name",
+      "editItem.email",
+      "editItem.account_name",
+      "editItem.spouse_parent_name",
+      "editItem.phone",
+      "editItem.city_id",
+      "editItem.address_1",
+      "editItem.postcode",
+      "editItem.aadhar_card_no",
+      "editItem.occupation",
+      "editItem.house",
+      "editItem.monthly_income",
+      "editItem.group_id",
+      "editItem.group_role",
+      "editItem.DOB",
     ]),
   },
 

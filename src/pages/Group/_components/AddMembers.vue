@@ -16,7 +16,7 @@
         >
           List of Members
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 row justify-end items-center">
+        <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
           <div class="col-12">
             <q-input
               outlined
@@ -31,9 +31,6 @@
               </template>
             </q-input>
           </div>
-        </div>
-        <div class="col-xs-12 col-sm-2 col-md-2 row justify-end items-center">
-          <q-btn dense flat icon="close" v-close-popup></q-btn>
         </div>
       </template>
     </QDataTable>

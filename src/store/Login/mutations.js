@@ -1,3 +1,3 @@
-// export function updateField(state, payload) {
-//   state.credentials.email = payload;
-// }
+export function setAuthUser(state, payload) {
+  state.authUser = payload;
+}

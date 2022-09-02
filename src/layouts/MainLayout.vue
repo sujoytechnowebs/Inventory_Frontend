@@ -13,6 +13,18 @@
 
         <q-toolbar-title> Amar Furniture </q-toolbar-title>
 
+        <div class="bg-white">
+          <QSearch
+            v-model="current_branch_selected"
+            label="Branch"
+            option-value="id"
+            option-label="name"
+            data-store="branch"
+            action="getItems"
+            :multiple="false"
+          ></QSearch>
+        </div>
+        {{ current_branch_selected }}
         <div>
           <q-btn-dropdown flat label="Accounts">
             <div class="row no-wrap q-pa-md">
@@ -34,7 +46,9 @@
                   <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
                 </q-avatar>
 
-                <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>
+                <div class="text-subtitle1 q-mt-md q-mb-xs">
+                  {{ authUser.name }}
+                </div>
 
                 <q-btn
                   color="primary"
@@ -77,9 +91,11 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, watch, onMounted } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 import useStoreModule from "../libs/useStoreModule.js";
+import { mapFields } from "vuex-map-fields";
+import { LocalStorage as SessionStorage } from "quasar";
 
 const linksList = [
   {
@@ -284,11 +300,27 @@ export default defineComponent({
     EssentialLink,
   },
 
+  created() {
+    if (SessionStorage.getItem("active_branch") !== null) {
+      console.log(
+        "this is branch id in mounted",
+        SessionStorage.getItem("active_branch")
+      );
+      this.current_branch_selected = SessionStorage.getItem("active_branch");
+      this.setActiveBranch(SessionStorage.getItem("active_branch"));
+    }
+  },
+
   setup() {
     const leftDrawerOpen = ref(false);
-    const { getAction } = useStoreModule();
+    const { getAction, getGetters, getMutations, getState } = useStoreModule();
+    const { authUser } = getGetters("auth", ["authUser"]);
+    const { active_branch } = getState("auth", ["active_branch"]);
+    const { setActiveBranch } = getMutations("auth", ["setActiveBranch"]);
     const { logOut } = getAction("auth", ["logOut"]);
     const loading = ref(false);
+
+    const current_branch_selected = ref(null);
 
     const logOutUser = () => {
       loading.value = true;
@@ -306,6 +338,39 @@ export default defineComponent({
         });
     };
 
+    // onMounted(() => {
+    //   if (SessionStorage.getItem("active_branch") !== null) {
+    //     console.log(
+    //       "this is branch id in mounted",
+    //       SessionStorage.getItem("active_branch")
+    //     );
+    //     current_branch_selected.value = SessionStorage.getItem("active_branch");
+    //     setActiveBranch(SessionStorage.getItem("active_branch"));
+    //   }
+    // });
+
+    watch(current_branch_selected, async (newValue, oldValue) => {
+      if (newValue != oldValue) {
+        if (
+          SessionStorage.getItem("active_branch") !== null &&
+          SessionStorage.getItem("active_branch") ===
+            current_branch_selected.value
+        ) {
+          console.log("watch in if");
+
+          return false;
+        } else {
+          console.log("watch in else");
+          SessionStorage.set("active_branch", newValue);
+          changeActiveBranch(newValue);
+        }
+      }
+    });
+
+    const changeActiveBranch = (branch_id) => {
+      setActiveBranch(branch_id);
+    };
+
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
@@ -314,6 +379,10 @@ export default defineComponent({
       },
       loading,
       logOutUser,
+      authUser,
+      active_branch,
+      current_branch_selected,
+      setActiveBranch,
     };
   },
 });

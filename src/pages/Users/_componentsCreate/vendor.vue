@@ -20,7 +20,8 @@
                   ? validationErrors.branch_id
                   : 'Please choose the Branch Name',
             ]"
-          ></QSearch>
+          >
+          </QSearch>
         </div>
 
         <div class="col-12 col-md-6 col-lg-6">
@@ -29,7 +30,7 @@
             outlined
             v-model="account_name"
             dense
-            label="Vendor Name"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.account_name > 0) ||
@@ -37,7 +38,12 @@
                   ? validationErrors.account_name
                   : 'Please Write The Name',
             ]"
-          ></q-input>
+          >
+            <template v-slot:label>
+              Vendor Name
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
 
         <div class="col-12 col-md-6 col-lg-6">
@@ -46,14 +52,19 @@
             outlined
             v-model="name"
             dense
-            label="User Name"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.name > 0) || validationErrors.name
                   ? validationErrors.name
                   : 'Please Write The UserName',
             ]"
-          ></q-input>
+          >
+            <template v-slot:label>
+              User Name
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
 
         <div class="col-12 col-md-6 col-lg-6">
@@ -62,7 +73,7 @@
             outlined
             v-model="phone"
             dense
-            label="Mobile Number"
+            label
             type="number"
             :rules="[
               (val) =>
@@ -70,7 +81,12 @@
                   ? validationErrors.phone
                   : 'Please Write The Phone Number',
             ]"
-          ></q-input>
+          >
+            <template v-slot:label>
+              Mobile Number
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-6 col-lg-6">
           <q-input
@@ -78,9 +94,11 @@
             outlined
             v-model="email"
             dense
-            label="Email"
+            label
             :rules="[email]"
-          ></q-input>
+          >
+            <template v-slot:label> Email </template>
+          </q-input>
         </div>
       </div>
     </div>

@@ -1,17 +1,16 @@
 <template>
   <div class="row q-col-gutter-md">
-    <!-- <div class="col-6">
+    <div class="col-6">
       <QSearch
-        v-model="to_account"
-        label="To Account"
+        v-model="from_account"
+        label="From Account"
         option-value="id"
-        option-label="name"
-        data-store="user"
+        option-label="account_name"
+        data-store="account"
         action="getItems"
         :multiple="false"
-        dataType="object"
       ></QSearch>
-    </div> -->
+    </div>
 
     <div class="col-12">
       <q-btn
@@ -27,7 +26,7 @@
       v-for="(data, index) in paymentsDetails"
       :key="data.id"
     >
-      <div class="col-12">
+      <!-- <div class="col-12">
         <QSearch
           v-model="data.to_account_id"
           label="To Account"
@@ -37,15 +36,15 @@
           action="getItems"
           :multiple="false"
         ></QSearch>
-      </div>
+      </div> -->
 
       <div class="col-12 col-md-4 col-lg-4">
         <QSearch
-          v-model="data.from_account"
-          label="From Account"
+          v-model="data.to_account_id"
+          label="To Account"
           option-value="id"
-          option-label="name"
-          data-store="user"
+          option-label="account_name"
+          data-store="account"
           action="getItems"
           :multiple="false"
         ></QSearch>
@@ -118,6 +117,8 @@ export default defineComponent({
   },
 
   computed: {
+    ...mapFields("payment", ["newItem.from_account"]),
+
     ...mapMultiRowFields("payment", ["newItem.paymentsDetails"]),
   },
 
@@ -150,7 +151,6 @@ export default defineComponent({
     };
 
     return {
-      to_account,
       addPayment,
       deleteReceipt,
       date_of_transaction: ref("2019/02/01"),

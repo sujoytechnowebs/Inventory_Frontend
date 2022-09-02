@@ -10,7 +10,7 @@
             outlined
             v-model="account_name"
             dense
-            label="Incharge Name"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.account_name > 0) ||
@@ -18,7 +18,12 @@
                   ? validationErrors.account_name
                   : 'Please Write The Name',
             ]"
-          />
+          >
+            <template v-slot:label>
+              Incharge Name
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
@@ -26,14 +31,19 @@
             outlined
             v-model="name"
             dense
-            label="User Name"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.name > 0) || validationErrors.name
                   ? validationErrors.name
                   : 'Please Write The User Name',
             ]"
-          />
+          >
+            <template v-slot:label>
+              User Name
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
@@ -42,7 +52,7 @@
             v-model="password"
             dense
             type="password"
-            label="Password"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.password > 0) ||
@@ -50,7 +60,12 @@
                   ? validationErrors.password
                   : 'Please Write The Password',
             ]"
-          />
+          >
+            <template v-slot:label>
+              Password
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-6 col-lg-6">
           <q-input
@@ -58,7 +73,7 @@
             outlined
             v-model="phone"
             dense
-            label="Mobile Number"
+            label
             type="number"
             :rules="[
               (val) =>
@@ -66,7 +81,12 @@
                   ? validationErrors.phone
                   : 'Please Write The Phone Number',
             ]"
-          />
+          >
+            <template v-slot:label>
+              Mobile Number
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-6 col-lg-6">
           <q-input
@@ -74,14 +94,19 @@
             outlined
             v-model="email"
             dense
-            label="Email"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.email > 0) || validationErrors.email
                   ? validationErrors.email
                   : 'Please Write The Email',
             ]"
-          />
+          >
+            <template v-slot:label>
+              Email
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-6 col-lg-6">
           <QSearch
@@ -202,7 +227,7 @@
         v-model="aadhar_card_no"
         dense
         type="number"
-        label="Aadhar Card Number"
+        label
         :rules="[
           (val) =>
             (val && !validationErrors.aadhar_card_no > 0) ||
@@ -210,7 +235,12 @@
               ? validationErrors.aadhar_card_no
               : 'Please Write The Aadhar Card Number',
         ]"
-      />
+      >
+        <template v-slot:label>
+          Aadhar Card Number
+          <span class="text-weight-bold text-negative">*</span>
+        </template>
+      </q-input>
     </div>
     <div class="col-12">
       <q-uploader
@@ -242,20 +272,19 @@ export default {
 
   computed: {
     ...mapFields("user", [
-      "newItem.name",
-      "newItem.email",
-      "newItem.password",
-      "newItem.account_name",
-      "newItem.phone",
-      "newItem.city_id",
-      "newItem.address_1",
-      "newItem.address_2",
-      "newItem.branch_id",
-      "newItem.aadhar_card_no",
-      "newItem.account_no",
-      "newItem.ifsc",
-      "newItem.bank_branch",
-      // "newItem.aadhar_media_id",
+      "editItem.name",
+      "editItem.email",
+      "editItem.password",
+      "editItem.account_name",
+      "editItem.phone",
+      "editItem.city_id",
+      "editItem.address_1",
+      "editItem.address_2",
+      "editItem.branch_id",
+      "editItem.aadhar_card_no",
+      "editItem.account_no",
+      "editItem.ifsc",
+      "editItem.bank_branch",
     ]),
   },
 
