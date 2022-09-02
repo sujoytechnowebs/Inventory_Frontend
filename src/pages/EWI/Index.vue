@@ -8,8 +8,8 @@
         :aditionalActions="aditionalActions"
         :columns="columns"
         :filter="filter"
-        :canEdit="false"
         :canDelete="false"
+        :canAdd="false"
       >
         <template v-slot:top>
           <div
@@ -17,21 +17,22 @@
           >
             EWI Management Table
           </div>
-          <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
-            <div class="col-8">
-              <q-input
-                outlined
-                dense
-                debounce="300"
-                v-model="filter.search"
-                clearable
-                placeholder="Search"
-              >
-                <template v-slot:append>
-                  <q-icon name="search" />
-                </template>
-              </q-input>
-            </div>
+          <div class="col-xs-12 col-sm-3 col-md-3">
+            <q-input
+              outlined
+              dense
+              debounce="300"
+              v-model="filter.search"
+              clearable
+              placeholder="Search"
+            >
+              <template v-slot:append>
+                <q-icon name="search" />
+              </template>
+            </q-input>
+          </div>
+          <div class="col-12 col-md-3 col-lg-3" row justify-end>
+            <q-btn flat label="Download Report" />
           </div>
         </template>
       </QDataTable>
