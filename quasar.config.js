@@ -49,8 +49,8 @@ module.exports = configure(function (ctx) {
       env: ctx.dev
         ? {
             // so on dev we'll have
-            // API: "http://127.0.0.1:8000/api",
-            API: "https://inventory-api.staging.technowebs.in/api",
+            API: "http://127.0.0.1:8000/api",
+            // API: "https://inventory-api.staging.technowebs.in/api",
           }
         : {
             // and on build (production):
