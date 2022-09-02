@@ -49,7 +49,13 @@
       </q-input>
     </div>
     <div class="col-12 col-md-4 col-lg-4">
-      <q-btn icon="delete" color="red" round @click="deleteProduct(index)" />
+      <q-btn
+        icon="delete"
+        color="red"
+        size="sm"
+        round
+        @click="deleteProduct(index)"
+      />
     </div>
   </div>
 </template>

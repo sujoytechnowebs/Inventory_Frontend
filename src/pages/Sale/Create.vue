@@ -9,11 +9,11 @@
         title="Add Sales"
       >
         <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-8 col-lg-8">
+          <div class="col-12 col-md-9 col-lg-9 scroll-bar q-pr-sm">
             <div class="row q-col-gutter-md">
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-md-3 col-lg-3">
                 <QSearch
-                  v-model="customer_id"
+                  v-model="customers_id"
                   label="Customer Name"
                   option-value="id"
                   option-label="name"
@@ -29,25 +29,7 @@
                   ]"
                 ></QSearch>
               </div>
-              <div class="col-12 col-md-6 col-lg-6">
-                <QSearch
-                  v-model="loan_id"
-                  label="Loan Application Number"
-                  option-value="id"
-                  option-label="application_no"
-                  data-store="loan"
-                  action="getItems"
-                  :multiple="false"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.branch_id > 0) ||
-                      validationErrors.branch_id
-                        ? validationErrors.branch_id
-                        : 'Please choose the Branch name',
-                  ]"
-                ></QSearch>
-              </div>
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-md-3 col-lg-3">
                 <QSearch
                   v-model="branch_id"
                   label="Branch"
@@ -65,7 +47,7 @@
                   ]"
                 ></QSearch>
               </div>
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-md-2 col-lg-2">
                 <q-input
                   dense
                   outlined
@@ -96,18 +78,7 @@
                   </template>
                 </q-input>
               </div>
-            </div>
-            <div class="row q-mt-md q-mb-md q-col-gutter-md">
-              <div class="col-12">
-                <q-editor v-model="note">
-                  <q-card flat bordered>
-                    <q-card-section v-html="editor" />
-                  </q-card>
-                </q-editor>
-              </div>
-            </div>
-            <div class="row q-mt-md q-mb-md q-col-gutter-md">
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-md-2 col-lg-2">
                 <q-select
                   outlined
                   v-model="payment_method"
@@ -123,7 +94,7 @@
                   ]"
                 ></q-select>
               </div>
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-md-2 col-lg-2">
                 <q-select
                   outlined
                   v-model="status"
@@ -140,40 +111,25 @@
                 ></q-select>
               </div>
             </div>
-
-            <!-- Sales Details Portion is added here -->
-
             <div>
               <addSales v-model="salesDetails" />
             </div>
+            <div class="q-my-sm">
+              <q-editor v-model="note">
+                <q-card flat bordered>
+                  <q-card-section v-html="editor" />
+                </q-card>
+              </q-editor>
+            </div>
           </div>
-          <div class="col-12 col-md-4 col-lg-4">
-            <div class="row q-col-gutter-md">
-              <div class="col-12">
+          <div class="col-12 col-md-3 col-lg-3">
+            <div class="column">
+              <div class="flex justify-between">
                 <p class="total_cost_head">Total Cost</p>
-              </div>
-              <div class="col-4">
                 <p class="total_cost_head">SubTotal</p>
               </div>
-              <div class="col-8">
-                <p class="total_cost_head">SubTotal</p>
-              </div>
-              <div class="col-4">
-                <p class="total_cost_head">SubTotal</p>
-              </div>
-              <div class="col-8">
-                <p class="total_cost_head">SubTotal</p>
-              </div>
-              <div class="col-4">
-                <p class="total_cost_head">SubTotal</p>
-              </div>
-              <div class="col-8">
-                <p class="total_cost_head">SubTotal</p>
-              </div>
-              <div class="col-4">
-                <p class="total_cost_head">SubTotal</p>
-              </div>
-              <div class="col-8">
+              <div class="flex justify-between">
+                <p class="total_cost_head">Total Cost</p>
                 <p class="total_cost_head">SubTotal</p>
               </div>
             </div>
@@ -188,7 +144,6 @@
 import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 import { defineAsyncComponent } from "vue";
-import { mapGetters } from "vuex";
 
 const addSales = defineAsyncComponent(() =>
   import("./_components/AddSalesDetails.vue")
@@ -201,19 +156,15 @@ export default {
     addSales,
   },
 
-  data() {
+  setup() {
     return {
       modal: ref(true),
       dataStore: "sale",
       validationErrors: ref({}),
       modelValue: ref(),
-      payment: ["cash", "bank", "due", "ewi"],
-      options: ["received", "deliverd"],
+      payment: ["Bank", "Cash", "EWI"],
+      options: ["Accepted", "Received"],
     };
-  },
-
-  created() {
-    this.branch_id = this.getActiveBranch;
   },
 
   computed: {
@@ -225,14 +176,17 @@ export default {
       "newItem.note",
       "newItem.status",
     ]),
-    ...mapGetters("auth", ["getActiveBranch"]),
   },
 };
 </script>
 
 <style scoped>
 .total_cost_head {
-  text-align: center;
-  font-size: 20px;
+  font-size: 14px;
+}
+
+.scroll-bar {
+  max-height: 79vh !important;
+  overflow: scroll;
 }
 </style>

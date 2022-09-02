@@ -34,7 +34,12 @@
         </template>
       </QDataTable>
 
-      <q-dialog v-model="showCreateModal">
+      <q-dialog
+        class="return-form-dialog"
+        full-width
+        fullscreen
+        v-model="showCreateModal"
+      >
         <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
           <CreateUser v-bind:modal="true"></CreateUser>
         </div>
@@ -91,5 +96,17 @@ export default defineComponent({
 .branch-form {
   width: 70%;
   max-width: 70%;
+}
+</style>
+
+<style>
+.return-form-dialog .q-dialog__inner {
+  padding: 0 !important;
+  background: white;
+}
+
+.return-form-dialog .q-dialog__inner .q-dialog__inner--minimized > div {
+  max-height: 100% !important;
+  overflow: hidden;
 }
 </style>

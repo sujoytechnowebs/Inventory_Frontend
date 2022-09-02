@@ -10,7 +10,6 @@
     :loading="loading"
     @virtual-scroll="onScroll"
     @filter="filterFn"
-    clearable
     emit-value
     map-options
     :option-value="optionValue"

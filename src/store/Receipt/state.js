@@ -3,6 +3,13 @@ export default function () {
     // items: {
     columns: [
       {
+        name: "date_of_transaction",
+        align: "left",
+        label: "Date",
+        field: "date_of_transaction",
+        sortable: true,
+      },
+      {
         name: "by_account",
         align: "left",
         label: "From",
@@ -21,13 +28,6 @@ export default function () {
         align: "left",
         label: "Amount",
         field: "amount",
-        sortable: true,
-      },
-      {
-        name: "date_of_transaction",
-        align: "left",
-        label: "Date",
-        field: "date_of_transaction",
         sortable: true,
       },
       {
