@@ -269,6 +269,12 @@ const linksList = [
         link: "/payment",
         show: true,
       },
+      {
+        title: "Profit & Loss",
+        icon: "hlw",
+        link: "/profit-loss",
+        show: true,
+      },
     ],
   },
   {

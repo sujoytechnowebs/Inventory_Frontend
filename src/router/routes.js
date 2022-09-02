@@ -213,12 +213,20 @@ const routes = [
         },
       },
       {
+        path: "profit-loss",
+        component: () => import("pages/ProfitLoss/Index.vue"),
+        meta: {
+          name: "profit-loss-page",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
         path: "investor-details",
         component: () => import("pages/InvestorDetails/Index.vue"),
         meta: {
-          name: "sale-return-page",
+          name: "investor-page",
           requiresAuth: true,
-          // acl: "user.index",
         },
       },
     ],

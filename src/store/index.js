@@ -27,6 +27,7 @@ import payment from "./Payment";
 import sale from "./Sale";
 import salereturn from "./SaleReturn";
 import groupuser from "./GroupUser";
+import profitloss from "./ProfitLoss";
 import investordetails from "./InvestorDetails";
 
 /*
@@ -68,6 +69,7 @@ export default store(function (/* { ssrContext } */) {
       salereturn,
       groupuser,
       investordetails,
+      profitloss,
     },
 
     // enable strict mode (adds overhead!)
