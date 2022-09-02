@@ -1,6 +1,6 @@
 <template>
   <div class="row q-col-gutter-md">
-    <div class="col-6">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-4">
       <QSearch
         v-model="product"
         label="Product Name"
@@ -12,7 +12,7 @@
         dataType="object"
       ></QSearch>
     </div>
-    <div class="col-6">
+    <div class="col-6 col-sm-6 col-md-8 col-lg-8">
       <q-btn
         color="white"
         text-color="black"
@@ -25,7 +25,7 @@
       v-for="(data, index) in purchase_details"
       :key="data.id"
     >
-      <div class="col-12 col-md-3 col-lg-3">
+      <div class="col-6 col-sm-3 col-md-3 col-lg-3">
         <q-input
           ref="product_id"
           v-model="data.product_name"
@@ -35,7 +35,7 @@
         >
         </q-input>
       </div>
-      <div class="col-12 col-md-2 col-lg-2">
+      <div class="col-6 col-sm-3 col-md-2 col-lg-2">
         <q-input
           ref="item_rate"
           v-model="data.item_rate"
@@ -45,7 +45,7 @@
         >
         </q-input>
       </div>
-      <div class="col-12 col-md-2 col-lg-2">
+      <div class="col-6 col-sm-3 col-md-2 col-lg-2">
         <q-input
           ref="discount"
           v-model="data.discount"
@@ -55,7 +55,7 @@
         >
         </q-input>
       </div>
-      <div class="col-12 col-md-2 col-lg-2">
+      <div class="col-6 col-sm-3 col-md-2 col-lg-2">
         <q-input
           ref="quantity"
           v-model="data.quantity"
@@ -65,10 +65,16 @@
         >
         </q-input>
       </div>
-      <div class="col-12 col-md-2 col-lg-2">
-        <q-input dense v-model="data.tax_class_id" label="Sales"></q-input>
+      <div class="col-6 col-sm-3 col-md-2 col-lg-2">
+        <q-input
+          dense
+          ref="sales"
+          v-model="data.sales_rate"
+          type="number"
+          label="Sales"
+        ></q-input>
       </div>
-      <div class="col-12 col-md-1 col-lg-1 q-pb-md">
+      <div class="col-1 col-md-1 col-lg-1">
         <q-btn
           icon="delete"
           color="red"

@@ -11,7 +11,7 @@
         <div class="row q-col-gutter-md">
           <div class="col-12 col-md-9 col-lg-9 scroll-bar q-pr-sm">
             <div class="row q-col-gutter-md">
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-sm-6 col-md-3 col-lg-3">
                 <QSearch
                   v-model="customer_id"
                   label="Customer Name"
@@ -47,7 +47,7 @@
                   ]"
                 ></QSearch>
               </div>
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-sm-6 col-md-3 col-lg-3">
                 <QSearch
                   v-model="branch_id"
                   label="Branch"
@@ -65,7 +65,7 @@
                   ]"
                 ></QSearch>
               </div>
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-sm-6 col-md-2 col-lg-2">
                 <q-input
                   dense
                   outlined
@@ -96,7 +96,7 @@
                   </template>
                 </q-input>
               </div>
-              <div class="col-12 col-md-2 col-lg-2">
+              <div class="col-12 col-sm-6 col-md-2 col-lg-2">
                 <q-select
                   outlined
                   v-model="payment_method"
@@ -112,7 +112,7 @@
                   ]"
                 ></q-select>
               </div>
-              <div class="col-12 col-md-2 col-lg-2">
+              <div class="col-12 col-sm-6 col-md-2 col-lg-2">
                 <q-select
                   outlined
                   v-model="status"

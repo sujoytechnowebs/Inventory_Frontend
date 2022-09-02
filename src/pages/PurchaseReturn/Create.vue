@@ -9,7 +9,7 @@
         title="Add Purchase For Return"
       >
         <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-3 col-lg-3">
+          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
             <QSearch
               v-model="vendor_id"
               label="Vendor Name"
@@ -27,20 +27,15 @@
               ]"
             ></QSearch>
           </div>
-          <div class="col-12 col-md-3 col-lg-3">
+          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
             <q-input
               outlined
               dense
               label="Purchase Return Date"
               v-model="date_of_return"
               mask="date"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.date_of_return > 0) ||
-                  validationErrors.date_of_return
-                    ? validationErrors.date_of_return
-                    : 'Please Choose The Return Date',
-              ]"
+              :error-message="$getValidationErrors('date_of_return')"
+              :error="$hasValidationErrors('date_of_return')"
             >
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
@@ -64,7 +59,7 @@
               </template>
             </q-input>
           </div>
-          <div class="col-12 col-md-3 col-lg-3">
+          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
             <q-select
               outlined
               v-model="payment_method"
@@ -80,7 +75,7 @@
               ]"
             ></q-select>
           </div>
-          <div class="col-12 col-md-3 col-lg-3">
+          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
             <q-select
               outlined
               dense
@@ -118,6 +113,7 @@
 
 <script>
 import { ref } from "vue";
+import { mapGetters } from "vuex";
 import { mapFields } from "vuex-map-fields";
 import { defineAsyncComponent } from "vue";
 
@@ -132,7 +128,7 @@ export default {
     addReturnProducts,
   },
 
-  setup() {
+  data() {
     return {
       modal: ref(true),
       dataStore: "purchasereturn",
@@ -141,6 +137,10 @@ export default {
       options: ["Delivered", "Pending"],
       pays: ["Bank", "Cash"],
     };
+  },
+
+  created() {
+    this.branch_id = this.getActiveBranch;
   },
 
   computed: {
@@ -152,14 +152,14 @@ export default {
       "newItem.status",
       "newItem.purchase_return_details",
     ]),
+    ...mapGetters("auth", ["getActiveBranch"]),
   },
 };
 </script>
 
 <style scoped>
 .purchase-details-create-form-head {
-  font-size: 20px;
-  text-align: center;
+  font-size: 18px;
 }
 
 .scroll-bar {

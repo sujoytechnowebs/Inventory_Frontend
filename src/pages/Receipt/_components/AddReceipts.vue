@@ -70,7 +70,8 @@
           dense
           v-model="data.date_of_transaction"
           mask="date"
-          :rules="['date']"
+          :error-message="$getValidationErrors('date_of_transaction')"
+          :error="$hasValidationErrors('date_of_transaction')"
         >
           <template v-slot:prepend>
             <q-icon name="event" class="cursor-pointer">

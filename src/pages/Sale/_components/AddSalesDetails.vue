@@ -19,7 +19,7 @@
         <q-btn
           color="white"
           text-color="black"
-          label="Add Product Details"
+          label="Add Product"
           @click="addProduct()"
         />
       </div>
@@ -29,10 +29,9 @@
       v-for="(data, index) in salesDetails"
       :key="index"
     >
-      <div class="col-2">
+      <div class="col-6 col-sm-2 col-md-3 col-lg-3">
         <q-input
           ref="product_id"
-          outlined
           v-model="data.product_name"
           dense
           label="Product"
@@ -40,41 +39,34 @@
         >
         </q-input>
       </div>
-      <div class="col-2">
+      <div class="col-6 col-sm-2 col-md-2 col-lg-2">
         <q-input
           ref="item_rate"
-          outlined
           v-model="data.item_rate"
           dense
           label="Item Rate"
         >
         </q-input>
       </div>
-      <div class="col-2">
+      <div class="col-6 col-sm-2 col-md-2 col-lg-2">
+        <q-input ref="discount" v-model="data.discount" dense label="Discount">
+        </q-input>
+      </div>
+      <div class="col-6 col-sm-2 col-md-2 col-lg-2">
+        <q-input ref="quantity" v-model="data.quantity" dense label="Quantity">
+        </q-input>
+      </div>
+      <div class="col-6 col-sm-2 col-md-2 col-lg-2">
         <q-checkbox v-model="data.custom_price" label="Custom Price" />
       </div>
-      <div class="col-2">
-        <q-input
-          ref="discount"
-          outlined
-          v-model="data.discount"
-          dense
-          label="Discount"
-        >
-        </q-input>
-      </div>
-      <div class="col-2">
-        <q-input
-          ref="quantity"
-          outlined
-          v-model="data.quantity"
-          dense
-          label="Quantity"
-        >
-        </q-input>
-      </div>
-      <div class="col-12 col-md-2 col-lg-2">
-        <q-btn icon="delete" color="red" round @click="deleteProduct(index)" />
+      <div class="col-1 col-sm-1 col-md-1 col-lg-1">
+        <q-btn
+          icon="delete"
+          color="red"
+          size="sm"
+          round
+          @click="deleteProduct(index)"
+        />
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-card class="scroll flat">
+    <q-card class="scroll" style="height: 100vh">
       <QCreateForm
         :modal="modal"
         :widgets="true"
@@ -55,6 +55,8 @@
                   placeholder="Purchase Date"
                   dense
                   :rules="['date']"
+                  :error-message="$getValidationErrors('date_of_purchase')"
+                  :error="$hasValidationErrors('date_of_purchase')"
                 >
                   <template v-slot:prepend>
                     <q-icon name="event" class="cursor-pointer">
@@ -83,8 +85,9 @@
                   outlined
                   v-model="payment_method"
                   dense
+                  option-dense
                   :options="pays"
-                  label="Payment Methods"
+                  label="Payment Method"
                   :rules="[
                     (val) =>
                       (val && !validationErrors.payment_method > 0) ||
@@ -127,7 +130,7 @@
                     <p class="q-ma-none text-weight-medium">Rate :</p>
                   </div>
                   <div class="col-6 text-right">
-                    <p>2.55%</p>
+                    <p></p>
                   </div>
                 </div>
                 <div class="row justify-between">
@@ -135,7 +138,7 @@
                     <p class="q-ma-none text-weight-medium">Discount :</p>
                   </div>
                   <div class="col-6 text-right">
-                    <p>20%</p>
+                    <p></p>
                   </div>
                 </div>
                 <div class="row justify-between">
@@ -143,7 +146,7 @@
                     <p class="q-ma-none text-weight-medium">Quantity :</p>
                   </div>
                   <div class="col-6 text-right">
-                    <p>200</p>
+                    <p></p>
                   </div>
                 </div>
                 <div class="row justify-between">
@@ -151,7 +154,7 @@
                     <p class="q-ma-none text-weight-medium">Sales :</p>
                   </div>
                   <div class="col-6 text-right">
-                    <p>100</p>
+                    <p></p>
                   </div>
                 </div>
 
@@ -177,6 +180,7 @@
 
 <script>
 import { ref } from "vue";
+import { mapGetters } from "vuex";
 import { mapFields } from "vuex-map-fields";
 import { defineAsyncComponent } from "vue";
 import AddSalesDetailsVue from "../Sale/_components/AddSalesDetails.vue";
@@ -192,7 +196,7 @@ export default {
     addProducts,
   },
 
-  setup() {
+  data() {
     function calculate() {
       this.result = parseFloat(this.item_rate) - 2;
     }
@@ -208,6 +212,10 @@ export default {
     };
   },
 
+  created() {
+    this.branch_id = this.getActiveBranch;
+  },
+
   computed: {
     ...mapFields("purchase", [
       "newItem.vendor_id",
@@ -218,6 +226,7 @@ export default {
       "newItem.payment_method",
       "newItem.purchase_details",
     ]),
+    ...mapGetters("auth", ["getActiveBranch"]),
   },
 };
 </script>
@@ -228,7 +237,11 @@ export default {
 }
 
 .scroll-bar {
-  max-height: 79vh !important;
+  max-height: 80vh !important;
   overflow: scroll;
+}
+
+.dense-input-field .q-field .q-field__inner .q-field__control {
+  height: 35px !important;
 }
 </style>

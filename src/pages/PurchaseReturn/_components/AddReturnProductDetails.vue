@@ -1,6 +1,6 @@
 <template>
   <div class="row q-col-gutter-md">
-    <div class="col-6">
+    <div class="col-7 col-sm-4 col-md-3 col-lg-2">
       <QSearch
         v-model="product"
         label="Product Name"
@@ -12,11 +12,11 @@
         dataType="object"
       ></QSearch>
     </div>
-    <div class="col-6">
+    <div class="col-5 col-sm-3 col-md-3 col-lg-3">
       <q-btn
         color="white"
         text-color="black"
-        label="Add Product Details"
+        label="Add Product"
         @click="addProduct()"
       />
     </div>
@@ -26,10 +26,9 @@
     v-for="(data, index) in purchase_return_details"
     :key="data.id"
   >
-    <div class="col-12 col-md-4 col-lg-4">
+    <div class="col-5 col-sm-6 col-md-6 col-lg-6">
       <q-input
         ref="product_id"
-        outlined
         v-model="data.product_name"
         dense
         label="Product"
@@ -37,18 +36,17 @@
       >
       </q-input>
     </div>
-    <div class="col-12 col-md-4 col-lg-4">
+    <div class="col-5 col-sm-5 col-md-5 col-lg-5">
       <q-input
         ref="item_rate"
-        outlined
         v-model="data.item_rate"
         dense
         type="number"
-        label="Quantity"
+        label="Item Rate"
       >
       </q-input>
     </div>
-    <div class="col-12 col-md-4 col-lg-4">
+    <div class="col-2 col-sm-1 col-md-1 col-lg-1">
       <q-btn
         icon="delete"
         color="red"

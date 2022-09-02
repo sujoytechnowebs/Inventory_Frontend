@@ -16,7 +16,7 @@
       <q-btn
         color="white"
         text-color="black"
-        label="Add Product Details"
+        label="Add Product"
         @click="addProduct()"
       />
     </div>
@@ -25,10 +25,9 @@
       v-for="(data, index) in sale_return_details"
       :key="data.id"
     >
-      <div class="col-12 col-md-2 col-lg-2">
+      <div class="col-12 col-sm-6 col-md-3 col-lg-3">
         <q-input
           ref="product_id"
-          outlined
           v-model="data.product_name"
           dense
           label="Product"
@@ -36,10 +35,9 @@
         >
         </q-input>
       </div>
-      <div class="col-12 col-md-2 col-lg-2">
+      <div class="col-12 col-sm-6 col-md-2 col-lg-2">
         <q-input
           ref="item_rate"
-          outlined
           v-model="data.item_rate"
           dense
           type="number"
@@ -47,10 +45,9 @@
         >
         </q-input>
       </div>
-      <div class="col-12 col-md-2 col-lg-2">
+      <div class="col-12 col-sm-6 col-md-2 col-lg-2">
         <q-input
           ref="discount"
-          outlined
           v-model="data.discount"
           dense
           type="number"
@@ -58,10 +55,9 @@
         >
         </q-input>
       </div>
-      <div class="col-12 col-md-2 col-lg-2">
+      <div class="col-12 col-sm-6 col-md-2 col-lg-2">
         <q-input
           ref="quantity"
-          outlined
           v-model="data.quantity"
           dense
           type="number"
@@ -69,19 +65,32 @@
         >
         </q-input>
       </div>
-      <div class="col-12 col-md-2 col-lg-2">
-        <QSearch
+      <div class="col-12 col-sm-6 col-md-2 col-lg-2">
+        <q-input
+          dense
           v-model="data.tax_class_id"
-          label="Tax Name"
+          label="Sales"
           option-value="id"
           option-label="name"
           data-store="tax"
           action="getItems"
           :multiple="false"
-        ></QSearch>
+        ></q-input>
       </div>
-      <div class="col-12 col-md-2 col-lg-2">
-        <q-btn icon="delete" color="red" round @click="deleteProduct(index)" />
+      <div
+        :class="
+          $q.platform.is.mobile
+            ? 'col-12 flex justify-end'
+            : 'col-12 col-sm-1 col-md-1 col-lg-1'
+        "
+      >
+        <q-btn
+          icon="delete"
+          color="red"
+          size="sm"
+          round
+          @click="deleteProduct(index)"
+        />
       </div>
     </div>
   </div>

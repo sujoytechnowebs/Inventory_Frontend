@@ -16,6 +16,8 @@
               v-model="name"
               dense
               label="Branch Name"
+              :error-message="$getValidationErrors('name')"
+              :error="$hasValidationErrors('name')"
             >
             </q-input>
           </div>
@@ -26,6 +28,8 @@
               v-model="code"
               dense
               label="Branch Code"
+              :error-message="$getValidationErrors('code')"
+              :error="$hasValidationErrors('code')"
             >
             </q-input>
           </div>
@@ -36,6 +40,8 @@
               v-model="address_1"
               dense
               label="Address 1"
+              :error-message="$getValidationErrors('address_1')"
+              :error="$hasValidationErrors('address_1')"
             >
             </q-input>
           </div>
@@ -46,6 +52,8 @@
               v-model="address_2"
               dense
               label="Address 2"
+              :error-message="$getValidationErrors('address_2')"
+              :error="$hasValidationErrors('address_2')"
             >
             </q-input>
           </div>
@@ -56,6 +64,8 @@
               v-model="postcode"
               dense
               label="PostCode"
+              :error-message="$getValidationErrors('postcode')"
+              :error="$hasValidationErrors('postcode')"
             >
             </q-input>
           </div>

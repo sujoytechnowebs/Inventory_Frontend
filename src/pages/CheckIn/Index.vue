@@ -11,12 +11,12 @@
       >
         <template v-slot:top>
           <div
-            class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
+            class="text-h6 text-weight-bold text-grey-8 col-12 col-sm-6 col-md-6 col-lg-7"
           >
             CheckIn Management Table
           </div>
-          <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
-            <div class="col-8">
+          <div class="col-9 col-sm-6 col-md-6 col-lg-5">
+            <div>
               <q-input
                 outlined
                 dense

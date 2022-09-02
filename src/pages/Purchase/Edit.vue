@@ -56,7 +56,8 @@
                 mask="date"
                 placeholder="Purchase Date"
                 dense
-                :rules="['date']"
+                :error-message="$getValidationErrors('date_of_purchase')"
+                :error="$hasValidationErrors('date_of_purchase')"
               >
                 <template v-slot:prepend>
                   <q-icon name="event" class="cursor-pointer">
