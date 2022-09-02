@@ -246,6 +246,12 @@ const linksList = [
         show: true,
       },
       {
+        title: "Investor Details",
+        icon: "hlw",
+        link: "/investor-details",
+        show: true,
+      },
+      {
         title: "Stock Transfer",
         icon: "hlw",
         link: "/stock-transfer",
