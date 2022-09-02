@@ -42,7 +42,7 @@ export function setProductDetails(state, payload) {
     discount: null,
     quantity: null,
     discount: null,
-    tax_class_id: null,
+    custom_price: null,
     product_id: payload.id,
     product_name: payload.name,
   });

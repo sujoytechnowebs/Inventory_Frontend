@@ -28,12 +28,10 @@ export function setPaymentDetails(state, payload) {
   // console.error("setReceiptDetails", payload)
 
   state.newItem.paymentsDetails.push({
-    from_account: null,
+    to_account_id: null,
     date_of_transaction: "",
     note: "",
     amount: "",
-
-    to_account_id: null,
   });
 }
 

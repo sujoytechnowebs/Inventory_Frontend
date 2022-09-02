@@ -8,8 +8,8 @@
         :data-store="dataStore"
         title="Add Accounts"
       >
-        <div class="row q-mt-md q-mb-md q-col-gutter-md">
-          <div class="col-12 col-md-4 col-lg-4">
+        <div class="row q-col-gutter-md">
+          <div class="col-12">
             <q-input
               ref="account_name"
               outlined
@@ -21,120 +21,27 @@
                   (val && !validationErrors.account_name > 0) ||
                   validationErrors.account_name
                     ? validationErrors.account_name
-                    : 'Please write the Account Name',
+                    : 'Please Write The Account Name',
               ]"
             >
             </q-input>
           </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
-            <q-input
-              ref="phone"
+          <div class="col-12 col-md-6 col-lg-6">
+            <q-select
               outlined
-              v-model="phone"
               dense
-              label="Phone Number"
+              v-model="type"
+              :options="account_type"
+              label="Account Type"
               :rules="[
                 (val) =>
-                  (val && !validationErrors.phone > 0) || validationErrors.phone
-                    ? validationErrors.phone
-                    : 'Please write the Phone Number',
+                  (val && !validationErrors.type > 0) || validationErrors.type
+                    ? validationErrors.type
+                    : 'Please Choose The Account Type',
               ]"
-            >
-            </q-input>
+            ></q-select>
           </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
-            <q-input
-              ref="email"
-              outlined
-              v-model="email"
-              dense
-              label="Email"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.email > 0) || validationErrors.email
-                    ? validationErrors.email
-                    : 'Please write the Email',
-              ]"
-            >
-            </q-input>
-          </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
-            <QSearch
-              v-model="city_id"
-              label="City Name"
-              option-value="id"
-              option-label="city_name"
-              data-store="city"
-              action="getItems"
-              :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.city_id > 0) ||
-                  validationErrors.city_id
-                    ? validationErrors.city_id
-                    : 'Please choose the City Name',
-              ]"
-            ></QSearch>
-          </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
-            <q-input
-              ref="address_1"
-              outlined
-              v-model="address_1"
-              dense
-              label="Address 1"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.address_1 > 0) ||
-                  validationErrors.address_1
-                    ? validationErrors.address_1
-                    : 'Please write the Address 1',
-              ]"
-            >
-            </q-input>
-          </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
-            <q-input
-              ref="address_2"
-              outlined
-              v-model="address_2"
-              dense
-              label="Address 2"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.address_2 > 0) ||
-                  validationErrors.address_2
-                    ? validationErrors.address_2
-                    : 'Please write the Address 2',
-              ]"
-            >
-            </q-input>
-          </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
-            <q-input
-              ref="postcode"
-              outlined
-              v-model="postcode"
-              dense
-              label="PostCode"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.postcode > 0) ||
-                  validationErrors.postcode
-                    ? validationErrors.postcode
-                    : 'Please write the Postcode',
-              ]"
-            >
-            </q-input>
-          </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
+          <div class="col-12 col-md-6 col-lg-6">
             <QSearch
               v-model="branch_id"
               label="Branch"
@@ -148,97 +55,45 @@
                   (val && !validationErrors.branch_id > 0) ||
                   validationErrors.branch_id
                     ? validationErrors.branch_id
-                    : 'Please choose the Branch Name',
+                    : 'Please choose the Branch name',
               ]"
             ></QSearch>
           </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
+          <div class="col-12 col-md-6 col-lg-6">
             <q-input
-              ref="adhaar_media_id"
+              ref="opening_balance"
               outlined
-              v-model="adhaar_media_id"
+              v-model="opening_balance"
               dense
-              label="Aadhaar Card "
+              mask="#.##"
+              fill-mask="0"
+              reverse-fill-mask
+              label="Opening Balance"
               :rules="[
                 (val) =>
-                  (val && !validationErrors.adhaar_media_id > 0) ||
-                  validationErrors.adhaar_media_id
-                    ? validationErrors.adhaar_media_id
-                    : 'Please write the aadhaar card number',
+                  (val && !validationErrors.opening_balance > 0) ||
+                  validationErrors.opening_balance
+                    ? validationErrors.opening_balance
+                    : 'Please Write The Opening Balance',
               ]"
             >
             </q-input>
           </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
-            <q-input
-              ref="type"
+          <div class="col-12 col-md-6 col-lg-6">
+            <q-select
               outlined
-              v-model="type"
               dense
-              label="Type"
+              v-model="balance_type"
+              :options="balance_category"
+              label="Opening Balance Type"
               :rules="[
                 (val) =>
-                  (val && !validationErrors.type > 0) || validationErrors.type
-                    ? validationErrors.type
-                    : 'Please write the type',
+                  (val && !validationErrors.balance_type > 0) ||
+                  validationErrors.balance_type
+                    ? validationErrors.balance_type
+                    : 'Please Choose The Opening Balance Type',
               ]"
-            >
-            </q-input>
-          </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
-            <q-input
-              ref="account_no"
-              outlined
-              v-model="account_no"
-              dense
-              label="Account Number"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.account_no > 0) ||
-                  validationErrors.account_no
-                    ? validationErrors.account_no
-                    : 'Please write the Account Number',
-              ]"
-            >
-            </q-input>
-          </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
-            <q-input
-              ref="ifsc"
-              outlined
-              v-model="ifsc"
-              dense
-              label="IFSC CODE"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.ifsc > 0) || validationErrors.ifsc
-                    ? validationErrors.ifsc
-                    : 'Please write the IFSC CODE',
-              ]"
-            >
-            </q-input>
-          </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
-            <q-input
-              ref="bank_branch"
-              outlined
-              v-model="bank_branch"
-              dense
-              label="Bank Branch"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.bank_branch > 0) ||
-                  validationErrors.bank_branch
-                    ? validationErrors.bank_branch
-                    : 'Please write the Bank Branch',
-              ]"
-            >
-            </q-input>
+            ></q-select>
           </div>
         </div>
       </QCreateForm>
@@ -258,24 +113,18 @@ export default {
       dataStore: "account",
       validationErrors: ref({}),
       modelValue: ref(),
+      account_type: ["bank", "cash"],
+      balance_category: ["cr", "dr"],
     };
   },
 
   computed: {
     ...mapFields("account", [
       "newItem.account_name",
-      "newItem.phone",
-      "newItem.email",
-      "newItem.city_id",
-      "newItem.address_1",
-      "newItem.address_2",
-      "newItem.postcode",
-      "newItem.branch_id",
-      "newItem.adhaar_media_id",
       "newItem.type",
-      "newItem.account_no",
-      "newItem.ifsc",
-      "newItem.bank_branch",
+      "newItem.branch_id",
+      "newItem.opening_balance",
+      "newItem.balance_type",
     ]),
   },
 };

@@ -1,16 +1,19 @@
 export function authUser(state) {
-    return state.authUser;
+  return state.authUser;
 }
 
 export function time_left(state) {
-    return state.time_left;
+  return state.time_left;
 }
 
 export function forgetStep(state) {
-    return state.forgetStep;
+  return state.forgetStep;
 }
 
 export function signUpStep(state) {
-    return state.signUpStep;
+  return state.signUpStep;
 }
 
+export function getActiveBranch(state) {
+  return state.active_branch;
+}

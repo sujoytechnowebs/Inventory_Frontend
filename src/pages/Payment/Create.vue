@@ -10,7 +10,7 @@
       >
         <div class="row q-col-gutter-md">
           <div>
-            <addPayments />
+            <addPayments v-model="payment_details" />
           </div>
         </div>
       </QCreateForm>
@@ -44,7 +44,7 @@ export default {
   },
 
   computed: {
-    ...mapFields("payment", ["newItem.city_name", "newItem.state_id"]),
+    ...mapFields("payment", ["newItem.payment_details"]),
   },
 };
 </script>

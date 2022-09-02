@@ -1,19 +1,24 @@
 export function setAuthUser(state, payload) {
-    state.authUser = payload;
+  state.authUser = payload;
 }
 
 export function setTimeLeft(state, payload) {
-    state.time_left = payload;
+  state.time_left = payload;
 }
 
 export function setForgetStep(state, payload) {
-    state.forgetStep = payload;
+  state.forgetStep = payload;
 }
 
 export function setSignUpStep(state, payload) {
-    state.signUpStep = payload;
+  state.signUpStep = payload;
 }
 
 export function passwordResetToken(state, payload) {
-    state.forget_password.token = payload;
+  state.forget_password.token = payload;
+}
+
+export function setActiveBranch(state, payload) {
+  console.log("checking payload in mutation", payload);
+  state.active_branch = payload;
 }

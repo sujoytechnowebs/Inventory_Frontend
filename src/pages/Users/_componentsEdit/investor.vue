@@ -10,7 +10,7 @@
             outlined
             v-model="account_name"
             dense
-            label="Investor Name"
+            label
             :rules="[
               (val) =>
                 (val && !validationErrors.account_name > 0) ||
@@ -18,7 +18,12 @@
                   ? validationErrors.account_name
                   : 'Please Write The Investor Name',
             ]"
-          />
+          >
+            <template v-slot:label>
+              Investor Name
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
 
         <div class="col-12 col-md-6 col-lg-6">
@@ -34,7 +39,12 @@
                   ? validationErrors.name
                   : 'Please Write The User Name',
             ]"
-          />
+          >
+            <template v-slot:label>
+              User Name
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
 
         <div class="col-12 col-md-6 col-lg-6">
@@ -51,7 +61,12 @@
                   ? validationErrors.phone
                   : 'Please Write The Mobile Number',
             ]"
-          />
+          >
+            <template v-slot:label>
+              Mobile Number
+              <span class="text-weight-bold text-negative">*</span>
+            </template>
+          </q-input>
         </div>
         <div class="col-12 col-md-6 col-lg-6">
           <q-input
@@ -118,13 +133,13 @@ export default {
 
   computed: {
     ...mapFields("user", [
-      "newItem.name",
-      "newItem.account_name",
-      "newItem.phone",
-      "newItem.email",
-      "newItem.account_no",
-      "newItem.ifsc",
-      "newItem.bank_branch",
+      "editItem.name",
+      "editItem.account_name",
+      "editItem.phone",
+      "editItem.email",
+      "editItem.account_no",
+      "editItem.ifsc",
+      "editItem.bank_branch",
     ]),
   },
 };

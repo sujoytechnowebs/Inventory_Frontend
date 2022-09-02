@@ -41,7 +41,7 @@ export default route(function ({ store, ssrContext }) {
   Router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.requiresAuth)) {
       store
-        .dispatch("auth/check")
+        .dispatch("auth/checkAuthUserData")
         .then((res) => {
           // if (to.meta.hasOwnProperty("acl")) {
           //   store
