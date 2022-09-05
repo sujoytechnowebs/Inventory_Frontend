@@ -330,6 +330,7 @@ export default defineComponent({
     const { active_branch } = getState("auth", ["active_branch"]);
     const { setActiveBranch } = getMutations("auth", ["setActiveBranch"]);
     const { logOut } = getAction("auth", ["logOut"]);
+    const { switchActiveBranch } = getAction("auth", ["switchActiveBranch"]);
     const loading = ref(false);
 
     const current_branch_selected = ref(null);
@@ -381,7 +382,14 @@ export default defineComponent({
 
     const changeActiveBranch = (branch_id) => {
       setActiveBranch(branch_id);
+      switchActiveBranch(branch_id).then((response) => {});
     };
+
+    //Switch Branch
+
+    // const switchActiveBranch = (branch_id) => {
+    //   setSwitchBranch(branch_id);
+    // };
 
     return {
       essentialLinks: linksList,

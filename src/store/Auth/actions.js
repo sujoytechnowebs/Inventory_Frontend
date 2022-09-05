@@ -228,3 +228,20 @@ export function fetchAuthUser({ commit, state }) {
     }
   });
 }
+
+// Branch Set Up Switch
+
+export function switchActiveBranch({ state, commit }, props) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("set-active-branch", {
+        branch_id: props,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}

@@ -52,7 +52,7 @@ import useStoreModule from "../../../libs/useStoreModule.js";
 const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "GroupMemberPage",
 
   components: {
     EditUser,

@@ -51,7 +51,7 @@
     </q-dialog>
     <q-dialog v-model="showViewMembersModal">
       <div :class="$q.platform.is.desktop ? 'group-form' : ''">
-        <addMembers></addMembers>
+        <ViewMembers></ViewMembers>
       </div>
     </q-dialog>
   </div>
@@ -65,8 +65,8 @@ import useStoreModule from "../../libs/useStoreModule.js";
 const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
 const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
 
-const addMembers = defineAsyncComponent(() =>
-  import("./_components/AddMembers.vue")
+const ViewMembers = defineAsyncComponent(() =>
+  import("./_components/ViewMembers.vue")
 );
 
 export default defineComponent({
@@ -75,7 +75,7 @@ export default defineComponent({
   components: {
     EditUser,
     CreateUser,
-    addMembers,
+    ViewMembers,
   },
 
   computed: {
