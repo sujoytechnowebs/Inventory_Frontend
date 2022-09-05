@@ -19,6 +19,5 @@ export function passwordResetToken(state, payload) {
 }
 
 export function setActiveBranch(state, payload) {
-  console.log("checking payload in mutation", payload);
   state.active_branch = payload;
 }

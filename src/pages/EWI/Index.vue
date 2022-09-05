@@ -17,20 +17,6 @@
           >
             EWI Management Table
           </div>
-          <!-- <div class="col-xs-12 col-sm-3 col-md-3">
-            <q-input
-              outlined
-              dense
-              debounce="300"
-              v-model="filter.search"
-              clearable
-              placeholder="Search"
-            >
-              <template v-slot:append>
-                <q-icon name="search" />
-              </template>
-            </q-input>
-          </div> -->
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-12">
               <q-btn
@@ -41,61 +27,6 @@
               />
             </div>
           </div>
-
-          <!-- <div class="col-12 col-md-3 col-lg-3" row justify-end>
-            <q-btn
-              color="primary"
-              label="Download Report"
-              @click="exportInExcel"
-            />
-          </div> -->
-          <!-- <div class="col-4 col-md-4 col-lg-4">
-            <q-select
-              outlined
-              dense
-              v-model="filter.status"
-              :options="options"
-              label="Status"
-            />
-          </div> -->
-          <!-- <div class="col-4 col-md-4 col-lg-4">
-            <q-input
-              dense
-              outlined
-              v-model="filter.ewi_date"
-              mask="date"
-              :rules="['date']"
-            >
-              <template v-slot:prepend>
-                <q-icon name="event" class="cursor-pointer">
-                  <q-popup-proxy
-                    cover
-                    transition-show="scale"
-                    transition-hide="scale"
-                  >
-                    <q-date v-model="filter.ewi_date">
-                      <div class="row items-center justify-end">
-                        <q-btn
-                          v-close-popup
-                          label="Close"
-                          color="primary"
-                          flat
-                        />
-                      </div>
-                    </q-date>
-                  </q-popup-proxy>
-                </q-icon>
-              </template>
-            </q-input>
-          </div> -->
-          <!-- <div class="col-4 col-md-4 col-lg-4">
-            <q-input
-              dense
-              outlined
-              v-model="filter.group_code"
-              label="Group Code"
-            />
-          </div> -->
 
           <!-- Dialog Box Appear -->
 
@@ -262,7 +193,7 @@ export default defineComponent({
           pagination: this.pagination,
         })
         .then((response) => {
-          window.open(response.data.url, "_system");
+          window.open(response.data.temp_url, "_system");
         })
         .catch((error) => {});
     },
