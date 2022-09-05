@@ -31,6 +31,7 @@
               </div>
               <div class="col-12 col-md-3 col-lg-3">
                 <QSearch
+                  class="extra-height"
                   v-model="branch_id"
                   label="Branch"
                   option-value="id"
@@ -231,7 +232,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .purchase-details-create-form-head {
   font-size: 16px;
 }
@@ -243,5 +244,14 @@ export default {
 
 .dense-input-field .q-field .q-field__inner .q-field__control {
   height: 35px !important;
+}
+
+.extra-height
+  .q-field__inner
+  .q-field__control
+  .q-field__control-container
+  .q-field__native
+  .q-field__input {
+  min-height: 0 !important;
 }
 </style>
