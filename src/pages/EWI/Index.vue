@@ -17,7 +17,7 @@
           >
             EWI Management Table
           </div>
-          <div class="col-xs-12 col-sm-3 col-md-3">
+          <!-- <div class="col-xs-12 col-sm-3 col-md-3">
             <q-input
               outlined
               dense
@@ -30,9 +30,169 @@
                 <q-icon name="search" />
               </template>
             </q-input>
+          </div> -->
+          <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
+            <div class="col-12">
+              <q-btn
+                label="Download Report"
+                no-caps
+                color="primary"
+                @click="alert = true"
+              />
+            </div>
           </div>
-          <div class="col-12 col-md-3 col-lg-3" row justify-end>
-            <q-btn flat label="Download Report" />
+
+          <!-- <div class="col-12 col-md-3 col-lg-3" row justify-end>
+            <q-btn
+              color="primary"
+              label="Download Report"
+              @click="exportInExcel"
+            />
+          </div> -->
+          <!-- <div class="col-4 col-md-4 col-lg-4">
+            <q-select
+              outlined
+              dense
+              v-model="filter.status"
+              :options="options"
+              label="Status"
+            />
+          </div> -->
+          <!-- <div class="col-4 col-md-4 col-lg-4">
+            <q-input
+              dense
+              outlined
+              v-model="filter.ewi_date"
+              mask="date"
+              :rules="['date']"
+            >
+              <template v-slot:prepend>
+                <q-icon name="event" class="cursor-pointer">
+                  <q-popup-proxy
+                    cover
+                    transition-show="scale"
+                    transition-hide="scale"
+                  >
+                    <q-date v-model="filter.ewi_date">
+                      <div class="row items-center justify-end">
+                        <q-btn
+                          v-close-popup
+                          label="Close"
+                          color="primary"
+                          flat
+                        />
+                      </div>
+                    </q-date>
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+          </div> -->
+          <!-- <div class="col-4 col-md-4 col-lg-4">
+            <q-input
+              dense
+              outlined
+              v-model="filter.group_code"
+              label="Group Code"
+            />
+          </div> -->
+
+          <!-- Dialog Box Appear -->
+
+          <div>
+            <q-dialog v-model="alert">
+              <q-card>
+                <q-card-actions align="right">
+                  <q-btn
+                    flat
+                    round
+                    icon="close"
+                    color="primary"
+                    v-close-popup
+                  />
+                </q-card-actions>
+
+                <q-card-section>
+                  <div class="row q-col-gutter-md">
+                    <div class="col-12">
+                      <q-select
+                        outlined
+                        dense
+                        v-model="status"
+                        :options="options"
+                        label="Status"
+                        :rules="[
+                          (val) =>
+                            (val && !validationErrors.status > 0) ||
+                            validationErrors.status
+                              ? validationErrors.status
+                              : 'Please Choose The Status',
+                        ]"
+                      ></q-select>
+                    </div>
+
+                    <div class="col-12">
+                      <q-input
+                        dense
+                        label="EWI Date"
+                        outlined
+                        v-model="ewi_date"
+                        mask="date"
+                        :rules="[
+                          (val) =>
+                            (val && !validationErrors.ewi_date > 0) ||
+                            validationErrors.ewi_date
+                              ? validationErrors.ewi_date
+                              : 'Please Choose The EWI Date',
+                        ]"
+                      >
+                        <template v-slot:prepend>
+                          <q-icon name="event" class="cursor-pointer">
+                            <q-popup-proxy
+                              cover
+                              transition-show="scale"
+                              transition-hide="scale"
+                            >
+                              <q-date v-model="ewi_date">
+                                <div class="row items-center justify-end">
+                                  <q-btn
+                                    v-close-popup
+                                    label="Close"
+                                    color="primary"
+                                    flat
+                                  />
+                                </div>
+                              </q-date>
+                            </q-popup-proxy>
+                          </q-icon>
+                        </template>
+                      </q-input>
+                    </div>
+
+                    <div class="col-12">
+                      <q-input
+                        dense
+                        outlined
+                        v-model="group_code"
+                        label="Group Code"
+                        :rules="[
+                          (val) =>
+                            (val && !validationErrors.group_code > 0) ||
+                            validationErrors.group_code
+                              ? validationErrors.group_code
+                              : 'Please Write The Group Code',
+                        ]"
+                      ></q-input>
+                    </div>
+                  </div>
+                </q-card-section>
+
+                <q-card-actions align="between">
+                  <q-btn flat label="Download" @click="exportInExcel" />
+                  <q-btn flat label="Cancel" color="primary" v-close-popup />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
           </div>
         </template>
       </QDataTable>
@@ -54,7 +214,7 @@
 
 <script>
 import { mapFields } from "vuex-map-fields";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
@@ -70,7 +230,11 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("ewi", ["filter"]),
+    ...mapFields("ewi", [
+      "filter.status",
+      "filter.ewi_date",
+      "filter.group_code",
+    ]),
   },
   setup() {
     const { getGetters } = useStoreModule();
@@ -80,10 +244,28 @@ export default defineComponent({
     return {
       hasEditPermission: true,
       dataStore: "ewi",
+      // ewiReports: "export-ewi",
       aditionalActions: false,
       showEditModal,
       showCreateModal,
+      options: ["due", "collected"],
+      alert: ref(false),
     };
+  },
+
+  methods: {
+    exportInExcel() {
+      // console.log("export pdf");
+      this.$store
+        .dispatch(`${this.dataStore}/getReport`, {
+          export_excel: 1,
+          pagination: this.pagination,
+        })
+        .then((response) => {
+          window.open(response.data.url, "_system");
+        })
+        .catch((error) => {});
+    },
   },
 });
 </script>
