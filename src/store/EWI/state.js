@@ -72,6 +72,9 @@ export default function () {
     },
     filter: {
       search: "",
+      status: "",
+      ewi_date: "",
+      group_code: "",
       trashed: false,
     },
     lastUpdated: "",
