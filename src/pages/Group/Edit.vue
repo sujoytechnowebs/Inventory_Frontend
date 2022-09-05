@@ -8,7 +8,7 @@
         :data-store="dataStore"
         title="Edit Groups"
       >
-        <div class="row q-mt-md q-mb-md q-col-gutter-md">
+        <div class="row q-col-gutter-md">
           <div class="col-12 col-md-4 col-lg-4">
             <q-input
               ref="name"

@@ -23,7 +23,7 @@ export function setProductDetails(state, payload) {
     discount: null,
     quantity: null,
     discount: null,
-    tax_class_id: null,
+    sales_rate: null,
     product_id: payload.id,
     product_name: payload.name,
   });
@@ -36,7 +36,7 @@ export function editProductDetails(state, payload) {
     discount: null,
     quantity: null,
     discount: null,
-    tax_class_id: null,
+    sales_rate: null,
     product_id: payload.id,
     product_name: payload.name,
   });

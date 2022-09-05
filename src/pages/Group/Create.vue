@@ -8,7 +8,7 @@
         :data-store="dataStore"
         title="Add Groups"
       >
-        <div class="row q-mt-md q-mb-md q-col-gutter-md">
+        <div class="row q-col-gutter-md">
           <div class="col-12 col-md-4 col-lg-4">
             <q-input
               ref="name"
@@ -59,23 +59,19 @@
               ]"
             ></QSearch>
           </div>
-          <div class="col-12">
-            <q-editor
-              placeholder="Please Write The Address"
-              v-model="address"
-              min-height="10rem"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.address > 0) ||
-                  validationErrors.address
-                    ? validationErrors.address
-                    : 'Please Write The Address',
-              ]"
-            ></q-editor>
-
-            <q-card-section v-html="editor" />
-          </div>
+          <div class="col-12"></div>
         </div>
+        <q-editor
+          placeholder="Please Write The Address"
+          v-model="address"
+          min-height="10rem"
+          :rules="[
+            (val) =>
+              (val && !validationErrors.address > 0) || validationErrors.address
+                ? validationErrors.address
+                : 'Please Write The Address',
+          ]"
+        ></q-editor>
       </QCreateForm>
     </q-card>
   </div>

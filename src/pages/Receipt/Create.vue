@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-card class="my-card">
+    <q-card>
       <QCreateForm
         :modal="modal"
         :widgets="true"

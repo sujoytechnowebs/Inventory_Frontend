@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-card class="my-card">
+    <q-card>
       <QCreateForm
         :modal="modal"
         :widgets="true"
@@ -8,8 +8,8 @@
         :data-store="dataStore"
         title="CheckIn"
       >
-        <div class="row q-mt-md q-mb-md q-col-gutter-md">
-          <div class="col-12">
+        <div class="column">
+          <div class="">
             <QSearch
               v-model="branch_id"
               label="Branch"
@@ -28,7 +28,7 @@
             ></QSearch>
           </div>
 
-          <div class="col-12">
+          <div class="">
             <q-input
               ref="opening_balance"
               outlined

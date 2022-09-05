@@ -91,9 +91,6 @@
                     : 'Please write the Product Description',
               ]"
             ></q-editor>
-            <q-card flat bordered>
-              <q-card-section v-html="editor" />
-            </q-card>
           </div>
         </div>
       </QCreateForm>

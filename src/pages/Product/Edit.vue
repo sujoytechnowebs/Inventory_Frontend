@@ -56,9 +56,6 @@
               v-model="item_description"
               min-height="5rem"
             ></q-editor>
-            <q-card flat bordered>
-              <q-card-section v-html="editor" />
-            </q-card>
           </div>
         </div>
       </QEditForm>

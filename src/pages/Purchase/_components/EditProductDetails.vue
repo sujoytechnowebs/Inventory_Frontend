@@ -67,7 +67,13 @@
       </q-input>
     </div>
     <div class="col-12 col-md-2 col-lg-2">
-      <q-input dense v-model="data.tax_class_id" label="Tax Name"></q-input>
+      <q-input
+        dense
+        ref="sales"
+        type="number"
+        v-model="data.sales_rate"
+        label="Sales"
+      ></q-input>
     </div>
     <div class="col-12 col-md-1 col-lg-1">
       <q-btn

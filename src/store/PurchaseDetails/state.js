@@ -32,10 +32,10 @@ export default function () {
         sortable: true,
       },
       {
-        name: "tax_class_id",
+        name: "sales_rate",
         align: "left",
         label: "Tax",
-        field: "tax_class_id",
+        field: "sales_rate",
         sortable: true,
       },
       { name: "actions", align: "right", label: "Actions" },

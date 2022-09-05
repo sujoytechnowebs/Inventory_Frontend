@@ -1,15 +1,15 @@
 <template>
   <div>
-    <q-card class="my-card">
+    <q-card>
       <QCreateForm
         :modal="modal"
         :widgets="true"
         save-action="productcategory/createItem"
         :data-store="dataStore"
-        title="Add Products Category"
+        title="Add Category"
       >
         <div class="row q-col-gutter-md">
-          <div class="col-12">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6">
             <q-input
               ref="name"
               outlined
@@ -25,7 +25,7 @@
             >
             </q-input>
           </div>
-          <div class="col-12">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6">
             <QSearch
               v-model="parent_id"
               label="Parent Category"
