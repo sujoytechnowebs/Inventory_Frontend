@@ -45,13 +45,6 @@ export default function () {
         sortable: true,
       },
       {
-        name: "note",
-        align: "left",
-        label: "Note",
-        field: "note",
-        sortable: true,
-      },
-      {
         name: "status",
         align: "left",
         label: "Status",

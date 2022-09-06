@@ -151,14 +151,12 @@ export default defineComponent({
     });
 
     const addProduct = () => {
-      console.log("product.value", product.value.id);
       setProductDetails(product.value);
     };
 
     // Testing Purpose
 
     const deleteProduct = (index) => {
-      console.log("data", index);
       removeProductDetails(index);
     };
 

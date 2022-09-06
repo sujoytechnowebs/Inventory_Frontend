@@ -3,6 +3,13 @@ export default function () {
     // items: {
     columns: [
       {
+        name: "reference_no",
+        align: "left",
+        label: "Refernce No.",
+        field: "reference_no",
+        sortable: true,
+      },
+      {
         name: "date_of_purchase",
         align: "left",
         label: "Purchase Date",

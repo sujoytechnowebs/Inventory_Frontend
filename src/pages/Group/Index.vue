@@ -33,7 +33,12 @@
           </div>
         </template>
         <template v-slot:aditionalActions="props">
-          <q-btn label="View Members" flat @click="setViewMembers(props.row)" />
+          <q-btn
+            label="View Members"
+            no-caps
+            flat
+            @click="setViewMembers(props.row)"
+          />
         </template>
       </QDataTable>
     </q-card-section>

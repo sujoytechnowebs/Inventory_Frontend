@@ -141,12 +141,6 @@ const linksList = [
         link: "/cities",
         show: true,
       },
-      {
-        title: "Staff",
-        icon: "hlw",
-        link: "/cities",
-        show: true,
-      },
     ],
   },
   {
@@ -181,12 +175,12 @@ const linksList = [
         link: "/check-in",
         show: true,
       },
-      {
-        title: "Tax",
-        icon: "hlw",
-        link: "/tax",
-        show: true,
-      },
+      // {
+      //   title: "Tax",
+      //   icon: "hlw",
+      //   link: "/tax",
+      //   show: true,
+      // },
     ],
   },
   {

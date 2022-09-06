@@ -20,14 +20,14 @@ export default function () {
         name: "date_of_return",
         align: "left",
         label: "Return Date",
-        field: (row) => row.purchase_return_details.date_of_return,
+        field: "date_of_return",
         sortable: true,
       },
       {
         name: "branch_id",
         align: "left",
         label: "Branch",
-        field: (row) => row.purchase.branch_id,
+        field: (row) => row.purchase.branch.name,
         sortable: true,
       },
       {
@@ -42,13 +42,6 @@ export default function () {
         align: "left",
         label: "Total Quantity",
         field: (row) => row.purchase.total_quantity,
-        sortable: true,
-      },
-      {
-        name: "note",
-        align: "left",
-        label: "Note",
-        field: "note",
         sortable: true,
       },
       {
@@ -84,7 +77,7 @@ export default function () {
     lastUpdated: "",
     // },
     newItem: {
-      vendor_id: "",
+      purchase_id: "",
       date_of_return: "",
       note: "",
       payment_method: "",

@@ -22,6 +22,7 @@
                     ? validationErrors.name
                     : 'Please write the product name',
               ]"
+              @keydown="checkKeyDownAlphaNumeric($event)"
             >
             </q-input>
           </div>
@@ -64,10 +65,11 @@
             <q-input
               ref="sale_price"
               outlined
-              type="number"
               v-model="sale_price"
               dense
+              type="number"
               label="Sale Price"
+              v-on:keypress="NumbersOnly"
               :rules="[
                 (val) =>
                   (val && !validationErrors.sale_price > 0) ||
@@ -120,6 +122,31 @@ export default {
       "newItem.sale_price",
       "newItem.item_description",
     ]),
+  },
+
+  // methods: {
+  //   checkKeyDownAlphaNumeric(event) {
+  //     if (!/[a-zA-Z\s]/.test(event.key)) {
+  //       this.ignoredValue = event.key ? event.key : "";
+  //       event.preventDefault();
+  //     }
+  //   },
+  // },
+
+  methods: {
+    NumbersOnly(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
   },
 };
 </script>

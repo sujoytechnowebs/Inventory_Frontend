@@ -180,11 +180,9 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import { mapGetters } from "vuex";
 import { mapFields } from "vuex-map-fields";
-import { defineAsyncComponent } from "vue";
-import AddSalesDetailsVue from "../Sale/_components/AddSalesDetails.vue";
+import { defineAsyncComponent, ref } from "vue";
 
 const addProducts = defineAsyncComponent(() =>
   import("./_components/AddProductDetails.vue")
@@ -198,10 +196,6 @@ export default {
   },
 
   data() {
-    function calculate() {
-      this.result = parseFloat(this.item_rate) - 2;
-    }
-
     return {
       modal: ref(true),
       dataStore: "purchase",
@@ -209,7 +203,6 @@ export default {
       modelValue: ref(),
       options: ["Received", "Pending"],
       pays: ["bank", "cash"],
-      calculate,
     };
   },
 
