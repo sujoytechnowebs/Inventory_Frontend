@@ -42,7 +42,6 @@
           dense
           type="number"
           label="Item Rate"
-          v-on:keypress="$isDecimal($event)"
         >
         </q-input>
       </div>
@@ -63,7 +62,6 @@
           dense
           type="number"
           label="Quantity"
-          v-on:keypress="$isNumber($event)"
         >
         </q-input>
       </div>
@@ -74,7 +72,6 @@
           v-model="data.sales_rate"
           type="number"
           label="Sales"
-          v-on:keypress="$isDecimal($event)"
         ></q-input>
       </div>
       <div class="col-1 col-md-1 col-lg-1">

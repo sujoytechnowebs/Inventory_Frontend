@@ -34,13 +34,13 @@
             </div>
           </div>
         </template>
-        <template v-slot:aditionalActions="props">
+        <!-- <template v-slot:aditionalActions="props">
           <q-btn
             label="View More"
             flat
             @click="setViewMoreDetails(props)"
           ></q-btn>
-        </template>
+        </template> -->
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
@@ -55,25 +55,6 @@
         <ViewDetails></ViewDetails>
       </div>
     </q-dialog>
-
-    <!-- <q-dialog v-model="alert">
-      <q-card>
-        <q-card-section>
-          <div class="text-h6">Alert</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-          repellendus sit voluptate voluptas eveniet porro. Rerum blanditiis
-          perferendis totam, ea at omnis vel numquam exercitationem aut, natus
-          minima, porro labore.
-        </q-card-section>
-
-        <q-card-actions align="right">
-          <q-btn flat label="OK" color="primary" v-close-popup />
-        </q-card-actions>
-      </q-card>
-    </q-dialog> -->
   </div>
 </template>
 
@@ -83,7 +64,6 @@ import { mapFields } from "vuex-map-fields";
 import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
-import ViewDetails from "./_components/ViewDetails.vue";
 
 const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
 
@@ -91,7 +71,6 @@ export default defineComponent({
   name: "IndexPage",
 
   components: {
-    ViewDetails,
     CreateUser,
   },
 
@@ -103,24 +82,24 @@ export default defineComponent({
 
     const { showCreateModal } = getGetters("account", ["showCreateModal"]);
 
-    const { setViewMoreDetailsMutation } = getMutations("account", [
-      "setViewMoreDetailsMutation",
-    ]);
+    // const { setViewMoreDetailsMutation } = getMutations("account", [
+    //   "setViewMoreDetailsMutation",
+    // ]);
 
     // const setViewMoreDetails = (props) => {
     //   console.log("Checking props val", props.row);
     // };
 
-    const setViewMoreDetails = (payload) => {
-      setViewMoreDetailsMutation(payload);
-    };
+    // const setViewMoreDetails = (payload) => {
+    //   setViewMoreDetailsMutation(payload);
+    // };
 
     return {
       hasEditPermission: true,
       dataStore: "account",
       aditionalActions: true,
       alert: ref(false),
-      setViewMoreDetails,
+      // setViewMoreDetails,
       showCreateModal,
     };
   },
