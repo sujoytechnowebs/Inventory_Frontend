@@ -42,6 +42,7 @@
           dense
           type="number"
           label="Item Rate"
+          v-on:keypress="$isDecimal($event)"
         >
         </q-input>
       </div>
@@ -62,6 +63,7 @@
           dense
           type="number"
           label="Quantity"
+          v-on:keypress="$isNumber($event)"
         >
         </q-input>
       </div>
@@ -72,6 +74,7 @@
           v-model="data.sales_rate"
           type="number"
           label="Sales"
+          v-on:keypress="$isDecimal($event)"
         ></q-input>
       </div>
       <div class="col-1 col-md-1 col-lg-1">
@@ -103,6 +106,34 @@ export default defineComponent({
 
   computed: {
     ...mapMultiRowFields("purchase", ["newItem.purchase_details"]),
+  },
+  methods: {
+    // isNumberDecimal: function (evt) {
+    //   evt = evt ? evt : window.event;
+    //   var charCode = evt.which ? evt.which : evt.keyCode;
+    //   if (
+    //     charCode > 31 &&
+    //     (charCode < 48 || charCode > 57) &&
+    //     charCode !== 46
+    //   ) {
+    //     evt.preventDefault();
+    //   } else {
+    //     return true;
+    //   }
+    // },
+    // isNotDecimal: function (evt) {
+    //   evt = evt ? evt : window.event;
+    //   var charCode = evt.which ? evt.which : evt.keyCode;
+    //   if (
+    //     charCode > 31 &&
+    //     (charCode < 48 || charCode > 57) &&
+    //     charCode !== 47
+    //   ) {
+    //     evt.preventDefault();
+    //   } else {
+    //     return true;
+    //   }
+    // },
   },
 
   setup(props, { emit }) {
