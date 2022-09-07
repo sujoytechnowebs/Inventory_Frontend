@@ -1,6 +1,6 @@
 <template>
-  <q-separator class="q-mb-md" />
-  <p class="customer_form_title">Customer Details</p>
+  <q-separator />
+  <p class="customer_form_title text-weight-medium q-pt-sm">Customer Details</p>
   <div class="row q-col-gutter-md">
     <div class="col-12">
       <div class="row q-col-gutter-md">
@@ -275,10 +275,14 @@
           </q-input>
         </div>
         <div class="col-12">
+          <span class="customer_form_title text-weight-medium"
+            >Current Address</span
+          >
           <q-editor
             placeholder="Please Write The Address"
             v-model="address_1"
             min-height="10rem"
+            toolbar="false"
             :rules="[
               (val) =>
                 (val && !validationErrors.address_1 > 0) ||
@@ -294,8 +298,8 @@
       </div>
     </div>
   </div>
-  <q-separator class="q-mb-md" />
-  <p class="customer_form_title">Other Details</p>
+  <q-separator />
+  <p class="customer_form_title text-weight-medium q-pt-sm">Other Details</p>
   <div class="row q-col-gutter-md">
     <div class="col-12 col-md-4 col-lg-4">
       <q-input
@@ -319,7 +323,7 @@
         </template>
       </q-input>
     </div>
-    <div class="col-12">
+    <div class="col-12 col-sm-6 col-md-6 col-lg-6">
       <q-uploader
         label="Upload Aadhar Document"
         square
@@ -391,7 +395,6 @@ export default {
 
 <style scoped>
 .customer_form_title {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1rem;
 }
 </style>

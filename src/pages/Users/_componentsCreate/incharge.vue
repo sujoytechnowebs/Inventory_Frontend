@@ -1,6 +1,8 @@
 <template>
-  <q-separator class="q-mb-md" />
-  <p class="incharge_form_title">Incharge Details</p>
+  <q-separator />
+  <p class="q-pt-sm incharge_form_title text-weight-medium">
+    In-charge Details
+  </p>
   <div class="row q-col-gutter-md">
     <div class="col-12">
       <div class="row q-col-gutter-md">
@@ -146,11 +148,16 @@
           ></QSearch>
         </div>
 
-        <div class="col-12">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+          <span class="text-weight-medium incharge_form_title"
+            >Present Address</span
+          >
           <q-editor
+            class="editool"
             placeholder="Please Write The Present Address"
             v-model="address_1"
             min-height="10rem"
+            toolbar="false"
             :rules="[
               (val) =>
                 (val && !validationErrors.address_1 > 0) ||
@@ -163,11 +170,15 @@
           <q-card-section v-html="editor" />
         </div>
 
-        <div class="col-12">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+          <span class="text-weight-medium incharge_form_title"
+            >Permanent Address</span
+          >
           <q-editor
             placeholder="Please Write The Permanent Address"
             v-model="address_2"
             min-height="10rem"
+            toolbar="false"
             :rules="[
               (val) =>
                 (val && !validationErrors.address_2 > 0) ||
@@ -182,8 +193,8 @@
       </div>
     </div>
   </div>
-  <q-separator class="q-mb-md" />
-  <p class="incharge_form_title">Bank Details</p>
+  <q-separator />
+  <p class="incharge_form_title q-pt-sm text-weight-medium">Bank Details</p>
   <div class="row q-col-gutter-md">
     <div class="col-12 col-md-4 col-lg-4">
       <q-input
@@ -217,8 +228,8 @@
       />
     </div>
   </div>
-  <q-separator class="q-mb-md" />
-  <p class="incharge_form_title">Other Details</p>
+  <q-separator />
+  <p class="incharge_form_title q-pt-sm text-weight-medium">Other Details</p>
   <div class="row q-col-gutter-md">
     <div class="col-12 col-md-4 col-lg-4">
       <q-input
@@ -236,13 +247,13 @@
               : 'Please Write The Aadhar Card Number',
         ]"
       >
-                  <template v-slot:label>
-              Aadhar Card Number
-              <span class="text-weight-bold text-negative">*</span>
-            </template>
+        <template v-slot:label>
+          Aadhar Card Number
+          <span class="text-weight-bold text-negative">*</span>
+        </template>
       </q-input>
     </div>
-    <div class="col-12">
+    <div class="col-12 col-md-6 col-lg-6">
       <q-uploader
         label="Upload Aadhar Document"
         square
@@ -310,7 +321,12 @@ export default {
 
 <style scoped>
 .incharge_form_title {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1rem;
+}
+</style>
+
+<style>
+.editool .q-editor .q-editor__toolbars-container .q-editor__toolbar {
+  display: none;
 }
 </style>

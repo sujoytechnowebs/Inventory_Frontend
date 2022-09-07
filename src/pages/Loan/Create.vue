@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-card class="my-card">
+    <q-card>
       <QCreateForm
         :modal="modal"
         :widgets="true"
@@ -8,8 +8,7 @@
         :data-store="dataStore"
         title="Add Loans"
       >
-        <q-separator />
-        <p class="head q-pt-md">Branch Details</p>
+        <p class="head">Branch Details</p>
         <div class="row q-col-gutter-md">
           <div class="col-12 col-md-6 col-lg-6">
             <QSearch
@@ -51,8 +50,8 @@
         </div>
         <q-separator />
         <p class="head q-pt-md">Loan Details</p>
-        <div class="row q-pb-md q-col-gutter-md">
-          <div class="col-12">
+        <div class="row q-col-gutter-md">
+          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
             <q-input
               outlined
               dense
@@ -90,13 +89,13 @@
             </q-input>
           </div>
 
-          <div class="col-12">
+          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
             <q-select
               outlined
               v-model="no_of_ewi"
               dense
               :options="noEwi"
-              label="Number of EWI"
+              label="No. of EWI"
               :rules="[
                 (val) =>
                   (val && !validationErrors.no_of_ewi > 0) ||
@@ -107,7 +106,7 @@
             ></q-select>
           </div>
 
-          <div class="col-12">
+          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
             <q-input
               ref="loan_amount"
               outlined
@@ -126,7 +125,7 @@
             </q-input>
           </div>
 
-          <div class="col-12">
+          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
             <q-input
               ref="processing_fees"
               outlined
@@ -145,7 +144,7 @@
             </q-input>
           </div>
 
-          <div class="col-12">
+          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
             <q-input
               ref="down_payment"
               outlined
@@ -295,6 +294,6 @@ export default {
 
 <style scoped>
 .head {
-  font-size: large;
+  font-size: 1rem;
 }
 </style>

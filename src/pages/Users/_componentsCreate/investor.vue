@@ -1,6 +1,6 @@
 <template>
-  <q-separator class="q-mb-md" />
-  <p class="investor_form_title">Investor Details</p>
+  <q-separator />
+  <p class="investor_form_title text-weight-medium q-pt-sm">Investor Details</p>
   <div class="row q-col-gutter-md">
     <div class="col-12">
       <div class="row q-col-gutter-md">
@@ -81,8 +81,8 @@
       </div>
     </div>
   </div>
-  <q-separator class="q-mb-md" />
-  <p class="investor_form_title">Bank Details</p>
+  <q-separator />
+  <p class="investor_form_title text-weight-medium q-pt-sm">Bank Details</p>
   <div class="row q-col-gutter-md">
     <div class="col-12 col-md-4 col-lg-4">
       <q-input
@@ -147,7 +147,6 @@ export default {
 
 <style scoped>
 .investor_form_title {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1rem;
 }
 </style>
