@@ -11,19 +11,18 @@
         <div class="row q-col-gutter-md">
           <div class="col-12 col-sm-6 col-md-3 col-lg-3">
             <QSearch
-              v-model="vendor_id"
-              label="Vendor Name"
+              v-model="purchase_id"
+              label="Reference Number"
               option-value="id"
-              option-label="name"
-              data-store="user"
+              option-label="reference_no"
+              data-store="purchase"
               action="getItems"
               :multiple="false"
               :rules="[
                 (val) =>
-                  (val && !validationErrors.vendor_id > 0) ||
-                  validationErrors.vendor_id
-                    ? validationErrors.vendor_id
-                    : 'Please choose the Vendor name',
+                  (val && !validationErrors.id > 0) || validationErrors.id
+                    ? validationErrors.id
+                    : 'Please choose the city name',
               ]"
             ></QSearch>
           </div>
@@ -134,8 +133,8 @@ export default {
       dataStore: "purchasereturn",
       validationErrors: ref({}),
       modelValue: ref(),
-      options: ["Delivered", "Pending"],
-      pays: ["Bank", "Cash"],
+      options: ["received", "delivered"],
+      pays: ["cash", "bank", "due"],
     };
   },
 
@@ -145,7 +144,7 @@ export default {
 
   computed: {
     ...mapFields("purchasereturn", [
-      "newItem.vendor_id",
+      "newItem.purchase_id",
       "newItem.date_of_return",
       "newItem.note",
       "newItem.payment_method",

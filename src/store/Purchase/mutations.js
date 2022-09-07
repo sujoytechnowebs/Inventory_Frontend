@@ -17,7 +17,6 @@ export function setEditItem(state, payload) {
 }
 
 export function setProductDetails(state, payload) {
-  console.log("payload", payload);
   state.newItem.purchase_details.push({
     item_rate: null,
     discount: null,
@@ -30,7 +29,6 @@ export function setProductDetails(state, payload) {
 }
 
 export function editProductDetails(state, payload) {
-  console.log("payload", payload);
   state.editItem.purchase_details.push({
     item_rate: null,
     discount: null,

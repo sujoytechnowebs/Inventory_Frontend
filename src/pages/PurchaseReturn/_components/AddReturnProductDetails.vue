@@ -38,11 +38,11 @@
     </div>
     <div class="col-5 col-sm-5 col-md-5 col-lg-5">
       <q-input
-        ref="item_rate"
-        v-model="data.item_rate"
+        ref="quantity"
+        v-model="data.quantity"
         dense
         type="number"
-        label="Item Rate"
+        label="Quantity"
       >
       </q-input>
     </div>
