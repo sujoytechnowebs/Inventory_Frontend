@@ -1,5 +1,5 @@
 <template>
-  <q-separator />
+  <q-separator class="q-mt-md" />
   <p class="customer_form_title text-weight-medium q-pt-sm">Customer Details</p>
   <div class="row q-col-gutter-md">
     <div class="col-12">
@@ -13,13 +13,8 @@
             data-store="group"
             action="getItems"
             :multiple="false"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.group_id > 0) ||
-                validationErrors.group_id
-                  ? validationErrors.group_id
-                  : 'Please Choose The Group Name',
-            ]"
+            :error-message="$getValidationErrors('group_id')"
+            :error="$hasValidationErrors('group_id')"
           ></QSearch>
         </div>
         <div class="col-12 col-md-6 col-lg-6">
@@ -29,13 +24,8 @@
             dense
             :options="grp_role_options"
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.group_role > 0) ||
-                validationErrors.group_role
-                  ? validationErrors.group_role
-                  : 'Please Choose The Group Role',
-            ]"
+            :error-message="$getValidationErrors('group_role')"
+            :error="$hasValidationErrors('group_role')"
           >
             <template v-slot:label>
               Group Role
@@ -50,13 +40,8 @@
             v-model="account_name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.account_name > 0) ||
-                validationErrors.account_name
-                  ? validationErrors.account_name
-                  : 'Please Write The Customer Name',
-            ]"
+            :error-message="$getValidationErrors('account_name')"
+            :error="$hasValidationErrors('account_name')"
           >
             <template v-slot:label>
               Customer Name
@@ -71,12 +56,8 @@
             v-model="name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.name > 0) || validationErrors.name
-                  ? validationErrors.name
-                  : 'Please Write The User Name',
-            ]"
+            :error-message="$getValidationErrors('name')"
+            :error="$hasValidationErrors('name')"
           >
             <template v-slot:label>
               UserName
@@ -91,12 +72,8 @@
             v-model="DOB"
             label
             mask="date"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.DOB > 0) || validationErrors.DOB
-                  ? validationErrors.DOB
-                  : 'Please Pick The Date',
-            ]"
+            :error-message="$getValidationErrors('DOB')"
+            :error="$hasValidationErrors('DOB')"
           >
             <template v-slot:prepend>
               <q-icon name="event" class="cursor-pointer">
@@ -126,13 +103,8 @@
             v-model="spouse_parent_name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.spouse_parent_name > 0) ||
-                validationErrors.spouse_parent_name
-                  ? validationErrors.spouse_parent_name
-                  : 'Please Write The Spouse / Parent Name',
-            ]"
+            :error-message="$getValidationErrors('spouse_parent_name')"
+            :error="$hasValidationErrors('spouse_parent_name')"
           >
             <template v-slot:label>
               Spouse Name/Parent Name
@@ -148,12 +120,8 @@
             dense
             label
             type="number"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.phone > 0) || validationErrors.phone
-                  ? validationErrors.phone
-                  : 'Please Write The Phone Number',
-            ]"
+            :error-message="$getValidationErrors('phone')"
+            :error="$hasValidationErrors('phone')"
           >
             <template v-slot:label>
               Mobile Number
@@ -168,7 +136,8 @@
             v-model="email"
             dense
             label="Email"
-            :rules="[email]"
+            :error-message="$getValidationErrors('email')"
+            :error="$hasValidationErrors('email')"
           />
         </div>
         <div class="col-12 col-md-4 col-lg-4">
@@ -178,13 +147,8 @@
             v-model="occupation"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.occupation > 0) ||
-                validationErrors.occupation
-                  ? validationErrors.occupation
-                  : 'Please Write The Occupation',
-            ]"
+            :error-message="$getValidationErrors('occupation')"
+            :error="$hasValidationErrors('occupation')"
           >
             <template v-slot:label>
               Occupation
@@ -199,12 +163,8 @@
             dense
             :options="house_options"
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.house > 0) || validationErrors.house
-                  ? validationErrors.house
-                  : 'Please Choose The House Type',
-            ]"
+            :error-message="$getValidationErrors('house')"
+            :error="$hasValidationErrors('house')"
           >
             <template v-slot:label>
               House
@@ -220,13 +180,8 @@
             dense
             label
             type="number"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.monthly_income > 0) ||
-                validationErrors.monthly_income
-                  ? validationErrors.monthly_income
-                  : 'Please Write The Monthly Income',
-            ]"
+            :error-message="$getValidationErrors('monthly_income')"
+            :error="$hasValidationErrors('monthly_income')"
           >
             <template v-slot:label>
               Monthly Income
@@ -243,13 +198,8 @@
             data-store="city"
             action="getItems"
             :multiple="false"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.city_id > 0) ||
-                validationErrors.city_id
-                  ? validationErrors.city_id
-                  : 'Please Write The City Name',
-            ]"
+            :error-message="$getValidationErrors('city_name')"
+            :error="$hasValidationErrors('city_name')"
           ></QSearch>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
@@ -260,13 +210,8 @@
             dense
             label
             type="number"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.postcode > 0) ||
-                validationErrors.postcode
-                  ? validationErrors.postcode
-                  : 'Please Write The Pincode',
-            ]"
+            :error-message="$getValidationErrors('postcode')"
+            :error="$hasValidationErrors('postcode')"
           >
             <template v-slot:label>
               Pin Code
@@ -283,13 +228,8 @@
             v-model="address_1"
             min-height="10rem"
             toolbar="false"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.address_1 > 0) ||
-                validationErrors.address_1
-                  ? validationErrors.address_1
-                  : 'Please Write The Address',
-            ]"
+            :error-message="$getValidationErrors('address_1')"
+            :error="$hasValidationErrors('address_1')"
           >
           </q-editor>
 
@@ -309,13 +249,8 @@
         dense
         type="number"
         label
-        :rules="[
-          (val) =>
-            (val && !validationErrors.aadhar_card_no > 0) ||
-            validationErrors.aadhar_card_no
-              ? validationErrors.aadhar_card_no
-              : 'Please Write The aadhar card number',
-        ]"
+        :error-message="$getValidationErrors('aadhar_card_no')"
+        :error="$hasValidationErrors('aadhar_card_no')"
       >
         <template v-slot:label>
           Aadhar Card Number

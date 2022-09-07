@@ -18,13 +18,8 @@
               data-store="product"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.product_id > 0) ||
-                  validationErrors.product_id
-                    ? validationErrors.product_id
-                    : 'Please choose the state name',
-              ]"
+              :error-message="$getValidationErrors('product_id')"
+              :error="$hasValidationErrors('product_id')"
             ></QSearch>
           </div>
           <div class="col-12 col-md-4 col-lg-4">
@@ -34,13 +29,8 @@
               v-model="quantity"
               dense
               label="Quantity"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.quantity > 0) ||
-                  validationErrors.quantity
-                    ? validationErrors.quantity
-                    : 'Please write the Barcode of the product',
-              ]"
+              :error-message="$getValidationErrors('quantity')"
+              :error="$hasValidationErrors('quantity')"
             >
             </q-input>
           </div>
@@ -51,7 +41,8 @@
               v-model="date"
               placeholder="Please Enter The Date"
               mask="date"
-              :rules="['date']"
+              :error-message="$getValidationErrors('date')"
+              :error="$hasValidationErrors('date')"
             >
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
@@ -84,13 +75,8 @@
               data-store="branch"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.from_branch_id > 0) ||
-                  validationErrors.from_branch_id
-                    ? validationErrors.from_branch_id
-                    : 'Please choose the branch name',
-              ]"
+              :error-message="$getValidationErrors('from_branch_id')"
+              :error="$hasValidationErrors('from_branch_id')"
             ></QSearch>
           </div>
           <div class="col-12 col-md-6 col-lg-6">
@@ -102,13 +88,8 @@
               data-store="branch"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.to_branch_id > 0) ||
-                  validationErrors.to_branch_id
-                    ? validationErrors.to_branch_id
-                    : 'Please choose the branch name',
-              ]"
+              :error-message="$getValidationErrors('to_branch_id')"
+              :error="$hasValidationErrors('to_branch_id')"
             ></QSearch>
           </div>
         </div>

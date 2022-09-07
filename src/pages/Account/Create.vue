@@ -16,13 +16,8 @@
               v-model="account_name"
               dense
               label="Account Name"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.account_name > 0) ||
-                  validationErrors.account_name
-                    ? validationErrors.account_name
-                    : 'Please Write The Account Name',
-              ]"
+              :error-message="$getValidationErrors('account_name')"
+              :error="$hasValidationErrors('account_name')"
             >
             </q-input>
           </div>
@@ -33,12 +28,8 @@
               v-model="type"
               :options="account_type"
               label="Account Type"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.type > 0) || validationErrors.type
-                    ? validationErrors.type
-                    : 'Please Choose The Account Type',
-              ]"
+              :error-message="$getValidationErrors('account_type')"
+              :error="$hasValidationErrors('account_type')"
             ></q-select>
           </div>
           <div class="col-12 col-md-6 col-lg-6">
@@ -50,13 +41,8 @@
               data-store="branch"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.branch_id > 0) ||
-                  validationErrors.branch_id
-                    ? validationErrors.branch_id
-                    : 'Please choose the Branch name',
-              ]"
+              :error-message="$getValidationErrors('branch_id')"
+              :error="$hasValidationErrors('branch_id')"
             ></QSearch>
           </div>
           <div class="col-12 col-md-6 col-lg-6">
@@ -69,13 +55,8 @@
               fill-mask="0"
               reverse-fill-mask
               label="Opening Balance"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.opening_balance > 0) ||
-                  validationErrors.opening_balance
-                    ? validationErrors.opening_balance
-                    : 'Please Write The Opening Balance',
-              ]"
+              :error-message="$getValidationErrors('opening_balance')"
+              :error="$hasValidationErrors('opening_balance')"
             >
             </q-input>
           </div>
@@ -86,13 +67,8 @@
               v-model="balance_type"
               :options="balance_category"
               label="Opening Balance Type"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.balance_type > 0) ||
-                  validationErrors.balance_type
-                    ? validationErrors.balance_type
-                    : 'Please Choose The Opening Balance Type',
-              ]"
+              :error-message="$getValidationErrors('balance_type')"
+              :error="$hasValidationErrors('balance_type')"
             ></q-select>
           </div>
         </div>

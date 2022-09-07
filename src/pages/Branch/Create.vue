@@ -16,12 +16,8 @@
               v-model="name"
               dense
               label="Branch Name"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.name > 0) || validationErrors.name
-                    ? validationErrors.name
-                    : 'Please write the branch name',
-              ]"
+              :error-message="$getValidationErrors('name')"
+              :error="$hasValidationErrors('name')"
             >
             </q-input>
           </div>
@@ -32,12 +28,8 @@
               v-model="code"
               dense
               label="Branch Code"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.code > 0) || validationErrors.code
-                    ? validationErrors.code
-                    : 'Please write the branch code',
-              ]"
+              :error-message="$getValidationErrors('code')"
+              :error="$hasValidationErrors('code')"
             >
             </q-input>
           </div>
@@ -48,13 +40,8 @@
               v-model="address_1"
               dense
               label="Address 1"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.address_1 > 0) ||
-                  validationErrors.address_1
-                    ? validationErrors.address_1
-                    : 'Please write the address 1',
-              ]"
+              :error-message="$getValidationErrors('address_1')"
+              :error="$hasValidationErrors('address_1')"
             >
             </q-input>
           </div>
@@ -65,13 +52,8 @@
               v-model="address_2"
               dense
               label="Address 2"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.address_2 > 0) ||
-                  validationErrors.address_2
-                    ? validationErrors.address_2
-                    : 'Please write the address 2',
-              ]"
+              :error-message="$getValidationErrors('address_2')"
+              :error="$hasValidationErrors('address_2')"
             >
             </q-input>
           </div>
@@ -82,13 +64,8 @@
               v-model="postcode"
               dense
               label="PostCode"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.postcode > 0) ||
-                  validationErrors.postcode
-                    ? validationErrors.postcode
-                    : 'Please write the postcode',
-              ]"
+              :error-message="$getValidationErrors('postcode')"
+              :error="$hasValidationErrors('postcode')"
             >
             </q-input>
           </div>
@@ -101,12 +78,8 @@
               data-store="city"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.id > 0) || validationErrors.id
-                    ? validationErrors.id
-                    : 'Please choose the city name',
-              ]"
+              :error-message="$getValidationErrors('city_id')"
+              :error="$hasValidationErrors('city_id')"
             ></QSearch>
           </div>
         </div>

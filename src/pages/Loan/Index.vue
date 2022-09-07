@@ -230,8 +230,8 @@ export default defineComponent({
 
 <style scoped>
 .loan-create-form {
-  width: 50%;
-  max-width: 50%;
+  width: 70%;
+  max-width: 70%;
 }
 
 .calculator {
@@ -240,12 +240,12 @@ export default defineComponent({
 }
 
 .verify-form-width {
-  width: 50%;
-  max-width: 50%;
+  width: 70%;
+  max-width: 70%;
 }
 
 .approve-form-width {
-  width: 50%;
-  max-width: 50%;
+  width: 70%;
+  max-width: 70%;
 }
 </style>

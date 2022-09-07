@@ -20,13 +20,8 @@
                   data-store="user"
                   action="getItems"
                   :multiple="false"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.vendor_id > 0) ||
-                      validationErrors.vendor_id
-                        ? validationErrors.vendor_id
-                        : 'Please choose the Vendor name',
-                  ]"
+                  :error-message="$getValidationErrors('vendor_id')"
+                  :error="$hasValidationErrors('vendor_id')"
                 ></QSearch>
               </div>
               <div class="col-12 col-md-3 col-lg-3">
@@ -39,13 +34,8 @@
                   data-store="branch"
                   action="getItems"
                   :multiple="false"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.state_id > 0) ||
-                      validationErrors.state_id
-                        ? validationErrors.state_id
-                        : 'Please choose the Branch name',
-                  ]"
+                  :error-message="$getValidationErrors('branch_id')"
+                  :error="$hasValidationErrors('branch_id')"
                 ></QSearch>
               </div>
               <div class="col-12 col-md-2 col-lg-2">
@@ -55,7 +45,6 @@
                   mask="date"
                   placeholder="Purchase Date"
                   dense
-                  :rules="['date']"
                   :error-message="$getValidationErrors('date_of_purchase')"
                   :error="$hasValidationErrors('date_of_purchase')"
                 >
@@ -89,13 +78,8 @@
                   option-dense
                   :options="pays"
                   label="Payment Method"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.payment_method > 0) ||
-                      validationErrors.payment_method
-                        ? validationErrors.payment_method
-                        : 'Please Write the notes',
-                  ]"
+                  :error-message="$getValidationErrors('payment_method')"
+                  :error="$hasValidationErrors('payment_method')"
                 ></q-select>
               </div>
               <div class="col-12 col-md-2 col-lg-2">
@@ -105,6 +89,8 @@
                   v-model="status"
                   :options="options"
                   label="Status"
+                  :error-message="$getValidationErrors('status')"
+                  :error="$hasValidationErrors('status')"
                 ></q-select>
               </div>
             </div>

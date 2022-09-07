@@ -16,12 +16,8 @@
               v-model="name"
               dense
               label="Category Name"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.name > 0) || validationErrors.name
-                    ? validationErrors.name
-                    : 'Please write the product category name',
-              ]"
+              :error-message="$getValidationErrors('name')"
+              :error="$hasValidationErrors('name')"
             >
             </q-input>
           </div>
@@ -34,6 +30,8 @@
               data-store="productcategory"
               action="getItems"
               :multiple="false"
+              :error-message="$getValidationErrors('parent_id')"
+              :error="$hasValidationErrors('parent_id')"
             ></QSearch>
           </div>
         </div>

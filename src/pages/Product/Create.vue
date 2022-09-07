@@ -16,12 +16,8 @@
               v-model="name"
               dense
               label="Product Name"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.name > 0) || validationErrors.name
-                    ? validationErrors.name
-                    : 'Please write the product name',
-              ]"
+              :error-message="$getValidationErrors('name')"
+              :error="$hasValidationErrors('name')"
               @keydown="checkKeyDownAlphaNumeric($event)"
             >
             </q-input>
@@ -35,13 +31,8 @@
               data-store="productcategory"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.category_id > 0) ||
-                  validationErrors.category_id
-                    ? validationErrors.category_id
-                    : 'Please choose the state name',
-              ]"
+              :error-message="$getValidationErrors('category_id')"
+              :error="$hasValidationErrors('category_id')"
             ></QSearch>
           </div>
           <div class="col-12 col-md-6 col-lg-6">
@@ -51,13 +42,8 @@
               v-model="barcode"
               dense
               label="Barcode"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.barcode > 0) ||
-                  validationErrors.barcode
-                    ? validationErrors.barcode
-                    : 'Please write the Barcode of the product',
-              ]"
+              :error-message="$getValidationErrors('barcode')"
+              :error="$hasValidationErrors('barcode')"
             >
             </q-input>
           </div>
@@ -70,13 +56,8 @@
               type="number"
               label="Sale Price"
               v-on:keypress="NumbersOnly"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.sale_price > 0) ||
-                  validationErrors.sale_price
-                    ? validationErrors.sale_price
-                    : 'Please write the Sale Price',
-              ]"
+              :error-message="$getValidationErrors('sale_price')"
+              :error="$hasValidationErrors('sale_price')"
             >
             </q-input>
           </div>
@@ -85,13 +66,8 @@
               placeholder="Please write the product description."
               v-model="item_description"
               min-height="5rem"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.item_description > 0) ||
-                  validationErrors.item_description
-                    ? validationErrors.item_description
-                    : 'Please write the Product Description',
-              ]"
+              :error-message="$getValidationErrors('item_description')"
+              :error="$hasValidationErrors('item_description')"
             ></q-editor>
           </div>
         </div>
@@ -124,15 +100,6 @@ export default {
     ]),
   },
 
-  // methods: {
-  //   checkKeyDownAlphaNumeric(event) {
-  //     if (!/[a-zA-Z\s]/.test(event.key)) {
-  //       this.ignoredValue = event.key ? event.key : "";
-  //       event.preventDefault();
-  //     }
-  //   },
-  // },
-
   methods: {
     NumbersOnly(evt) {
       evt = evt ? evt : window.event;
@@ -145,6 +112,13 @@ export default {
         evt.preventDefault();
       } else {
         return true;
+      }
+    },
+
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
       }
     },
   },

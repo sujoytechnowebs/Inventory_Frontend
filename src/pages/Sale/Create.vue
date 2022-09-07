@@ -20,13 +20,8 @@
                   data-store="user"
                   action="getItems"
                   :multiple="false"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.customers_id > 0) ||
-                      validationErrors.customers_id
-                        ? validationErrors.customers_id
-                        : 'Please choose the Customer name',
-                  ]"
+                  :error-message="$getValidationErrors('customer_id')"
+                  :error="$hasValidationErrors('customer_id')"
                 ></QSearch>
               </div>
               <div class="col-12 col-md-6 col-lg-6">
@@ -38,13 +33,8 @@
                   data-store="loan"
                   action="getItems"
                   :multiple="false"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.branch_id > 0) ||
-                      validationErrors.branch_id
-                        ? validationErrors.branch_id
-                        : 'Please choose the Branch name',
-                  ]"
+                  :error-message="$getValidationErrors('loan_id')"
+                  :error="$hasValidationErrors('loan_id')"
                 ></QSearch>
               </div>
               <div class="col-12 col-sm-6 col-md-3 col-lg-3">
@@ -56,13 +46,8 @@
                   data-store="branch"
                   action="getItems"
                   :multiple="false"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.state_id > 0) ||
-                      validationErrors.state_id
-                        ? validationErrors.state_id
-                        : 'Please choose the Branch name',
-                  ]"
+                  :error-message="$getValidationErrors('branch_id')"
+                  :error="$hasValidationErrors('branch_id')"
                 ></QSearch>
               </div>
               <div class="col-12 col-sm-6 col-md-2 col-lg-2">
@@ -72,7 +57,8 @@
                   placeholder="Date of Sales"
                   v-model="date_of_sales"
                   mask="date"
-                  :rules="['date']"
+                  :error-message="$getValidationErrors('date_of_sales')"
+                  :error="$hasValidationErrors('date_of_sales')"
                 >
                   <template v-slot:prepend>
                     <q-icon name="event" class="cursor-pointer">
@@ -103,13 +89,8 @@
                   :options="payment"
                   label="Payment Method"
                   dense
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.payment_method > 0) ||
-                      validationErrors.payment_method
-                        ? validationErrors.payment_method
-                        : 'Please Choose The Payment Method',
-                  ]"
+                  :error-message="$getValidationErrors('payment_method')"
+                  :error="$hasValidationErrors('payment_method')"
                 ></q-select>
               </div>
               <div class="col-12 col-sm-6 col-md-2 col-lg-2">
@@ -119,13 +100,8 @@
                   :options="options"
                   label="Status"
                   dense
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.status > 0) ||
-                      validationErrors.status
-                        ? validationErrors.status
-                        : 'Please Choose The Status',
-                  ]"
+                  :error-message="$getValidationErrors('status')"
+                  :error="$hasValidationErrors('status')"
                 ></q-select>
               </div>
             </div>

@@ -1,5 +1,5 @@
 <template>
-  <q-separator />
+  <q-separator class="q-mt-md" />
   <p class="vendor_form_title text-weight-medium q-pt-sm">Vendor Details</p>
   <div class="row q-col-gutter-md">
     <div class="col-12">
@@ -13,13 +13,8 @@
             data-store="branch"
             action="getItems"
             :multiple="false"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.branch_id > 0) ||
-                validationErrors.branch_id
-                  ? validationErrors.branch_id
-                  : 'Please choose the Branch Name',
-            ]"
+            :error-message="$getValidationErrors('branch_id')"
+            :error="$hasValidationErrors('branch_id')"
           >
           </QSearch>
         </div>
@@ -31,13 +26,8 @@
             v-model="account_name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.account_name > 0) ||
-                validationErrors.account_name
-                  ? validationErrors.account_name
-                  : 'Please Write The Name',
-            ]"
+            :error-message="$getValidationErrors('account_name')"
+            :error="$hasValidationErrors('account_name')"
           >
             <template v-slot:label>
               Vendor Name
@@ -53,12 +43,8 @@
             v-model="name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.name > 0) || validationErrors.name
-                  ? validationErrors.name
-                  : 'Please Write The UserName',
-            ]"
+            :error-message="$getValidationErrors('name')"
+            :error="$hasValidationErrors('name')"
           >
             <template v-slot:label>
               User Name
@@ -75,12 +61,8 @@
             dense
             label
             type="number"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.phone > 0) || validationErrors.phone
-                  ? validationErrors.phone
-                  : 'Please Write The Phone Number',
-            ]"
+            :error-message="$getValidationErrors('phone')"
+            :error="$hasValidationErrors('phone')"
           >
             <template v-slot:label>
               Mobile Number
@@ -95,7 +77,8 @@
             v-model="email"
             dense
             label
-            :rules="[email]"
+            :error-message="$getValidationErrors('email')"
+            :error="$hasValidationErrors('email')"
           >
             <template v-slot:label> Email </template>
           </q-input>
@@ -114,7 +97,8 @@
         dense
         type="number"
         label="Account Number"
-        :rules="[account_no]"
+        :error-message="$getValidationErrors('account_no')"
+        :error="$hasValidationErrors('account_no')"
       ></q-input>
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -124,7 +108,8 @@
         v-model="ifsc"
         dense
         label="IFSC Number"
-        :rules="[ifsc]"
+        :error-message="$getValidationErrors('ifsc')"
+        :error="$hasValidationErrors('ifsc')"
       ></q-input>
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -134,7 +119,8 @@
         v-model="bank_branch"
         dense
         label="Bank Branch"
-        :rules="[bank_branch]"
+        :error-message="$getValidationErrors('bank_branch')"
+        :error="$hasValidationErrors('bank_branch')"
       ></q-input>
     </div>
   </div>

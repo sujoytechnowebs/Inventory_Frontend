@@ -16,13 +16,8 @@
               v-model="city_name"
               dense
               label="City Name"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.city_name > 0) ||
-                  validationErrors.city_name
-                    ? validationErrors.city_name
-                    : 'Please write the city name',
-              ]"
+              :error-message="$getValidationErrors('city_name')"
+              :error="$hasValidationErrors('city_name')"
             >
             </q-input>
           </div>
@@ -36,13 +31,8 @@
               data-store="state"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.state_id > 0) ||
-                  validationErrors.state_id
-                    ? validationErrors.state_id
-                    : 'Please choose the state name',
-              ]"
+              :error-message="$getValidationErrors('state_id')"
+              :error="$hasValidationErrors('state_id')"
             ></QSearch>
           </div>
         </div>

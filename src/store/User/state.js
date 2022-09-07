@@ -73,6 +73,7 @@ export default function () {
       group_id: "",
       group_role: "",
       DOB: "",
+      aadhar_card_no: "",
     },
     editItem: {
       name: "",
