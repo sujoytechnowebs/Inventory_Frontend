@@ -55,12 +55,12 @@ export default boot(({ app }) => {
 
   // Only Letters Validation
 
-  function checkKeyDownAlphaNumeric(event) {
-    if (!/[a-zA-Z\s]/.test(event.key)) {
-      this.ignoredValue = event.key ? event.key : "";
-      event.preventDefault();
-    }
-  }
+  // function checkKeyDownAlphaNumeric(event) {
+  //   if (!/[a-zA-Z\s]/.test(event.key)) {
+  //     this.ignoredValue = event.key ? event.key : "";
+  //     event.preventDefault();
+  //   }
+  // }
 
   function clearValidationErrors() {
     errors.value = [];
@@ -71,6 +71,6 @@ export default boot(({ app }) => {
   app.config.globalProperties.$getValidationErrors = getValidationErrors;
   app.config.globalProperties.$hasValidationErrors = hasValidationErrors;
   app.config.globalProperties.$clearValidationErrors = clearValidationErrors;
-  app.config.globalProperties.$checkKeyDownAlphaNumeric =
-    checkKeyDownAlphaNumeric;
+  // app.config.globalProperties.$checkKeyDownAlphaNumeric =
+  //   checkKeyDownAlphaNumeric;
 });

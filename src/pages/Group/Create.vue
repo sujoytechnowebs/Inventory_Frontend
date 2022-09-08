@@ -16,12 +16,8 @@
               v-model="name"
               dense
               label="Group Name"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.name > 0) || validationErrors.name
-                    ? validationErrors.name
-                    : 'Please write the group name',
-              ]"
+              :error-message="$getValidationErrors('name')"
+              :error="$hasValidationErrors('name')"
             >
             </q-input>
           </div>
@@ -32,12 +28,8 @@
               v-model="code"
               dense
               label="Code"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.code > 0) || validationErrors.code
-                    ? validationErrors.code
-                    : 'Please write the group code',
-              ]"
+              :error-message="$getValidationErrors('code')"
+              :error="$hasValidationErrors('code')"
             >
             </q-input>
           </div>
@@ -50,13 +42,8 @@
               data-store="branch"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.state_id > 0) ||
-                  validationErrors.state_id
-                    ? validationErrors.state_id
-                    : 'Please choose the Branch name',
-              ]"
+              :error-message="$getValidationErrors('branch_id')"
+              :error="$hasValidationErrors('branch_id')"
             ></QSearch>
           </div>
           <div class="col-12"></div>
@@ -65,12 +52,8 @@
           placeholder="Please Write The Address"
           v-model="address"
           min-height="10rem"
-          :rules="[
-            (val) =>
-              (val && !validationErrors.address > 0) || validationErrors.address
-                ? validationErrors.address
-                : 'Please Write The Address',
-          ]"
+          :error-message="$getValidationErrors('address')"
+          :error="$hasValidationErrors('address')"
         ></q-editor>
       </QCreateForm>
     </q-card>

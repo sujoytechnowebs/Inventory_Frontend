@@ -19,13 +19,8 @@
               data-store="user"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.customers_id > 0) ||
-                  validationErrors.customers_id
-                    ? validationErrors.customers_id
-                    : 'Please choose the Customer name',
-              ]"
+              :error-message="$getValidationErrors('customers_id')"
+              :error="$hasValidationErrors('customers_id')"
             ></QSearch>
           </div>
 
@@ -38,33 +33,23 @@
               data-store="branch"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.branch_id > 0) ||
-                  validationErrors.branch_id
-                    ? validationErrors.branch_id
-                    : 'Please choose the Branch name',
-              ]"
+              :error-message="$getValidationErrors('branch_id')"
+              :error="$hasValidationErrors('branch_id')"
             ></QSearch>
           </div>
         </div>
         <q-separator />
         <p class="head q-pt-md">Loan Details</p>
         <div class="row q-col-gutter-md">
-          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="col-12 col-md-4 col-lg-4">
             <q-input
               outlined
               dense
               v-model="ewi_start_date"
               mask="date"
               label="EWI Start Date"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.ewi_start_date > 0) ||
-                  validationErrors.ewi_start_date
-                    ? validationErrors.ewi_start_date
-                    : 'Please Choose The EWI Starting Date',
-              ]"
+              :error-message="$getValidationErrors('ewi_start_date')"
+              :error="$hasValidationErrors('ewi_start_date')"
             >
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
@@ -89,24 +74,19 @@
             </q-input>
           </div>
 
-          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="col-12 col-md-4 col-lg-4">
             <q-select
               outlined
               v-model="no_of_ewi"
               dense
               :options="noEwi"
               label="No. of EWI"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.no_of_ewi > 0) ||
-                  validationErrors.no_of_ewi
-                    ? validationErrors.no_of_ewi
-                    : 'Please Choose The Number of EWI',
-              ]"
+              :error-message="$getValidationErrors('no_of_ewi')"
+              :error="$hasValidationErrors('no_of_ewi')"
             ></q-select>
           </div>
 
-          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="col-12 col-md-4 col-lg-4">
             <q-input
               ref="loan_amount"
               outlined
@@ -114,18 +94,13 @@
               dense
               type="number"
               label="Loan Amount"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.loan_amount > 0) ||
-                  validationErrors.loan_amount
-                    ? validationErrors.loan_amount
-                    : 'Please write number of Loan Amount',
-              ]"
+              :error-message="$getValidationErrors('loan_amount')"
+              :error="$hasValidationErrors('loan_amount')"
             >
             </q-input>
           </div>
 
-          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="col-12 col-md-6 col-lg-6">
             <q-input
               ref="processing_fees"
               outlined
@@ -133,18 +108,13 @@
               v-model="processing_fees"
               dense
               label="Processing Fees"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.processing_fees > 0) ||
-                  validationErrors.processing_fees
-                    ? validationErrors.processing_fees
-                    : 'Please write the processing fees',
-              ]"
+              :error-message="$getValidationErrors('processing_fees')"
+              :error="$hasValidationErrors('processing_fees')"
             >
             </q-input>
           </div>
 
-          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+          <div class="col-12 col-md-6 col-lg-6">
             <q-input
               ref="down_payment"
               outlined
@@ -152,13 +122,8 @@
               v-model="down_payment"
               dense
               label="Down Payment"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.down_payment > 0) ||
-                  validationErrors.down_payment
-                    ? validationErrors.down_payment
-                    : 'Please write the Down Payment',
-              ]"
+              :error-message="$getValidationErrors('down_payment')"
+              :error="$hasValidationErrors('down_payment')"
             >
             </q-input>
           </div>
@@ -173,13 +138,8 @@
               v-model="application_received_date"
               mask="date"
               label="Application Receive Date"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.application_received_date > 0) ||
-                  validationErrors.application_received_date
-                    ? validationErrors.application_received_date
-                    : 'Please Choose The Application Receive Date',
-              ]"
+              :error-message="$getValidationErrors('application_received_date')"
+              :error="$hasValidationErrors('application_received_date')"
             >
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
@@ -213,13 +173,8 @@
               data-store="user"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.application_received_by > 0) ||
-                  validationErrors.application_received_by
-                    ? validationErrors.application_received_by
-                    : 'Please choose the User name',
-              ]"
+              :error-message="$getValidationErrors('application_received_by')"
+              :error="$hasValidationErrors('application_received_by')"
             ></QSearch>
           </div>
         </div>

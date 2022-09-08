@@ -1,5 +1,5 @@
 <template>
-  <q-separator />
+  <q-separator class="q-mt-md" />
   <p class="investor_form_title text-weight-medium q-pt-sm">Investor Details</p>
   <div class="row q-col-gutter-md">
     <div class="col-12">
@@ -11,13 +11,8 @@
             v-model="account_name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.account_name > 0) ||
-                validationErrors.account_name
-                  ? validationErrors.account_name
-                  : 'Please Write The Investor Name',
-            ]"
+            :error-message="$getValidationErrors('account_name')"
+            :error="$hasValidationErrors('account_name')"
           >
             <template v-slot:label>
               Investor Name
@@ -33,12 +28,8 @@
             v-model="name"
             dense
             label="User Name"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.name > 0) || validationErrors.name
-                  ? validationErrors.name
-                  : 'Please Write The User Name',
-            ]"
+            :error-message="$getValidationErrors('name')"
+            :error="$hasValidationErrors('name')"
           >
             <template v-slot:label>
               User Name
@@ -55,12 +46,8 @@
             dense
             label="Mobile Number"
             type="number"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.phone > 0) || validationErrors.phone
-                  ? validationErrors.phone
-                  : 'Please Write The Mobile Number',
-            ]"
+            :error-message="$getValidationErrors('phone')"
+            :error="$hasValidationErrors('phone')"
           >
             <template v-slot:label>
               Mobile Number
@@ -75,7 +62,8 @@
             v-model="email"
             dense
             label="Email"
-            :rules="[email]"
+            :error-message="$getValidationErrors('email')"
+            :error="$hasValidationErrors('email')"
           />
         </div>
       </div>
@@ -92,7 +80,8 @@
         dense
         type="number"
         label="Account Number"
-        :rules="[account_no]"
+        :error-message="$getValidationErrors('account_no')"
+        :error="$hasValidationErrors('account_no')"
       />
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -103,7 +92,8 @@
         dense
         type="number"
         label="IFSC Number"
-        :rules="[ifsc]"
+        :error-message="$getValidationErrors('ifsc')"
+        :error="$hasValidationErrors('ifsc')"
       />
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -113,7 +103,8 @@
         v-model="bank_branch"
         dense
         label="Bank Branch"
-        :rules="[bank_branch]"
+        :error-message="$getValidationErrors('bank_branch')"
+        :error="$hasValidationErrors('bank_branch')"
       />
     </div>
   </div>

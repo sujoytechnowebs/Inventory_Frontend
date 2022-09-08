@@ -18,12 +18,8 @@
               data-store="purchase"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.id > 0) || validationErrors.id
-                    ? validationErrors.id
-                    : 'Please choose the city name',
-              ]"
+              :error-message="$getValidationErrors('reference_no')"
+              :error="$hasValidationErrors('reference_no')"
             ></QSearch>
           </div>
           <div class="col-12 col-sm-6 col-md-3 col-lg-3">
@@ -65,13 +61,8 @@
               dense
               :options="pays"
               label="Payment Methods"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.payment_method > 0) ||
-                  validationErrors.payment_method
-                    ? validationErrors.payment_method
-                    : 'Please Choose The Payment Methods',
-              ]"
+              :error-message="$getValidationErrors('payment_method')"
+              :error="$hasValidationErrors('payment_method')"
             ></q-select>
           </div>
           <div class="col-12 col-sm-6 col-md-3 col-lg-3">
@@ -81,13 +72,8 @@
               v-model="status"
               :options="options"
               label="Status"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.status > 0) ||
-                  validationErrors.status
-                    ? validationErrors.status
-                    : 'Please Select The Status',
-              ]"
+              :error-message="$getValidationErrors('status')"
+              :error="$hasValidationErrors('status')"
             ></q-select>
           </div>
         </div>

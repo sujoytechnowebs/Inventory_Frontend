@@ -18,13 +18,8 @@
               data-store="user"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.vendor_id > 0) ||
-                  validationErrors.vendor_id
-                    ? validationErrors.vendor_id
-                    : 'Please choose the Vendor name',
-              ]"
+              :error-message="$getValidationErrors('vendor_id')"
+              :error="$hasValidationErrors('vendor_id')"
             ></QSearch>
           </div>
 
@@ -37,13 +32,8 @@
               data-store="branch"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.state_id > 0) ||
-                  validationErrors.state_id
-                    ? validationErrors.state_id
-                    : 'Please choose the Branch name',
-              ]"
+              :error-message="$getValidationErrors('branch_id')"
+              :error="$hasValidationErrors('branch_id')"
             ></QSearch>
           </div>
 
@@ -54,7 +44,8 @@
               mask="date"
               placeholder="Purchase Date"
               dense
-              :rules="['date']"
+              :error-message="$getValidationErrors('date_of_purchase')"
+              :error="$hasValidationErrors('date_of_purchase')"
             >
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
@@ -86,13 +77,8 @@
               dense
               :options="pays"
               label="Payment Methods"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.payment_method > 0) ||
-                  validationErrors.payment_method
-                    ? validationErrors.payment_method
-                    : 'Please Write the notes',
-              ]"
+              :error-message="$getValidationErrors('payment_method')"
+              :error="$hasValidationErrors('payment_method')"
             ></q-select>
           </div>
 
@@ -103,13 +89,8 @@
               v-model="status"
               :options="sale_status"
               label="Status"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.status > 0) ||
-                  validationErrors.status
-                    ? validationErrors.status
-                    : 'Please Choose The Status',
-              ]"
+              :error-message="$getValidationErrors('status')"
+              :error="$hasValidationErrors('status')"
             ></q-select>
           </div>
         </div>

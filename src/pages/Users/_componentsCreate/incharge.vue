@@ -1,5 +1,5 @@
 <template>
-  <q-separator />
+  <q-separator class="q-mt-md" />
   <p class="q-pt-sm incharge_form_title text-weight-medium">
     In-charge Details
   </p>
@@ -13,13 +13,8 @@
             v-model="account_name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.account_name > 0) ||
-                validationErrors.account_name
-                  ? validationErrors.account_name
-                  : 'Please Write The Name',
-            ]"
+            :error-message="$getValidationErrors('account_name')"
+            :error="$hasValidationErrors('account_name')"
           >
             <template v-slot:label>
               Incharge Name
@@ -34,12 +29,8 @@
             v-model="name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.name > 0) || validationErrors.name
-                  ? validationErrors.name
-                  : 'Please Write The User Name',
-            ]"
+            :error-message="$getValidationErrors('name')"
+            :error="$hasValidationErrors('name')"
           >
             <template v-slot:label>
               User Name
@@ -55,13 +46,8 @@
             dense
             type="password"
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.password > 0) ||
-                validationErrors.password
-                  ? validationErrors.password
-                  : 'Please Write The Password',
-            ]"
+            :error-message="$getValidationErrors('password')"
+            :error="$hasValidationErrors('password')"
           >
             <template v-slot:label>
               Password
@@ -77,12 +63,8 @@
             dense
             label
             type="number"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.phone > 0) || validationErrors.phone
-                  ? validationErrors.phone
-                  : 'Please Write The Phone Number',
-            ]"
+            :error-message="$getValidationErrors('phone')"
+            :error="$hasValidationErrors('phone')"
           >
             <template v-slot:label>
               Mobile Number
@@ -97,12 +79,8 @@
             v-model="email"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.email > 0) || validationErrors.email
-                  ? validationErrors.email
-                  : 'Please Write The Email',
-            ]"
+            :error-message="$getValidationErrors('email')"
+            :error="$hasValidationErrors('email')"
           >
             <template v-slot:label>
               Email
@@ -119,13 +97,8 @@
             data-store="city"
             action="getItems"
             :multiple="false"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.city_id > 0) ||
-                validationErrors.city_id
-                  ? validationErrors.city_id
-                  : 'Please choose the City Name',
-            ]"
+            :error-message="$getValidationErrors('city_id')"
+            :error="$hasValidationErrors('city_id')"
           ></QSearch>
         </div>
 
@@ -138,13 +111,8 @@
             data-store="branch"
             action="getItems"
             :multiple="false"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.branch_id > 0) ||
-                validationErrors.branch_id
-                  ? validationErrors.branch_id
-                  : 'Please choose the Branch Name',
-            ]"
+            :error-message="$getValidationErrors('branch_id')"
+            :error="$hasValidationErrors('branch_id')"
           ></QSearch>
         </div>
 
@@ -158,13 +126,8 @@
             v-model="address_1"
             min-height="10rem"
             toolbar="false"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.address_1 > 0) ||
-                validationErrors.address_1
-                  ? validationErrors.address_1
-                  : 'Please Write The Present Address',
-            ]"
+            :error-message="$getValidationErrors('address_1')"
+            :error="$hasValidationErrors('address_1')"
           ></q-editor>
 
           <q-card-section v-html="editor" />
@@ -179,13 +142,8 @@
             v-model="address_2"
             min-height="10rem"
             toolbar="false"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.address_2 > 0) ||
-                validationErrors.address_2
-                  ? validationErrors.address_2
-                  : 'Please Write The Permanent Address',
-            ]"
+            :error-message="$getValidationErrors('address_2')"
+            :error="$hasValidationErrors('address_2')"
           ></q-editor>
 
           <q-card-section v-html="editor" />
@@ -204,7 +162,8 @@
         dense
         type="number"
         label="Account Number"
-        :rules="[account_no]"
+        :error-message="$getValidationErrors('account_no')"
+        :error="$hasValidationErrors('account_no')"
       />
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -214,7 +173,8 @@
         v-model="ifsc"
         dense
         label="IFSC Number"
-        :rules="[ifsc]"
+        :error-message="$getValidationErrors('ifsc')"
+        :error="$hasValidationErrors('ifsc')"
       />
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -224,7 +184,8 @@
         v-model="bank_branch"
         dense
         label="Bank Branch"
-        :rules="[bank_branch]"
+        :error-message="$getValidationErrors('bank_branch')"
+        :error="$hasValidationErrors('bank_branch')"
       />
     </div>
   </div>
@@ -239,13 +200,8 @@
         dense
         type="number"
         label
-        :rules="[
-          (val) =>
-            (val && !validationErrors.aadhar_card_no > 0) ||
-            validationErrors.aadhar_card_no
-              ? validationErrors.aadhar_card_no
-              : 'Please Write The Aadhar Card Number',
-        ]"
+        :error-message="$getValidationErrors('aadhar_card_no')"
+        :error="$hasValidationErrors('aadhar_card_no')"
       >
         <template v-slot:label>
           Aadhar Card Number

@@ -18,13 +18,6 @@
               data-store="state"
               action="getRoles"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.state_id > 0) ||
-                  validationErrors.state_id
-                    ? validationErrors.state_id
-                    : 'Please choose the state name',
-              ]"
             ></QSearch>
           </div>
         </div>
@@ -54,9 +47,8 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, ref } from "vue";
 
 const customer = defineAsyncComponent(() =>
   import("./_componentsCreate/customer.vue")
