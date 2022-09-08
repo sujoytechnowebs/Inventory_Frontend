@@ -66,6 +66,19 @@
             :error="$hasValidationErrors('email')"
           />
         </div>
+        <div class="col-12 col-md-6 col-lg-6">
+          <QSearch
+            v-model="branch_id"
+            label="Branch"
+            option-value="id"
+            option-label="name"
+            data-store="branch"
+            action="getItems"
+            :multiple="false"
+            :error-message="$getValidationErrors('branch_id')"
+            :error="$hasValidationErrors('branch_id')"
+          ></QSearch>
+        </div>
       </div>
     </div>
   </div>
@@ -159,6 +172,7 @@ export default {
       "newItem.bank_branch",
       "newItem.opening_balance",
       "newItem.opening_balance_type",
+      "newItem.branch_id",
     ]),
   },
 };

@@ -13,11 +13,11 @@
           <div
             class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
           >
-            Branch Management Table
+            Investor Management Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-8">
-              <!-- <q-input
+              <q-input
                 outlined
                 dense
                 debounce="300"
@@ -28,20 +28,20 @@
                 <template v-slot:append>
                   <q-icon name="search" />
                 </template>
-              </q-input> -->
+              </q-input>
             </div>
           </div>
         </template>
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'investor-amount-form' : ''">
           <CreateStack v-bind:modal="true"></CreateStack>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'investor-amount-form' : ''">
           <EditStack v-bind:modal="true"></EditStack>
         </div>
       </q-dialog>
@@ -67,16 +67,16 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("branch", ["filter"]),
+    ...mapFields("stackholder", ["filter"]),
   },
   setup() {
     const { getGetters } = useStoreModule();
-    const { showEditModal } = getGetters("branch", ["showEditModal"]);
-    const { showCreateModal } = getGetters("branch", ["showCreateModal"]);
+    const { showEditModal } = getGetters("stackholder", ["showEditModal"]);
+    const { showCreateModal } = getGetters("stackholder", ["showCreateModal"]);
 
     return {
       hasEditPermission: true,
-      dataStore: "branch",
+      dataStore: "stackholder",
       aditionalActions: false,
       showEditModal,
       showCreateModal,
@@ -86,8 +86,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.branch-form {
-  width: 80%;
-  max-width: 80%;
+.investor-amount-form {
+  width: 50%;
+  max-width: 50%;
 }
 </style>

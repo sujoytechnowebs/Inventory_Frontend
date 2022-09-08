@@ -8,12 +8,11 @@ export function showHideCreateModal(state, payload) {
 
 export function setEditItem(state, payload) {
   state.editItem.id = payload.id;
-  state.editItem.name = payload.name;
-  state.editItem.code = payload.code;
-  state.editItem.address_1 = payload.address_1;
-  state.editItem.address_2 = payload.address_2;
-  state.editItem.postcode = payload.postcode;
-  state.editItem.city_id = payload.city_id;
+  state.editItem.investorAccountId = payload.investorAccountId;
+  state.editItem.action_name = payload.action_name;
+  state.editItem.date = payload.date;
+  state.editItem.amount = payload.amount;
+  state.editItem.toAccount = payload.toAccount;
 }
 
 export function setEditModal(state, payload) {
