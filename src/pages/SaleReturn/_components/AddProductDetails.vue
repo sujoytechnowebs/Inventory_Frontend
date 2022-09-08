@@ -22,10 +22,10 @@
     </div>
     <div
       class="row q-col-gutter-md"
-      v-for="(data, index) in sale_return_details"
+      v-for="(data, index) in salesReturnDetails"
       :key="data.id"
     >
-      <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+      <div class="col-12 col-md-4 col-lg-4">
         <q-input
           ref="product_id"
           v-model="data.product_name"
@@ -35,27 +35,8 @@
         >
         </q-input>
       </div>
-      <div class="col-12 col-sm-6 col-md-2 col-lg-2">
-        <q-input
-          ref="item_rate"
-          v-model="data.item_rate"
-          dense
-          type="number"
-          label="Item Rate"
-        >
-        </q-input>
-      </div>
-      <div class="col-12 col-sm-6 col-md-2 col-lg-2">
-        <q-input
-          ref="discount"
-          v-model="data.discount"
-          dense
-          type="number"
-          label="Discount"
-        >
-        </q-input>
-      </div>
-      <div class="col-12 col-sm-6 col-md-2 col-lg-2">
+
+      <div class="col-12 col-md-4 col-lg-4">
         <q-input
           ref="quantity"
           v-model="data.quantity"
@@ -65,18 +46,7 @@
         >
         </q-input>
       </div>
-      <div class="col-12 col-sm-6 col-md-2 col-lg-2">
-        <q-input
-          dense
-          v-model="data.tax_class_id"
-          label="Sales"
-          option-value="id"
-          option-label="name"
-          data-store="tax"
-          action="getItems"
-          :multiple="false"
-        ></q-input>
-      </div>
+
       <div
         :class="
           $q.platform.is.mobile
@@ -111,7 +81,7 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapMultiRowFields("salereturn", ["newItem.sale_return_details"]),
+    ...mapMultiRowFields("salereturn", ["newItem.salesReturnDetails"]),
   },
 
   setup(props, { emit }) {

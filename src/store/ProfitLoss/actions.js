@@ -1,6 +1,6 @@
 import { api, axios } from "boot/axios";
 
-const endPoint = "/";
+const endPoint = "/profit-loss";
 import moment from "moment";
 
 export function getItems({ commit, state }, props) {

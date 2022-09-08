@@ -90,7 +90,7 @@ export default {
       validationErrors: ref({}),
       modelValue: ref(),
       account_type: ["bank", "cash"],
-      balance_category: ["cr", "dr"],
+      balance_category: ["cr", "dr", "expense", "salary"],
     };
   },
 

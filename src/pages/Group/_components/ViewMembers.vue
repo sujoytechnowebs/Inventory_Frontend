@@ -17,20 +17,7 @@
           List of Members
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
-          <div class="col-12">
-            <q-input
-              outlined
-              dense
-              debounce="300"
-              v-model="filter.search"
-              clearable
-              placeholder="Search"
-            >
-              <template v-slot:append>
-                <q-icon name="search" />
-              </template>
-            </q-input>
-          </div>
+          <q-btn flat dense round icon="clear" @click="closeModel(false)" />
         </div>
       </template>
     </QDataTable>
@@ -68,6 +55,13 @@ export default defineComponent({
       "setViewMembersModal",
     ]);
 
+    const close = () => {
+      setViewMembersModal(false);
+    };
+    // const { setViewMembersModal } = getMutations("groupuser", [
+    //       "setViewMembersModal",
+    //     ]);
+
     return {
       hasEditPermission: true,
       dataStore: "groupuser",
@@ -75,7 +69,16 @@ export default defineComponent({
       showEditModal,
       maximizedToggle: ref(true),
       setViewMembersModal,
+      close,
     };
+  },
+
+  // Close Modal
+
+  methods: {
+    closeModel(val) {
+      this.$store.commit(`${this.dataStore}/setViewMembersModal`, val);
+    },
   },
 });
 </script>

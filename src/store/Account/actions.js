@@ -1,6 +1,7 @@
 import { api, axios } from "boot/axios";
 
 const endPoint = "/accounts";
+const endAccounts = "/set-asset-account";
 import moment from "moment";
 
 export function getItems({ commit, state }, props) {
@@ -40,6 +41,27 @@ export function getRoles({ commit, state }, props) {
   return new Promise((resolve, reject) => {
     axios
       .get("roles", {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+// Accounts Type
+
+export function getAccountsType({ commit, state }, props) {
+  var params = {
+    all: props.all,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get(endAccounts, {
         params: params,
       })
       .then((response) => {

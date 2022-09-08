@@ -26,18 +26,6 @@
       v-for="(data, index) in paymentsDetails"
       :key="data.id"
     >
-      <!-- <div class="col-12">
-        <QSearch
-          v-model="data.to_account_id"
-          label="To Account"
-          option-value="id"
-          option-label="name"
-          data-store="user"
-          action="getItems"
-          :multiple="false"
-        ></QSearch>
-      </div> -->
-
       <div class="col-12 col-md-4 col-lg-4">
         <QSearch
           v-model="data.to_account_id"
@@ -45,7 +33,7 @@
           option-value="id"
           option-label="account_name"
           data-store="account"
-          action="getItems"
+          action="getAccountsType"
           :multiple="false"
         ></QSearch>
       </div>
