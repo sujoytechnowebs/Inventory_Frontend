@@ -4,110 +4,90 @@
       <QCreateForm
         :modal="modal"
         :widgets="true"
-        save-action="branch/createItem"
+        save-action="stackholder/createItem"
         :data-store="dataStore"
-        title="Add Branch"
+        title="Add Investor Amount"
       >
         <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-input
-              ref="name"
-              outlined
-              v-model="name"
-              dense
-              label="Branch Name"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.name > 0) || validationErrors.name
-                    ? validationErrors.name
-                    : 'Please write the branch name',
-              ]"
-            >
-            </q-input>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-input
-              ref="code"
-              outlined
-              v-model="code"
-              dense
-              label="Branch Code"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.code > 0) || validationErrors.code
-                    ? validationErrors.code
-                    : 'Please write the branch code',
-              ]"
-            >
-            </q-input>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-input
-              ref="address_1"
-              outlined
-              v-model="address_1"
-              dense
-              label="Address 1"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.address_1 > 0) ||
-                  validationErrors.address_1
-                    ? validationErrors.address_1
-                    : 'Please write the address 1',
-              ]"
-            >
-            </q-input>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-input
-              ref="address_2"
-              outlined
-              v-model="address_2"
-              dense
-              label="Address 2"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.address_2 > 0) ||
-                  validationErrors.address_2
-                    ? validationErrors.address_2
-                    : 'Please write the address 2',
-              ]"
-            >
-            </q-input>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-input
-              ref="postcode"
-              outlined
-              v-model="postcode"
-              dense
-              label="PostCode"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.postcode > 0) ||
-                  validationErrors.postcode
-                    ? validationErrors.postcode
-                    : 'Please write the postcode',
-              ]"
-            >
-            </q-input>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-4 col-lg-4">
             <QSearch
-              v-model="city_id"
-              label="City"
+              v-model="investorAccountId"
+              label="Investor"
               option-value="id"
-              option-label="city_name"
-              data-store="city"
+              option-label="account_name"
+              data-store="account"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.id > 0) || validationErrors.id
-                    ? validationErrors.id
-                    : 'Please choose the city name',
-              ]"
+              :error-message="$getValidationErrors('investorAccountId')"
+              :error="$hasValidationErrors('investorAccountId')"
             ></QSearch>
+          </div>
+          <div class="col-12 col-md-4 col-lg-4">
+            <QSearch
+              v-model="toAccount"
+              label="From Account"
+              option-value="id"
+              option-label="account_name"
+              data-store="account"
+              action="getItems"
+              :multiple="false"
+              :error-message="$getValidationErrors('toAccount')"
+              :error="$hasValidationErrors('toAccount')"
+            ></QSearch>
+          </div>
+          <div class="col-12 col-md-4 col-lg-4">
+            <q-select
+              dense
+              outlined
+              v-model="action_name"
+              :options="options"
+              label="Investment Type"
+              :error-message="$getValidationErrors('action_name')"
+              :error="$hasValidationErrors('action_name')"
+            />
+          </div>
+          <div class="col-12 col-md-6 col-lg-6">
+            <q-input
+              dense
+              label="Date"
+              outlined
+              v-model="date"
+              mask="date"
+              :error-message="$getValidationErrors('date')"
+              :error="$hasValidationErrors('date')"
+            >
+              <template v-slot:prepend>
+                <q-icon name="event" class="cursor-pointer">
+                  <q-popup-proxy
+                    cover
+                    transition-show="scale"
+                    transition-hide="scale"
+                  >
+                    <q-date v-model="date">
+                      <div class="row items-center justify-end">
+                        <q-btn
+                          v-close-popup
+                          label="Close"
+                          color="primary"
+                          flat
+                        />
+                      </div>
+                    </q-date>
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+          </div>
+          <div class="col-12 col-md-6 col-lg-6">
+            <q-input
+              outlined
+              type
+              dense
+              v-model="amount"
+              label="Amount"
+              :error-message="$getValidationErrors('amount')"
+              :error="$hasValidationErrors('amount')"
+            ></q-input>
           </div>
         </div>
       </QCreateForm>
@@ -124,20 +104,20 @@ export default {
   setup() {
     return {
       modal: ref(true),
-      dataStore: "branch",
+      dataStore: "stackholder",
       validationErrors: ref({}),
       modelValue: ref(),
+      options: ["invest", "withdral", "loan"],
     };
   },
 
   computed: {
-    ...mapFields("branch", [
-      "newItem.name",
-      "newItem.code",
-      "newItem.address_1",
-      "newItem.address_2",
-      "newItem.postcode",
-      "newItem.city_id",
+    ...mapFields("stackholder", [
+      "newItem.investorAccountId",
+      "newItem.action_name",
+      "newItem.date",
+      "newItem.amount",
+      "newItem.toAccount",
     ]),
   },
 };
