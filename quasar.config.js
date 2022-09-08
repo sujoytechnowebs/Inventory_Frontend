@@ -54,9 +54,7 @@ module.exports = configure(function (ctx) {
           }
         : {
             // and on build (production):
-            API: JSON.stringify(
-              "https://inventory-api.staging.technowebs.in/api"
-            ),
+            API: "https://inventory-api.staging.technowebs.in/api",
           },
 
       // transpile: false,
