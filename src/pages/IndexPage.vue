@@ -1,23 +1,36 @@
 <template>
-  <q-page class="flex flex-center bg-grey-3">
-    <q-card flat class="increase flex flex-center">
-      <q-card-section class="text-center">
-        <p class="header">Wed 17,</p>
-        <p class="sub-header text-weight-medium">September 2022</p>
+  <q-page class="flex flex-center dashboard-bg">
+    <q-card flat class="card-size flex flex-center bg-grey-1">
+      <q-card-section>
+        <p class="header text-grey-9 text-center q-ma-none">{{ dayOfWeek }}</p>
+        <p class="sub-header q-ma-none text-weight-medium text-grey-9">
+          {{ monthOfYear }}
+        </p>
       </q-card-section>
-      <q-card-section class="header text-weight-light">
-        <p q-pl-lg>Welcome Amar Furniture</p>
+      <q-card-section class="header">
+        <p class="q-ma-none text-weight-light text-grey-9">
+          Welcome Amar Furniture
+        </p>
       </q-card-section>
     </q-card>
   </q-page>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import moment from "moment";
 
-export default defineComponent({
+export default {
   name: "IndexPage",
-});
+
+  computed: {
+    dayOfWeek() {
+      return moment().format("ddd DD");
+    },
+    monthOfYear() {
+      return moment().format("MMMM YYYY");
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -28,7 +41,11 @@ export default defineComponent({
   font-size: 1.2rem;
 }
 
-.increase {
+.card-size {
   width: 80vh;
+}
+
+.dashboard-bg {
+  background-image: linear-gradient(113deg, rgb(255, 0, 118), rgb(86, 0, 255));
 }
 </style>

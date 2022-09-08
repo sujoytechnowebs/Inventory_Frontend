@@ -13,8 +13,9 @@
 
         <q-toolbar-title> Amar Furniture </q-toolbar-title>
 
-        <div class="bg-white">
+        <div :class="$q.platform.is.desktop ? '' : 'hide-diff-paltform'">
           <QSearch
+            class="bg-white remove-width"
             v-model="current_branch_selected"
             label="Branch"
             option-value="id"
@@ -24,7 +25,6 @@
             :multiple="false"
           ></QSearch>
         </div>
-        {{ current_branch_selected }}
         <div>
           <q-btn-dropdown flat label="Accounts">
             <div class="row no-wrap q-pa-md">
@@ -78,6 +78,20 @@
           <span class="text-white flex flex-center admin_font_size">
             <router-link to="/" class="company_navbar">Menu</router-link>
           </span>
+        </q-item-label>
+        <q-item-label
+          :class="$q.platform.is.mobile ? '' : 'hide-diff-paltform'"
+        >
+          <QSearch
+            class="bg-white drawer-branch-search remove-width"
+            v-model="current_branch_selected"
+            label="Branch"
+            option-value="id"
+            option-label="name"
+            data-store="branch"
+            action="getItems"
+            :multiple="false"
+          ></QSearch>
         </q-item-label>
 
         <EssentialLink :essentialLinks="essentialLinks" />
@@ -410,5 +424,23 @@ export default defineComponent({
 
 .admin_font_size {
   font-size: 1.2rem;
+}
+
+.hide-diff-paltform {
+  display: none;
+}
+
+.drawer-branch-search {
+  width: 85% !important;
+  margin-left: 16px !important;
+}
+
+.remove-width
+  .q-field__inner
+  .q-field__control
+  .q-field__control-container
+  .q-field__native
+  .q-field__input {
+  min-width: 0 !important;
 }
 </style>
