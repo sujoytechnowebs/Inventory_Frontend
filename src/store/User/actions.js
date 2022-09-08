@@ -33,6 +33,72 @@ export function getItems({ commit, state }, props) {
   });
 }
 
+// Customer Filter
+
+export function getCustomer({ commit, state }, props) {
+  var params = {
+    all: props.all,
+    role: "customer",
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get(endPoint, {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+// Investor Filter
+
+export function getInvestor({ commit, state }, props) {
+  var params = {
+    all: props.all,
+    role: "investor",
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get(endPoint, {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+// Vendor Filter
+
+export function getVendor({ commit, state }, props) {
+  var params = {
+    all: props.all,
+    role: "vendor",
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get(endPoint, {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
 export function getRoles({ commit, state }, props) {
   var params = {
     search: props.search,
