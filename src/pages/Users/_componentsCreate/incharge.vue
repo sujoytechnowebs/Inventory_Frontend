@@ -121,11 +121,9 @@
             >Present Address</span
           >
           <q-editor
-            class="editool"
             placeholder="Please Write The Present Address"
             v-model="address_1"
             min-height="10rem"
-            toolbar="false"
             :error-message="$getValidationErrors('address_1')"
             :error="$hasValidationErrors('address_1')"
           ></q-editor>
@@ -141,12 +139,37 @@
             placeholder="Please Write The Permanent Address"
             v-model="address_2"
             min-height="10rem"
-            toolbar="false"
             :error-message="$getValidationErrors('address_2')"
             :error="$hasValidationErrors('address_2')"
           ></q-editor>
 
           <q-card-section v-html="editor" />
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6">
+          <q-input
+            ref="opening_balance"
+            outlined
+            v-model="opening_balance"
+            label="Opening Balance"
+            type="number"
+            dense
+            :error-message="$getValidationErrors('opening_balance')"
+            :error="$hasValidationErrors('opening_balance')"
+          >
+          </q-input>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6">
+          <q-select
+            outlined
+            dense
+            v-model="opening_balance_type"
+            :options="options"
+            label="Opening Balance Type"
+            :error-message="$getValidationErrors('opening_balance_type')"
+            :error="$hasValidationErrors('opening_balance_type')"
+          ></q-select>
         </div>
       </div>
     </div>
@@ -233,7 +256,7 @@ export default {
     return {
       modal: ref(true),
       validationErrors: ref({}),
-      options: ["Own", "Rent", "Tea Estate"],
+      options: ["cr", "dr"],
     };
   },
 
@@ -252,7 +275,8 @@ export default {
       "newItem.account_no",
       "newItem.ifsc",
       "newItem.bank_branch",
-      // "newItem.aadhar_media_id",
+      "newItem.opening_balance",
+      "newItem.opening_balance_type",
     ]),
   },
 
@@ -278,11 +302,5 @@ export default {
 <style scoped>
 .incharge_form_title {
   font-size: 1rem;
-}
-</style>
-
-<style>
-.editool .q-editor .q-editor__toolbars-container .q-editor__toolbar {
-  display: none;
 }
 </style>

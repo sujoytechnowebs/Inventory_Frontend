@@ -74,6 +74,8 @@ export default function () {
       group_role: "",
       DOB: "",
       aadhar_card_no: "",
+      opening_balance: "",
+      opening_balance_type: "",
     },
     editItem: {
       name: "",
