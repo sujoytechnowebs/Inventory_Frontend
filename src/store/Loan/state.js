@@ -6,7 +6,7 @@ export default function () {
         name: "customers_id",
         align: "left",
         label: "Customer",
-        field: "customers_id",
+        field: (row) => row?.group_user?.user?.name,
         sortable: true,
       },
       {

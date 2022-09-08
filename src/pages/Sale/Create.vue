@@ -18,7 +18,7 @@
                   option-value="id"
                   option-label="name"
                   data-store="user"
-                  action="getItems"
+                  action="getCustomer"
                   :multiple="false"
                   :error-message="$getValidationErrors('customer_id')"
                   :error="$hasValidationErrors('customer_id')"

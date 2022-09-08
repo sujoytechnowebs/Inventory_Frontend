@@ -18,7 +18,7 @@
                   option-value="id"
                   option-label="name"
                   data-store="user"
-                  action="getItems"
+                  action="getVendor"
                   :multiple="false"
                   :error-message="$getValidationErrors('vendor_id')"
                   :error="$hasValidationErrors('vendor_id')"
