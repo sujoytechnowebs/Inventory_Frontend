@@ -227,13 +227,38 @@
             placeholder="Please Write The Address"
             v-model="address_1"
             min-height="10rem"
-            toolbar="false"
             :error-message="$getValidationErrors('address_1')"
             :error="$hasValidationErrors('address_1')"
           >
           </q-editor>
 
           <q-card-section v-html="editor" />
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6">
+          <q-input
+            ref="opening_balance"
+            outlined
+            v-model="opening_balance"
+            label="Opening Balance"
+            type="number"
+            dense
+            :error-message="$getValidationErrors('opening_balance')"
+            :error="$hasValidationErrors('opening_balance')"
+          >
+          </q-input>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6">
+          <q-select
+            outlined
+            dense
+            v-model="opening_balance_type"
+            :options="options"
+            label="Opening Balance Type"
+            :error-message="$getValidationErrors('opening_balance_type')"
+            :error="$hasValidationErrors('opening_balance_type')"
+          ></q-select>
         </div>
       </div>
     </div>
@@ -284,6 +309,7 @@ export default {
       grp_role_options: ["leader", "member"],
       modal: ref(true),
       validationErrors: ref({}),
+      options: ["cr", "dr"],
     };
   },
 
@@ -304,6 +330,8 @@ export default {
       "newItem.group_id",
       "newItem.group_role",
       "newItem.DOB",
+      "newItem.opening_balance",
+      "newItem.opening_balance_type",
     ]),
   },
 
