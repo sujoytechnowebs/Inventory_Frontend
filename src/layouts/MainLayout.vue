@@ -183,12 +183,12 @@ const linksList = [
         link: "/accounts",
         show: true,
       },
-      {
-        title: "Check In",
-        icon: "hlw",
-        link: "/check-in",
-        show: true,
-      },
+      // {
+      //   title: "Check In",
+      //   icon: "hlw",
+      //   link: "/check-in",
+      //   show: true,
+      // },
       // {
       //   title: "Tax",
       //   icon: "hlw",

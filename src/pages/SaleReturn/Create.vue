@@ -11,41 +11,27 @@
         <div class="row q-col-gutter-md">
           <div class="col-12 col-sm-6 col-md-3 col-lg-3">
             <QSearch
-              v-model="vendor_id"
-              label="Vendor Name"
+              v-model="sales_id"
+              label="Reference Number"
               option-value="id"
-              option-label="name"
-              data-store="user"
+              option-label="reference_no"
+              data-store="sale"
               action="getItems"
               :multiple="false"
-              :error-message="$getValidationErrors('vendor_id')"
-              :error="$hasValidationErrors('vendor_id')"
-            ></QSearch>
-          </div>
-
-          <div class="col-12 col-sm-6 col-md-3 col-lg-3">
-            <QSearch
-              v-model="branch_id"
-              label="Branch"
-              option-value="id"
-              option-label="name"
-              data-store="branch"
-              action="getItems"
-              :multiple="false"
-              :error-message="$getValidationErrors('branch_id')"
-              :error="$hasValidationErrors('branch_id')"
+              :error-message="$getValidationErrors('reference_no')"
+              :error="$hasValidationErrors('reference_no')"
             ></QSearch>
           </div>
 
           <div class="col-12 col-sm-6 col-md-2 col-lg-2">
             <q-input
               outlined
-              v-model="date_of_purchase"
+              v-model="date_of_return"
               mask="date"
-              placeholder="Purchase Date"
+              placeholder="Sale Date"
               dense
-              :error-message="$getValidationErrors('date_of_purchase')"
-              :error="$hasValidationErrors('date_of_purchase')"
+              :error-message="$getValidationErrors('date_of_return')"
+              :error="$hasValidationErrors('date_of_return')"
             >
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
@@ -54,7 +40,7 @@
                     transition-show="scale"
                     transition-hide="scale"
                   >
-                    <q-date v-model="date_of_purchase">
+                    <q-date v-model="date_of_return">
                       <div class="row items-center justify-end">
                         <q-btn
                           v-close-popup
@@ -101,7 +87,7 @@
           Product Details
         </p>
         <div class="q-pb-md">
-          <addProducts v-model="sale_return_details" />
+          <addProducts v-model="salesReturnDetails" />
         </div>
         <div>
           <q-editor
@@ -143,13 +129,14 @@ export default {
 
   computed: {
     ...mapFields("salereturn", [
+      "newItem.sales_id",
       "newItem.customer_id",
       "newItem.branch",
       "newItem.date_of_return",
       "newItem.note",
       "newItem.payment_method",
       "newItem.status",
-      "newItem.sale_return_details",
+      "newItem.salesReturnDetails",
     ]),
   },
 };

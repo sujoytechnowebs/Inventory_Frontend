@@ -5,6 +5,13 @@ export default function () {
       {
         name: "customer_id",
         align: "left",
+        label: "Reference No.",
+        field: (row) => row.reference_no,
+        sortable: true,
+      },
+      {
+        name: "customer_id",
+        align: "left",
         label: "Customer",
         field: (row) => row.customer.name,
         sortable: true,

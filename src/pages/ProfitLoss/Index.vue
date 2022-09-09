@@ -39,32 +39,61 @@
             <div class="col-12">
               <DateRangePicker v-model="myDateRange" />
             </div>
+
+            <!-- Date is added -->
+
+            <div class="col-12">
+              <q-input filled v-model="fromDate" mask="date" :rules="['date']">
+                <template v-slot:append>
+                  <q-icon name="event" class="cursor-pointer">
+                    <q-popup-proxy
+                      cover
+                      transition-show="scale"
+                      transition-hide="scale"
+                    >
+                      <q-date v-model="fromDate">
+                        <div class="row items-center justify-end">
+                          <q-btn
+                            v-close-popup
+                            label="Close"
+                            color="primary"
+                            flat
+                          />
+                        </div>
+                      </q-date>
+                    </q-popup-proxy>
+                  </q-icon>
+                </template>
+              </q-input>
+            </div>
+
+            <div class="col-12">
+              <q-input filled v-model="toDate" mask="date" :rules="['date']">
+                <template v-slot:append>
+                  <q-icon name="event" class="cursor-pointer">
+                    <q-popup-proxy
+                      cover
+                      transition-show="scale"
+                      transition-hide="scale"
+                    >
+                      <q-date v-model="toDate">
+                        <div class="row items-center justify-end">
+                          <q-btn
+                            v-close-popup
+                            label="Close"
+                            color="primary"
+                            flat
+                          />
+                        </div>
+                      </q-date>
+                    </q-popup-proxy>
+                  </q-icon>
+                </template>
+              </q-input>
+            </div>
           </div>
         </template>
-
-        <!-- <template v-slot:customBodySlot="bodyRow">
-          <q-tr :props="bodyRow">
-            <q-td key="test"> Hello </q-td>
-          </q-tr>
-        </template> -->
       </QDataTable>
-
-      <div>
-        <q-table
-          flat
-          title="New Row"
-          :rows="test"
-          :columns="test_columns"
-          row-key="id"
-          :rows-per-page-options="[0]"
-        >
-          <template v-slot:customBodySlot="bodyRow">
-            <q-tr :props="bodyRow">
-              <q-td key="company"> Hello </q-td>
-            </q-tr>
-          </template>
-        </q-table>
-      </div>
 
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
@@ -104,7 +133,7 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("profitloss", ["filter"]),
+    ...mapFields("profitloss", ["filter.fromDate", "filter.toDate"]),
   },
   setup() {
     const { getGetters } = useStoreModule();
@@ -123,21 +152,6 @@ export default defineComponent({
       showEditModal,
       showCreateModal,
       myDateRange,
-
-      test_columns: [
-        {
-          name: "seat_number",
-          label: "Testing",
-          field: "Test",
-          align: "left",
-        },
-        {
-          name: "seat_number",
-          label: "Testing",
-          field: "Test",
-          align: "left",
-        },
-      ],
     };
   },
 });

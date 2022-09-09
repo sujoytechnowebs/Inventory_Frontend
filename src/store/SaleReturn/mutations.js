@@ -26,12 +26,9 @@ export function setProductDetailModel(state, payload) {
 
 export function setProductDetails(state, payload) {
   console.log("payload", payload);
-  state.newItem.sale_return_details.push({
-    item_rate: null,
-    discount: null,
+  state.newItem.salesReturnDetails.push({
     quantity: null,
-    discount: null,
-    tax_class_id: null,
+
     product_id: payload.id,
     product_name: payload.name,
   });
@@ -39,7 +36,7 @@ export function setProductDetails(state, payload) {
 
 export function editProductDetails(state, payload) {
   console.log("payload", payload);
-  state.editItem.sale_return_details.push({
+  state.editItem.salesReturnDetails.push({
     item_rate: null,
     discount: null,
     quantity: null,
@@ -55,6 +52,6 @@ export function removeProductDetails(state, payload) {
 
   if (payload > -1) {
     // only splice array when item is found
-    state.newItem.sale_return_details.splice(payload, 1); // 2nd parameter means remove one item only
+    state.newItem.salesReturnDetails.splice(payload, 1); // 2nd parameter means remove one item only
   }
 }

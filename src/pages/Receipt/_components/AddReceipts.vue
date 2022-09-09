@@ -7,7 +7,7 @@
         option-value="id"
         option-label="account_name"
         data-store="account"
-        action="getItems"
+        action="getAccountsType"
         :multiple="false"
       ></QSearch>
     </div>
@@ -26,18 +26,6 @@
       v-for="(data, index) in receiptsDetails"
       :key="data.id"
     >
-      <!-- <div class="col-12">
-        <QSearch
-          v-model="data.to_account"
-          label="To Account"
-          option-value="id"
-          option-label="account_name"
-          data-store="account"
-          action="getItems"
-          :multiple="false"
-        ></QSearch>
-      </div> -->
-
       <div class="col-12 col-md-4 col-lg-4">
         <QSearch
           v-model="data.from_account_id"
