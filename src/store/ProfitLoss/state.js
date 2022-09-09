@@ -39,8 +39,6 @@ export default function () {
     },
     filter: {
       search: "",
-      fromDate: "",
-      toDate: "",
       trashed: false,
     },
     lastUpdated: "",
