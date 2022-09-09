@@ -51,14 +51,18 @@ export function getRoles({ commit, state }, props) {
   });
 }
 
-export function getItem({ commit, state }, id) {
+export function getItem({ commit, state }, props) {
   return new Promise((resolve, reject) => {
     axios
-      .get(endPoint + "/" + id)
+      .get(
+        `${endPoint}?fromDate=${moment(props.startDate).format(
+          "YYYY-M-d"
+        )}&toDate=${moment(props.endDate).format("YYYY-M-d")}`
+      )
       .then((response) => {
         commit("setEditItem", response.data);
         commit("setLastUpdated", moment());
-        resolve(response);
+        resolve(response.data);
       })
       .catch((err) => {
         reject(err);

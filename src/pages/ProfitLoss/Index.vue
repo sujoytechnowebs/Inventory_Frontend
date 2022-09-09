@@ -1,117 +1,46 @@
 <template>
-  <div>
-    <!-- <div>
-      <DateRangePicker v-model="myDateRange" />
-    </div> -->
+  <div class="col-12 q-pa-md">
+    <DateRangePicker
+      v-model="myDateRange"
+      :locale-data="{ firstDay: 1, format: 'dd-mm-yyyy' }"
+    />
+  </div>
+  <div class="col-12 q-pa-md">
+    <q-btn
+      color="primary"
+      label="Primary"
+      type="submit"
+      @click="getProfitLoss()"
+    />
+  </div>
 
-    <q-card-section>
-      <QDataTable
-        class="no-shadow"
-        :data-store="dataStore"
-        :hasEditPermission="hasEditPermission"
-        :aditionalActions="aditionalActions"
-        :columns="columns"
-        :filter="filter"
-        :customBodySlot="true"
-      >
-        <template v-slot:top>
-          <div
-            class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
-          >
-            Profit & Loss Table
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
-            <!-- <div class="col-8">
-              <q-input
-                outlined
-                dense
-                debounce="300"
-                v-model="filter.search"
-                clearable
-                placeholder="Search"
-              >
-                <template v-slot:append>
-                  <q-icon name="search" />
-                </template>
-              </q-input>
-            </div> -->
-
-            <div class="col-12">
-              <DateRangePicker v-model="myDateRange" />
-            </div>
-
-            <!-- Date is added -->
-
-            <div class="col-12">
-              <q-input filled v-model="fromDate" mask="date" :rules="['date']">
-                <template v-slot:append>
-                  <q-icon name="event" class="cursor-pointer">
-                    <q-popup-proxy
-                      cover
-                      transition-show="scale"
-                      transition-hide="scale"
-                    >
-                      <q-date v-model="fromDate">
-                        <div class="row items-center justify-end">
-                          <q-btn
-                            v-close-popup
-                            label="Close"
-                            color="primary"
-                            flat
-                          />
-                        </div>
-                      </q-date>
-                    </q-popup-proxy>
-                  </q-icon>
-                </template>
-              </q-input>
-            </div>
-
-            <div class="col-12">
-              <q-input filled v-model="toDate" mask="date" :rules="['date']">
-                <template v-slot:append>
-                  <q-icon name="event" class="cursor-pointer">
-                    <q-popup-proxy
-                      cover
-                      transition-show="scale"
-                      transition-hide="scale"
-                    >
-                      <q-date v-model="toDate">
-                        <div class="row items-center justify-end">
-                          <q-btn
-                            v-close-popup
-                            label="Close"
-                            color="primary"
-                            flat
-                          />
-                        </div>
-                      </q-date>
-                    </q-popup-proxy>
-                  </q-icon>
-                </template>
-              </q-input>
-            </div>
-          </div>
-        </template>
-      </QDataTable>
-
-      <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
-        </div>
-      </q-dialog>
-
-      <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
-        </div>
-      </q-dialog>
-    </q-card-section>
+  <div class="row q-col-gutter-md q-pa-md">
+    <div class="col-12 col-md-4 col-lg-4">
+      <q-card class="my-card">
+        <q-card-section>
+          {{ data.gross_profit }}
+        </q-card-section>
+      </q-card>
+    </div>
+    <div class="col-12 col-md-4 col-lg-4">
+      <q-card class="my-card">
+        <q-card-section>
+          {{ data.totalExpense }}
+        </q-card-section>
+      </q-card>
+    </div>
+    <div class="col-12 col-md-4 col-lg-4">
+      <q-card class="my-card">
+        <q-card-section>
+          {{ data.total_profitOrLoss }}
+        </q-card-section>
+      </q-card>
+    </div>
   </div>
 </template>
 
 <script>
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { mapFields } from "vuex-map-fields";
 import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
@@ -126,24 +55,43 @@ import "daterange-picker-vue3/dist/daterange-picker-vue3.css";
 export default defineComponent({
   name: "ProfitLossIndexPage",
 
-  components: {
-    EditUser,
-    CreateUser,
-    // DateRangePicker,
-  },
+  components: {},
 
   computed: {
-    ...mapFields("profitloss", ["filter.fromDate", "filter.toDate"]),
+    ...mapFields("profitloss", ["filter"]),
   },
   setup() {
     const { getGetters } = useStoreModule();
     const { showEditModal } = getGetters("profitloss", ["showEditModal"]);
     const { showCreateModal } = getGetters("profitloss", ["showCreateModal"]);
 
+    const { getAction } = useStoreModule();
+    const { getItem } = getAction("profitloss", ["getItem"]);
+
     const myDateRange = ref({
       startDate: "",
       endDate: "",
     });
+
+    const data = ref({});
+
+    const getProfitLoss = () => {
+      getItem(myDateRange.value)
+        .then((response) => {
+          console.log("Hello");
+          data.value = response.data;
+        })
+        .catch((err) => {
+          console.log("err", err);
+        })
+        .finally(() => {
+          console.log("finally", "finally");
+        });
+    };
+
+    // onMounted(() => {
+    //   getProfitLoss();
+    // });
 
     return {
       hasEditPermission: true,
@@ -152,14 +100,9 @@ export default defineComponent({
       showEditModal,
       showCreateModal,
       myDateRange,
+      data,
+      getProfitLoss,
     };
   },
 });
 </script>
-
-<style scoped>
-.branch-form {
-  width: 80%;
-  max-width: 80%;
-}
-</style>
