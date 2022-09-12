@@ -9,7 +9,7 @@
         title="Add Groups"
       >
         <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-4 col-lg-4">
+          <div class="col-12 col-md-6 col-lg-6">
             <q-input
               ref="name"
               outlined
@@ -21,19 +21,7 @@
             >
             </q-input>
           </div>
-          <div class="col-12 col-md-4 col-lg-4">
-            <q-input
-              ref="code"
-              outlined
-              v-model="code"
-              dense
-              label="Code"
-              :error-message="$getValidationErrors('code')"
-              :error="$hasValidationErrors('code')"
-            >
-            </q-input>
-          </div>
-          <div class="col-12 col-md-4 col-lg-4">
+          <div class="col-12 col-md-6 col-lg-6">
             <QSearch
               v-model="branch_id"
               label="Branch"
@@ -83,7 +71,6 @@ export default {
   computed: {
     ...mapFields("group", [
       "newItem.name",
-      "newItem.code",
       "newItem.branch_id",
       "newItem.address",
     ]),
