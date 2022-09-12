@@ -22,6 +22,15 @@ const routes = [
         },
       },
       {
+        path: "customers",
+        component: () => import("pages/Customer/Index.vue"),
+        meta: {
+          name: "customer",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
         path: "cities",
         component: () => import("pages/City/Index.vue"),
         meta: {

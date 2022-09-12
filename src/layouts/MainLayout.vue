@@ -164,6 +164,12 @@ const linksList = [
     show: true,
     childs: [
       {
+        title: "Customer",
+        icon: "hlw",
+        link: "/customers",
+        show: true,
+      },
+      {
         title: "Group Name",
         icon: "hlw",
         link: "/groups",
