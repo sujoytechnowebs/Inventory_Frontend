@@ -38,11 +38,11 @@ export function setProductDetails(state, payload) {
   console.log("payload", payload);
   // state.newItem.purchase_details = payload;
   state.newItem.salesDetails.push({
-    item_rate: null,
+    item_rate: payload.sale_price,
     discount: null,
     quantity: null,
     discount: null,
-    custom_price: null,
+    custom_price: false,
     product_id: payload.id,
     product_name: payload.name,
   });

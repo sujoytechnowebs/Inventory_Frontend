@@ -76,6 +76,7 @@ export default function () {
       aadhar_card_no: "",
       opening_balance: "",
       opening_balance_type: "",
+      voter_card_no: null,
     },
     editItem: {
       name: "",

@@ -293,6 +293,23 @@
         :factory="factoryFn"
       />
     </div>
+    <div class="col-12 col-md-4 col-lg-4">
+      <q-input
+        ref="voter_card_no"
+        outlined
+        v-model="voter_card_no"
+        dense
+        type="number"
+        label
+        :error-message="$getValidationErrors('voter_card_no')"
+        :error="$hasValidationErrors('voter_card_no')"
+      >
+        <template v-slot:label>
+          Voter Card Number
+          <span class="text-weight-bold text-negative">*</span>
+        </template>
+      </q-input>
+    </div>
   </div>
 </template>
 
@@ -332,6 +349,7 @@ export default {
       "newItem.DOB",
       "newItem.opening_balance",
       "newItem.opening_balance_type",
+      "newItem.voter_card_no",
     ]),
   },
 
