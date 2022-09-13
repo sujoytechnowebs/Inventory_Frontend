@@ -17,6 +17,73 @@ export function getItems({ commit, state }, props) {
     page: props.pagination.page,
     rowsPerPage: props.pagination.rowsPerPage,
     search: props.search ? props.search : state.filter.search,
+    role: "customer",
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get(endPoint, {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+// Customer Filter
+
+export function getCustomer({ commit, state }, props) {
+  var params = {
+    all: props.all,
+    role: "customer",
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get(endPoint, {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+// Investor Filter
+
+export function getInvestor({ commit, state }, props) {
+  var params = {
+    all: props.all,
+    role: "investor",
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get(endPoint, {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+// Vendor Filter
+
+export function getVendor({ commit, state }, props) {
+  var params = {
+    all: props.all,
+    role: "vendor",
   };
 
   return new Promise((resolve, reject) => {
@@ -117,7 +184,7 @@ export function deleteItem({ commit, state }, item) {
   });
 }
 
-// Media
+//Media
 
 export function media({ commit, state }, props) {
   return new Promise((resolve, reject) => {

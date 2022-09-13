@@ -8,9 +8,6 @@
         :data-store="dataStore"
         title="Add Customer"
       >
-        <p class="customer_form_title text-weight-medium q-pt-sm">
-          Customer Details
-        </p>
         <div class="row q-col-gutter-md">
           <div class="col-12">
             <div class="row q-col-gutter-md">
@@ -312,30 +309,20 @@
           </div>
           <div class="col-12 col-md-4 col-lg-4">
             <q-input
-              ref="aadhar_card_no"
+              ref="voter_card_no"
               outlined
-              v-model="aadhar_card_no"
+              v-model="voter_card_no"
               dense
               type="number"
               label
-              :error-message="$getValidationErrors('aadhar_card_no')"
-              :error="$hasValidationErrors('aadhar_card_no')"
+              :error-message="$getValidationErrors('voter_card_no')"
+              :error="$hasValidationErrors('voter_card_no')"
             >
               <template v-slot:label>
                 Voter Card Number
                 <span class="text-weight-bold text-negative">*</span>
               </template>
             </q-input>
-          </div>
-          <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-            <q-uploader
-              label="Upload Aadhar Document"
-              square
-              flat
-              bordered
-              class="full-width"
-              :factory="factoryFn"
-            />
           </div>
         </div>
       </QCreateForm>
@@ -349,7 +336,7 @@ import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 
 export default {
-  name: "CityCreatePage",
+  name: "CustomerPage",
   setup() {
     return {
       modal: ref(true),
@@ -381,6 +368,7 @@ export default {
       "newItem.DOB",
       "newItem.opening_balance",
       "newItem.opening_balance_type",
+      "newItem.voter_card_no",
     ]),
   },
 

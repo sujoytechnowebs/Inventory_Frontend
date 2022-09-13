@@ -8,7 +8,6 @@
         :data-store="dataStore"
         title="Edit Customer"
       >
-        <p class="customer_form_title">Customer Details</p>
         <div class="row q-col-gutter-md">
           <div class="col-12">
             <div class="row q-col-gutter-md">
@@ -371,7 +370,7 @@ export default {
   },
   computed: {
     ...mapFields("customer", [
-      "editItem.name",
+      "newItem.name",
       "editItem.email",
       "editItem.account_name",
       "editItem.spouse_parent_name",
@@ -386,6 +385,9 @@ export default {
       "editItem.group_id",
       "editItem.group_role",
       "editItem.DOB",
+      "editItem.opening_balance",
+      "editItem.opening_balance_type",
+      "editItem.voter_card_no",
     ]),
   },
 

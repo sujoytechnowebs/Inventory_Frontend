@@ -15,7 +15,7 @@
               label="Role"
               option-value="code"
               option-label="role"
-              data-store="state"
+              data-store="user"
               action="getRoles"
               :multiple="false"
             ></QSearch>
