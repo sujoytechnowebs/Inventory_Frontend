@@ -87,7 +87,7 @@ export default function () {
       collected_by: null,
       collected_date: "",
       payment_method: "",
-      numberOfInstallment: null,
+      paymentAmount: null,
     },
     modals: {
       createItem: false,

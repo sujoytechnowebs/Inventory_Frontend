@@ -73,7 +73,7 @@
             </q-btn>
           </span>
 
-          <span v-if="actionsRow.row.status === 'Approved'">
+          <span v-if="actionsRow.row.status === 'proposed'">
             <q-btn
               flat
               color="green-10"

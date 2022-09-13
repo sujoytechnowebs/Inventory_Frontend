@@ -27,7 +27,7 @@
               ]"
             ></QSearch>
           </div>
-          <div class="col-12">
+          <div class="col-12 col-md-6 col-lg-6">
             <q-input
               outlined
               label="Collected Date"
@@ -64,7 +64,7 @@
               </template>
             </q-input>
           </div>
-          <div class="col-12">
+          <div class="col-12 col-md-6 col-lg-6">
             <q-select
               outlined
               v-model="payment_method"
@@ -80,20 +80,38 @@
               ]"
             />
           </div>
-          <div class="col-12">
+          <div class="col-12 col-md-6 col-lg-6">
             <q-input
-              ref="numberOfInstallment"
+              ref="ewi"
               outlined
-              v-model="numberOfInstallment"
+              v-model="ewi"
               dense
               type="number"
-              label="Number of Installation"
+              readonly
+              label="EWi Amount"
               :rules="[
                 (val) =>
-                  (val && !validationErrors.numberOfInstallment > 0) ||
-                  validationErrors.numberOfInstallment
-                    ? validationErrors.numberOfInstallment
-                    : 'Please write the number of installation',
+                  (val && !validationErrors.ewi > 0) || validationErrors.ewi
+                    ? validationErrors.ewi
+                    : 'Please write the payment amount',
+              ]"
+            >
+            </q-input>
+          </div>
+          <div class="col-12 col-md-6 col-lg-6">
+            <q-input
+              ref="paymentAmount"
+              outlined
+              v-model="paymentAmount"
+              dense
+              type="number"
+              label="Payment Amount"
+              :rules="[
+                (val) =>
+                  (val && !validationErrors.paymentAmount > 0) ||
+                  validationErrors.paymentAmount
+                    ? validationErrors.paymentAmount
+                    : 'Please write the payment amount',
               ]"
             >
             </q-input>
@@ -125,7 +143,8 @@ export default {
       "editItem.collected_by",
       "editItem.collected_date",
       "editItem.payment_method",
-      "editItem.numberOfInstallment",
+      "editItem.paymentAmount",
+      "editItem.ewi",
     ]),
   },
 };

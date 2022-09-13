@@ -238,6 +238,14 @@ const routes = [
           requiresAuth: true,
         },
       },
+      {
+        path: "cashbook",
+        component: () => import("pages/Cashbook/Index.vue"),
+        meta: {
+          name: "cashbook-page",
+          requiresAuth: true,
+        },
+      },
     ],
   },
 

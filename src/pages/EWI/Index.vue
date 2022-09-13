@@ -126,6 +126,9 @@
             </q-dialog>
           </div>
         </template>
+        <template v-slot:aditionalActions>
+          <q-btn label="Pay" flat />
+        </template>
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
@@ -176,7 +179,7 @@ export default defineComponent({
       hasEditPermission: true,
       dataStore: "ewi",
       // ewiReports: "export-ewi",
-      aditionalActions: false,
+      aditionalActions: true,
       showEditModal,
       showCreateModal,
       options: ["due", "collected"],
@@ -200,3 +203,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.EWI-form {
+  width: 50%;
+  max-width: 50%;
+}
+</style>

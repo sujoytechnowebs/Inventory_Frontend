@@ -283,6 +283,12 @@ const linksList = [
         link: "/profit-loss",
         show: true,
       },
+      {
+        title: "Cash Book",
+        icon: "hlw",
+        link: "/cashbook",
+        show: true,
+      },
     ],
   },
   {
