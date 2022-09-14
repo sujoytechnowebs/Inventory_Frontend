@@ -110,6 +110,7 @@ import EssentialLink from "components/EssentialLink.vue";
 import useStoreModule from "../libs/useStoreModule.js";
 import { mapFields } from "vuex-map-fields";
 import { LocalStorage as SessionStorage } from "quasar";
+import { acl } from "../boot/acl.js";
 
 const linksList = [
   {
@@ -121,13 +122,13 @@ const linksList = [
         title: "Users Management",
         icon: "hlw",
         link: "/users",
-        show: true,
+        show: acl.hasAccess("user.index"),
       },
       {
         title: "Stack Holder",
         icon: "hlw",
         link: "/stack-holder",
-        show: true,
+        show: acl.hasAccess("investorEquity.index"),
       },
     ],
   },
@@ -187,20 +188,8 @@ const linksList = [
         title: "Accounts",
         icon: "hlw",
         link: "/accounts",
-        show: true,
+        show: acl.hasAccess("account.index"),
       },
-      // {
-      //   title: "Check In",
-      //   icon: "hlw",
-      //   link: "/check-in",
-      //   show: true,
-      // },
-      // {
-      //   title: "Tax",
-      //   icon: "hlw",
-      //   link: "/tax",
-      //   show: true,
-      // },
     ],
   },
   {

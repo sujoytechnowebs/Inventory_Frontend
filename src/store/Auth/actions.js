@@ -185,7 +185,7 @@ export function resetPasssword({ state, commit }) {
 
 export function checkRoutePermission({ context, state }, routeAction) {
   return new Promise((resolve, reject) => {
-    if (state.authUser._id) {
+    if (state.authUser.id) {
       if (state.authUser.acl[routeAction]) {
         resolve(true);
       } else {

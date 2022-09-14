@@ -1,4 +1,5 @@
 export function setAuthUser(state, payload) {
+  console.log("payload", payload);
   state.authUser = payload;
 }
 
