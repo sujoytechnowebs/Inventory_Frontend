@@ -30,6 +30,7 @@ import groupuser from "./GroupUser";
 import profitloss from "./ProfitLoss";
 import stackholder from "./Stackholder";
 import customer from "./Customer";
+import cashbook from "./Cashbook";
 
 /*
  * If not building with SSR mode, you can
@@ -72,6 +73,7 @@ export default store(function (/* { ssrContext } */) {
       stackholder,
       profitloss,
       customer,
+      cashbook,
     },
 
     // enable strict mode (adds overhead!)

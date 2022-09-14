@@ -85,6 +85,13 @@ export default function () {
       note: "",
       status: "",
       salesDetails: [],
+      application_received_date: "",
+      application_received_by: "",
+      ewi_start_date: "",
+      no_of_ewi: "",
+      loan_amount: "",
+      processing_fees: "",
+      down_payment: "",
     },
     editItem: {
       name: "",
