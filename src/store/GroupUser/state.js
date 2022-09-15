@@ -6,7 +6,7 @@ export default function () {
         name: "name",
         align: "left",
         label: "Group Name",
-        field: (row) => row?.group?.name,
+        field: (row) => row?.group_name,
         sortable: true,
       },
       {
@@ -20,7 +20,7 @@ export default function () {
         name: "code",
         align: "left",
         label: "Customer Name",
-        field: (row) => row?.user?.name,
+        field: (row) => row?.name,
         sortable: true,
       },
       { name: "actions", align: "right", label: "Actions" },

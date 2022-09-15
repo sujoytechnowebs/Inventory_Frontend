@@ -1,6 +1,7 @@
 import { api, axios } from "boot/axios";
 
 const endPoint = "/ewi";
+const instantendPoint = "/ewi-payment-instant";
 const endCollection = "/ewi-payment-collection";
 import moment from "moment";
 
@@ -117,7 +118,7 @@ export function deleteItem({ commit, state }, item) {
   });
 }
 
-//Report List is here
+//Report List in excel is here
 
 export function getReport({ commit, state }, props) {
   var params = {
@@ -132,6 +133,46 @@ export function getReport({ commit, state }, props) {
         params: params,
       })
       .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+//Report List in pdf is here
+
+export function getReportPdf({ commit, state }, props) {
+  var params = {
+    status: state?.filter?.status,
+    ewi_date: state?.filter?.ewi_date,
+    group_code: state?.filter?.group_code,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get("export-pdf", {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+// Test
+
+export function instantPay({ commit, state }, id) {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(instantendPoint + "/" + id)
+      .then((response) => {
+        commit("setEditItem", response.data);
+        commit("setLastUpdated", moment());
         resolve(response);
       })
       .catch((err) => {

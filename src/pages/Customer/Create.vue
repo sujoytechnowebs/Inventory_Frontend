@@ -343,7 +343,7 @@ export default {
       dataStore: "customer",
       validationErrors: ref({}),
       modelValue: ref(),
-      house_options: ["own", "rent", "tea estate"],
+      house_options: ["own house", "rent", "tea estate"],
       grp_role_options: ["leader", "member"],
       options: ["cr", "dr"],
     };

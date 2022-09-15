@@ -39,6 +39,7 @@ export default function () {
     filter: {
       search: "",
       trashed: false,
+      branch_id: "",
     },
     lastUpdated: "",
     // },
