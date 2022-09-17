@@ -346,6 +346,7 @@ export default defineComponent({
 
     onBeforeUnmount(() => {
       // unsubscribe();
+      // unsubscribe.value = ref(null)
     });
 
     return {

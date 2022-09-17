@@ -46,6 +46,6 @@ export default {
 }
 
 .dashboard-bg {
-  background-image: linear-gradient(113deg, rgb(255, 0, 118), rgb(86, 0, 255));
+  background-image: linear-gradient(113deg, rgb(255 255 255), rgb(239 239 239));
 }
 </style>
