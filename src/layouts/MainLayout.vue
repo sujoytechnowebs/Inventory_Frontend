@@ -340,16 +340,15 @@ export default defineComponent({
 
     const logOutUser = () => {
       loading.value = true;
+
       logOut()
         .then((response) => {
-          console.log("response", response);
-          router.push("/");
+          window.location.href = "/";
         })
         .catch((err) => {
           console.log("err", err);
         })
         .finally(() => {
-          console.log("finally", "finally");
           loading.value = false;
         });
     };
