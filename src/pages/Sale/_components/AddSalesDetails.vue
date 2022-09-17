@@ -120,6 +120,9 @@ export default defineComponent({
 
     const { getMutations } = useStoreModule();
     const { setProductDetails } = getMutations("sale", ["setProductDetails"]);
+    const { calculateLoanAmount } = getMutations("sale", [
+      "calculateLoanAmount",
+    ]);
 
     const { removeProductDetails } = getMutations("sale", [
       "removeProductDetails",
@@ -141,6 +144,7 @@ export default defineComponent({
       // emit("update:modelValue", arr_data.value);
       console.log("product.value", product.value.id);
       setProductDetails(product.value);
+      calculateLoanAmount();
     };
 
     // Testing Purpose

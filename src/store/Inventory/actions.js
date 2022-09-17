@@ -115,3 +115,45 @@ export function deleteItem({ commit, state }, item) {
       });
   });
 }
+
+//Report List in Excel is here
+
+export function getReport({ commit, state }, props) {
+  var params = {
+    branch_id: state?.filter?.branch_id,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get("stock-report-excel", {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+//Report List in Excel is here
+
+export function getReportPdf({ commit, state }, props) {
+  var params = {
+    branch_id: state?.filter?.branch_id,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get("stock-report-pdf", {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}

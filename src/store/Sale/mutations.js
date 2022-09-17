@@ -56,3 +56,13 @@ export function removeProductDetails(state, payload) {
     state.newItem.salesDetails.splice(payload, 1); // 2nd parameter means remove one item only
   }
 }
+
+export function calculateLoanAmount(state, payload) {
+  state.newItem.loan_amount = 0;
+  if (state.newItem.salesDetails.length > 0) {
+    state.newItem.salesDetails.map((item) => {
+      state.newItem.loan_amount =
+        state.newItem.loan_amount + parseInt(item.item_rate);
+    });
+  }
+}

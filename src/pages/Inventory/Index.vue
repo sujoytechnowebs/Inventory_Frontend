@@ -16,19 +16,15 @@
             Inventory Management Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
-            <div class="col-8">
-              <!-- <q-input
-                outlined
-                dense
-                debounce="300"
-                v-model="filter.search"
-                clearable
-                placeholder="Search"
+            <div class="col-12">
+              <q-btn
+                label="Download Report"
+                no-caps
+                outline
+                color="primary"
+                @click="alert = true"
               >
-                <template v-slot:append>
-                  <q-icon name="search" />
-                </template>
-              </q-input> -->
+              </q-btn>
             </div>
           </div>
         </template>
@@ -47,11 +43,46 @@
       </q-dialog>
     </q-card-section>
   </div>
+
+  <!-- Dialog Box Appear -->
+
+  <div>
+    <q-dialog v-model="alert">
+      <q-card class="download_report_size">
+        <q-card-actions align="right">
+          <q-btn flat dense round icon="close" v-close-popup
+            ><q-tooltip> Close </q-tooltip></q-btn
+          >
+        </q-card-actions>
+
+        <q-card-section>
+          <div class="row q-col-gutter-md">
+            <div class="col-12">
+              <QSearch
+                v-model="branch_id"
+                label="Branch"
+                option-value="id"
+                option-label="name"
+                data-store="branch"
+                action="getItems"
+                :multiple="false"
+              ></QSearch>
+            </div>
+          </div>
+        </q-card-section>
+
+        <q-card-actions align="between">
+          <q-btn flat label="Download Excel" no-caps @click="exportInExcel" />
+          <q-btn flat label="Download PDF" no-caps @click="exportInPdf" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+  </div>
 </template>
 
 <script>
 import { mapFields } from "vuex-map-fields";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
@@ -67,7 +98,7 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("inventory", ["filter"]),
+    ...mapFields("inventory", ["filter.branch_id"]),
   },
   setup() {
     const { getGetters } = useStoreModule();
@@ -80,7 +111,38 @@ export default defineComponent({
       aditionalActions: false,
       showEditModal,
       showCreateModal,
+      alert: ref(false),
     };
+  },
+
+  methods: {
+    exportInExcel() {
+      // console.log("export pdf");
+      this.$store
+        .dispatch(`${this.dataStore}/getReport`, {
+          export_excel: 1,
+          pagination: this.pagination,
+        })
+        .then((response) => {
+          window.open(response.data.temp_url, "_system");
+        })
+        .catch((error) => {});
+    },
+
+    // Pdf download
+
+    exportInPdf() {
+      // console.log("export pdf");
+      this.$store
+        .dispatch(`${this.dataStore}/getReportPdf`, {
+          export_excel: 1,
+          pagination: this.pagination,
+        })
+        .then((response) => {
+          window.open(response.data.temp_url, "_system");
+        })
+        .catch((error) => {});
+    },
   },
 });
 </script>
@@ -89,5 +151,9 @@ export default defineComponent({
 .inventory-form {
   width: 50%;
   max-width: 50%;
+}
+
+.download_report_size {
+  width: 500px;
 }
 </style>

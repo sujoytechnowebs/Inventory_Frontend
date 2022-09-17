@@ -22,9 +22,11 @@
               <q-btn
                 label="Download Report"
                 no-caps
+                outline
                 color="primary"
                 @click="alert = true"
-              />
+              >
+              </q-btn>
             </div>
           </div>
 
@@ -37,10 +39,13 @@
                   <q-btn
                     flat
                     round
+                    dense
                     icon="close"
                     color="primary"
                     v-close-popup
-                  />
+                  >
+                    <q-tooltip> Close </q-tooltip>
+                  </q-btn>
                 </q-card-actions>
 
                 <q-card-section>
@@ -119,15 +124,25 @@
                 </q-card-section>
 
                 <q-card-actions align="between">
-                  <q-btn flat label="Download" @click="exportInExcel" />
-                  <q-btn flat label="Cancel" color="primary" v-close-popup />
+                  <q-btn
+                    flat
+                    label="Download Excel"
+                    no-caps
+                    @click="exportInExcel"
+                  />
+                  <q-btn
+                    flat
+                    label="Download PDF"
+                    no-caps
+                    @click="exportInPdf"
+                  />
                 </q-card-actions>
               </q-card>
             </q-dialog>
           </div>
         </template>
-        <template v-slot:aditionalActions>
-          <q-btn label="Pay" flat />
+        <template v-slot:aditionalActions="props">
+          <addpay v-bind:id="props.row.id" />
         </template>
       </QDataTable>
 
@@ -152,8 +167,12 @@ import { defineComponent, ref } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
+const addpay = defineAsyncComponent(() => import("./_components/addpay.vue"));
+
 const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
 const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+
+// Test
 
 export default defineComponent({
   name: "IndexPage",
@@ -161,6 +180,7 @@ export default defineComponent({
   components: {
     EditUser,
     CreateUser,
+    addpay,
   },
 
   computed: {
@@ -171,9 +191,13 @@ export default defineComponent({
     ]),
   },
   setup() {
-    const { getGetters } = useStoreModule();
+    const { getGetters, getAction } = useStoreModule();
     const { showEditModal } = getGetters("ewi", ["showEditModal"]);
     const { showCreateModal } = getGetters("ewi", ["showCreateModal"]);
+
+    // Test
+
+    // const { instantPay } = getAction("ewi", ["instantPay"]);
 
     return {
       hasEditPermission: true,
@@ -192,6 +216,21 @@ export default defineComponent({
       // console.log("export pdf");
       this.$store
         .dispatch(`${this.dataStore}/getReport`, {
+          export_excel: 1,
+          pagination: this.pagination,
+        })
+        .then((response) => {
+          window.open(response.data.temp_url, "_system");
+        })
+        .catch((error) => {});
+    },
+
+    // Pdf download
+
+    exportInPdf() {
+      // console.log("export pdf");
+      this.$store
+        .dispatch(`${this.dataStore}/getReportPdf`, {
           export_excel: 1,
           pagination: this.pagination,
         })

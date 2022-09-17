@@ -268,20 +268,10 @@
                 <q-card-section>
                   <div class="row q-col-gutter-md">
                     <div class="col-6">
-                      <q-input
-                        dense
-                        outlined
-                        v-model="item_rate"
-                        label="Product Name"
-                      />
+                      <p class="total_head">Total Cost:</p>
                     </div>
                     <div class="col-6">
-                      <q-input
-                        dense
-                        outlined
-                        v-model="text"
-                        label="Product Rate"
-                      />
+                      {{ loan_amount }}
                     </div>
                   </div>
                 </q-card-section>
@@ -295,7 +285,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { mapFields } from "vuex-map-fields";
 import { defineAsyncComponent } from "vue";
 import { mapGetters } from "vuex";
@@ -352,6 +342,11 @@ export default {
 <style scoped>
 .head {
   font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.total_head {
+  font-size: 1rem;
   font-weight: 500;
 }
 </style>

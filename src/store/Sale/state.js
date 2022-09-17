@@ -89,7 +89,7 @@ export default function () {
       application_received_by: "",
       ewi_start_date: "",
       no_of_ewi: "",
-      loan_amount: "",
+      loan_amount: null,
       processing_fees: "",
       down_payment: "",
     },
