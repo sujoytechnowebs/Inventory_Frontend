@@ -11,14 +11,14 @@
         expand-separator
         :icon="essentialLink.icon"
         :label="essentialLink.title"
-        v-show="essentialLink.show"
+        v-show="essentialLink.show != '' ? $acl.hasAccess(essentialLink.show) : true"
       >
         <q-item
           v-for="child in essentialLink.childs"
           clickable
           :to="child.link"
           :key="child.title"
-          v-show="child.show"
+          v-show="child.show != '' ? $acl.hasAccess(child.show) : true"
           v-bind:class="
             $route.path == child.link
               ? 'bg-secondary text-white'
@@ -38,7 +38,7 @@
         v-else
         clickable
         :to="essentialLink.link"
-        v-show="essentialLink.show"
+        v-show="essentialLink.show != '' ? $acl.hasAccess(essentialLink.show) : true"
         v-bind:class="
           $route.path == essentialLink.link
             ? 'bg-secondary text-white'
@@ -59,6 +59,7 @@
 
 <script>
 import { defineComponent } from "vue";
+import { acl } from "../boot/acl.js";
 
 export default defineComponent({
   name: "EssentialLink",

@@ -15,9 +15,9 @@ export function columns(state) {
 //   return state.items.filter;
 // }
 
-// export function lastUpdated(state) {
-//   return state.items.lastUpdated;
-// }
+export function lastUpdated(state) {
+  return state.lastUpdated;
+}
 
 export function showCreateModal(state) {
   return state.modals.createItem;

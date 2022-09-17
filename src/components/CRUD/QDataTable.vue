@@ -4,7 +4,7 @@
     :title="title"
     :rows="records"
     :columns="columns"
-    v-model:pagination="pagination"
+    :pagination="pagination"
     :filter="filters"
     :loading="loading"
     row-key="id"
@@ -91,6 +91,7 @@ import {
   defineComponent,
   ref,
   reactive,
+  watch,
   onMounted,
   defineProps,
   onBeforeUnmount,
@@ -100,6 +101,7 @@ import useStoreModule from "../../libs/useStoreModule.js";
 import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 import { Tnotify } from "../../libs/custom.js";
+import moment from "moment";
 
 // const props = defineProps({
 //   title: String,
@@ -218,8 +220,8 @@ export default defineComponent({
       sortBy: "created_at",
       descending: false,
       page: 1,
-      rowsPerPage: 3,
-      rowsNumber: 10,
+      rowsPerPage: 10,
+      rowsNumber: 0,
     });
 
     const filters = reactive(props.filter);
@@ -228,8 +230,10 @@ export default defineComponent({
     const { getAction, getMutations, getGetters } = useStoreModule();
     const { getItems } = getAction(dataStore, ["getItems"]);
     const { setItems } = getMutations(dataStore, ["setItems"]);
+    const { setLastUpdated } = getMutations(dataStore, ["setLastUpdated"]);
     const { records } = getGetters(dataStore, ["records"]);
     const { columns } = getGetters(dataStore, ["columns"]);
+    const { lastUpdated } = getGetters(dataStore, ["lastUpdated"]);
     const { setEditItem } = getMutations(dataStore, ["setEditItem"]);
     const { setEditModal } = getMutations(dataStore, ["setEditModal"]);
     const { showHideCreateModal } = getMutations(dataStore, [
@@ -242,23 +246,25 @@ export default defineComponent({
         filter: filters,
       });
 
-      unsubscribe.value = store.subscribe((mutation, state) => {
-        if (mutation.type == dataStore + "/setLastUpdated") {
-          onRequest({
-            pagination: pagination.value,
-            filter: filters,
-          });
-        }
-      });
+      // unsubscribe.value = store.subscribe((mutation, state) => {
+      //   if (mutation.type == dataStore + "/setLastUpdated") {
+      //     onRequest({
+      //       pagination: pagination.value,
+      //       filter: filters,
+      //     });
+      //   }
+      // });
     });
 
     const onRequest = (params) => {
       loading.value = true;
       getItems(params)
         .then((response) => {
+
+
           pagination.value.page = response.data.current_page;
           pagination.value.rowsPerPage = response.data.per_page;
-          pagination.value.rowsNumber = response.data.total;
+          // pagination.value.rowsNumber = response.data.total;
           pagination.value.sortBy = params.pagination.sortBy;
           pagination.value.descending = params.pagination.descending;
 
@@ -268,14 +274,13 @@ export default defineComponent({
           tableData.filter = filters;
           tableData.data = response.data.data;
 
-          console.log("tableData", tableData);
           setItems(tableData);
+          setLastUpdated(null)
         })
         .catch((err) => {
           console.log("err", err);
         })
         .finally(() => {
-          console.log("finally", "finally");
           loading.value = false;
         });
     };
@@ -346,6 +351,15 @@ export default defineComponent({
 
     onBeforeUnmount(() => {
       // unsubscribe();
+    });
+
+    watch(lastUpdated, async (newValue, oldValue) => {
+      if(lastUpdated.value != null){
+        onRequest({
+          pagination: pagination.value,
+          filter: filters,
+        });
+      }
     });
 
     return {
