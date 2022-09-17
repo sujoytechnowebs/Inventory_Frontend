@@ -87,6 +87,7 @@ export default function () {
       status: "",
       payment_method: "",
       purchase_details: [],
+      grand_item_rate_total: 0,
     },
     editItem: {
       vendor_id: null,
@@ -96,6 +97,7 @@ export default function () {
       status: "",
       payment_method: "",
       purchase_details: [],
+      grand_item_rate_total: 0,
     },
     modals: {
       createItem: false,

@@ -153,7 +153,7 @@
                     <p class="q-ma-none text-weight-medium">Grand Total :</p>
                   </div>
                   <div class="col-6 text-right">
-                    <p>30</p>
+                    <p>₹{{ grand_item_rate_total }}</p>
                   </div>
                 </div>
               </q-card-section>
@@ -205,6 +205,7 @@ export default {
       "newItem.status",
       "newItem.payment_method",
       "newItem.purchase_details",
+      "newItem.grand_item_rate_total",
     ]),
     ...mapGetters("auth", ["getActiveBranch"]),
   },

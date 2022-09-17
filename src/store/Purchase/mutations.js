@@ -21,11 +21,26 @@ export function setProductDetails(state, payload) {
     item_rate: null,
     discount: null,
     quantity: null,
-    discount: null,
+    discount: 0,
     sales_rate: null,
     product_id: payload.id,
     product_name: payload.name,
+    total: 0,
   });
+}
+
+export function setTotalRate(state, index) {
+  let currentObj = state.newItem.purchase_details[index];
+  let quantity = currentObj.quantity ? currentObj.quantity : 1;
+  let item_rate = currentObj.item_rate ? currentObj.item_rate : 0;
+  currentObj.total = parseFloat(item_rate) * parseFloat(quantity);
+  state.newItem.purchase_details[index] = currentObj;
+
+  var total = 0;
+  state.newItem.purchase_details.forEach((item) => {
+    total += parseFloat(item.total);
+  });
+  state.newItem.grand_item_rate_total = parseFloat(total);
 }
 
 export function editProductDetails(state, payload) {
@@ -33,10 +48,11 @@ export function editProductDetails(state, payload) {
     item_rate: null,
     discount: null,
     quantity: null,
-    discount: null,
+    discount: 0,
     sales_rate: null,
     product_id: payload.id,
     product_name: payload.name,
+    total: 0,
   });
 }
 
