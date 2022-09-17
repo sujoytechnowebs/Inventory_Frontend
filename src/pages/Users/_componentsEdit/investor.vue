@@ -101,7 +101,6 @@
         outlined
         v-model="ifsc"
         dense
-        type="number"
         label="IFSC Number"
         :rules="[ifsc]"
       />

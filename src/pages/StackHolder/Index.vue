@@ -87,7 +87,7 @@ export default defineComponent({
 
 <style scoped>
 .investor-amount-form {
-  width: 50%;
-  max-width: 50%;
+  width: 70%;
+  max-width: 70%;
 }
 </style>
