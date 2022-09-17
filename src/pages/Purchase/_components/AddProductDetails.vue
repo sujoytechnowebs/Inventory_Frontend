@@ -37,6 +37,7 @@
       </div>
       <div class="col-6 col-sm-3 col-md-2 col-lg-2">
         <q-input
+          @keyup="inputValue(index)"
           ref="item_rate"
           v-model="data.item_rate"
           dense
@@ -45,7 +46,7 @@
         >
         </q-input>
       </div>
-      <div class="col-6 col-sm-3 col-md-2 col-lg-2">
+      <!-- <div class="col-6 col-sm-3 col-md-2 col-lg-2">
         <q-input
           ref="discount"
           v-model="data.discount"
@@ -54,9 +55,10 @@
           label="Discount"
         >
         </q-input>
-      </div>
+      </div> -->
       <div class="col-6 col-sm-3 col-md-2 col-lg-2">
         <q-input
+          @keyup="inputValue(index)"
           ref="quantity"
           v-model="data.quantity"
           dense
@@ -74,6 +76,7 @@
           label="Sales"
         ></q-input>
       </div>
+      <div class="col-1 col-md-1 col-lg-1">₹{{ data.total }}</div>
       <div class="col-1 col-md-1 col-lg-1">
         <q-btn
           icon="delete"
@@ -104,34 +107,6 @@ export default defineComponent({
   computed: {
     ...mapMultiRowFields("purchase", ["newItem.purchase_details"]),
   },
-  methods: {
-    // isNumberDecimal: function (evt) {
-    //   evt = evt ? evt : window.event;
-    //   var charCode = evt.which ? evt.which : evt.keyCode;
-    //   if (
-    //     charCode > 31 &&
-    //     (charCode < 48 || charCode > 57) &&
-    //     charCode !== 46
-    //   ) {
-    //     evt.preventDefault();
-    //   } else {
-    //     return true;
-    //   }
-    // },
-    // isNotDecimal: function (evt) {
-    //   evt = evt ? evt : window.event;
-    //   var charCode = evt.which ? evt.which : evt.keyCode;
-    //   if (
-    //     charCode > 31 &&
-    //     (charCode < 48 || charCode > 57) &&
-    //     charCode !== 47
-    //   ) {
-    //     evt.preventDefault();
-    //   } else {
-    //     return true;
-    //   }
-    // },
-  },
 
   setup(props, { emit }) {
     const product = ref([]);
@@ -146,12 +121,18 @@ export default defineComponent({
       "removeProductDetails",
     ]);
 
+    const { setTotalRate } = getMutations("purchase", ["setTotalRate"]);
+
     onMounted(() => {
       //
     });
 
     const addProduct = () => {
       setProductDetails(product.value);
+    };
+
+    const inputValue = (index) => {
+      setTotalRate(index);
     };
 
     // Testing Purpose
@@ -166,6 +147,7 @@ export default defineComponent({
       addProduct,
       // editProduct,
       deleteProduct,
+      inputValue,
     };
   },
 });
