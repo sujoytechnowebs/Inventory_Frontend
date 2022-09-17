@@ -1,30 +1,35 @@
 <template>
-  <div class="col-12 q-pa-md">
-    <DateRangePicker
-      v-model="myDateRange"
-      :locale-data="{ firstDay: 1, format: 'dd-mm-yyyy' }"
-    />
-  </div>
-  <div class="col-12 q-pa-md">
-    <q-btn
-      color="primary"
-      label="Primary"
-      type="submit"
-      @click="getProfitLoss()"
-    />
+  <p class="profitLossHead q-pa-md">Profit & Loss</p>
+  <div class="row q-col-gutter-md q-pa-md">
+    <div class="col-12 col-md-6 col-lg-6">
+      <DateRangePicker
+        v-model="myDateRange"
+        :locale-data="{ firstDay: 1, format: 'dd-mm-yyyy' }"
+      />
+    </div>
+    <div class="col-12 col-md-6 col-lg-6">
+      <q-btn
+        color="primary"
+        label="Calculate"
+        type="submit"
+        @click="getProfitLoss()"
+      />
+    </div>
   </div>
 
   <div class="row q-col-gutter-md q-pa-md">
     <div class="col-12 col-md-4 col-lg-4">
       <q-card class="my-card">
         <q-card-section>
+          <span class="calculate_head"> Gross Profit: </span>
           {{ data.gross_profit }}
         </q-card-section>
       </q-card>
     </div>
     <div class="col-12 col-md-4 col-lg-4">
       <q-card class="my-card">
-        <q-card-section>
+        <q-card-section
+          ><span class="calculate_head">Total Expense:</span>
           {{ data.totalExpense }}
         </q-card-section>
       </q-card>
@@ -32,7 +37,8 @@
     <div class="col-12 col-md-4 col-lg-4">
       <q-card class="my-card">
         <q-card-section>
-          {{ data.total_profitOrLoss }}
+          <span class="calculate_head">Profit/Loss:</span
+          >{{ data.total_profitOrLoss }}
         </q-card-section>
       </q-card>
     </div>
@@ -106,3 +112,14 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.profitLossHead {
+  font-size: 20px;
+}
+
+.calculate_head {
+  font-size: 15px;
+  font-weight: 600;
+}
+</style>
