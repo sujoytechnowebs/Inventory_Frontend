@@ -16,15 +16,15 @@
               option-value="code"
               option-label="role"
               data-store="user"
-              action="getRoles"
+              action="getRolesWithoutCustomer"
               :multiple="false"
             ></QSearch>
           </div>
         </div>
 
-        <div v-if="role === 'customer'">
+        <!-- <div v-if="role === 'customer'">
           <customer />
-        </div>
+        </div> -->
 
         <div v-if="role === 'vendor'">
           <vendor />
@@ -72,7 +72,6 @@ export default {
   name: "UsersCreatePage",
 
   components: {
-    customer,
     vendor,
     incharge,
     investor,
