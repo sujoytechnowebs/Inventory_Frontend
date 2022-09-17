@@ -4,7 +4,7 @@
     :title="title"
     :rows="records"
     :columns="columns"
-    :pagination="pagination"
+    v-model:pagination="pagination"
     :filter="filters"
     :loading="loading"
     row-key="id"
@@ -103,49 +103,6 @@ import { useQuasar } from "quasar";
 import { Tnotify } from "../../libs/custom.js";
 import moment from "moment";
 
-// const props = defineProps({
-//   title: String,
-//   dataStore: String,
-//   editRoute: {
-//     type: String,
-//     default: "",
-//   },
-//   customDelete: {
-//     type: Boolean,
-//     default: false,
-//   },
-//   filter: Object,
-//   customCellTypes: [],
-//   rowClickable: {
-//     type: Boolean,
-//     default: false,
-//   },
-//   visibleColumns: {
-//     type: Array,
-//     default: null,
-//   },
-//   viewLink: {
-//     type: String,
-//     default: "",
-//   },
-//   customAction: {
-//     default: false,
-//     type: Boolean,
-//   },
-//   hasEditPermission: {
-//     default: false,
-//     type: Boolean,
-//   },
-//   aditionalActions: {
-//     default: false,
-//     type: Boolean,
-//   },
-//   canDelete: {
-//     default: true,
-//     type: Boolean,
-//   },
-// });
-
 export default defineComponent({
   name: "IndexPage",
   props: {
@@ -208,13 +165,6 @@ export default defineComponent({
     const loading = ref(false);
     const unsubscribe = ref(null);
     const router = useRouter();
-    // const pagination = ref({
-    //   sortBy: "created_at",
-    //   descending: true,
-    //   page: 1,
-    //   rowsPerPage: 10,
-    //   rowsNumber: 0,
-    // });
 
     const pagination = ref({
       sortBy: "created_at",
@@ -224,6 +174,7 @@ export default defineComponent({
       rowsNumber: 0,
     });
 
+
     const filters = reactive(props.filter);
     const dataStore = reactive(props.dataStore);
 
@@ -231,7 +182,10 @@ export default defineComponent({
     const { getItems } = getAction(dataStore, ["getItems"]);
     const { setItems } = getMutations(dataStore, ["setItems"]);
     const { setLastUpdated } = getMutations(dataStore, ["setLastUpdated"]);
-    const { records } = getGetters(dataStore, ["records"]);
+    
+    // const { records } = getGetters(dataStore, ["records"]);
+    const records = ref([])
+
     const { columns } = getGetters(dataStore, ["columns"]);
     const { lastUpdated } = getGetters(dataStore, ["lastUpdated"]);
     const { setEditItem } = getMutations(dataStore, ["setEditItem"]);
@@ -262,20 +216,21 @@ export default defineComponent({
         .then((response) => {
 
 
-          pagination.value.page = response.data.current_page;
-          pagination.value.rowsPerPage = response.data.per_page;
-          // pagination.value.rowsNumber = response.data.total;
+          // set data to proper variables
+          pagination.value.page = response?.data?.current_page;
+          pagination.value.rowsPerPage = response?.data?.per_page;
+          pagination.value.rowsNumber = response?.data?.total;
           pagination.value.sortBy = params.pagination.sortBy;
           pagination.value.descending = params.pagination.descending;
-
+    
           // create item object to update the store
           let tableData = {};
           tableData.pagination = pagination;
-          tableData.filter = filters;
-          tableData.data = response.data.data;
-
-          setItems(tableData);
-          setLastUpdated(null)
+          tableData.filter = props.filter;
+          tableData.data = response?.data?.data;
+    
+          records.value = response?.data?.data;
+          // setItems(tableData)
         })
         .catch((err) => {
           console.log("err", err);
@@ -286,10 +241,6 @@ export default defineComponent({
     };
 
     const onRowClick = (evt, row) => {
-      // if (props.rowClickable) this.onClickView(row);
-      // else {
-      //   return;
-      // }
       return;
     };
 

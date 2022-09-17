@@ -78,7 +78,7 @@ export default route(function ({ store, ssrContext }) {
       //     })
       //   })
       //   .catch(e => {
-      //     next()
+          next()
       //   })
       // }
       next();

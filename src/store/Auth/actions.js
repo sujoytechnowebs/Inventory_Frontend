@@ -1,25 +1,23 @@
 import { LocalStorage as SessionStorage } from "quasar";
 import { api, axios } from "boot/axios";
 
-// export function login({ context, commit }, payload) {
-//   alert();
-//   return new Promise((resolve, reject) => {
-//     api
-//       .post("login", {
-//         email: payload.email.value,
-//         password: payload.password.value,
-//         captcha_res: payload.captcha_res.value,
-//       })
-//       .then((response) => {
-//         SessionStorage.set("token", JSON.stringify(response.data.token));
-//         commit("setAuthUser", response.data.authUser);
-//         resolve(response);
-//       })
-//       .catch((err) => {
-//         reject(err);
-//       });
-//   });
-// }
+export function login({ state, commit }, payload) {
+  return new Promise((resolve, reject) => {
+    api
+      .post("/login", {
+        email: state.credentials.email,
+        password: state.credentials.password,
+      })
+      .then((response) => {
+        SessionStorage.set("token", JSON.stringify(response.data.token));
+        commit("setAuthUser", response.data.authUser);
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
 
 export function logOut({ state, commit }, payload) {
   return new Promise((resolve, reject) => {
@@ -123,21 +121,21 @@ export function resendOTP({ state, commit }) {
   });
 }
 
-export function resetPassword({ state, commit }) {
-  return new Promise((resolve, reject) => {
-    api
-      .post("send-password-reset-otp", {
-        email: state.forget_password.email,
-      })
-      .then((response) => {
-        commit("passwordResetToken", response.data.token);
-        resolve(response);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
-}
+// export function resetPassword({ state, commit }) {
+//   return new Promise((resolve, reject) => {
+//     api
+//       .post("send-password-reset-otp", {
+//         email: state.forget_password.email,
+//       })
+//       .then((response) => {
+//         commit("passwordResetToken", response.data.token);
+//         resolve(response);
+//       })
+//       .catch((err) => {
+//         reject(err);
+//       });
+//   });
+// }
 
 export function submitPasswordResetOTP({ state, commit }) {
   return new Promise((resolve, reject) => {
@@ -214,6 +212,7 @@ export function checkAuthUserData({ state }) {
 }
 
 export function fetchAuthUser({ commit, state }) {
+  console.log("call 4 fetchAuthUser")
   return new Promise((resolve, reject) => {
     if (state.authUser.id === undefined) {
       axios
@@ -239,6 +238,35 @@ export function switchActiveBranch({ state, commit }, props) {
       })
       .then((response) => {
         resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+
+export function changeEmail({ state, commit }, id) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("change-email", state.change_email)
+      .then((response) => {
+        resolve(response);
+        commit('resetChangeEmailForm')
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+export function resetPassword({ state, commit }, id) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("reset-password", state.reset_password)
+      .then((response) => {
+        resolve(response);
+        commit('resetResetPasswordForm')
       })
       .catch((err) => {
         reject(err);

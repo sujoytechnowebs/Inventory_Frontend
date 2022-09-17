@@ -2,6 +2,7 @@ export default function () {
   return {
     message: "",
     authUser: {
+      id: undefined,
       email: "",
       password: "",
       username: "",
@@ -40,5 +41,18 @@ export default function () {
     active_branch: 1,
     forgetStep: 1,
     signUpStep: 1,
+    change_email: {
+      current_email: "",
+      email: "",
+    },
+    reset_password: {
+      old_password: "",
+      password: "",
+      password_confirmation: ""
+    },
+    credentials: {
+      email: "admin@test.com",
+      password: "123456",
+    },
   };
 }

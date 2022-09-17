@@ -9,7 +9,6 @@ const routes = [
         meta: {
           name: "home",
           requiresAuth: true,
-          acl: "user.index",
         },
       },
       {

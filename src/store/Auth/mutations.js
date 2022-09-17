@@ -1,5 +1,4 @@
 export function setAuthUser(state, payload) {
-  console.log("payload", payload);
   state.authUser = payload;
 }
 
@@ -21,4 +20,19 @@ export function passwordResetToken(state, payload) {
 
 export function setActiveBranch(state, payload) {
   state.active_branch = payload;
+}
+
+export function resetChangeEmailForm(state, payload) {
+  state.change_email = {
+    current_email: "",
+    email: ""
+  }
+}
+
+export function resetResetPasswordForm(state, payload) {
+  state.reset_password = {
+    old_password: "",
+    password: "",
+    password_confirmation: ""
+  }
 }
