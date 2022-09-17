@@ -22,17 +22,13 @@
             <div class="col-12">
               <q-btn
                 label="Download Report"
-                no-caps
-                outline
                 color="primary"
                 @click="alert = true"
-              >
-              </q-btn>
+              />
             </div>
           </div>
 
           <!-- Dialog Box Appear -->
-
           <div>
             <q-dialog v-model="alert">
               <q-card>
@@ -55,33 +51,21 @@
                       <q-select
                         outlined
                         dense
-                        v-model="status"
-                        :options="options"
-                        label="Status"
-                        :rules="[
-                          (val) =>
-                            (val && !validationErrors.status > 0) ||
-                            validationErrors.status
-                              ? validationErrors.status
-                              : 'Please Choose The Status',
-                        ]"
-                      ></q-select>
+                        v-model="account_type"
+                        :options="type_account"
+                        label="Account Type"
+                        :error-message="$getValidationErrors('account_type')"
+                        :error="$hasValidationErrors('account_type')"
+                      />
                     </div>
-
                     <div class="col-12">
                       <q-input
-                        dense
-                        label="EWI Date"
                         outlined
-                        v-model="ewi_date"
+                        dense
+                        v-model="fromDate"
                         mask="date"
-                        :rules="[
-                          (val) =>
-                            (val && !validationErrors.ewi_date > 0) ||
-                            validationErrors.ewi_date
-                              ? validationErrors.ewi_date
-                              : 'Please Choose The EWI Date',
-                        ]"
+                        :error-message="$getValidationErrors('fromDate')"
+                        :error="$hasValidationErrors('fromDate')"
                       >
                         <template v-slot:prepend>
                           <q-icon name="event" class="cursor-pointer">
@@ -90,7 +74,7 @@
                               transition-show="scale"
                               transition-hide="scale"
                             >
-                              <q-date v-model="ewi_date">
+                              <q-date v-model="fromDate">
                                 <div class="row items-center justify-end">
                                   <q-btn
                                     v-close-popup
@@ -105,21 +89,47 @@
                         </template>
                       </q-input>
                     </div>
-
                     <div class="col-12">
                       <q-input
-                        dense
                         outlined
-                        v-model="group_code"
-                        label="Group Code"
-                        :rules="[
-                          (val) =>
-                            (val && !validationErrors.group_code > 0) ||
-                            validationErrors.group_code
-                              ? validationErrors.group_code
-                              : 'Please Write The Group Code',
-                        ]"
-                      ></q-input>
+                        dense
+                        v-model="toDate"
+                        mask="date"
+                        :error-message="$getValidationErrors('toDate')"
+                        :error="$hasValidationErrors('toDate')"
+                      >
+                        <template v-slot:prepend>
+                          <q-icon name="event" class="cursor-pointer">
+                            <q-popup-proxy
+                              cover
+                              transition-show="scale"
+                              transition-hide="scale"
+                            >
+                              <q-date v-model="toDate">
+                                <div class="row items-center justify-end">
+                                  <q-btn
+                                    v-close-popup
+                                    label="Close"
+                                    color="primary"
+                                    flat
+                                  />
+                                </div>
+                              </q-date>
+                            </q-popup-proxy>
+                          </q-icon>
+                        </template>
+                      </q-input>
+                    </div>
+                    <div class="col-12">
+                      <q-select
+                        outlined
+                        dense
+                        v-model="transType"
+                        :options="options"
+                        label="Type"
+                        :error-message="$getValidationErrors('transType')"
+                        :error="$hasValidationErrors('transType')"
+                      />
                     </div>
                   </div>
                 </q-card-section>
@@ -149,7 +159,7 @@
 
 <script>
 import { mapFields } from "vuex-map-fields";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
@@ -159,7 +169,12 @@ export default defineComponent({
   components: {},
 
   computed: {
-    ...mapFields("cashbook", ["filter"]),
+    ...mapFields("cashbook", [
+      "filter.account_type",
+      "filter.fromDate",
+      "filter.toDate",
+      "filter.transType",
+    ]),
   },
   setup() {
     const { getGetters } = useStoreModule();
@@ -168,12 +183,14 @@ export default defineComponent({
       hasEditPermission: true,
       dataStore: "cashbook",
       aditionalActions: false,
+      alert: ref(false),
+      options: ["debit", "credit"],
+      type_account: ["bank", "cash"],
     };
   },
 
   methods: {
     exportInExcel() {
-      // console.log("export pdf");
       this.$store
         .dispatch(`${this.dataStore}/getReport`, {
           export_excel: 1,
@@ -185,10 +202,7 @@ export default defineComponent({
         .catch((error) => {});
     },
 
-    // Pdf download
-
     exportInPdf() {
-      // console.log("export pdf");
       this.$store
         .dispatch(`${this.dataStore}/getReportPdf`, {
           export_excel: 1,
