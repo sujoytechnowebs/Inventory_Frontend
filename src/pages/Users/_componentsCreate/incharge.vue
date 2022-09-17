@@ -120,30 +120,24 @@
           <span class="text-weight-medium incharge_form_title"
             >Present Address</span
           >
-          <q-editor
-            placeholder="Please Write The Present Address"
-            v-model="address_1"
-            min-height="10rem"
+          <q-field
             :error-message="$getValidationErrors('address_1')"
             :error="$hasValidationErrors('address_1')"
-          ></q-editor>
-
-          <q-card-section v-html="editor" />
+          >
+            <q-editor v-model="address_1" class="full-width"></q-editor>
+          </q-field>
         </div>
 
         <div class="col-12 col-sm-6 col-md-6 col-lg-6">
           <span class="text-weight-medium incharge_form_title"
             >Permanent Address</span
           >
-          <q-editor
-            placeholder="Please Write The Permanent Address"
-            v-model="address_2"
-            min-height="10rem"
+          <q-field
             :error-message="$getValidationErrors('address_2')"
             :error="$hasValidationErrors('address_2')"
-          ></q-editor>
-
-          <q-card-section v-html="editor" />
+          >
+            <q-editor v-model="address_2" class="full-width"></q-editor>
+          </q-field>
         </div>
 
         <div class="col-12 col-md-6 col-lg-6">
@@ -233,14 +227,19 @@
       </q-input>
     </div>
     <div class="col-12 col-md-6 col-lg-6">
-      <q-uploader
-        label="Upload Aadhar Document"
-        square
-        flat
-        bordered
-        class="full-width"
-        :factory="factoryFn"
-      />
+      <q-field
+        :error-message="$getValidationErrors('aadhar_media_id')"
+        :error="$hasValidationErrors('aadhar_media_id')"
+      >
+        <q-uploader
+          label="Upload Aadhar Document"
+          square
+          flat
+          bordered
+          class="full-width"
+          :factory="factoryFn"
+        />
+      </q-field>
     </div>
   </div>
 </template>
