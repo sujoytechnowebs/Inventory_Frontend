@@ -114,28 +114,25 @@
           ></QSearch>
         </div>
 
-        <div class="col-12">
-          <q-editor
-            placeholder="Please Write The Present Address"
-            v-model="address_1"
-            min-height="10rem"
+        <div class="col-12 col-md-6 col-lg-6">
+          <p class="address_head">Please Write The Present Address:</p>
+          <q-field
             :error-message="$getValidationErrors('address_1')"
             :error="$hasValidationErrors('address_1')"
-          ></q-editor>
-
-          <q-card-section v-html="editor" />
+          >
+            <q-editor v-model="address_1" class="full-width"></q-editor>
+          </q-field>
         </div>
 
-        <div class="col-12">
-          <q-editor
-            placeholder="Please Write The Permanent Address"
-            v-model="address_2"
-            min-height="10rem"
+        <div class="col-12 col-md-6 col-lg-6">
+          <p class="address_head">Please Write The Permanent Address</p>
+
+          <q-field
             :error-message="$getValidationErrors('address_2')"
             :error="$hasValidationErrors('address_2')"
-          ></q-editor>
-
-          <q-card-section v-html="editor" />
+          >
+            <q-editor v-model="address_2" class="full-width"></q-editor>
+          </q-field>
         </div>
 
         <div class="col-12 col-md-6 col-lg-6">
@@ -225,14 +222,35 @@
       </q-input>
     </div>
     <div class="col-12">
-      <q-uploader
-        label="Upload Aadhar Document"
-        square
-        flat
-        bordered
-        class="full-width"
-        :factory="factoryFn"
-      />
+      <q-field
+        :error-message="$getValidationErrors('aadhar_media_id')"
+        :error="$hasValidationErrors('aadhar_media_id')"
+      >
+        <q-uploader
+          label="Upload Aadhar Document"
+          square
+          flat
+          bordered
+          class="full-width"
+          :factory="factoryFn"
+        />
+      </q-field>
+    </div>
+    <div class="col-12 col-md-4 col-lg-4">
+      <q-input
+        ref="voter_card_no"
+        outlined
+        v-model="voter_card_no"
+        dense
+        label
+        :error-message="$getValidationErrors('voter_card_no')"
+        :error="$hasValidationErrors('voter_card_no')"
+      >
+        <template v-slot:label>
+          Voter Card Number
+          <span class="text-weight-bold text-negative">*</span>
+        </template>
+      </q-input>
     </div>
   </div>
 </template>
@@ -270,6 +288,7 @@ export default {
       "newItem.bank_branch",
       "newItem.opening_balance",
       "newItem.opening_balance_type",
+      "newItem.voter_card_no",
     ]),
   },
 
@@ -295,6 +314,11 @@ export default {
 <style scoped>
 .incharge_form_title {
   font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.address_head {
+  font-size: 1rem;
   font-weight: 600;
 }
 </style>
