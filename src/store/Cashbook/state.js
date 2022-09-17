@@ -57,6 +57,9 @@ export default function () {
     },
     filter: {
       search: "",
+      account_type: "",
+      fromDate: "",
+      transType: "",
       trashed: false,
     },
     lastUpdated: "",
