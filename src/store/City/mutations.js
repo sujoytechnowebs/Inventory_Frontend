@@ -1,5 +1,4 @@
 export function setItems(state, payload) {
-  console.log("payload", payload)
   state.data = payload;
 }
 
