@@ -142,7 +142,7 @@
           </div>
         </template>
         <template v-slot:aditionalActions="props">
-          <addpay v-bind:id="props.row.id" />
+          <addpay v-bind:id="props.row.id" v-bind:status="props.row.status" />
         </template>
       </QDataTable>
 

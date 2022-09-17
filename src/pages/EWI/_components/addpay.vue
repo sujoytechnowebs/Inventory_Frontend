@@ -1,5 +1,7 @@
 <template>
-  <q-btn label="Pay" no-caps flat @click="instantPay(id)" />
+  <span v-if="status === 'due'">
+    <q-btn label="Pay" no-caps flat @click="instantPay(id)" />
+  </span>
 </template>
 
 <script>
@@ -12,6 +14,7 @@ export default {
   name: "payLp",
   props: {
     id: Number,
+    status: String,
   },
 
   setup() {
