@@ -106,7 +106,7 @@ import useStoreModule from "../../libs/useStoreModule.js";
 export default defineComponent({
   name: "IndexPage",
   computed: {
-    ...mapFields("login", ["credentials.email", "credentials.password"]),
+    ...mapFields("auth", ["credentials.email", "credentials.password"]),
   },
   setup() {
     // const store = useStore();
@@ -115,7 +115,7 @@ export default defineComponent({
 
     const { getAction } = useStoreModule();
     // const { getItems } = getAction("Register", ["getItems"]);
-    const { login } = getAction("login", ["login"]);
+    const { login } = getAction("auth", ["login"]);
     const loading = ref(false);
     const router = useRouter();
 
