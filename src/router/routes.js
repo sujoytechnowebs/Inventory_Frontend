@@ -9,7 +9,7 @@ const routes = [
         meta: {
           name: "home",
           requiresAuth: true,
-          // acl: "home",
+          acl: "user.index",
         },
       },
       {
@@ -18,7 +18,7 @@ const routes = [
         meta: {
           name: "user",
           requiresAuth: true,
-          // acl: "user.index",
+          acl: "user.index",
         },
       },
       {
@@ -72,7 +72,7 @@ const routes = [
         meta: {
           name: "account",
           requiresAuth: true,
-          // acl: "user.index",
+          acl: "account.index",
         },
       },
       {
@@ -155,7 +155,7 @@ const routes = [
         meta: {
           name: "stackholder-page",
           requiresAuth: true,
-          // acl: "user.index",
+          acl: "investorEquity.index",
         },
       },
       {
@@ -173,7 +173,7 @@ const routes = [
         meta: {
           name: "inventory-page",
           requiresAuth: true,
-          // acl: "user.index",
+          acl: "user.index",
         },
       },
       {

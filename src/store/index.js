@@ -41,6 +41,8 @@ import cashbook from "./Cashbook";
  * with the Store instance.
  */
 
+let storeInst = null;
+
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
@@ -81,5 +83,9 @@ export default store(function (/* { ssrContext } */) {
     strict: process.env.DEBUGGING,
   });
 
+  storeInst = Store;
+
   return Store;
 });
+
+export { storeInst };
