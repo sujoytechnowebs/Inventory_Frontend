@@ -77,6 +77,7 @@ export function createItem({ commit, state }) {
       .then((response) => {
         commit("setLastUpdated", moment());
         commit("showHideCreateModal", false);
+        commit("resetForm");
         resolve(response);
       })
       .catch((err) => {
