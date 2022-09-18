@@ -11,6 +11,12 @@ export function setEditItem(state, payload) {
   state.editItem.state_name = payload.state_name;
 }
 
+export function resetForm(state) {
+  state.newItem = {
+    state_name: "",
+  };
+}
+
 export function setEditModal(state, payload) {
   state.modals.editItem = payload;
 }

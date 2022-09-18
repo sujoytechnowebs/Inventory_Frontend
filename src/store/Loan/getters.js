@@ -30,3 +30,7 @@ export function showApproveModal(state) {
 export function showDisburseModal(state) {
   return state.modals.disburse;
 }
+
+export function lastUpdated(state) {
+  return state.lastUpdated;
+}

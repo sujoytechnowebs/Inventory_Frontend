@@ -26,3 +26,7 @@ export function showCreateModal(state) {
 export function showEditModal(state) {
   return state.modals.editItem;
 }
+
+export function lastUpdated(state) {
+  return state.lastUpdated;
+}

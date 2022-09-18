@@ -88,14 +88,14 @@ export default {
   setup() {
     return {
       modal: true,
-      dataStore: "stackholder",
-      saveaction: "stackholder/updateItem",
+      dataStore: "stockholder",
+      saveaction: "stockholder/updateItem",
       validationErrors: ref({}),
       modelValue: ref(),
     };
   },
   computed: {
-    ...mapFields("stackholder", [
+    ...mapFields("stockholder", [
       "editItem.investorAccountId",
       "editItem.action_name",
       "editItem.date",

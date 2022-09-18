@@ -67,16 +67,16 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("stackholder", ["filter"]),
+    ...mapFields("stockholder", ["filter"]),
   },
   setup() {
     const { getGetters } = useStoreModule();
-    const { showEditModal } = getGetters("stackholder", ["showEditModal"]);
-    const { showCreateModal } = getGetters("stackholder", ["showCreateModal"]);
+    const { showEditModal } = getGetters("stockholder", ["showEditModal"]);
+    const { showCreateModal } = getGetters("stockholder", ["showCreateModal"]);
 
     return {
       hasEditPermission: true,
-      dataStore: "stackholder",
+      dataStore: "stockholder",
       aditionalActions: false,
       showEditModal,
       showCreateModal,

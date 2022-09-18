@@ -63,6 +63,7 @@ export function getItem({ commit, state }, id) {
       .then((response) => {
         commit("setEditItem", response.data);
         commit("setLastUpdated", moment());
+        commit("resetForm");
         resolve(response);
       })
       .catch((err) => {

@@ -17,13 +17,6 @@ export default function () {
         sortable: true,
       },
       {
-        name: "address",
-        align: "left",
-        label: "Address",
-        field: "address",
-        sortable: true,
-      },
-      {
         name: "branch_id",
         align: "left",
         label: "Branch",
