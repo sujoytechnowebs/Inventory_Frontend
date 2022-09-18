@@ -19,3 +19,10 @@ export function setEditModal(state, payload) {
 export function setLastUpdated(state, payload) {
   state.lastUpdated = payload;
 }
+
+export function resetForm(state) {
+  state.newItem = {
+    city_name: "",
+    state_id: "",
+  };
+}
