@@ -30,3 +30,7 @@ export function showEditModal(state) {
 export function showPaymentDetailModel(state) {
   return state.modals.paymentModel;
 }
+
+export function lastUpdated(state) {
+  return state.lastUpdated;
+}
