@@ -4,8 +4,9 @@
       <QCreateForm
         :modal="modal"
         :widgets="true"
-        save-action="stackholder/createItem"
+        save-action="stockholder/createItem"
         :data-store="dataStore"
+        o
         title="Add Investor Amount"
       >
         <div class="row q-col-gutter-md">
@@ -104,7 +105,7 @@ export default {
   setup() {
     return {
       modal: ref(true),
-      dataStore: "stackholder",
+      dataStore: "stockholder",
       validationErrors: ref({}),
       modelValue: ref(),
       options: ["invest", "withdral", "loan"],
@@ -112,7 +113,7 @@ export default {
   },
 
   computed: {
-    ...mapFields("stackholder", [
+    ...mapFields("stockholder", [
       "newItem.investorAccountId",
       "newItem.action_name",
       "newItem.date",

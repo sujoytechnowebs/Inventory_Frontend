@@ -149,10 +149,10 @@ const routes = [
         },
       },
       {
-        path: "stack-holder",
-        component: () => import("pages/StackHolder/Index.vue"),
+        path: "stock-holder",
+        component: () => import("pages/StockHolder/Index.vue"),
         meta: {
-          name: "stackholder-page",
+          name: "stockholder-page",
           requiresAuth: true,
           acl: "investorEquity.index",
         },

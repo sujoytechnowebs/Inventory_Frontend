@@ -125,9 +125,9 @@ const linksList = [
         show: "user.index",
       },
       {
-        title: "Stack Holder",
+        title: "Stock Holder",
         icon: "hlw",
-        link: "/stack-holder",
+        link: "/stock-holder",
         show: "investorEquity.index",
       },
     ],
