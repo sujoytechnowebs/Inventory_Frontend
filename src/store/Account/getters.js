@@ -30,3 +30,7 @@ export function showEditModal(state) {
 export function setViewMoreDetails(state) {
   return state.modals.ViewMoreDetails;
 }
+
+export function lastUpdated(state) {
+  return state.lastUpdated;
+}

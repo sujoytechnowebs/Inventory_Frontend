@@ -6,6 +6,16 @@ export function showHideCreateModal(state, payload) {
   state.modals.createItem = payload;
 }
 
+export function resetForm(state) {
+  state.newItem = {
+    account_name: null,
+    type: "",
+    branch_id: null,
+    opening_balance: null,
+    balance_type: "",
+  };
+}
+
 export function setEditItem(state, payload) {
   state.editItem.id = payload.id;
   state.editItem.account_name = payload.account_name;
