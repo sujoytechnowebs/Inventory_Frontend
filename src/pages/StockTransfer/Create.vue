@@ -29,6 +29,7 @@
               v-model="quantity"
               dense
               label="Quantity"
+              type="number"
               :error-message="$getValidationErrors('quantity')"
               :error="$hasValidationErrors('quantity')"
             >

@@ -8,23 +8,23 @@
         :data-store="dataStore"
         title="Edit User"
       >
-        <div v-if="role === 'customer'">
+        <div v-if="code === 'customer'">
           <customer />
         </div>
 
-        <div v-if="role === 'vendor'">
+        <div v-if="code === 'vendor'">
           <vendor />
         </div>
 
-        <div v-if="role === 'incharge'">
+        <div v-if="code === 'incharge'">
           <incharge />
         </div>
 
-        <div v-if="role === 'investor'">
+        <div v-if="code === 'investor'">
           <investor />
         </div>
 
-        <div v-if="role === 'user'">
+        <div v-if="code === 'user'">
           <user />
         </div>
       </QEditForm>
@@ -68,7 +68,7 @@ export default {
 
   computed: {
     ...mapFields("user", [
-      "editItem.role",
+      "editItem.code",
       "editItem.name",
       "editItem.account_name",
       "editItem.phone",

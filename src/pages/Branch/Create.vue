@@ -16,6 +16,7 @@
               v-model="name"
               dense
               label="Branch Name"
+              @keydown="checkKeyDownAlphaNumeric($event)"
               :error-message="$getValidationErrors('name')"
               :error="$hasValidationErrors('name')"
             >
@@ -63,6 +64,7 @@
               outlined
               v-model="postcode"
               dense
+              type="number"
               label="PostCode"
               :error-message="$getValidationErrors('postcode')"
               :error="$hasValidationErrors('postcode')"
@@ -112,6 +114,15 @@ export default {
       "newItem.postcode",
       "newItem.city_id",
     ]),
+  },
+
+  methods: {
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
+      }
+    },
   },
 };
 </script>

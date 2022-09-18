@@ -47,6 +47,7 @@
                   v-model="account_name"
                   dense
                   label
+                  @keydown="checkKeyDownAlphaNumeric($event)"
                   :error-message="$getValidationErrors('account_name')"
                   :error="$hasValidationErrors('account_name')"
                 >
@@ -63,6 +64,7 @@
                   v-model="name"
                   dense
                   label
+                  @keydown="checkKeyDownAlphaNumeric($event)"
                   :error-message="$getValidationErrors('name')"
                   :error="$hasValidationErrors('name')"
                 >
@@ -115,6 +117,7 @@
                   v-model="spouse_parent_name"
                   dense
                   label
+                  @keydown="checkKeyDownAlphaNumeric($event)"
                   :error-message="$getValidationErrors('spouse_parent_name')"
                   :error="$hasValidationErrors('spouse_parent_name')"
                 >
@@ -159,6 +162,7 @@
                   v-model="occupation"
                   dense
                   label
+                  @keydown="checkKeyDownAlphaNumeric($event)"
                   :error-message="$getValidationErrors('occupation')"
                   :error="$hasValidationErrors('occupation')"
                 >
@@ -191,7 +195,7 @@
                   v-model="monthly_income"
                   dense
                   label
-                  type="number"
+                  v-on:keypress="NumbersOnly"
                   :error-message="$getValidationErrors('monthly_income')"
                   :error="$hasValidationErrors('monthly_income')"
                 >
@@ -249,7 +253,7 @@
                   outlined
                   v-model="opening_balance"
                   label="Opening Balance"
-                  type="number"
+                  v-on:keypress="NumbersOnly"
                   dense
                   :error-message="$getValidationErrors('opening_balance')"
                   :error="$hasValidationErrors('opening_balance')"
@@ -314,7 +318,6 @@
               outlined
               v-model="voter_card_no"
               dense
-              type="number"
               label
               :error-message="$getValidationErrors('voter_card_no')"
               :error="$hasValidationErrors('voter_card_no')"
@@ -389,6 +392,29 @@ export default {
           })
           .finally(() => {});
       });
+    },
+
+    // Validation
+
+    NumbersOnly(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
+
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
+      }
     },
   },
 };

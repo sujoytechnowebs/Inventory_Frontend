@@ -39,13 +39,6 @@ export default function () {
         sortable: true,
       },
       {
-        name: "total_quantity",
-        align: "left",
-        label: "Total Quantity",
-        field: "total_quantity",
-        sortable: true,
-      },
-      {
         name: "status",
         align: "left",
         label: "Status",

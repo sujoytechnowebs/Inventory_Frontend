@@ -51,6 +51,7 @@
               outlined
               v-model="quantity"
               dense
+              type="number"
               label="Number of quantity"
               :rules="[
                 (val) =>

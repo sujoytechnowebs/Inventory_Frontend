@@ -27,6 +27,7 @@
               v-model="quantity"
               dense
               label="Quantity"
+              type="number"
             >
             </q-input>
           </div>

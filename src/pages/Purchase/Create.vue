@@ -11,7 +11,7 @@
         <div class="row q-col-gutter-md">
           <div class="col-12 col-sm-8 col-md-9 col-lg-9 scroll-bar q-pr-md">
             <div class="row q-col-gutter-md">
-              <div class="col-12 col-md-3 col-lg-3">
+              <div class="col-12 col-md-4 col-lg-4">
                 <QSearch
                   v-model="vendor_id"
                   label="Vendor Name"
@@ -24,7 +24,7 @@
                   :error="$hasValidationErrors('vendor_id')"
                 ></QSearch>
               </div>
-              <div class="col-12 col-md-3 col-lg-3">
+              <div class="col-12 col-md-5 col-lg-5">
                 <QSearch
                   class="extra-height"
                   v-model="branch_id"
@@ -38,7 +38,9 @@
                   :error="$hasValidationErrors('branch_id')"
                 ></QSearch>
               </div>
-              <div class="col-12 col-md-2 col-lg-2">
+            </div>
+            <div class="row q-col-gutter-md">
+              <div class="col-12 col-md-3 col-lg-3">
                 <q-input
                   outlined
                   v-model="date_of_purchase"
@@ -70,7 +72,7 @@
                   </template>
                 </q-input>
               </div>
-              <div class="col-12 col-md-2 col-lg-2">
+              <div class="col-12 col-md-3 col-lg-3">
                 <q-select
                   outlined
                   v-model="payment_method"
@@ -82,7 +84,7 @@
                   :error="$hasValidationErrors('payment_method')"
                 ></q-select>
               </div>
-              <div class="col-12 col-md-2 col-lg-2">
+              <div class="col-12 col-md-3 col-lg-3">
                 <q-select
                   outlined
                   dense
@@ -102,11 +104,15 @@
               <addProducts v-model="purchase_details" />
             </div>
 
-            <div class="col-12 q-py-md">
-              <q-editor
-                v-model="note"
-                placeholder="Please Write The Notes For Purchase"
-              />
+            <div class="col-12 q-py-lg">
+              <p class="note_head">Notes For Purchase:</p>
+
+              <q-field
+                :error-message="$getValidationErrors('note')"
+                :error="$hasValidationErrors('note')"
+              >
+                <q-editor v-model="note" class="full-width"></q-editor>
+              </q-field>
             </div>
           </div>
           <div class="col-12 col-sm-4 col-md-3 col-lg-3">
@@ -114,46 +120,15 @@
               <q-card-section>
                 <div class="row justify-between">
                   <div class="col-6">
-                    <p class="q-ma-none text-weight-medium">Rate :</p>
-                  </div>
-                  <div class="col-6 text-right">
-                    <p></p>
-                  </div>
-                </div>
-                <div class="row justify-between">
-                  <div class="col-6">
-                    <p class="q-ma-none text-weight-medium">Discount :</p>
-                  </div>
-                  <div class="col-6 text-right">
-                    <p></p>
-                  </div>
-                </div>
-                <div class="row justify-between">
-                  <div class="col-6">
-                    <p class="q-ma-none text-weight-medium">Quantity :</p>
-                  </div>
-                  <div class="col-6 text-right">
-                    <p></p>
-                  </div>
-                </div>
-                <div class="row justify-between">
-                  <div class="col-6">
-                    <p class="q-ma-none text-weight-medium">Sales :</p>
-                  </div>
-                  <div class="col-6 text-right">
-                    <p></p>
-                  </div>
-                </div>
-
-                <div class="q-py-sm">
-                  <q-separator />
-                </div>
-                <div class="row justify-between">
-                  <div class="col-6">
                     <p class="q-ma-none text-weight-medium">Grand Total :</p>
                   </div>
                   <div class="col-6 text-right">
-                    <p>₹{{ grand_item_rate_total }}</p>
+                    <p>
+                      <span class="text-weight-medium">₹</span
+                      ><span class="text-calculation">{{
+                        grand_item_rate_total
+                      }}</span>
+                    </p>
                   </div>
                 </div>
               </q-card-section>
@@ -233,5 +208,21 @@ export default {
   .q-field__native
   .q-field__input {
   min-height: 0 !important;
+}
+</style>
+
+<style scoped>
+.text-weight-medium {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.text-calculation {
+  font-size: 1.1rem;
+}
+
+.note_head {
+  font-size: 1rem;
+  font-weight: 600;
 }
 </style>

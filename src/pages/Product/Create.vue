@@ -16,9 +16,9 @@
               v-model="name"
               dense
               label="Product Name"
+              @keydown="checkKeyDownAlphaNumeric($event)"
               :error-message="$getValidationErrors('name')"
               :error="$hasValidationErrors('name')"
-              @keydown="checkKeyDownAlphaNumeric($event)"
             >
             </q-input>
           </div>
@@ -53,7 +53,6 @@
               outlined
               v-model="sale_price"
               dense
-              type="number"
               label="Sale Price"
               v-on:keypress="NumbersOnly"
               :error-message="$getValidationErrors('sale_price')"

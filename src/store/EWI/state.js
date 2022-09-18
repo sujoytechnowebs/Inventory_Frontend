@@ -24,13 +24,6 @@ export default function () {
         sortable: true,
       },
       {
-        name: "code",
-        align: "left",
-        label: "Group",
-        field: (row) => row?.loan?.group_user?.group?.name,
-        sortable: true,
-      },
-      {
         name: "ewi_date",
         align: "left",
         label: "EWI Date",

@@ -86,6 +86,7 @@
               dense
               v-model="amount"
               label="Amount"
+              v-on:keypress="NumbersOnly"
               :error-message="$getValidationErrors('amount')"
               :error="$hasValidationErrors('amount')"
             ></q-input>
@@ -120,6 +121,22 @@ export default {
       "newItem.amount",
       "newItem.toAccount",
     ]),
+  },
+
+  methods: {
+    NumbersOnly(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
   },
 };
 </script>

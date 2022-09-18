@@ -108,6 +108,6 @@ export default defineComponent({
 
 .return-form-dialog .q-dialog__inner .q-dialog__inner--minimized > div {
   max-height: 100% !important;
-  overflow: hidden;
+  overflow: scroll;
 }
 </style>

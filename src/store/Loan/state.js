@@ -24,17 +24,10 @@ export default function () {
         sortable: true,
       },
       {
-        name: "application_approved_by",
-        align: "left",
-        label: "Approved By",
-        field: (row) => row?.application_approved_by?.name,
-        sortable: true,
-      },
-      {
         name: "application_approve_date",
         align: "left",
         label: "Date",
-        field: "application_approve_date",
+        field: (row) => row?.application_received_date,
         sortable: true,
       },
       {

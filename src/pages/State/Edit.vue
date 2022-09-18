@@ -16,6 +16,7 @@
               v-model="state_name"
               dense
               label="State Name"
+              @keydown="checkKeyDownAlphaNumeric($event)"
               :error-message="$getValidationErrors('state_name')"
               :error="$hasValidationErrors('state_name')"
             >
@@ -44,6 +45,15 @@ export default {
   },
   computed: {
     ...mapFields("state", ["editItem.state_name"]),
+  },
+
+  methods: {
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
+      }
+    },
   },
 };
 </script>

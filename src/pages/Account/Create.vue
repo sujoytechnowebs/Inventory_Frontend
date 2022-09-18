@@ -16,6 +16,7 @@
               v-model="account_name"
               dense
               label="Account Name"
+              @keydown="checkKeyDownAlphaNumeric($event)"
               :error-message="$getValidationErrors('account_name')"
               :error="$hasValidationErrors('account_name')"
             >
@@ -51,9 +52,7 @@
               outlined
               v-model="opening_balance"
               dense
-              mask="#.##"
-              fill-mask="0"
-              reverse-fill-mask
+              v-on:keypress="NumbersOnly"
               label="Opening Balance"
               :error-message="$getValidationErrors('opening_balance')"
               :error="$hasValidationErrors('opening_balance')"
@@ -102,6 +101,29 @@ export default {
       "newItem.opening_balance",
       "newItem.balance_type",
     ]),
+  },
+
+  methods: {
+    NumbersOnly(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
+
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
+      }
+    },
   },
 };
 </script>

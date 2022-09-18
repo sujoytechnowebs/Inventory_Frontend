@@ -8,6 +8,6 @@
 
 <style scoped>
 .login_background_colour {
-  background-image: linear-gradient(113deg, rgb(255, 0, 118), rgb(86, 0, 255));
+  background-color: #5e5e8b;
 }
 </style>

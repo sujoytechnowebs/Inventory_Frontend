@@ -44,8 +44,8 @@
           outlined
           v-model="data.amount"
           dense
-          type="number"
           label="Amount"
+          v-on:keypress="NumbersOnly"
         >
         </q-input>
       </div>
@@ -144,6 +144,22 @@ export default defineComponent({
       deleteReceipt,
       date_of_transaction: ref("2019/02/01"),
     };
+  },
+
+  methods: {
+    NumbersOnly(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
   },
 });
 </script>
