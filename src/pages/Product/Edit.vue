@@ -9,7 +9,7 @@
         title="Edit Products"
       >
         <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-3 col-lg-3">
             <q-input
               ref="name"
               outlined
@@ -17,10 +17,12 @@
               dense
               label="Product Name"
               @keydown="checkKeyDownAlphaNumeric($event)"
+              :error-message="$getValidationErrors('name')"
+              :error="$hasValidationErrors('name')"
             >
             </q-input>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-3 col-lg-3">
             <QSearch
               v-model="category_id"
               label="Category"
@@ -29,19 +31,23 @@
               data-store="productcategory"
               action="getItems"
               :multiple="false"
+              :error-message="$getValidationErrors('category_id')"
+              :error="$hasValidationErrors('category_id')"
             ></QSearch>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-3 col-lg-3">
             <q-input
               ref="barcode"
               outlined
               v-model="barcode"
               dense
               label="Barcode"
+              :error-message="$getValidationErrors('barcode')"
+              :error="$hasValidationErrors('barcode')"
             >
             </q-input>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-3 col-lg-3">
             <q-input
               ref="sale_price"
               outlined
@@ -49,15 +55,22 @@
               dense
               label="Sale Price"
               v-on:keypress="NumbersOnly"
+              :error-message="$getValidationErrors('sale_price')"
+              :error="$hasValidationErrors('sale_price')"
             >
             </q-input>
           </div>
           <div class="col-12">
-            <q-editor
-              placeholder="Please write the product description."
+            <q-input
+              ref="item_description"
+              outlined
               v-model="item_description"
-              min-height="5rem"
-            ></q-editor>
+              dense
+              label="Product Description"
+              :error-message="$getValidationErrors('item_description')"
+              :error="$hasValidationErrors('item_description')"
+            >
+            </q-input>
           </div>
         </div>
       </QEditForm>

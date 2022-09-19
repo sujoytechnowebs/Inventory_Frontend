@@ -37,25 +37,36 @@ export function resetForm(state) {
     opening_balance_type: "",
     voter_card_no: null,
     role: "customer",
-  }
+  };
 }
 
 export function setEditItem(state, payload) {
+  console.log(payload);
   state.editItem.id = payload.id;
   state.editItem.name = payload.name;
   state.editItem.email = payload.email;
-  state.editItem.role = payload.user_role.role.role;
+  state.editItem.role = payload.user_role.role.code;
+  state.editItem.code = payload.user_role.role.code;
   state.editItem.password = payload.password;
-  state.editItem.account_name = payload.account_name;
-  state.editItem.phone = payload.phone;
-  state.editItem.city_id = payload.city_id;
-  state.editItem.address_1 = payload.address_1;
-  state.editItem.address_2 = payload.address_2;
+  state.editItem.account_name = payload.account.account_name;
+  state.editItem.phone = payload.account.phone;
+  state.editItem.city_id = payload.account.city.city_name;
+  state.editItem.address_1 = payload.account.address_1;
+  state.editItem.address_2 = payload.account.address_2;
   state.editItem.postcode = payload.postcode;
   state.editItem.adhaar_media_id = payload.adhaar_media_id;
-  state.editItem.account_no = payload.account_no;
-  state.editItem.ifsc = payload.ifsc;
-  state.editItem.bank_branch = payload.bank_branch;
+  state.editItem.account_no = payload.account.account_no;
+  state.editItem.ifsc = payload.account.ifsc;
+  state.editItem.bank_branch = payload.account.bank_branch;
+  state.editItem.branch_id = payload.account.branch.name;
+  state.editItem.aadhar_card_no = payload.account.aadhar_card_no;
+  state.editItem.DOB = payload.user_group.DOB;
+  state.editItem.spouse_parent_name = payload.user_group.spouse_parent_name;
+  state.editItem.occupation = payload.user_group.occupation;
+  state.editItem.house = payload.user_group.house;
+  state.editItem.monthly_income = payload.user_group.monthly_income;
+  state.editItem.group_id = payload.user_group.group.name;
+  state.editItem.group_role = payload.user_group.group_role;
 }
 
 export function setEditModal(state, payload) {

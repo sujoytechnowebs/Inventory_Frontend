@@ -11,13 +11,8 @@
             v-model="account_name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.account_name > 0) ||
-                validationErrors.account_name
-                  ? validationErrors.account_name
-                  : 'Please Write The Investor Name',
-            ]"
+            :error-message="$getValidationErrors('account_name')"
+            :error="$hasValidationErrors('account_name')"
           >
             <template v-slot:label>
               Investor Name
@@ -33,12 +28,8 @@
             v-model="name"
             dense
             label="User Name"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.name > 0) || validationErrors.name
-                  ? validationErrors.name
-                  : 'Please Write The User Name',
-            ]"
+            :error-message="$getValidationErrors('name')"
+            :error="$hasValidationErrors('name')"
           >
             <template v-slot:label>
               User Name
@@ -55,12 +46,8 @@
             dense
             label="Mobile Number"
             type="number"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.phone > 0) || validationErrors.phone
-                  ? validationErrors.phone
-                  : 'Please Write The Mobile Number',
-            ]"
+            :error-message="$getValidationErrors('phone')"
+            :error="$hasValidationErrors('phone')"
           >
             <template v-slot:label>
               Mobile Number
@@ -75,8 +62,36 @@
             v-model="email"
             dense
             label="Email"
-            :rules="[email]"
+            :error-message="$getValidationErrors('email')"
+            :error="$hasValidationErrors('email')"
           />
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6">
+          <q-input
+            ref="opening_balance"
+            outlined
+            v-model="opening_balance"
+            label="Opening Balance"
+            dense
+            v-on:keypress="NumbersOnly"
+            :error-message="$getValidationErrors('opening_balance')"
+            :error="$hasValidationErrors('opening_balance')"
+          >
+          </q-input>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6">
+          <q-select
+            outlined
+            dense
+            v-model="opening_balance_type"
+            :options="payments"
+            emit-value
+            label="Opening Balance Type"
+            :error-message="$getValidationErrors('opening_balance_type')"
+            :error="$hasValidationErrors('opening_balance_type')"
+          ></q-select>
         </div>
       </div>
     </div>
@@ -92,7 +107,8 @@
         dense
         type="number"
         label="Account Number"
-        :rules="[account_no]"
+        :error-message="$getValidationErrors('account_no')"
+        :error="$hasValidationErrors('account_no')"
       />
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -102,7 +118,8 @@
         v-model="ifsc"
         dense
         label="IFSC Number"
-        :rules="[ifsc]"
+        :error-message="$getValidationErrors('ifsc')"
+        :error="$hasValidationErrors('ifsc')"
       />
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -112,7 +129,8 @@
         v-model="bank_branch"
         dense
         label="Bank Branch"
-        :rules="[bank_branch]"
+        :error-message="$getValidationErrors('bank_branch')"
+        :error="$hasValidationErrors('bank_branch')"
       />
     </div>
   </div>
@@ -127,6 +145,16 @@ export default {
   setup() {
     return {
       options: ["Own", "Rent", "Tea Estate"],
+      payments: [
+        {
+          label: "Credit",
+          value: "cr",
+        },
+        {
+          label: "Debit",
+          value: "dr",
+        },
+      ],
     };
   },
 
@@ -139,6 +167,8 @@ export default {
       "editItem.account_no",
       "editItem.ifsc",
       "editItem.bank_branch",
+      "editItem.opening_balance",
+      "editItem.opening_balance_type",
     ]),
   },
 };

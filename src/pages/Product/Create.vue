@@ -9,7 +9,7 @@
         title="Add Products"
       >
         <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-3 col-lg-3">
             <q-input
               ref="name"
               outlined
@@ -22,7 +22,7 @@
             >
             </q-input>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-3 col-lg-3">
             <QSearch
               v-model="category_id"
               label="Category"
@@ -35,7 +35,7 @@
               :error="$hasValidationErrors('category_id')"
             ></QSearch>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-3 col-lg-3">
             <q-input
               ref="barcode"
               outlined
@@ -47,7 +47,7 @@
             >
             </q-input>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-3 col-lg-3">
             <q-input
               ref="sale_price"
               outlined
@@ -61,13 +61,16 @@
             </q-input>
           </div>
           <div class="col-12">
-            <q-editor
-              placeholder="Please write the product description."
+            <q-input
+              ref="item_description"
+              outlined
               v-model="item_description"
-              min-height="5rem"
+              dense
+              label="Product Description"
               :error-message="$getValidationErrors('item_description')"
               :error="$hasValidationErrors('item_description')"
-            ></q-editor>
+            >
+            </q-input>
           </div>
         </div>
       </QCreateForm>

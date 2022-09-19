@@ -11,7 +11,6 @@ export function resetForm(state) {
     name: "",
     code: "",
     address_1: "",
-    address_2: "",
     postcode: "",
     city_id: "",
   };
@@ -22,7 +21,6 @@ export function setEditItem(state, payload) {
   state.editItem.name = payload.name;
   state.editItem.code = payload.code;
   state.editItem.address_1 = payload.address_1;
-  state.editItem.address_2 = payload.address_2;
   state.editItem.postcode = payload.postcode;
   state.editItem.city_id = payload.city_id;
 }

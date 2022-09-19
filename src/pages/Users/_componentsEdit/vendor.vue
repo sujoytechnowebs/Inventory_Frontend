@@ -13,13 +13,8 @@
             data-store="branch"
             action="getItems"
             :multiple="false"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.branch_id > 0) ||
-                validationErrors.branch_id
-                  ? validationErrors.branch_id
-                  : 'Please choose the Branch Name',
-            ]"
+            :error-message="$getValidationErrors('branch_id')"
+            :error="$hasValidationErrors('branch_id')"
           >
           </QSearch>
         </div>
@@ -31,13 +26,8 @@
             v-model="account_name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.account_name > 0) ||
-                validationErrors.account_name
-                  ? validationErrors.account_name
-                  : 'Please Write The Name',
-            ]"
+            :error-message="$getValidationErrors('account_name')"
+            :error="$hasValidationErrors('account_name')"
           >
             <template v-slot:label>
               Vendor Name
@@ -53,12 +43,8 @@
             v-model="name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.name > 0) || validationErrors.name
-                  ? validationErrors.name
-                  : 'Please Write The UserName',
-            ]"
+            :error-message="$getValidationErrors('name')"
+            :error="$hasValidationErrors('name')"
           >
             <template v-slot:label>
               User Name
@@ -75,12 +61,8 @@
             dense
             label
             type="number"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.phone > 0) || validationErrors.phone
-                  ? validationErrors.phone
-                  : 'Please Write The Phone Number',
-            ]"
+            :error-message="$getValidationErrors('phone')"
+            :error="$hasValidationErrors('phone')"
           >
             <template v-slot:label>
               Mobile Number
@@ -95,10 +77,37 @@
             v-model="email"
             dense
             label
-            :rules="[email]"
+            :error-message="$getValidationErrors('email')"
+            :error="$hasValidationErrors('email')"
           >
             <template v-slot:label> Email </template>
           </q-input>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+          <q-input
+            ref="opening_balance"
+            outlined
+            v-model="opening_balance"
+            label="Opening Balance"
+            dense
+            v-on:keypress="NumbersOnly"
+            :error-message="$getValidationErrors('opening_balance')"
+            :error="$hasValidationErrors('opening_balance')"
+          >
+          </q-input>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6">
+          <q-select
+            outlined
+            dense
+            v-model="opening_balance_type"
+            :options="payments"
+            emit-value
+            label="Opening Balance Type"
+            :error-message="$getValidationErrors('opening_balance_type')"
+            :error="$hasValidationErrors('opening_balance_type')"
+          ></q-select>
         </div>
       </div>
     </div>
@@ -114,7 +123,8 @@
         dense
         type="number"
         label="Account Number"
-        :rules="[account_no]"
+        :error-message="$getValidationErrors('account_no')"
+        :error="$hasValidationErrors('account_no')"
       ></q-input>
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -124,7 +134,8 @@
         v-model="ifsc"
         dense
         label="IFSC Number"
-        :rules="[ifsc]"
+        :error-message="$getValidationErrors('ifsc')"
+        :error="$hasValidationErrors('ifsc')"
       ></q-input>
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -134,7 +145,8 @@
         v-model="bank_branch"
         dense
         label="Bank Branch"
-        :rules="[bank_branch]"
+        :error-message="$getValidationErrors('bank_branch')"
+        :error="$hasValidationErrors('bank_branch')"
       ></q-input>
     </div>
   </div>
@@ -150,6 +162,16 @@ export default {
     return {
       modal: ref(true),
       validationErrors: ref({}),
+      payments: [
+        {
+          label: "Credit",
+          value: "cr",
+        },
+        {
+          label: "Debit",
+          value: "dr",
+        },
+      ],
     };
   },
 
@@ -163,6 +185,8 @@ export default {
       "editItem.account_no",
       "editItem.ifsc",
       "editItem.bank_branch",
+      "editItem.opening_balance",
+      "editItem.opening_balance_type",
     ]),
   },
 };

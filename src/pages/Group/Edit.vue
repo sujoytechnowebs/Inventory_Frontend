@@ -16,6 +16,8 @@
               v-model="name"
               dense
               label="Group Name"
+              :error-message="$getValidationErrors('name')"
+              :error="$hasValidationErrors('name')"
             >
             </q-input>
           </div>
@@ -28,17 +30,19 @@
               data-store="branch"
               action="getItems"
               :multiple="false"
+              :error-message="$getValidationErrors('branch_id')"
+              :error="$hasValidationErrors('branch_id')"
             ></QSearch>
           </div>
-          <div class="col-12">
-            <q-input
-              ref="address"
-              outlined
-              v-model="address"
-              dense
-              label="Address"
+          <div class="col-12 col-md-6 col-lg-6">
+            <p class="address_head">Please Write The Address:</p>
+
+            <q-field
+              :error-message="$getValidationErrors('address')"
+              :error="$hasValidationErrors('address')"
             >
-            </q-input>
+              <q-editor v-model="address" class="full-width"></q-editor>
+            </q-field>
           </div>
         </div>
       </QEditForm>

@@ -267,28 +267,6 @@
                   ]"
                 ></QSearch>
               </div>
-              <div class="col-12 col-md-4 col-lg-4">
-                <q-input
-                  ref="postcode"
-                  outlined
-                  v-model="postcode"
-                  dense
-                  label
-                  type="number"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.postcode > 0) ||
-                      validationErrors.postcode
-                        ? validationErrors.postcode
-                        : 'Please Write The Pincode',
-                  ]"
-                >
-                  <template v-slot:label>
-                    Pin Code
-                    <span class="text-weight-bold text-negative">*</span>
-                  </template>
-                </q-input>
-              </div>
               <div class="col-12">
                 <q-editor
                   placeholder="Please Write The Address"
@@ -370,7 +348,7 @@ export default {
   },
   computed: {
     ...mapFields("customer", [
-      "newItem.name",
+      "editItem.name",
       "editItem.email",
       "editItem.account_name",
       "editItem.spouse_parent_name",

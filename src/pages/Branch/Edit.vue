@@ -17,6 +17,8 @@
               dense
               label="Branch Name"
               @keydown="checkKeyDownAlphaNumeric($event)"
+              :error-message="$getValidationErrors('name')"
+              :error="$hasValidationErrors('name')"
             >
             </q-input>
           </div>
@@ -27,28 +29,19 @@
               v-model="code"
               dense
               label="Branch Code"
+              :error-message="$getValidationErrors('code')"
+              :error="$hasValidationErrors('code')"
             >
             </q-input>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-input
-              ref="address_1"
-              outlined
-              v-model="address_1"
-              dense
-              label="Address 1"
+          <div class="col-12">
+            <p class="address_head">Please Write Address:</p>
+            <q-field
+              :error-message="$getValidationErrors('address_1')"
+              :error="$hasValidationErrors('address_1')"
             >
-            </q-input>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-input
-              ref="address_2"
-              outlined
-              v-model="address_2"
-              dense
-              label="Address 2"
-            >
-            </q-input>
+              <q-editor v-model="address_1" class="full-width"></q-editor>
+            </q-field>
           </div>
           <div class="col-12 col-md-6 col-lg-6">
             <q-input
@@ -57,6 +50,8 @@
               v-model="postcode"
               dense
               label="PostCode"
+              :error-message="$getValidationErrors('postcode')"
+              :error="$hasValidationErrors('postcode')"
             >
             </q-input>
           </div>
@@ -69,6 +64,8 @@
               data-store="city"
               action="getItems"
               :multiple="false"
+              :error-message="$getValidationErrors('city_id')"
+              :error="$hasValidationErrors('city_id')"
             ></QSearch>
           </div>
         </div>
@@ -82,7 +79,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "UsersEditPage",
+  name: "BranchEditPage",
   setup() {
     return {
       modal: true,
@@ -97,7 +94,6 @@ export default {
       "editItem.name",
       "editItem.code",
       "editItem.address_1",
-      "editItem.address_2",
       "editItem.postcode",
       "editItem.city_id",
     ]),
@@ -113,3 +109,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.address_head {
+  font-size: 1rem;
+  font-weight: 600;
+}
+</style>

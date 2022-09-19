@@ -1,6 +1,6 @@
 <template>
   <q-separator class="q-mt-md" />
-  <p class="incharge_form_title">User Details</p>
+  <p class="incharge_form_title">Staff Details</p>
   <div class="row q-col-gutter-md">
     <div class="col-12">
       <div class="row q-col-gutter-md">
@@ -127,7 +127,7 @@
         </div>
 
         <div class="col-12 col-md-6 col-lg-6">
-          <p class="address_head">Please Write The Permanent Address</p>
+          <p class="address_head">Please Write The Permanent Address:</p>
 
           <q-field
             :error-message="$getValidationErrors('address_2')"
@@ -157,6 +157,7 @@
             dense
             v-model="opening_balance_type"
             :options="payments"
+            emit-value
             label="Opening Balance Type"
             :error-message="$getValidationErrors('opening_balance_type')"
             :error="$hasValidationErrors('opening_balance_type')"
@@ -270,7 +271,16 @@ export default {
       modal: ref(true),
       validationErrors: ref({}),
       options: ["Own", "Rent", "Tea Estate"],
-      payments: ["cr", "dr"],
+      payments: [
+        {
+          label: "Credit",
+          value: "cr",
+        },
+        {
+          label: "Debit",
+          value: "dr",
+        },
+      ],
     };
   },
 

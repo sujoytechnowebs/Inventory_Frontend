@@ -49,14 +49,20 @@ export function setEditItem(state, payload) {
   state.editItem.password = payload.password;
   state.editItem.account_name = payload.account.account_name;
   state.editItem.phone = payload.account.phone;
-  state.editItem.city_id = payload.city_id;
-  state.editItem.address_1 = payload.address_1;
-  state.editItem.address_2 = payload.address_2;
+  state.editItem.address_1 = payload.account.address_1;
+  state.editItem.address_2 = payload.account.address_2;
   state.editItem.postcode = payload.postcode;
-  state.editItem.adhaar_media_id = payload.adhaar_media_id;
+  state.editItem.adhaar_media_id = payload.account.adhaar_media_id;
   state.editItem.account_no = payload.account.account_no;
   state.editItem.ifsc = payload.account.ifsc;
   state.editItem.bank_branch = payload.account.bank_branch;
+  state.editItem.branch_id = payload.account.branch.name;
+  state.editItem.opening_balance = payload.account.opening_balance;
+  state.editItem.opening_balance_type = payload.account.opening_balance_type;
+  state.editItem.aadhar_card_no = payload.account.aadhar_card_no;
+  state.editItem.voter_card_no = payload.account.voter_card_no;
+  // state.editItem.city_id = payload.account.city.city_name;
+  state.editItem.city_id = payload.city_id;
 }
 
 export function setEditModal(state, payload) {

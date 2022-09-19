@@ -218,23 +218,6 @@
                   :error="$hasValidationErrors('city_name')"
                 ></QSearch>
               </div>
-              <div class="col-12 col-md-4 col-lg-4">
-                <q-input
-                  ref="postcode"
-                  outlined
-                  v-model="postcode"
-                  dense
-                  label
-                  type="number"
-                  :error-message="$getValidationErrors('postcode')"
-                  :error="$hasValidationErrors('postcode')"
-                >
-                  <template v-slot:label>
-                    Pin Code
-                    <span class="text-weight-bold text-negative">*</span>
-                  </template>
-                </q-input>
-              </div>
               <div class="col-12">
                 <span class="customer_form_title text-weight-medium"
                   >Current Address</span

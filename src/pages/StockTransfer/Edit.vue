@@ -18,6 +18,8 @@
               data-store="product"
               action="getItems"
               :multiple="false"
+              :error-message="$getValidationErrors('product_id')"
+              :error="$hasValidationErrors('product_id')"
             ></QSearch>
           </div>
           <div class="col-12 col-md-4 col-lg-4">
@@ -28,6 +30,8 @@
               dense
               label="Quantity"
               type="number"
+              :error-message="$getValidationErrors('quantity')"
+              :error="$hasValidationErrors('quantity')"
             >
             </q-input>
           </div>
@@ -38,7 +42,8 @@
               v-model="date"
               placeholder="Please Enter The Date"
               mask="date"
-              :rules="['date']"
+              :error-message="$getValidationErrors('date')"
+              :error="$hasValidationErrors('date')"
             >
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
@@ -71,6 +76,8 @@
               data-store="branch"
               action="getItems"
               :multiple="false"
+              :error-message="$getValidationErrors('from_branch_id')"
+              :error="$hasValidationErrors('from_branch_id')"
             ></QSearch>
           </div>
           <div class="col-12 col-md-6 col-lg-6">
@@ -82,6 +89,8 @@
               data-store="branch"
               action="getItems"
               :multiple="false"
+              :error-message="$getValidationErrors('to_branch_id')"
+              :error="$hasValidationErrors('to_branch_id')"
             ></QSearch>
           </div>
         </div>

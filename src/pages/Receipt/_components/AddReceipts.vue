@@ -79,13 +79,39 @@
         </q-input>
       </div>
 
-      <div class="col-10">
-        <q-editor v-model="data.note" ref="note" />
-        <q-card-section v-html="editor" />
+      <div class="col-12 col-md-4 col-lg-4">
+        <q-select
+          dense
+          outlined
+          v-model="data.note"
+          :options="options"
+          emit-value
+          label="Payment Purpose"
+        />
+      </div>
+
+      <!-- Extra Fields -->
+      <div v-if="data.note === 'others'">
+        <div class="col-12 col-md-4 col-lg-4">
+          <q-input
+            outlined
+            ref="others_note"
+            v-model="data.others_note"
+            dense
+            label="Other Option"
+          >
+          </q-input>
+        </div>
       </div>
 
       <div class="col-12 col-md-2 col-lg-2">
-        <q-btn icon="delete" color="red" round @click="deleteReceipt(index)" />
+        <q-btn
+          icon="delete"
+          color="red"
+          size="sm"
+          round
+          @click="deleteReceipt(index)"
+        />
       </div>
     </div>
   </div>
@@ -143,6 +169,32 @@ export default defineComponent({
       addReceipt,
       deleteReceipt,
       date_of_transaction: ref("2019/02/01"),
+      options: [
+        {
+          label: "Vendor Payment",
+          value: "Vendor Payment",
+        },
+        {
+          label: "Salary Pay",
+          value: "Salary Pay",
+        },
+        {
+          label: "Fuel Charges",
+          value: "Fuel Charges",
+        },
+        {
+          label: "Rent Payment",
+          value: "Rent Payment",
+        },
+        {
+          label: "Travel Cost",
+          value: "Travel Cost",
+        },
+        {
+          label: "Others",
+          value: "others",
+        },
+      ],
     };
   },
 

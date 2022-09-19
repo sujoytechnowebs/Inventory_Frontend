@@ -37,13 +37,16 @@
           </div>
           <div class="col-12"></div>
         </div>
-        <q-editor
-          placeholder="Please Write The Address"
-          v-model="address"
-          min-height="10rem"
-          :error-message="$getValidationErrors('address')"
-          :error="$hasValidationErrors('address')"
-        ></q-editor>
+        <div class="col-12 col-md-6 col-lg-6">
+          <p class="address_head">Please Write The Address:</p>
+
+          <q-field
+            :error-message="$getValidationErrors('address')"
+            :error="$hasValidationErrors('address')"
+          >
+            <q-editor v-model="address" class="full-width"></q-editor>
+          </q-field>
+        </div>
       </QCreateForm>
     </q-card>
   </div>
@@ -88,3 +91,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.address_head {
+  font-size: 1rem;
+  font-weight: 600;
+}
+</style>

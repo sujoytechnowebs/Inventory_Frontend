@@ -34,29 +34,14 @@
             >
             </q-input>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-input
-              ref="address_1"
-              outlined
-              v-model="address_1"
-              dense
-              label="Address 1"
+          <div class="col-12">
+            <p class="address_head">Please Write Address:</p>
+            <q-field
               :error-message="$getValidationErrors('address_1')"
               :error="$hasValidationErrors('address_1')"
             >
-            </q-input>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-input
-              ref="address_2"
-              outlined
-              v-model="address_2"
-              dense
-              label="Address 2"
-              :error-message="$getValidationErrors('address_2')"
-              :error="$hasValidationErrors('address_2')"
-            >
-            </q-input>
+              <q-editor v-model="address_1" class="full-width"></q-editor>
+            </q-field>
           </div>
           <div class="col-12 col-md-6 col-lg-6">
             <q-input
@@ -110,7 +95,6 @@ export default {
       "newItem.name",
       "newItem.code",
       "newItem.address_1",
-      "newItem.address_2",
       "newItem.postcode",
       "newItem.city_id",
     ]),
@@ -126,3 +110,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.address_head {
+  font-size: 1rem;
+  font-weight: 600;
+}
+</style>

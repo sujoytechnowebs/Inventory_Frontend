@@ -17,6 +17,8 @@
               dense
               label="City Name"
               @keydown="checkKeyDownAlphaNumeric($event)"
+              :error-message="$getValidationErrors('city_name')"
+              :error="$hasValidationErrors('city_name')"
             >
             </q-input>
           </div>
@@ -29,6 +31,8 @@
               data-store="state"
               action="getItems"
               :multiple="false"
+              :error-message="$getValidationErrors('state_id')"
+              :error="$hasValidationErrors('state_id')"
             ></QSearch>
           </div>
         </div>
@@ -42,7 +46,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "UsersEditPage",
+  name: "CitysEditPage",
   setup() {
     return {
       modal: true,
