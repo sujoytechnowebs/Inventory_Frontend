@@ -16,6 +16,7 @@
               v-model="name"
               dense
               label="Group Name"
+              @keydown="checkKeyDownAlphaNumeric($event)"
               :error-message="$getValidationErrors('name')"
               :error="$hasValidationErrors('name')"
             >
@@ -75,6 +76,15 @@ export default {
       "newItem.address",
     ]),
     ...mapGetters("auth", ["getActiveBranch"]),
+  },
+
+  methods: {
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
+      }
+    },
   },
 };
 </script>

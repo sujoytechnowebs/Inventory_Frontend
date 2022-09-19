@@ -26,6 +26,7 @@
             v-model="account_name"
             dense
             label
+            @keydown="checkKeyDownAlphaNumeric($event)"
             :error-message="$getValidationErrors('account_name')"
             :error="$hasValidationErrors('account_name')"
           >
@@ -43,6 +44,7 @@
             v-model="name"
             dense
             label
+            @keydown="checkKeyDownAlphaNumeric($event)"
             :error-message="$getValidationErrors('name')"
             :error="$hasValidationErrors('name')"
           >
@@ -89,8 +91,8 @@
             outlined
             v-model="opening_balance"
             label="Opening Balance"
-            type="number"
             dense
+            v-on:keypress="NumbersOnly"
             :error-message="$getValidationErrors('opening_balance')"
             :error="$hasValidationErrors('opening_balance')"
           >
@@ -144,6 +146,7 @@
         v-model="bank_branch"
         dense
         label="Bank Branch"
+        @keydown="checkKeyDownAlphaNumeric($event)"
         :error-message="$getValidationErrors('bank_branch')"
         :error="$hasValidationErrors('bank_branch')"
       ></q-input>
@@ -178,6 +181,29 @@ export default {
       "newItem.opening_balance",
       "newItem.opening_balance_type",
     ]),
+  },
+
+  methods: {
+    NumbersOnly(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
+
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
+      }
+    },
   },
 };
 </script>

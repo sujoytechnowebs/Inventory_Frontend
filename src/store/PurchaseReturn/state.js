@@ -38,13 +38,6 @@ export default function () {
         sortable: true,
       },
       {
-        name: "postcode",
-        align: "left",
-        label: "Total Quantity",
-        field: (row) => row.purchase.total_quantity,
-        sortable: true,
-      },
-      {
         name: "status",
         align: "left",
         label: "Status",

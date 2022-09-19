@@ -99,5 +99,6 @@ export default defineComponent({
 }
 .sale-form-dialog .q-dialog__inner.q-dialog__inner--minimized > div {
   max-height: 100vh !important;
+  overflow: scroll;
 }
 </style>

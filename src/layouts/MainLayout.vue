@@ -112,6 +112,204 @@ import { mapFields } from "vuex-map-fields";
 import { LocalStorage as SessionStorage } from "quasar";
 import { acl } from "../boot/acl.js";
 
+// const linksList = [
+//   {
+//     title: "User",
+//     icon: "account_circle",
+//     show: "",
+//     childs: [
+//       {
+//         title: "Users Management",
+//         icon: "hlw",
+//         link: "/users",
+//         show: "user.index",
+//       },
+//       {
+//         title: "Stock Holder",
+//         icon: "hlw",
+//         link: "/stock-holder",
+//         show: "investorEquity.index",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Branch",
+//     icon: "share",
+//     // link: "/cities",
+//     show: "",
+//     childs: [
+//       {
+//         title: "State",
+//         icon: "hlw",
+//         link: "/states",
+//         show: "",
+//       },
+//       {
+//         title: "Branch",
+//         icon: "hlw",
+//         link: "/branches",
+//         show: "branch.index",
+//       },
+//       {
+//         title: "City",
+//         icon: "hlw",
+//         link: "/cities",
+//         show: "city.index",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Group",
+//     icon: "group_work",
+//     link: "/profile",
+//     show: "",
+//     childs: [
+//       {
+//         title: "Customer",
+//         icon: "hlw",
+//         link: "/customers",
+//         show: "",
+//       },
+//       {
+//         title: "Group Name",
+//         icon: "hlw",
+//         link: "/groups",
+//         show: "",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Accounts",
+//     icon: "account_balance",
+//     link: "/profile",
+//     show: "",
+//     childs: [
+//       {
+//         title: "Accounts",
+//         icon: "hlw",
+//         link: "/accounts",
+//         show: "account.index",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Product",
+//     icon: "style",
+//     link: "/profile",
+//     show: "",
+//     childs: [
+//       {
+//         title: "Products Management",
+//         icon: "hlw",
+//         link: "/products",
+//         show: "",
+//       },
+//       {
+//         title: "Products Category",
+//         icon: "hlw",
+//         link: "/products-category",
+//         show: "",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Ledgers",
+//     icon: "menu_book",
+//     link: "/profile",
+//     show: "",
+//     childs: [
+//       {
+//         title: "Purchase",
+//         icon: "hlw",
+//         link: "/purchase",
+//         show: "",
+//       },
+//       {
+//         title: "Purchase Return",
+//         icon: "hlw",
+//         link: "/purchase-return",
+//         show: "",
+//       },
+//       {
+//         title: "Sales",
+//         icon: "hlw",
+//         link: "/sale",
+//         show: "",
+//       },
+//       {
+//         title: "Sales Return",
+//         icon: "hlw",
+//         link: "/sale-return",
+//         show: "",
+//       },
+//       {
+//         title: "Inventory",
+//         icon: "hlw",
+//         link: "/inventory",
+//         show: "",
+//       },
+//       {
+//         title: "Stock Transfer",
+//         icon: "hlw",
+//         link: "/stock-transfer",
+//         show: "",
+//       },
+//       {
+//         title: "Receipt",
+//         icon: "hlw",
+//         link: "/receipt",
+//         show: "",
+//       },
+//       {
+//         title: "Payment",
+//         icon: "hlw",
+//         link: "/payment",
+//         show: "",
+//       },
+//       {
+//         title: "Profit & Loss",
+//         icon: "hlw",
+//         link: "/profit-loss",
+//         show: "",
+//       },
+//       {
+//         title: "Cash Book",
+//         icon: "hlw",
+//         link: "/cashbook",
+//         show: "",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Loan",
+//     icon: "real_estate_agent",
+//     link: "/profile",
+//     show: "",
+//     childs: [
+//       {
+//         title: "Loan Management",
+//         icon: "hlw",
+//         link: "/loans",
+//         show: "",
+//       },
+//       {
+//         title: "EWI Details",
+//         icon: "hlw",
+//         link: "/ewi-details",
+//         show: "",
+//       },
+//     ],
+//   },
+//   {
+//     title: "Profile",
+//     icon: "manage_accounts",
+//     link: "/profile",
+//     show: "",
+//   },
+// ];
+
+// Test
+
 const linksList = [
   {
     title: "User",
@@ -133,7 +331,7 @@ const linksList = [
     ],
   },
   {
-    title: "Branch",
+    title: "Center",
     icon: "share",
     // link: "/cities",
     show: "",
@@ -145,25 +343,17 @@ const linksList = [
         show: "",
       },
       {
-        title: "Branch",
-        icon: "hlw",
-        link: "/branches",
-        show: "branch.index",
-      },
-      {
         title: "City",
         icon: "hlw",
         link: "/cities",
         show: "city.index",
       },
-    ],
-  },
-  {
-    title: "Group",
-    icon: "group_work",
-    link: "/profile",
-    show: "",
-    childs: [
+      {
+        title: "Branch",
+        icon: "hlw",
+        link: "/branches",
+        show: "branch.index",
+      },
       {
         title: "Customer",
         icon: "hlw",
@@ -179,27 +369,13 @@ const linksList = [
     ],
   },
   {
-    title: "Accounts",
+    title: "Inventory",
     icon: "account_balance",
     link: "/profile",
     show: "",
     childs: [
       {
-        title: "Accounts",
-        icon: "hlw",
-        link: "/accounts",
-        show: "account.index",
-      },
-    ],
-  },
-  {
-    title: "Product",
-    icon: "style",
-    link: "/profile",
-    show: "",
-    childs: [
-      {
-        title: "Products Management",
+        title: "Products",
         icon: "hlw",
         link: "/products",
         show: "",
@@ -210,14 +386,18 @@ const linksList = [
         link: "/products-category",
         show: "",
       },
-    ],
-  },
-  {
-    title: "Ledgers",
-    icon: "menu_book",
-    link: "/profile",
-    show: "",
-    childs: [
+      {
+        title: "Product Management",
+        icon: "hlw",
+        link: "/inventory",
+        show: "",
+      },
+      {
+        title: "Stock Transfer",
+        icon: "hlw",
+        link: "/stock-transfer",
+        show: "",
+      },
       {
         title: "Purchase",
         icon: "hlw",
@@ -242,17 +422,19 @@ const linksList = [
         link: "/sale-return",
         show: "",
       },
+    ],
+  },
+  {
+    title: "Ledgers",
+    icon: "menu_book",
+    link: "/profile",
+    show: "",
+    childs: [
       {
-        title: "Inventory",
+        title: "Accounts",
         icon: "hlw",
-        link: "/inventory",
-        show: "",
-      },
-      {
-        title: "Stock Transfer",
-        icon: "hlw",
-        link: "/stock-transfer",
-        show: "",
+        link: "/accounts",
+        show: "account.index",
       },
       {
         title: "Receipt",

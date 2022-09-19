@@ -84,12 +84,15 @@
           <addReturnProducts v-model="purchase_details" />
         </div>
 
-        <div class="col-12 q-pt-md">
-          <q-editor
-            v-model="note"
-            placeholder="Please Write The Notes For Purchase"
-          />
-          <div v-html="editor" />
+        <div class="col-12 q-py-lg">
+          <p class="note_head">Notes For Purchase:</p>
+
+          <q-field
+            :error-message="$getValidationErrors('note')"
+            :error="$hasValidationErrors('note')"
+          >
+            <q-editor v-model="note" class="full-width"></q-editor>
+          </q-field>
         </div>
       </QCreateForm>
     </q-card>
@@ -150,5 +153,12 @@ export default {
 .scroll-bar {
   max-height: 79vh !important;
   overflow: scroll;
+}
+</style>
+
+<style scoped>
+.note_head {
+  font-size: 1rem;
+  font-weight: 600;
 }
 </style>

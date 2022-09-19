@@ -13,7 +13,7 @@ export default function () {
         name: "state_name",
         align: "left",
         label: "State",
-        field: (row) => row.states.state_name,
+        field: (row) => row?.states?.state_name,
         sortable: true,
       },
       { name: "actions", align: "right", label: "Actions" },

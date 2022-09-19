@@ -25,7 +25,7 @@
       v-for="(data, index) in purchase_details"
       :key="data.id"
     >
-      <div class="col-6 col-sm-3 col-md-3 col-lg-3">
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3">
         <q-input
           ref="product_id"
           v-model="data.product_name"
@@ -35,7 +35,7 @@
         >
         </q-input>
       </div>
-      <div class="col-6 col-sm-3 col-md-2 col-lg-2">
+      <div class="col-3 col-md-2 col-lg-2">
         <q-input
           @keyup="inputValue(index)"
           ref="item_rate"
@@ -56,7 +56,7 @@
         >
         </q-input>
       </div> -->
-      <div class="col-6 col-sm-3 col-md-2 col-lg-2">
+      <div class="col-3 col-md-2 col-lg-2">
         <q-input
           @keyup="inputValue(index)"
           ref="quantity"
@@ -67,17 +67,19 @@
         >
         </q-input>
       </div>
-      <div class="col-6 col-sm-3 col-md-2 col-lg-2">
+      <div class="col-3 col-md-2 col-lg-2">
         <q-input
           dense
           ref="sales"
           v-model="data.sales_rate"
-          type="number"
           label="Sales"
+          v-on:keypress="NumbersOnly"
         ></q-input>
       </div>
-      <div class="col-1 col-md-1 col-lg-1">₹{{ data.total }}</div>
-      <div class="col-1 col-md-1 col-lg-1">
+      <div class="col-6 col-md-1 col-lg-1 q-mt-sm purchase_rate">
+        = ₹{{ data.total }}
+      </div>
+      <div class="col-6 col-md-2 col-lg-2">
         <q-btn
           icon="delete"
           color="red"
@@ -150,5 +152,29 @@ export default defineComponent({
       inputValue,
     };
   },
+
+  // Validation Test
+
+  methods: {
+    NumbersOnly(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
+  },
 });
 </script>
+
+<style scoped>
+.purchase_rate {
+  font-size: 1.1rem;
+}
+</style>

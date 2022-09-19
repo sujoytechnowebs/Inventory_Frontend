@@ -16,6 +16,7 @@
               v-model="city_name"
               dense
               label="City Name"
+              @keydown="checkKeyDownAlphaNumeric($event)"
               :error-message="$getValidationErrors('city_name')"
               :error="$hasValidationErrors('city_name')"
             >
@@ -58,6 +59,15 @@ export default {
 
   computed: {
     ...mapFields("city", ["newItem.city_name", "newItem.state_id"]),
+  },
+
+  methods: {
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
+      }
+    },
   },
 };
 </script>

@@ -16,6 +16,7 @@
               v-model="name"
               dense
               label="Branch Name"
+              @keydown="checkKeyDownAlphaNumeric($event)"
             >
             </q-input>
           </div>
@@ -100,6 +101,15 @@ export default {
       "editItem.postcode",
       "editItem.city_id",
     ]),
+  },
+
+  methods: {
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
+      }
+    },
   },
 };
 </script>

@@ -16,6 +16,7 @@
               v-model="city_name"
               dense
               label="City Name"
+              @keydown="checkKeyDownAlphaNumeric($event)"
             >
             </q-input>
           </div>
@@ -53,6 +54,15 @@ export default {
   },
   computed: {
     ...mapFields("city", ["editItem.city_name", "editItem.state_id"]),
+  },
+
+  methods: {
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
+      }
+    },
   },
 };
 </script>

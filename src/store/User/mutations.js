@@ -36,26 +36,27 @@ export function resetForm(state) {
     opening_balance: "",
     opening_balance_type: "",
     voter_card_no: null,
-  }
+  };
 }
 
 export function setEditItem(state, payload) {
-  console.log(payload)
+  console.log(payload);
   state.editItem.id = payload.id;
   state.editItem.name = payload.name;
   state.editItem.email = payload.email;
-  state.editItem.role = payload.user_role.role.role;
+  state.editItem.role = payload.user_role.role.code;
+  state.editItem.code = payload.user_role.role.code;
   state.editItem.password = payload.password;
-  state.editItem.account_name = payload.account_name;
-  state.editItem.phone = payload.phone;
+  state.editItem.account_name = payload.account.account_name;
+  state.editItem.phone = payload.account.phone;
   state.editItem.city_id = payload.city_id;
   state.editItem.address_1 = payload.address_1;
   state.editItem.address_2 = payload.address_2;
   state.editItem.postcode = payload.postcode;
   state.editItem.adhaar_media_id = payload.adhaar_media_id;
-  state.editItem.account_no = payload.account_no;
-  state.editItem.ifsc = payload.ifsc;
-  state.editItem.bank_branch = payload.bank_branch;
+  state.editItem.account_no = payload.account.account_no;
+  state.editItem.ifsc = payload.account.ifsc;
+  state.editItem.bank_branch = payload.account.bank_branch;
 }
 
 export function setEditModal(state, payload) {

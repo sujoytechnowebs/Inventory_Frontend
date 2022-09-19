@@ -10,7 +10,7 @@
       >
         <q-separator class="q-mb-md" />
         <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-6 col-lg-6 scroll-bar q-pr-md">
             <p class="head">Sell Details</p>
             <div class="row q-col-gutter-md">
               <div class="col-12 col-md-6 col-lg-6">
@@ -43,13 +43,24 @@
             <div>
               <addSales v-model="salesDetails" />
             </div>
-            <div class="q-my-md">
+            <!-- <div class="q-my-md">
               <p>Notes:</p>
               <q-editor v-model="note">
                 <q-card flat bordered>
                   <q-card-section v-html="editor" />
                 </q-card>
               </q-editor>
+            </div> -->
+
+            <div class="col-12 q-py-lg">
+              <p class="note_head">Notes For Sale:</p>
+
+              <q-field
+                :error-message="$getValidationErrors('note')"
+                :error="$hasValidationErrors('note')"
+              >
+                <q-editor v-model="note" class="full-width"></q-editor>
+              </q-field>
             </div>
 
             <div class="row q-col-gutter-md">
@@ -338,6 +349,13 @@ export default {
   },
 };
 </script>
+
+<style>
+.scroll-bar {
+  max-height: 80vh !important;
+  overflow: scroll;
+}
+</style>
 
 <style scoped>
 .head {
