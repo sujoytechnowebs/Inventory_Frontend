@@ -83,4 +83,5 @@ export function calculateLoanAmount(state, payload) {
         state.newItem.loan_amount + parseInt(item.item_rate);
     });
   }
+  // state.newItem.calculations = state.newItem.loan_amount - 2000;
 }

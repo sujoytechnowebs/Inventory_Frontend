@@ -28,7 +28,7 @@
         <div>
           <q-btn-dropdown flat label="Accounts">
             <div class="row no-wrap q-pa-md">
-              <div class="column">
+              <div class="column items-center">
                 <div class="text-h6 q-mb-md">Settings</div>
                 <q-btn
                   to="/profile"
@@ -42,14 +42,10 @@
               <q-separator vertical inset class="q-mx-lg" />
 
               <div class="column items-center">
-                <q-avatar size="72px">
-                  <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
-                </q-avatar>
-
-                <div class="text-subtitle1 q-mt-md q-mb-xs">
-                  {{ authUser.name }}
+                <div class="q-mb-md">
+                  <span class="profile_head q-mr-sm">Name:</span
+                  >{{ authUser.name }}
                 </div>
-
                 <q-btn
                   color="primary"
                   label="Logout"
@@ -618,5 +614,10 @@ export default defineComponent({
   .q-field__native
   .q-field__input {
   min-width: 0 !important;
+}
+
+.profile_head {
+  font-weight: 500;
+  font-size: 1rem;
 }
 </style>

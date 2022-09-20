@@ -21,6 +21,7 @@
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-12">
               <q-btn
+                outline
                 label="Download Report"
                 color="primary"
                 @click="alert = true"
@@ -63,6 +64,7 @@
                         outlined
                         dense
                         v-model="fromDate"
+                        label="From Date"
                         mask="date"
                         :error-message="$getValidationErrors('fromDate')"
                         :error="$hasValidationErrors('fromDate')"
@@ -94,6 +96,7 @@
                         outlined
                         dense
                         v-model="toDate"
+                        label="To Date"
                         mask="date"
                         :error-message="$getValidationErrors('toDate')"
                         :error="$hasValidationErrors('toDate')"
@@ -184,8 +187,26 @@ export default defineComponent({
       dataStore: "cashbook",
       aditionalActions: false,
       alert: ref(false),
-      options: ["debit", "credit"],
-      type_account: ["bank", "cash"],
+      options: [
+        {
+          label: "Debit",
+          value: "debit",
+        },
+        {
+          label: "Credit",
+          value: "credit",
+        },
+      ],
+      type_account: [
+        {
+          label: "Bank",
+          value: "bank",
+        },
+        {
+          label: "Cash",
+          value: "cash",
+        },
+      ],
     };
   },
 

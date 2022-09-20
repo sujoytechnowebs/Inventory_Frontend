@@ -103,7 +103,11 @@
             dense
             v-model="opening_balance_type"
             :options="payments"
+            option-value="value"
+            option-label="label"
+            option-disable="inactive"
             emit-value
+            map-options
             label="Opening Balance Type"
             :error-message="$getValidationErrors('opening_balance_type')"
             :error="$hasValidationErrors('opening_balance_type')"
@@ -164,12 +168,12 @@ export default {
       validationErrors: ref({}),
       payments: [
         {
-          label: "Credit",
           value: "cr",
+          label: "Credit",
         },
         {
-          label: "Debit",
           value: "dr",
+          label: "Debit",
         },
       ],
     };

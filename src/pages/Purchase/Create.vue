@@ -34,6 +34,7 @@
                   data-store="branch"
                   action="getItems"
                   :multiple="false"
+                  readonly
                   :error-message="$getValidationErrors('branch_id')"
                   :error="$hasValidationErrors('branch_id')"
                 ></QSearch>

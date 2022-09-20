@@ -29,6 +29,11 @@
               v-model="type"
               :options="account_type"
               label="Account Type"
+              option-value="value"
+              option-label="label"
+              option-disable="inactive"
+              emit-value
+              map-options
               :error-message="$getValidationErrors('account_type')"
               :error="$hasValidationErrors('account_type')"
             ></q-select>
@@ -88,8 +93,38 @@ export default {
       dataStore: "account",
       validationErrors: ref({}),
       modelValue: ref(),
-      account_type: ["bank", "cash"],
-      balance_category: ["cr", "dr", "expense", "salary"],
+      account_type: [
+        {
+          value: "expense",
+          label: "Expense",
+        },
+        {
+          value: "cash",
+          label: "Cash",
+        },
+        {
+          value: "bank",
+          label: "Bank",
+        },
+        {
+          value: "purchase",
+          label: "Purchase",
+        },
+        {
+          value: "dr",
+          label: "Debit",
+        },
+      ],
+      balance_category: [
+        {
+          value: "cr",
+          label: "Credit",
+        },
+        {
+          value: "dr",
+          label: "Debit",
+        },
+      ],
     };
   },
 

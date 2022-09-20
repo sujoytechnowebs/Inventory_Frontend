@@ -8,6 +8,7 @@
         :aditionalActions="aditionalActions"
         :columns="columns"
         :filter="filter"
+        :canEdit="false"
       >
         <template v-slot:top>
           <div
@@ -21,7 +22,7 @@
                 outlined
                 dense
                 debounce="300"
-                v-model="filter.search"
+                v-model="search"
                 clearable
                 placeholder="Search"
               >
@@ -67,7 +68,7 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("salereturn", ["filter"]),
+    ...mapFields("salereturn", ["filter.search", "filter"]),
   },
   setup() {
     const { getGetters } = useStoreModule();

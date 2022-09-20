@@ -31,6 +31,11 @@
                   dense
                   :options="grp_role_options"
                   label
+                  option-value="value"
+                  option-label="label"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
                   :error-message="$getValidationErrors('group_role')"
                   :error="$hasValidationErrors('group_role')"
                 >
@@ -64,7 +69,6 @@
                   v-model="name"
                   dense
                   label
-                  @keydown="checkKeyDownAlphaNumeric($event)"
                   :error-message="$getValidationErrors('name')"
                   :error="$hasValidationErrors('name')"
                 >
@@ -179,6 +183,11 @@
                   dense
                   :options="house_options"
                   label
+                  option-value="value"
+                  option-label="label"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
                   :error-message="$getValidationErrors('house')"
                   :error="$hasValidationErrors('house')"
                 >
@@ -250,6 +259,11 @@
                   dense
                   v-model="opening_balance_type"
                   :options="options"
+                  option-value="value"
+                  option-label="label"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
                   label="Opening Balance Type"
                   :error-message="$getValidationErrors('opening_balance_type')"
                   :error="$hasValidationErrors('opening_balance_type')"
@@ -330,9 +344,40 @@ export default {
       dataStore: "customer",
       validationErrors: ref({}),
       modelValue: ref(),
-      house_options: ["own house", "rent", "tea estate"],
-      grp_role_options: ["leader", "member"],
-      options: ["cr", "dr"],
+      house_options: [
+        {
+          value: "own house",
+          label: "Own House",
+        },
+        {
+          value: "rent",
+          label: "Rent",
+        },
+        {
+          value: "tea estate",
+          label: "Tea Estate",
+        },
+      ],
+      grp_role_options: [
+        {
+          value: "leader",
+          label: "Leader",
+        },
+        {
+          value: "member",
+          label: "Member",
+        },
+      ],
+      options: [
+        {
+          value: "cr",
+          label: "Credit",
+        },
+        {
+          value: "dr",
+          label: "Debit",
+        },
+      ],
     };
   },
 
