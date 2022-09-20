@@ -18,13 +18,8 @@
               data-store="branch"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.branch_id > 0) ||
-                  validationErrors.branch_id
-                    ? validationErrors.branch_id
-                    : 'Please Choose The Branch',
-              ]"
+              :error-message="$getValidationErrors('branch_id')"
+              :error="$hasValidationErrors('branch_id')"
             ></QSearch>
           </div>
           <div class="col-12">
@@ -36,13 +31,8 @@
               data-store="product"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.product_id > 0) ||
-                  validationErrors.product_id
-                    ? validationErrors.product_id
-                    : 'Please Choose The Product',
-              ]"
+              :error-message="$getValidationErrors('product_id')"
+              :error="$hasValidationErrors('product_id')"
             ></QSearch>
           </div>
           <div class="col-12">
@@ -53,13 +43,8 @@
               dense
               type="number"
               label="Number of quantity"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.quantity > 0) ||
-                  validationErrors.quantity
-                    ? validationErrors.quantity
-                    : 'Please write the Quantity',
-              ]"
+              :error-message="$getValidationErrors('quantity')"
+              :error="$hasValidationErrors('quantity')"
             >
             </q-input>
           </div>

@@ -142,6 +142,7 @@
         dense
         v-model="opening_balance_type"
         :options="payments"
+        emit-value
         label="Opening Balance Type"
         :error-message="$getValidationErrors('opening_balance_type')"
         :error="$hasValidationErrors('opening_balance_type')"
@@ -159,7 +160,16 @@ export default {
   setup() {
     return {
       options: ["Own", "Rent", "Tea Estate"],
-      payments: ["cr", "dr"],
+      payments: [
+        {
+          label: "Credit",
+          value: "cr",
+        },
+        {
+          label: "Debit",
+          value: "dr",
+        },
+      ],
     };
   },
 

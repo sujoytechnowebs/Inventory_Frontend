@@ -38,6 +38,7 @@ export function setPaymentDetails(state, payload) {
     date_of_transaction: "",
     note: "",
     amount: "",
+    others_note: "",
   });
 }
 

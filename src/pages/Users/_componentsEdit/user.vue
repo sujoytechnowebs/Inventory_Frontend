@@ -1,23 +1,19 @@
 <template>
   <q-separator class="q-mb-md" />
-  <p class="incharge_form_title">User Details</p>
+  <p class="incharge_form_title">Staff Details</p>
   <div class="row q-col-gutter-md">
     <div class="col-12">
       <div class="row q-col-gutter-md">
-        <div class="col-12 col-md-4 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-6">
           <q-input
             ref="account_name"
             outlined
             v-model="account_name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.account_name > 0) ||
-                validationErrors.account_name
-                  ? validationErrors.account_name
-                  : 'Please Write The Name',
-            ]"
+            @keydown="checkKeyDownAlphaNumeric($event)"
+            :error-message="$getValidationErrors('account_name')"
+            :error="$hasValidationErrors('account_name')"
           >
             <template v-slot:label>
               Name
@@ -25,44 +21,19 @@
             </template>
           </q-input>
         </div>
-        <div class="col-12 col-md-4 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-6">
           <q-input
             ref="name"
             outlined
             v-model="name"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.name > 0) || validationErrors.name
-                  ? validationErrors.name
-                  : 'Please Write The User Name',
-            ]"
+            @keydown="checkKeyDownAlphaNumeric($event)"
+            :error-message="$getValidationErrors('name')"
+            :error="$hasValidationErrors('name')"
           >
             <template v-slot:label>
               User Name
-              <span class="text-weight-bold text-negative">*</span>
-            </template>
-          </q-input>
-        </div>
-        <div class="col-12 col-md-4 col-lg-4">
-          <q-input
-            ref="password"
-            outlined
-            v-model="password"
-            dense
-            type="password"
-            label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.password > 0) ||
-                validationErrors.password
-                  ? validationErrors.password
-                  : 'Please Write The Password',
-            ]"
-          >
-            <template v-slot:label>
-              Password
               <span class="text-weight-bold text-negative">*</span>
             </template>
           </q-input>
@@ -75,12 +46,8 @@
             dense
             label
             type="number"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.phone > 0) || validationErrors.phone
-                  ? validationErrors.phone
-                  : 'Please Write The Phone Number',
-            ]"
+            :error-message="$getValidationErrors('phone')"
+            :error="$hasValidationErrors('phone')"
           >
             <template v-slot:label>
               Mobile Number
@@ -95,12 +62,8 @@
             v-model="email"
             dense
             label
-            :rules="[
-              (val) =>
-                (val && !validationErrors.email > 0) || validationErrors.email
-                  ? validationErrors.email
-                  : 'Please Write The Email',
-            ]"
+            :error-message="$getValidationErrors('email')"
+            :error="$hasValidationErrors('email')"
           >
             <template v-slot:label>
               Email
@@ -117,13 +80,8 @@
             data-store="city"
             action="getItems"
             :multiple="false"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.city_id > 0) ||
-                validationErrors.city_id
-                  ? validationErrors.city_id
-                  : 'Please choose the City Name',
-            ]"
+            :error-message="$getValidationErrors('city_id')"
+            :error="$hasValidationErrors('city_id')"
           ></QSearch>
         </div>
 
@@ -136,48 +94,56 @@
             data-store="branch"
             action="getItems"
             :multiple="false"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.branch_id > 0) ||
-                validationErrors.branch_id
-                  ? validationErrors.branch_id
-                  : 'Please choose the Branch Name',
-            ]"
+            :error-message="$getValidationErrors('branch_id')"
+            :error="$hasValidationErrors('branch_id')"
           ></QSearch>
         </div>
 
-        <div class="col-12">
-          <q-editor
-            placeholder="Please Write The Present Address"
-            v-model="address_1"
-            min-height="10rem"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.address_1 > 0) ||
-                validationErrors.address_1
-                  ? validationErrors.address_1
-                  : 'Please Write The Present Address',
-            ]"
-          ></q-editor>
-
-          <q-card-section v-html="editor" />
+        <div class="col-12 col-md-6 col-lg-6">
+          <p class="address_head">Please Write The Present Address:</p>
+          <q-field
+            :error-message="$getValidationErrors('address_1')"
+            :error="$hasValidationErrors('address_1')"
+          >
+            <q-editor v-model="address_1" class="full-width"></q-editor>
+          </q-field>
         </div>
 
-        <div class="col-12">
-          <q-editor
-            placeholder="Please Write The Permanent Address"
-            v-model="address_2"
-            min-height="10rem"
-            :rules="[
-              (val) =>
-                (val && !validationErrors.address_2 > 0) ||
-                validationErrors.address_2
-                  ? validationErrors.address_2
-                  : 'Please Write The Permanent Address',
-            ]"
-          ></q-editor>
+        <div class="col-12 col-md-6 col-lg-6">
+          <p class="address_head">Please Write The Permanent Address:</p>
 
-          <q-card-section v-html="editor" />
+          <q-field
+            :error-message="$getValidationErrors('address_2')"
+            :error="$hasValidationErrors('address_2')"
+          >
+            <q-editor v-model="address_2" class="full-width"></q-editor>
+          </q-field>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+          <q-input
+            ref="opening_balance"
+            outlined
+            v-model="opening_balance"
+            label="Opening Balance"
+            dense
+            v-on:keypress="NumbersOnly"
+            :error-message="$getValidationErrors('opening_balance')"
+            :error="$hasValidationErrors('opening_balance')"
+          >
+          </q-input>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6">
+          <q-select
+            outlined
+            dense
+            v-model="opening_balance_type"
+            :options="payments"
+            emit-value
+            label="Opening Balance Type"
+            :error-message="$getValidationErrors('opening_balance_type')"
+            :error="$hasValidationErrors('opening_balance_type')"
+          ></q-select>
         </div>
       </div>
     </div>
@@ -193,7 +159,8 @@
         dense
         type="number"
         label="Account Number"
-        :rules="[account_no]"
+        :error-message="$getValidationErrors('account_no')"
+        :error="$hasValidationErrors('account_no')"
       />
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -203,7 +170,8 @@
         v-model="ifsc"
         dense
         label="IFSC Number"
-        :rules="[ifsc]"
+        :error-message="$getValidationErrors('ifsc')"
+        :error="$hasValidationErrors('ifsc')"
       />
     </div>
     <div class="col-12 col-md-4 col-lg-4">
@@ -213,7 +181,9 @@
         v-model="bank_branch"
         dense
         label="Bank Branch"
-        :rules="[bank_branch]"
+        @keydown="checkKeyDownAlphaNumeric($event)"
+        :error-message="$getValidationErrors('bank_branch')"
+        :error="$hasValidationErrors('bank_branch')"
       />
     </div>
   </div>
@@ -228,13 +198,8 @@
         dense
         type="number"
         label
-        :rules="[
-          (val) =>
-            (val && !validationErrors.aadhar_card_no > 0) ||
-            validationErrors.aadhar_card_no
-              ? validationErrors.aadhar_card_no
-              : 'Please Write The Aadhar Card Number',
-        ]"
+        :error-message="$getValidationErrors('aadhar_card_no')"
+        :error="$hasValidationErrors('aadhar_card_no')"
       >
         <template v-slot:label>
           Aadhar Card Number
@@ -243,14 +208,35 @@
       </q-input>
     </div>
     <div class="col-12">
-      <q-uploader
-        label="Upload Aadhar Document"
-        square
-        flat
-        bordered
-        class="full-width"
-        :factory="factoryFn"
-      />
+      <q-field
+        :error-message="$getValidationErrors('aadhar_media_id')"
+        :error="$hasValidationErrors('aadhar_media_id')"
+      >
+        <q-uploader
+          label="Upload Aadhar Document"
+          square
+          flat
+          bordered
+          class="full-width"
+          :factory="factoryFn"
+        />
+      </q-field>
+    </div>
+    <div class="col-12 col-md-4 col-lg-4">
+      <q-input
+        ref="voter_card_no"
+        outlined
+        v-model="voter_card_no"
+        dense
+        label
+        :error-message="$getValidationErrors('voter_card_no')"
+        :error="$hasValidationErrors('voter_card_no')"
+      >
+        <template v-slot:label>
+          Voter Card Number
+          <span class="text-weight-bold text-negative">*</span>
+        </template>
+      </q-input>
     </div>
   </div>
 </template>
@@ -267,6 +253,16 @@ export default {
       modal: ref(true),
       validationErrors: ref({}),
       options: ["Own", "Rent", "Tea Estate"],
+      payments: [
+        {
+          label: "Credit",
+          value: "cr",
+        },
+        {
+          label: "Debit",
+          value: "dr",
+        },
+      ],
     };
   },
 
@@ -274,7 +270,6 @@ export default {
     ...mapFields("user", [
       "editItem.name",
       "editItem.email",
-      "editItem.password",
       "editItem.account_name",
       "editItem.phone",
       "editItem.city_id",
@@ -285,6 +280,9 @@ export default {
       "editItem.account_no",
       "editItem.ifsc",
       "editItem.bank_branch",
+      "editItem.voter_card_no",
+      "editItem.opening_balance",
+      "editItem.opening_balance_type",
     ]),
   },
 
@@ -303,6 +301,29 @@ export default {
           .finally(() => {});
       });
     },
+
+    // Validation for Number and alphabet
+
+    NumbersOnly(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
+
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
+      }
+    },
   },
 };
 </script>
@@ -310,6 +331,11 @@ export default {
 <style scoped>
 .incharge_form_title {
   font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.address_head {
+  font-size: 1rem;
   font-weight: 600;
 }
 </style>

@@ -88,7 +88,7 @@ export default defineComponent({
 
 <style scoped>
 .payment-form {
-  width: 60%;
-  max-width: 60%;
+  width: 70%;
+  max-width: 70%;
 }
 </style>

@@ -33,7 +33,7 @@ export default function () {
       {
         name: "note",
         align: "left",
-        label: "Notes",
+        label: "Purpose",
         field: "note",
         sortable: true,
       },
