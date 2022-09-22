@@ -27,7 +27,9 @@
       v-for="(data, index) in salesDetails"
       :key="index"
     >
-      <div class="col-6 col-md-2 col-lg-2">
+      <div class="product_list q-mt-md">{{ index + 1 }}<span>)</span></div>
+
+      <div class="col-10 col-md-2 col-lg-2">
         <q-input
           ref="product_id"
           v-model="data.product_name"
@@ -37,21 +39,27 @@
         >
         </q-input>
       </div>
-      <div class="col-6 col-md-2 col-lg-2">
+      <div class="col-3 col-md-1 col-lg-1">
         <q-input ref="discount" v-model="data.discount" dense label="Discount">
         </q-input>
       </div>
-      <div class="col-6 col-md-2 col-lg-2">
-        <q-input ref="quantity" v-model="data.quantity" dense label="Quantity">
+      <div class="col-3 col-md-1 col-lg-1">
+        <q-input
+          ref="quantity"
+          @keyup="inputValue(index)"
+          v-model="data.quantity"
+          dense
+          label="Quantity"
+        >
         </q-input>
       </div>
-      <div class="col-6 col-md-2 col-lg-2">
+      <div class="col-3 col-md-1 col-lg-1">
         <div v-if="data.custom_price === false || data.custom_price === ''">
           <q-input
             ref="item_rate"
             v-model="data.item_rate"
             dense
-            label="Item Rate"
+            label="Price"
             readonly
           >
           </q-input>
@@ -59,6 +67,7 @@
 
         <div v-if="data.custom_price === true">
           <q-input
+            @keyup="inputValue(index)"
             ref="item_rate"
             v-model="data.item_rate"
             dense
@@ -69,15 +78,19 @@
         </div>
       </div>
 
-      <div class="col-6 col-md-3 col-lg-3">
+      <div class="col-3 col-md-3 col-lg-3">
         <q-toggle
           v-model="data.custom_price"
           color="primary"
-          label="Custom Rate"
+          label="Custom Sale Price"
         />
       </div>
 
-      <div class="col-1 col-sm-1 col-md-1 col-lg-1">
+      <div class="col-3 col-md-2 col-lg-2 q-mt-sm purchase_rate">
+        = ₹{{ data.total }}
+      </div>
+
+      <div class="col-3 col-md-1 col-lg-1">
         <q-btn
           icon="delete"
           color="red"
@@ -129,6 +142,10 @@ export default defineComponent({
       "removeProductDetails",
     ]);
 
+    // Testing Calculations
+
+    const { setTotalRate } = getMutations("sale", ["setTotalRate"]);
+
     onMounted(() => {
       // arr_data.value = props.value;
     });
@@ -148,6 +165,12 @@ export default defineComponent({
       calculateLoanAmount();
     };
 
+    // Testing calculations
+
+    const inputValue = (index) => {
+      setTotalRate(index);
+    };
+
     // Testing Purpose
 
     const deleteProduct = (index) => {
@@ -165,6 +188,7 @@ export default defineComponent({
       product,
       addProduct,
       deleteProduct,
+      inputValue,
     };
   },
 
@@ -192,5 +216,9 @@ export default defineComponent({
 .details_head {
   text-align: center;
   font-size: 20px;
+}
+
+.product_list {
+  font-size: 1rem;
 }
 </style>

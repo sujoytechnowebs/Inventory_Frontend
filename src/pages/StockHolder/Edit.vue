@@ -37,6 +37,11 @@
               outlined
               v-model="action_name"
               :options="options"
+              option-value="value"
+              option-label="label"
+              option-disable="inactive"
+              emit-value
+              map-options
               label="Investment Type"
             />
           </div>
@@ -92,6 +97,20 @@ export default {
       saveaction: "stockholder/updateItem",
       validationErrors: ref({}),
       modelValue: ref(),
+      options: [
+        {
+          value: "invest",
+          label: "Invest",
+        },
+        {
+          value: "withdral",
+          label: "Withdrawal",
+        },
+        {
+          value: "loan",
+          label: "Loan",
+        },
+      ],
     };
   },
   computed: {

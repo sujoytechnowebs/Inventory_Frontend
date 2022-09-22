@@ -57,9 +57,8 @@ export function setProductDetails(state, payload) {
   // state.newItem.purchase_details = payload;
   state.newItem.salesDetails.push({
     item_rate: payload.sale_price,
-    discount: null,
     quantity: null,
-    discount: null,
+    discount: 0,
     custom_price: false,
     product_id: payload.id,
     product_name: payload.name,
@@ -84,4 +83,36 @@ export function calculateLoanAmount(state, payload) {
     });
   }
   // state.newItem.calculations = state.newItem.loan_amount - 2000;
+}
+
+// Testing Calculations
+
+export function setTotalRate(state, index) {
+  let currentObj = state.newItem.salesDetails[index];
+  let quantity = currentObj.quantity ? currentObj.quantity : 1;
+  let item_rate = currentObj.item_rate ? currentObj.item_rate : 0;
+  currentObj.total = parseFloat(item_rate) * parseFloat(quantity);
+  state.newItem.salesDetails[index] = currentObj;
+
+  var total = 0;
+  state.newItem.salesDetails.forEach((item) => {
+    total += parseFloat(item.total);
+  });
+  state.newItem.grand_item_rate_total = parseFloat(total);
+}
+
+export function calculationAfterDownPayment(state, payload) {
+  state.newItem.loan_after_downpayment =
+    state.newItem.grand_item_rate_total +
+    state.newItem.loan_with_processing_fees -
+    payload;
+}
+
+export function calculationAfterProcessingFees(state, payload) {
+  state.newItem.loan_with_processing_fees =
+    (state.newItem.grand_item_rate_total * payload) / 100;
+}
+
+export function ewicalculation(state, payload) {
+  state.newItem.per_ewi = state.newItem.loan_after_downpayment / payload;
 }
