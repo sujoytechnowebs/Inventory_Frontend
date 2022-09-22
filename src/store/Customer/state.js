@@ -3,10 +3,10 @@ export default function () {
     // items: {
     columns: [
       {
-        name: "name",
+        name: "account_name",
         align: "left",
         label: "Full Name",
-        field: "name",
+        field: (row) => row?.account?.account_name,
         sortable: true,
       },
       {

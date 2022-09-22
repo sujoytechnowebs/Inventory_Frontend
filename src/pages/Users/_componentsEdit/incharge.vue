@@ -181,7 +181,11 @@
         dense
         v-model="opening_balance_type"
         :options="options"
+        option-value="value"
+        option-label="label"
+        option-disable="inactive"
         emit-value
+        map-options
         label="Opening Balance Type"
         :error-message="$getValidationErrors('opening_balance_type')"
         :error="$hasValidationErrors('opening_balance_type')"
@@ -191,7 +195,7 @@
   <q-separator class="q-mb-md" />
   <p class="incharge_form_title">Other Details</p>
   <div class="row q-col-gutter-md">
-    <div class="col-12 col-md-4 col-lg-4">
+    <div class="col-12 col-md-6 col-lg-6">
       <q-input
         ref="aadhar_card_no"
         outlined
@@ -208,17 +212,7 @@
         </template>
       </q-input>
     </div>
-    <div class="col-12">
-      <q-uploader
-        label="Upload Aadhar Document"
-        square
-        flat
-        bordered
-        class="full-width"
-        :factory="factoryFn"
-      />
-    </div>
-    <div class="col-12 col-md-4 col-lg-4">
+    <div class="col-12 col-md-6 col-lg-6">
       <q-input
         ref="voter_card_no"
         outlined
@@ -250,12 +244,12 @@ export default {
       validationErrors: ref({}),
       options: [
         {
-          label: "Credit",
           value: "cr",
+          label: "Credit",
         },
         {
-          label: "Debit",
           value: "dr",
+          label: "Debit",
         },
       ],
     };
@@ -280,23 +274,6 @@ export default {
       "editItem.opening_balance",
       "editItem.opening_balance_type",
     ]),
-  },
-
-  methods: {
-    ...mapActions("user", ["media"]),
-
-    factoryFn(files) {
-      let formData = new FormData();
-      formData.append("attachment_type", "document");
-      formData.append("file", files[0]);
-      return new Promise((resolve) => {
-        this.media(formData)
-          .then((res) => {
-            resolve(true);
-          })
-          .finally(() => {});
-      });
-    },
   },
 };
 </script>

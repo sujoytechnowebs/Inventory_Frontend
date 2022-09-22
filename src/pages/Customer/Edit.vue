@@ -12,43 +12,70 @@
           <div class="col-12">
             <div class="row q-col-gutter-md">
               <div class="col-12 col-md-6 col-lg-6">
-                <QSearch
+                <!-- <QSearch
                   v-model="group_id"
                   label="Group Name"
                   option-value="id"
                   option-label="name"
                   data-store="group"
                   action="getItems"
+                  readonly
                   :multiple="false"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.group_id > 0) ||
-                      validationErrors.group_id
-                        ? validationErrors.group_id
-                        : 'Please Choose The Group Name',
-                  ]"
-                ></QSearch>
+                  :error-message="$getValidationErrors('group_id')"
+                  :error="$hasValidationErrors('group_id')"
+                ></QSearch> -->
+                <q-input
+                  ref="group_id"
+                  outlined
+                  v-model="group_id"
+                  dense
+                  label
+                  readonly
+                  :error-message="$getValidationErrors('group_id')"
+                  :error="$hasValidationErrors('group_id')"
+                >
+                  <template v-slot:label>
+                    Group Name
+                    <span class="text-weight-bold text-negative">*</span>
+                  </template>
+                </q-input>
               </div>
               <div class="col-12 col-md-6 col-lg-6">
-                <q-select
+                <!-- <q-select
                   outlined
                   v-model="group_role"
                   dense
                   :options="grp_role_options"
                   label
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.group_role > 0) ||
-                      validationErrors.group_role
-                        ? validationErrors.group_role
-                        : 'Please Choose The Group Role',
-                  ]"
+                  option-value="value"
+                  option-label="label"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
+                  readonly
+                  :error-message="$getValidationErrors('group_role')"
+                  :error="$hasValidationErrors('group_role')"
                 >
                   <template v-slot:label>
                     Group Role
                     <span class="text-weight-bold text-negative">*</span>
                   </template>
-                </q-select>
+                </q-select> -->
+                <q-input
+                  ref="group_role"
+                  outlined
+                  v-model="group_role"
+                  dense
+                  label
+                  readonly
+                  :error-message="$getValidationErrors('group_role')"
+                  :error="$hasValidationErrors('group_role')"
+                >
+                  <template v-slot:label>
+                    Group Role
+                    <span class="text-weight-bold text-negative">*</span>
+                  </template>
+                </q-input>
               </div>
               <div class="col-12 col-md-6 col-lg-6">
                 <q-input
@@ -57,13 +84,8 @@
                   v-model="account_name"
                   dense
                   label
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.account_name > 0) ||
-                      validationErrors.account_name
-                        ? validationErrors.account_name
-                        : 'Please Write The Customer Name',
-                  ]"
+                  :error-message="$getValidationErrors('account_name')"
+                  :error="$hasValidationErrors('account_name')"
                 >
                   <template v-slot:label>
                     Customer Name
@@ -78,13 +100,8 @@
                   v-model="name"
                   dense
                   label
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.name > 0) ||
-                      validationErrors.name
-                        ? validationErrors.name
-                        : 'Please Write The User Name',
-                  ]"
+                  :error-message="$getValidationErrors('name')"
+                  :error="$hasValidationErrors('name')"
                 >
                   <template v-slot:label>
                     UserName
@@ -99,12 +116,8 @@
                   v-model="DOB"
                   label
                   mask="date"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.DOB > 0) || validationErrors.DOB
-                        ? validationErrors.DOB
-                        : 'Please Pick The Date',
-                  ]"
+                  :error-message="$getValidationErrors('DOB')"
+                  :error="$hasValidationErrors('DOB')"
                 >
                   <template v-slot:prepend>
                     <q-icon name="event" class="cursor-pointer">
@@ -139,13 +152,8 @@
                   v-model="spouse_parent_name"
                   dense
                   label
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.spouse_parent_name > 0) ||
-                      validationErrors.spouse_parent_name
-                        ? validationErrors.spouse_parent_name
-                        : 'Please Write The Spouse / Parent Name',
-                  ]"
+                  :error-message="$getValidationErrors('spouse_parent_name')"
+                  :error="$hasValidationErrors('spouse_parent_name')"
                 >
                   <template v-slot:label>
                     Spouse Name/Parent Name
@@ -161,13 +169,8 @@
                   dense
                   label
                   type="number"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.phone > 0) ||
-                      validationErrors.phone
-                        ? validationErrors.phone
-                        : 'Please Write The Phone Number',
-                  ]"
+                  :error-message="$getValidationErrors('phone')"
+                  :error="$hasValidationErrors('phone')"
                 >
                   <template v-slot:label>
                     Mobile Number
@@ -182,7 +185,8 @@
                   v-model="email"
                   dense
                   label="Email"
-                  :rules="[email]"
+                  :error-message="$getValidationErrors('email')"
+                  :error="$hasValidationErrors('email')"
                 />
               </div>
               <div class="col-12 col-md-4 col-lg-4">
@@ -192,13 +196,8 @@
                   v-model="occupation"
                   dense
                   label
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.occupation > 0) ||
-                      validationErrors.occupation
-                        ? validationErrors.occupation
-                        : 'Please Write The Occupation',
-                  ]"
+                  :error-message="$getValidationErrors('occupation')"
+                  :error="$hasValidationErrors('occupation')"
                 >
                   <template v-slot:label>
                     Occupation
@@ -213,13 +212,13 @@
                   dense
                   :options="house_options"
                   label
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.house > 0) ||
-                      validationErrors.house
-                        ? validationErrors.house
-                        : 'Please Choose The House Type',
-                  ]"
+                  option-value="value"
+                  option-label="label"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
+                  :error-message="$getValidationErrors('house_options')"
+                  :error="$hasValidationErrors('house_options')"
                 >
                   <template v-slot:label>
                     House
@@ -235,13 +234,8 @@
                   dense
                   label
                   type="number"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.monthly_income > 0) ||
-                      validationErrors.monthly_income
-                        ? validationErrors.monthly_income
-                        : 'Please Write The Monthly Income',
-                  ]"
+                  :error-message="$getValidationErrors('monthly_income')"
+                  :error="$hasValidationErrors('monthly_income')"
                 >
                   <template v-slot:label>
                     Monthly Income
@@ -258,31 +252,51 @@
                   data-store="city"
                   action="getItems"
                   :multiple="false"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.city_id > 0) ||
-                      validationErrors.city_id
-                        ? validationErrors.city_id
-                        : 'Please Write The City Name',
-                  ]"
+                  :error-message="$getValidationErrors('city_id')"
+                  :error="$hasValidationErrors('city_id')"
                 ></QSearch>
               </div>
               <div class="col-12">
-                <q-editor
-                  placeholder="Please Write The Address"
-                  v-model="address_1"
-                  min-height="10rem"
-                  :rules="[
-                    (val) =>
-                      (val && !validationErrors.address_1 > 0) ||
-                      validationErrors.address_1
-                        ? validationErrors.address_1
-                        : 'Please Write The Address',
-                  ]"
+                <span class="customer_form_title text-weight-medium"
+                  >Current Address</span
                 >
-                </q-editor>
+                <q-field
+                  :error-message="$getValidationErrors('address_1')"
+                  :error="$hasValidationErrors('address_1')"
+                >
+                  <q-editor v-model="address_1" class="full-width"></q-editor>
+                </q-field>
+              </div>
 
-                <q-card-section v-html="editor" />
+              <div class="col-12 col-md-6 col-lg-6">
+                <q-input
+                  ref="opening_balance"
+                  outlined
+                  v-model="opening_balance"
+                  label="Opening Balance"
+                  v-on:keypress="NumbersOnly"
+                  dense
+                  :error-message="$getValidationErrors('opening_balance')"
+                  :error="$hasValidationErrors('opening_balance')"
+                >
+                </q-input>
+              </div>
+
+              <div class="col-12 col-md-6 col-lg-6">
+                <q-select
+                  outlined
+                  dense
+                  v-model="opening_balance_type"
+                  :options="options"
+                  option-value="value"
+                  option-label="label"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
+                  label="Opening Balance Type"
+                  :error-message="$getValidationErrors('opening_balance_type')"
+                  :error="$hasValidationErrors('opening_balance_type')"
+                ></q-select>
               </div>
             </div>
           </div>
@@ -290,7 +304,7 @@
         <q-separator class="q-mb-md" />
         <p class="customer_form_title">Other Details</p>
         <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-4 col-lg-4">
+          <div class="col-12 col-md-6 col-lg-6">
             <q-input
               ref="aadhar_card_no"
               outlined
@@ -298,13 +312,8 @@
               dense
               type="number"
               label
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.aadhar_card_no > 0) ||
-                  validationErrors.aadhar_card_no
-                    ? validationErrors.aadhar_card_no
-                    : 'Please Write The aadhar card number',
-              ]"
+              :error-message="$getValidationErrors('aadhar_card_no')"
+              :error="$hasValidationErrors('aadhar_card_no')"
             >
               <template v-slot:label>
                 Aadhar Card Number
@@ -312,15 +321,21 @@
               </template>
             </q-input>
           </div>
-          <div class="col-12">
-            <q-uploader
-              label="Upload Aadhar Document"
-              square
-              flat
-              bordered
-              class="full-width"
-              :factory="factoryFn"
-            />
+          <div class="col-12 col-md-6 col-lg-6">
+            <q-input
+              ref="voter_card_no"
+              outlined
+              v-model="voter_card_no"
+              dense
+              label
+              :error-message="$getValidationErrors('voter_card_no')"
+              :error="$hasValidationErrors('voter_card_no')"
+            >
+              <template v-slot:label>
+                Voter Card Number
+                <span class="text-weight-bold text-negative">*</span>
+              </template>
+            </q-input>
           </div>
         </div>
       </QEditForm>
@@ -342,8 +357,40 @@ export default {
       saveaction: "customer/updateItem",
       validationErrors: ref({}),
       modelValue: ref(),
-      house_options: ["own", "rent", "tea estate"],
-      grp_role_options: ["leader", "member"],
+      house_options: [
+        {
+          value: "own house",
+          label: "Own House",
+        },
+        {
+          value: "rent",
+          label: "Rent",
+        },
+        {
+          value: "tea estate",
+          label: "Tea Estate",
+        },
+      ],
+      grp_role_options: [
+        {
+          value: "leader",
+          label: "Leader",
+        },
+        {
+          value: "member",
+          label: "Member",
+        },
+      ],
+      options: [
+        {
+          value: "cr",
+          label: "Credit",
+        },
+        {
+          value: "dr",
+          label: "Debit",
+        },
+      ],
     };
   },
   computed: {
@@ -367,25 +414,6 @@ export default {
       "editItem.opening_balance_type",
       "editItem.voter_card_no",
     ]),
-  },
-
-  methods: {
-    ...mapActions("user", ["media"]),
-
-    factoryFn(files) {
-      let formData = new FormData();
-      formData.append("attachment_type", "document");
-      formData.append("file", files[0]);
-      return new Promise((resolve) => {
-        this.media(formData)
-          .then((res) => {
-            resolve({
-              url: res.data.media.url,
-            });
-          })
-          .finally(() => {});
-      });
-    },
   },
 };
 </script>

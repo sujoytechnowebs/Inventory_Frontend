@@ -61,8 +61,7 @@ export function setEditItem(state, payload) {
   state.editItem.opening_balance_type = payload.account.opening_balance_type;
   state.editItem.aadhar_card_no = payload.account.aadhar_card_no;
   state.editItem.voter_card_no = payload.account.voter_card_no;
-  // state.editItem.city_id = payload.account.city.city_name;
-  state.editItem.city_id = payload.city_id;
+  state.editItem.city_id = payload.account.city.city_name;
 }
 
 export function setEditModal(state, payload) {

@@ -25,15 +25,15 @@
           </div>
           <div class="col-12 col-md-4 col-lg-4">
             <QSearch
-              v-model="to_account_id"
-              label="From Account"
+              v-model="toAccount"
+              label="To Account"
               option-value="id"
               option-label="account_name"
               data-store="account"
               action="getAccountsType"
               :multiple="false"
-              :error-message="$getValidationErrors('to_account_id')"
-              :error="$hasValidationErrors('to_account_id')"
+              :error-message="$getValidationErrors('toAccount')"
+              :error="$hasValidationErrors('toAccount')"
             ></QSearch>
           </div>
           <div class="col-12 col-md-4 col-lg-4">

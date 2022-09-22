@@ -193,7 +193,7 @@
                     type="number"
                     v-model="processing_fees"
                     dense
-                    label="Processing Fees"
+                    label="Processing Fees(%)"
                     :error-message="$getValidationErrors('processing_fees')"
                     :error="$hasValidationErrors('processing_fees')"
                   >
@@ -264,6 +264,10 @@
                     :error="$hasValidationErrors('application_received_by')"
                   ></QSearch>
                 </div>
+
+                <!-- Test -->
+
+                {{ calculations }}
               </div>
             </div>
 
@@ -344,6 +348,7 @@ export default {
       "newItem.loan_amount",
       "newItem.processing_fees",
       "newItem.down_payment",
+      "newItem.calculations",
     ]),
     ...mapGetters("auth", ["getActiveBranch"]),
   },

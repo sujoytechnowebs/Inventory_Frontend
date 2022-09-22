@@ -21,7 +21,7 @@
                 outlined
                 dense
                 debounce="300"
-                v-model="filter.search"
+                v-model="search"
                 clearable
                 placeholder="Search"
               >
@@ -67,7 +67,7 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("stockholder", ["filter"]),
+    ...mapFields("stockholder", ["filter.search", "filter"]),
   },
   setup() {
     const { getGetters } = useStoreModule();

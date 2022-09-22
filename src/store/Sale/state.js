@@ -90,8 +90,9 @@ export default function () {
       ewi_start_date: "",
       no_of_ewi: "",
       loan_amount: null,
-      processing_fees: "",
+      processing_fees: 2,
       down_payment: "",
+      calculations: "", // This is the test field
     },
     editItem: {
       name: "",

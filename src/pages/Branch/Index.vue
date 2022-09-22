@@ -17,18 +17,18 @@
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-8">
-              <!-- <q-input
+              <q-input
                 outlined
                 dense
                 debounce="300"
-                v-model="filter.search"
+                v-model="search"
                 clearable
                 placeholder="Search"
               >
                 <template v-slot:append>
                   <q-icon name="search" />
                 </template>
-              </q-input> -->
+              </q-input>
             </div>
           </div>
         </template>
@@ -67,7 +67,7 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("branch", ["filter"]),
+    ...mapFields("branch", ["filter.search", "filter"]),
   },
   setup() {
     const { getGetters } = useStoreModule();

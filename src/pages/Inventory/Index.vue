@@ -16,7 +16,7 @@
             Product Management Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
-            <div class="col-12">
+            <div class="col-6">
               <q-btn
                 label="Download Report"
                 no-caps
@@ -25,6 +25,20 @@
                 @click="alert = true"
               >
               </q-btn>
+            </div>
+            <div class="col-6">
+              <q-input
+                outlined
+                dense
+                debounce="300"
+                v-model="search"
+                clearable
+                placeholder="Search"
+              >
+                <template v-slot:append>
+                  <q-icon name="search" />
+                </template>
+              </q-input>
             </div>
           </div>
         </template>
@@ -98,7 +112,7 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("inventory", ["filter.branch_id"]),
+    ...mapFields("inventory", ["filter.branch_id", "filter.search", "filter"]),
   },
   setup() {
     const { getGetters } = useStoreModule();
