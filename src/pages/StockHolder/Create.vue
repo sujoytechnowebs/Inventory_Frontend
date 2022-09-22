@@ -11,7 +11,7 @@
       >
         <div class="row q-col-gutter-md">
           <div class="col-12 col-md-4 col-lg-4">
-            <QSearch
+            <!-- <QSearch
               v-model="investorAccountId"
               label="Investor"
               option-value="id"
@@ -21,6 +21,15 @@
               :multiple="false"
               :error-message="$getValidationErrors('investorAccountId')"
               :error="$hasValidationErrors('investorAccountId')"
+            ></QSearch> -->
+            <QSearch
+              v-model="investorAccountId"
+              label="Investor"
+              option-value="id"
+              option-label="account_name"
+              data-store="account"
+              action="getItems"
+              :multiple="false"
             ></QSearch>
           </div>
           <div class="col-12 col-md-4 col-lg-4">
@@ -43,6 +52,11 @@
               v-model="action_name"
               :options="options"
               label="Investment Type"
+              option-value="value"
+              option-label="label"
+              option-disable="inactive"
+              emit-value
+              map-options
               :error-message="$getValidationErrors('action_name')"
               :error="$hasValidationErrors('action_name')"
             />
@@ -109,7 +123,20 @@ export default {
       dataStore: "stockholder",
       validationErrors: ref({}),
       modelValue: ref(),
-      options: ["invest", "withdral", "loan"],
+      options: [
+        {
+          value: "invest",
+          label: "Invest",
+        },
+        {
+          value: "withdral",
+          label: "Withdrawal",
+        },
+        {
+          value: "loan",
+          label: "Loan",
+        },
+      ],
     };
   },
 

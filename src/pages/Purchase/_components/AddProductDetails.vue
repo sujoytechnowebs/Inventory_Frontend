@@ -25,7 +25,8 @@
       v-for="(data, index) in purchase_details"
       :key="data.id"
     >
-      <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+      <div class="product_list q-mt-md">{{ index + 1 }}<span>)</span></div>
+      <div class="col-3 col-md-2 col-lg-2">
         <q-input
           ref="product_id"
           v-model="data.product_name"
@@ -46,16 +47,6 @@
         >
         </q-input>
       </div>
-      <!-- <div class="col-6 col-sm-3 col-md-2 col-lg-2">
-        <q-input
-          ref="discount"
-          v-model="data.discount"
-          dense
-          type="number"
-          label="Discount"
-        >
-        </q-input>
-      </div> -->
       <div class="col-3 col-md-2 col-lg-2">
         <q-input
           @keyup="inputValue(index)"
@@ -76,10 +67,10 @@
           v-on:keypress="NumbersOnly"
         ></q-input>
       </div>
-      <div class="col-6 col-md-1 col-lg-1 q-mt-sm purchase_rate">
+      <div class="col-3 col-md-2 col-lg-2 q-mt-sm purchase_rate">
         = ₹{{ data.total }}
       </div>
-      <div class="col-6 col-md-2 col-lg-2">
+      <div class="col-3 col-md-1 col-lg-1">
         <q-btn
           icon="delete"
           color="red"
@@ -176,5 +167,9 @@ export default defineComponent({
 <style scoped>
 .purchase_rate {
   font-size: 1.1rem;
+}
+
+.product_list {
+  font-size: 1rem;
 }
 </style>

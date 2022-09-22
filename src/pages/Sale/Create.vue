@@ -10,7 +10,7 @@
       >
         <q-separator class="q-mb-md" />
         <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-6 col-lg-6 scroll-bar q-pr-md">
+          <div class="col-12 col-md-8 col-lg-8 scroll-bar q-pr-md">
             <p class="head">Sell Details</p>
             <div class="row q-col-gutter-md">
               <div class="col-12 col-md-6 col-lg-6">
@@ -43,15 +43,6 @@
             <div>
               <addSales v-model="salesDetails" />
             </div>
-            <!-- <div class="q-my-md">
-              <p>Notes:</p>
-              <q-editor v-model="note">
-                <q-card flat bordered>
-                  <q-card-section v-html="editor" />
-                </q-card>
-              </q-editor>
-            </div> -->
-
             <div class="col-12 q-py-lg">
               <p class="note_head">Notes For Sale:</p>
 
@@ -122,12 +113,35 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-4 col-lg-4">
             <div v-if="payment_method === 'ewi'">
               <p class="head">Loan Details</p>
 
               <div class="row q-col-gutter-md">
-                <div class="col-12 col-md-4 col-lg-4">
+                <!-- Loan Rearrange -->
+
+                <!-- Loan Amount -->
+
+                <div class="col-12">
+                  <q-input
+                    ref="grand_item_rate_total"
+                    outlined
+                    v-model="grand_item_rate_total"
+                    dense
+                    type="number"
+                    readonly
+                    label="Loan Amount"
+                    :error-message="
+                      $getValidationErrors('grand_item_rate_total')
+                    "
+                    :error="$hasValidationErrors('grand_item_rate_total')"
+                  >
+                  </q-input>
+                </div>
+
+                <!-- EWI Start Date -->
+
+                <div class="col-12 col-md-6 col-lg-6">
                   <q-input
                     outlined
                     dense
@@ -160,31 +174,7 @@
                   </q-input>
                 </div>
 
-                <div class="col-12 col-md-4 col-lg-4">
-                  <q-select
-                    outlined
-                    v-model="no_of_ewi"
-                    dense
-                    :options="noEwi"
-                    label="No. of EWI"
-                    :error-message="$getValidationErrors('no_of_ewi')"
-                    :error="$hasValidationErrors('no_of_ewi')"
-                  ></q-select>
-                </div>
-
-                <div class="col-12 col-md-4 col-lg-4">
-                  <q-input
-                    ref="loan_amount"
-                    outlined
-                    v-model="loan_amount"
-                    dense
-                    type="number"
-                    label="Loan Amount"
-                    :error-message="$getValidationErrors('loan_amount')"
-                    :error="$hasValidationErrors('loan_amount')"
-                  >
-                  </q-input>
-                </div>
+                <!-- Processing Fess -->
 
                 <div class="col-12 col-md-6 col-lg-6">
                   <q-input
@@ -196,9 +186,12 @@
                     label="Processing Fees(%)"
                     :error-message="$getValidationErrors('processing_fees')"
                     :error="$hasValidationErrors('processing_fees')"
+                    @update:modelValue="onProcessingFees"
                   >
                   </q-input>
                 </div>
+
+                <!-- Down Payment -->
 
                 <div class="col-12 col-md-6 col-lg-6">
                   <q-input
@@ -210,9 +203,27 @@
                     label="Down Payment"
                     :error-message="$getValidationErrors('down_payment')"
                     :error="$hasValidationErrors('down_payment')"
+                    @update:modelValue="onDownPayment"
                   >
                   </q-input>
                 </div>
+
+                <!-- No of EWI -->
+
+                <div class="col-12 col-md-6 col-lg-6">
+                  <q-select
+                    outlined
+                    v-model="no_of_ewi"
+                    dense
+                    :options="noEwi"
+                    label="No. of EWI"
+                    :error-message="$getValidationErrors('no_of_ewi')"
+                    :error="$hasValidationErrors('no_of_ewi')"
+                    @update:modelValue="onEWI"
+                  ></q-select>
+                </div>
+
+                <!-- Receive Date -->
 
                 <div class="col-12 col-md-6 col-lg-6">
                   <q-input
@@ -249,6 +260,8 @@
                   </q-input>
                 </div>
 
+                <!-- Receive By -->
+
                 <div class="col-12 col-md-6 col-lg-6">
                   <QSearch
                     v-model="application_received_by"
@@ -265,9 +278,30 @@
                   ></QSearch>
                 </div>
 
-                <!-- Test -->
-
-                {{ calculations }}
+                <!-- Another Test -->
+                <div class="q-pl-md">
+                  <q-card class="my-card" flat bordered>
+                    <q-card-section class="q-pt-xs">
+                      <div class="row q-col-gutter-md">
+                        <div class="col-12">
+                          <span class="loan-details q-pr-sm"
+                            >Loan Processing Fees:</span
+                          >{{ loan_with_processing_fees }}
+                        </div>
+                        <div class="col-12">
+                          <span class="loan-details q-pr-sm"
+                            >Amount After DownPayment:</span
+                          >{{ loan_after_downpayment }}
+                        </div>
+                        <div class="col-12">
+                          <span class="loan-details q-pr-sm"
+                            >Amount Per EWI:</span
+                          >{{ per_ewi }}
+                        </div>
+                      </div>
+                    </q-card-section>
+                  </q-card>
+                </div>
               </div>
             </div>
 
@@ -286,7 +320,8 @@
                       <p class="total_head">Total Cost:</p>
                     </div>
                     <div class="col-6">
-                      {{ loan_amount }}
+                      <!-- {{ loan_amount }} -->
+                      {{ grand_item_rate_total }}
                     </div>
                   </div>
                 </q-card-section>
@@ -349,8 +384,32 @@ export default {
       "newItem.processing_fees",
       "newItem.down_payment",
       "newItem.calculations",
+      "newItem.grand_item_rate_total",
+      "newItem.loan_after_downpayment",
+      "newItem.loan_with_processing_fees",
+      "newItem.per_ewi",
     ]),
     ...mapGetters("auth", ["getActiveBranch"]),
+  },
+  methods: {
+    onDownPayment() {
+      this.$store.commit("sale/calculationAfterDownPayment", this.down_payment);
+    },
+
+    // Processing Fees
+
+    onProcessingFees() {
+      this.$store.commit(
+        "sale/calculationAfterProcessingFees",
+        this.processing_fees
+      );
+    },
+
+    // EWI Calculation
+
+    onEWI() {
+      this.$store.commit("sale/ewicalculation", this.no_of_ewi);
+    },
   },
 };
 </script>
@@ -371,5 +430,10 @@ export default {
 .total_head {
   font-size: 1rem;
   font-weight: 500;
+}
+
+.loan-details {
+  font-weight: 500;
+  font-size: 1rem;
 }
 </style>
