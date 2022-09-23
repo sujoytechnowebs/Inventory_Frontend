@@ -116,7 +116,14 @@ export default {
         })
         .catch((error) => {
           this.submitting = false;
-          let formatted_message = error.response.data.message;
+
+          let formatted_message = "";
+          if (error.response.data.message) {
+            formatted_message = error.response.data.message;
+          } else {
+            formatted_message = error.response.data.error;
+          }
+
           let errorMessages = {};
           if (error.response.data.errors) {
             errorMessages = error.response.data.errors;

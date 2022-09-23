@@ -85,15 +85,65 @@ export default {
       descending: false,
       page: 1,
       direction: null,
-      rowsPerPage: 10,
+      rowsPerPage: 1000,
       totalRecords: 0,
     };
 
     const search = ref(null);
 
+    const getOptionValues = async () => {
+      store
+        .dispatch(`${props.dataStore}/${props.action}`, {
+          pagination: pagination,
+        })
+        .then((response) => {
+          if (response.data && response.data.data) {
+            options.value = response.data.data;
+          } else {
+            options.value = response.data;
+          }
+
+          loading.value = false;
+        })
+        .catch((err) => {
+          loading.value = false;
+          console.log("err", err);
+        });
+
+      loading.value = false;
+    };
+
     onMounted(() => {
+      getOptionValues();
       search.value = props.modelValue;
+      // getOptionValues();
     });
+
+    // onRequest(() => {
+    //   store
+    //     .dispatch(`${props.dataStore}/${props.action}`, {
+    //       pagination: pagination,
+    //       search: val,
+    //     })
+    //     .then((response) => {
+    //       if (response.data && response.data.data) {
+    //         options.value = response.data.data;
+    //       } else {
+    //         options.value = response.data;
+    //       }
+
+    //       loading.value = false;
+    //     })
+    //     .catch((err) => {
+    //       loading.value = false;
+    //       console.log("err", err);
+    //     });
+
+    //   loading.value = false;
+    // });
+
+    // getOptionValues();
+    // this.onRequest();
 
     watch(
       () => {
@@ -116,10 +166,9 @@ export default {
     return {
       search,
       loading,
-
       nextPage,
       options,
-
+      // onRequest,
       onScroll({ to, ref }) {
         const lastIndex = options.value.length - 1;
 
