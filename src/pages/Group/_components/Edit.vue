@@ -18,13 +18,8 @@
               data-store="group"
               action="getItems"
               :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.group_id > 0) ||
-                  validationErrors.group_id
-                    ? validationErrors.group_id
-                    : 'Please Choose The Group Name',
-              ]"
+              :error-message="$getValidationErrors('group_id')"
+              :error="$hasValidationErrors('group_id')"
             ></QSearch>
           </div>
           <div class="col-12">
@@ -34,13 +29,8 @@
               v-model="group_role"
               :options="role"
               label="Group Role"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.group_role > 0) ||
-                  validationErrors.group_role
-                    ? validationErrors.group_role
-                    : 'Please Choose The Group Role',
-              ]"
+              :error-message="$getValidationErrors('group_role')"
+              :error="$hasValidationErrors('group_role')"
             />
           </div>
         </div>

@@ -39,10 +39,10 @@
         >
         </q-input>
       </div>
-      <div class="col-3 col-md-1 col-lg-1">
+      <!-- <div class="col-3 col-md-1 col-lg-1">
         <q-input ref="discount" v-model="data.discount" dense label="Discount">
         </q-input>
-      </div>
+      </div> -->
       <div class="col-3 col-md-1 col-lg-1">
         <q-input
           ref="quantity"
@@ -53,7 +53,7 @@
         >
         </q-input>
       </div>
-      <div class="col-3 col-md-1 col-lg-1">
+      <div class="col-3 col-md-2 col-lg-2">
         <div v-if="data.custom_price === false || data.custom_price === ''">
           <q-input
             ref="item_rate"
