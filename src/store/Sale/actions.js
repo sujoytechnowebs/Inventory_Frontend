@@ -116,3 +116,21 @@ export function deleteItem({ commit, state }, item) {
       });
   });
 }
+
+// Test Function
+
+export function incomesource({ commit, state }, id) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(endPoint + "/" + id)
+      .then((response) => {
+        commit("setEditItem", response.data);
+        commit("setLastUpdated", moment());
+        commit("resetForm");
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}

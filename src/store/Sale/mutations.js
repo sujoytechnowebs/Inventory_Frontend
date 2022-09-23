@@ -99,6 +99,8 @@ export function setTotalRate(state, index) {
     total += parseFloat(item.total);
   });
   state.newItem.grand_item_rate_total = parseFloat(total);
+  state.newItem.loan_with_processing_fees =
+    (state.newItem.grand_item_rate_total * 2) / 100;
 }
 
 export function calculationAfterDownPayment(state, payload) {

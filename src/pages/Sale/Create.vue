@@ -13,7 +13,7 @@
           <div class="col-12 col-md-8 col-lg-8 scroll-bar q-pr-md">
             <p class="head">Sell Details</p>
             <div class="row q-col-gutter-md">
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-md-3 col-lg-3">
                 <QSearch
                   v-model="customer_id"
                   label="Customer Name"
@@ -24,9 +24,36 @@
                   :multiple="false"
                   :error-message="$getValidationErrors('customer_id')"
                   :error="$hasValidationErrors('customer_id')"
+                  @update:modelValue="onCustomerSelect"
                 ></QSearch>
               </div>
-              <div class="col-12 col-md-6 col-lg-6">
+
+              <!-- Test Div -->
+              <div v-if="customer_id != null">
+                <div class="col-12 col-md-3 col-lg-3">
+                  <q-input
+                    outlined
+                    dense
+                    v-model="monthly_income"
+                    label="Monthly Income"
+                    readonly
+                  />
+                </div>
+              </div>
+
+              <div v-if="customer_id != null">
+                <div class="col-12 col-md-3 col-lg-3">
+                  <q-input
+                    outlined
+                    dense
+                    v-model="occupation"
+                    label="Occupation"
+                    readonly
+                  />
+                </div>
+              </div>
+
+              <div class="col-12 col-md-3 col-lg-3">
                 <QSearch
                   v-model="branch_id"
                   label="Branch"
@@ -35,6 +62,7 @@
                   data-store="branch"
                   action="getItems"
                   :multiple="false"
+                  readonly
                   :error-message="$getValidationErrors('branch_id')"
                   :error="$hasValidationErrors('branch_id')"
                 ></QSearch>
@@ -96,6 +124,11 @@
                   :options="payment"
                   label="Payment Method"
                   dense
+                  option-value="value"
+                  option-label="label"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
                   :error-message="$getValidationErrors('payment_method')"
                   :error="$hasValidationErrors('payment_method')"
                 ></q-select>
@@ -107,6 +140,11 @@
                   :options="options"
                   label="Status"
                   dense
+                  option-value="value"
+                  option-label="label"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
                   :error-message="$getValidationErrors('status')"
                   :error="$hasValidationErrors('status')"
                 ></q-select>
@@ -338,7 +376,7 @@
 import { ref, watch } from "vue";
 import { mapFields } from "vuex-map-fields";
 import { defineAsyncComponent } from "vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 const addSales = defineAsyncComponent(() =>
   import("./_components/AddSalesDetails.vue")
@@ -357,9 +395,35 @@ export default {
       dataStore: "sale",
       validationErrors: ref({}),
       modelValue: ref(),
-      payment: ["cash", "bank", "due", "ewi"],
-      options: ["received", "deliverd"],
       noEwi: ["25", "34", "40", "44", "52"],
+      payment: [
+        {
+          value: "cash",
+          label: "Cash",
+        },
+        {
+          value: "bank",
+          label: "Bank",
+        },
+        {
+          value: "due",
+          label: "Due",
+        },
+        {
+          value: "ewi",
+          label: "Ewi",
+        },
+      ],
+      options: [
+        {
+          value: "received",
+          label: "Received",
+        },
+        {
+          value: "deliverd",
+          label: "Delivered",
+        },
+      ],
     };
   },
 
@@ -375,7 +439,7 @@ export default {
       "newItem.payment_method",
       "newItem.note",
       "newItem.status",
-
+      "newItem.monthly_income",
       "newItem.application_received_date",
       "newItem.application_received_by",
       "newItem.ewi_start_date",
@@ -388,10 +452,12 @@ export default {
       "newItem.loan_after_downpayment",
       "newItem.loan_with_processing_fees",
       "newItem.per_ewi",
+      "newItem.occupation",
     ]),
     ...mapGetters("auth", ["getActiveBranch"]),
   },
   methods: {
+    ...mapActions("user", ["getItem"]),
     onDownPayment() {
       this.$store.commit("sale/calculationAfterDownPayment", this.down_payment);
     },
@@ -409,6 +475,20 @@ export default {
 
     onEWI() {
       this.$store.commit("sale/ewicalculation", this.no_of_ewi);
+    },
+
+    // Income Calculation
+
+    // onIncome() {
+    //   this.$store.getters("sale/incomesource", this.customer_id);
+    // },
+
+    onCustomerSelect() {
+      console.log("on user select", this.customer_id);
+      this.getItem(this.customer_id).then((response) => {
+        this.monthly_income = response.data.monthly_income;
+        this.occupation = response.data.occupation;
+      });
     },
   },
 };

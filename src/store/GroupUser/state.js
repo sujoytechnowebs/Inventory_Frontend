@@ -52,6 +52,7 @@ export default function () {
     editItem: {
       group_id: "",
       group_role: "",
+      group_name: "",
     },
     modalItem: {
       id: "",

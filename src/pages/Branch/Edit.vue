@@ -9,7 +9,7 @@
         title="Edit Branch"
       >
         <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-4 col-lg-4">
             <q-input
               ref="name"
               outlined
@@ -22,7 +22,7 @@
             >
             </q-input>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <!-- <div class="col-12 col-md-6 col-lg-6">
             <q-input
               ref="code"
               outlined
@@ -33,17 +33,8 @@
               :error="$hasValidationErrors('code')"
             >
             </q-input>
-          </div>
-          <div class="col-12">
-            <p class="address_head">Please Write Address:</p>
-            <q-field
-              :error-message="$getValidationErrors('address_1')"
-              :error="$hasValidationErrors('address_1')"
-            >
-              <q-editor v-model="address_1" class="full-width"></q-editor>
-            </q-field>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          </div> -->
+          <div class="col-12 col-md-4 col-lg-4">
             <q-input
               ref="postcode"
               outlined
@@ -55,7 +46,7 @@
             >
             </q-input>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-4 col-lg-4">
             <QSearch
               v-model="city_id"
               label="City"
@@ -67,6 +58,15 @@
               :error-message="$getValidationErrors('city_id')"
               :error="$hasValidationErrors('city_id')"
             ></QSearch>
+          </div>
+          <div class="col-12">
+            <p class="address_head">Please Write Address:</p>
+            <q-field
+              :error-message="$getValidationErrors('address_1')"
+              :error="$hasValidationErrors('address_1')"
+            >
+              <q-editor v-model="address_1" class="full-width"></q-editor>
+            </q-field>
           </div>
         </div>
       </QEditForm>
