@@ -17,17 +17,7 @@
             Purchase Management Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
-            <div class="col-6">
-              <q-btn
-                label="Remember"
-                no-caps
-                outline
-                color="primary"
-                @click="alert = true"
-              >
-              </q-btn>
-            </div>
-            <div class="col-6">
+            <div class="col-8">
               <q-input
                 outlined
                 dense
@@ -42,36 +32,7 @@
               </q-input>
             </div>
           </div>
-
-          <!-- Dialog Box Appear -->
-
-          <div>
-            <q-dialog v-model="alert">
-              <q-card>
-                <q-card-section>
-                  <div class="text-h6">Alert</div>
-                </q-card-section>
-
-                <q-card-section class="q-pt-none">
-                  Please select/switch the branch before purchasing the
-                  products. Make sure you have a <b>Purchase Account</b> for it.
-                </q-card-section>
-
-                <q-card-actions align="right">
-                  <q-btn flat label="OK" color="primary" v-close-popup />
-                </q-card-actions>
-              </q-card>
-            </q-dialog>
-          </div>
         </template>
-        <!-- <template v-slot:aditionalActions>
-          <q-btn
-            flat
-            color="primary"
-            label="Product Details"
-            @click="productEdit()"
-          />
-        </template> -->
       </QDataTable>
 
       <q-dialog
