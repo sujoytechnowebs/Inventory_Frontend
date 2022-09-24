@@ -66,6 +66,7 @@ export function setEditItem(state, payload) {
   state.editItem.house = payload.house;
   state.editItem.monthly_income = payload.monthly_income;
   state.editItem.group_id = payload.user_group.group.name;
+  state.editItem.group_role = payload.user_group.group_role;
   state.editItem.opening_balance = payload.account.opening_balance;
   state.editItem.opening_balance_type = payload.account.opening_balance_type;
   state.editItem.voter_card_no = payload.account.voter_card_no;

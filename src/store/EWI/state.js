@@ -24,6 +24,13 @@ export default function () {
         sortable: true,
       },
       {
+        name: "ewi_no",
+        align: "left",
+        label: "EWI No.",
+        field: "ewi_no",
+        sortable: true,
+      },
+      {
         name: "ewi_date",
         align: "left",
         label: "EWI Date",

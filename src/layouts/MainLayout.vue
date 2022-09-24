@@ -66,7 +66,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      :width="220"
+      :width="270"
       class="bg-primary text-white"
     >
       <q-list>
@@ -308,12 +308,12 @@ import { acl } from "../boot/acl.js";
 
 const linksList = [
   {
-    title: "User",
+    title: "Users Management",
     icon: "account_circle",
     show: "",
     childs: [
       {
-        title: "Users Management",
+        title: "User",
         icon: "hlw",
         link: "/users",
         show: "user.index",
@@ -327,7 +327,7 @@ const linksList = [
     ],
   },
   {
-    title: "Center",
+    title: "Center Management",
     icon: "share",
     // link: "/cities",
     show: "",
@@ -351,31 +351,25 @@ const linksList = [
         show: "branch.index",
       },
       {
-        title: "Customer",
-        icon: "hlw",
-        link: "/customers",
-        show: "",
-      },
-      {
         title: "Group Name",
         icon: "hlw",
         link: "/groups",
         show: "group.index",
       },
+      {
+        title: "Customer",
+        icon: "hlw",
+        link: "/customers",
+        show: "",
+      },
     ],
   },
   {
-    title: "Inventory",
+    title: "Product Management",
     icon: "account_balance",
     link: "/profile",
     show: "",
     childs: [
-      {
-        title: "Products",
-        icon: "hlw",
-        link: "/products",
-        show: "product.index",
-      },
       {
         title: "Products Category",
         icon: "hlw",
@@ -383,7 +377,13 @@ const linksList = [
         show: "productcategory.index",
       },
       {
-        title: "Product Management",
+        title: "Products",
+        icon: "hlw",
+        link: "/products",
+        show: "product.index",
+      },
+      {
+        title: "Inventory",
         icon: "hlw",
         link: "/inventory",
         show: "inventory.index",
@@ -421,7 +421,7 @@ const linksList = [
     ],
   },
   {
-    title: "Ledgers",
+    title: "Ledger Management",
     icon: "menu_book",
     link: "/profile",
     show: "",
@@ -459,13 +459,13 @@ const linksList = [
     ],
   },
   {
-    title: "Loan",
+    title: "Loan Management",
     icon: "real_estate_agent",
     link: "/profile",
     show: "",
     childs: [
       {
-        title: "Loan Management",
+        title: "Loan",
         icon: "hlw",
         link: "/loans",
         show: "loan.index",

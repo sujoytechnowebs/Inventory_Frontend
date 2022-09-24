@@ -55,7 +55,7 @@
               <div></div>
 
               <q-btn
-                class="full-width"
+                class="full-width q-mb-md"
                 unelevated
                 rounded
                 color="primary"
@@ -66,7 +66,7 @@
               >
             </q-card-section>
 
-            <q-card-section>
+            <!-- <q-card-section>
               <p align="center">
                 <router-link
                   to="/forgot-password"
@@ -74,7 +74,7 @@
                   >Forgot Password?</router-link
                 >
               </p>
-            </q-card-section>
+            </q-card-section> -->
           </q-form>
         </q-card>
       </div>

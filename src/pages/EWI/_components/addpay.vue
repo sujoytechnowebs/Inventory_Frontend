@@ -1,5 +1,5 @@
 <template>
-  <span v-if="status === 'due'">
+  <span v-if="status === 'due' || status === 'partial collected'">
     <q-btn label="Pay" no-caps flat @click="instantPay(id)" />
   </span>
 </template>
