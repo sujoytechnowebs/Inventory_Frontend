@@ -6,7 +6,6 @@
         :data-store="dataStore"
         :hasEditPermission="hasEditPermission"
         :aditionalActions="aditionalActions"
-        :columns="columns"
         :filter="filter"
         :canEdit="false"
       >
@@ -33,6 +32,14 @@
             </div>
           </div>
         </template>
+        <template v-slot:aditionalActions="actionRow">
+          <q-btn
+            label="See Products"
+            no-caps
+            flat
+            @click="productEdit(actionRow.row)"
+          />
+        </template>
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
@@ -46,6 +53,12 @@
           <EditUser v-bind:modal="true"></EditUser>
         </div>
       </q-dialog>
+
+      <q-dialog v-model="showViewProductsModal">
+        <div :class="$q.platform.is.desktop ? 'purchase-form' : ''">
+          <ViewProducts />
+        </div>
+      </q-dialog>
     </q-card-section>
   </div>
 </template>
@@ -55,6 +68,7 @@ import { mapFields } from "vuex-map-fields";
 import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
+import ViewProducts from "./_components/ViewProducts.vue";
 
 const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
 const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
@@ -65,22 +79,52 @@ export default defineComponent({
   components: {
     EditUser,
     CreateUser,
+    ViewProducts,
   },
 
   computed: {
     ...mapFields("salereturn", ["filter.search", "filter"]),
   },
   setup() {
-    const { getGetters } = useStoreModule();
+    const { getGetters, getMutations } = useStoreModule();
     const { showEditModal } = getGetters("salereturn", ["showEditModal"]);
     const { showCreateModal } = getGetters("salereturn", ["showCreateModal"]);
+
+    // Test This is new
+
+    const ViewProducts = defineAsyncComponent(() =>
+      import("./_components/ViewProducts.vue")
+    );
+
+    const { showViewProductsModal } = getGetters("salereturndetails", [
+      "showViewProductsModal",
+    ]);
+    const { setViewProductsModal } = getMutations("salereturndetails", [
+      "setViewProductsModal",
+    ]);
+
+    const { setViewProductsDetails } = getMutations("salereturndetails", [
+      "setViewProductsDetails",
+    ]);
+
+    const { setModalItem } = getMutations("salereturndetails", [
+      "setModalItem",
+    ]);
+
+    const productEdit = (data) => {
+      setViewProductsDetails(data);
+      setViewProductsModal(true);
+    };
 
     return {
       hasEditPermission: true,
       dataStore: "salereturn",
-      aditionalActions: false,
+      aditionalActions: true,
       showEditModal,
       showCreateModal,
+      productEdit,
+      showViewProductsModal,
+      setViewProductsModal,
     };
   },
 });

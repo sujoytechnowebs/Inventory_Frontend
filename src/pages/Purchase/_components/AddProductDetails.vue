@@ -42,8 +42,8 @@
           ref="item_rate"
           v-model="data.item_rate"
           dense
-          type="number"
-          label="Item Rate"
+          label="Cost Price"
+          v-on:keypress="NumbersOnly"
         >
         </q-input>
       </div>

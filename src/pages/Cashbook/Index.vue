@@ -55,6 +55,11 @@
                         v-model="account_type"
                         :options="type_account"
                         label="Account Type"
+                        option-value="value"
+                        option-label="label"
+                        option-disable="inactive"
+                        emit-value
+                        map-options
                         :error-message="$getValidationErrors('account_type')"
                         :error="$hasValidationErrors('account_type')"
                       />
@@ -130,6 +135,11 @@
                         v-model="transType"
                         :options="options"
                         label="Type"
+                        option-value="value"
+                        option-label="label"
+                        option-disable="inactive"
+                        emit-value
+                        map-options
                         :error-message="$getValidationErrors('transType')"
                         :error="$hasValidationErrors('transType')"
                       />
@@ -177,6 +187,7 @@ export default defineComponent({
       "filter.fromDate",
       "filter.toDate",
       "filter.transType",
+      "filter",
     ]),
   },
   setup() {
@@ -188,6 +199,10 @@ export default defineComponent({
       aditionalActions: false,
       alert: ref(false),
       options: [
+        {
+          label: "All",
+          value: "all",
+        },
         {
           label: "Debit",
           value: "debit",

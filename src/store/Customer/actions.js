@@ -2,23 +2,24 @@ import { api, axios } from "boot/axios";
 
 const endPoint = "/users";
 const mediaEndPoint = "/media";
-const customerBranchWiseEndPoint = "/branch_wise_customer";
+const customerBranchWiseEndPoint = "/users";
 import moment from "moment";
 
-export function getItems({ commit, state }, props) {
+export function getItems({ commit, state, rootState }, props) {
   if (props.pagination.descending == true) {
     var direction = "DESC";
   } else {
     var direction = "ASC";
   }
 
-  var params = {
+  let params = {
     sort: props.pagination.sortBy,
     direction: direction,
     page: props.pagination.page,
     rowsPerPage: props.pagination.rowsPerPage,
     search: props.search ? props.search : state.filter.search,
     role: "customer",
+    branch_id: rootState.auth.active_branch,
   };
 
   return new Promise((resolve, reject) => {
@@ -126,7 +127,7 @@ export function getItem({ commit, state }, id) {
       .get(endPoint + "/" + id)
       .then((response) => {
         commit("setEditItem", response.data);
-        commit("setLastUpdated", moment());
+        // commit("setLastUpdated", moment());
         resolve(response);
       })
       .catch((err) => {

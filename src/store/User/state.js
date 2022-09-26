@@ -103,10 +103,10 @@ export default function () {
       group_id: "",
       group_role: "",
       DOB: "",
-      aadhar_card_no: "",
       opening_balance: "",
       opening_balance_type: "",
       voter_card_no: null,
+      voter_media_id: null,
     },
     modals: {
       createItem: false,

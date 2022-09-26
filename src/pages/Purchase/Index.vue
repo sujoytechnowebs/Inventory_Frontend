@@ -6,7 +6,6 @@
         :data-store="dataStore"
         :hasEditPermission="hasEditPermission"
         :aditionalActions="aditionalActions"
-        :columns="columns"
         :filter="filter"
         :canEdit="false"
       >
@@ -33,6 +32,14 @@
             </div>
           </div>
         </template>
+        <template v-slot:aditionalActions="actionRow">
+          <q-btn
+            label="See Products"
+            no-caps
+            flat
+            @click="productEdit(actionRow.row)"
+          />
+        </template>
       </QDataTable>
 
       <q-dialog
@@ -51,8 +58,14 @@
         </div>
       </q-dialog>
 
-      <q-dialog
-        v-model="showProductDetailModel"
+      <q-dialog v-model="showViewProductsModal">
+        <div :class="$q.platform.is.desktop ? 'my-card' : ''">
+          <ViewProducts />
+        </div>
+      </q-dialog>
+
+      <!-- <q-dialog
+        v-model="showViewProductsModal"
         persistent
         transition-show="slide-up"
         transition-hide="slide-down"
@@ -60,7 +73,7 @@
         <div :class="$q.platform.is.desktop ? 'purchase-form' : ''">
           <Products />
         </div>
-      </q-dialog>
+      </q-dialog> -->
     </q-card-section>
   </div>
 </template>
@@ -70,6 +83,7 @@ import { mapFields } from "vuex-map-fields";
 import { defineComponent, ref } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
+import ViewProducts from "./_components/ViewProducts.vue";
 
 const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
 const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
@@ -80,6 +94,7 @@ export default defineComponent({
   components: {
     EditUser,
     CreateUser,
+    ViewProducts,
   },
 
   computed: {
@@ -96,8 +111,28 @@ export default defineComponent({
       "setProductDetailModel",
     ]);
 
-    const productEdit = (params) => {
-      setProductDetailModel(true);
+    // Test This is new
+
+    const ViewProducts = defineAsyncComponent(() =>
+      import("./_components/ViewProducts.vue")
+    );
+
+    const { showViewProductsModal } = getGetters("purchasedetails", [
+      "showViewProductsModal",
+    ]);
+    const { setViewProductsModal } = getMutations("purchasedetails", [
+      "setViewProductsModal",
+    ]);
+
+    const { setViewProductsDetails } = getMutations("purchasedetails", [
+      "setViewProductsDetails",
+    ]);
+
+    const { setModalItem } = getMutations("purchasedetails", ["setModalItem"]);
+
+    const productEdit = (data) => {
+      setViewProductsDetails(data);
+      setViewProductsModal(true);
     };
 
     return {
@@ -109,6 +144,8 @@ export default defineComponent({
       showProductDetailModel,
       productEdit,
       alert: ref(false),
+      showViewProductsModal,
+      setViewProductsModal,
     };
   },
 });
@@ -118,6 +155,11 @@ export default defineComponent({
 .purchase-form {
   width: 100%;
   max-width: 100%;
+}
+
+.my-card {
+  width: 60%;
+  max-width: 60%;
 }
 </style>
 

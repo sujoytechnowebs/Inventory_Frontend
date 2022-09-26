@@ -127,7 +127,7 @@ export function getReport({ commit, state }, props) {
 
   return new Promise((resolve, reject) => {
     axios
-      .get("export-ewi", {
+      .get("cash-bank-book-excel", {
         params: params,
       })
       .then((response) => {

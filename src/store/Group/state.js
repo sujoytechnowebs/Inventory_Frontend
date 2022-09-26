@@ -3,17 +3,17 @@ export default function () {
     // items: {
     columns: [
       {
+        name: "code",
+        align: "left",
+        label: "Group Id",
+        field: "code",
+        sortable: true,
+      },
+      {
         name: "name",
         align: "left",
         label: "Name",
         field: "name",
-        sortable: true,
-      },
-      {
-        name: "code",
-        align: "left",
-        label: "Code",
-        field: "code",
         sortable: true,
       },
       {

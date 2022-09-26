@@ -8,12 +8,13 @@
         :aditionalActions="aditionalActions"
         :columns="columns"
         :filter="filter"
+        :canEdit="false"
       >
         <template v-slot:top>
           <div
             class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
           >
-            Stock Holder Table
+            Bank cash Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-8">
@@ -35,14 +36,14 @@
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'investor-amount-form' : ''">
-          <CreateStack v-bind:modal="true"></CreateStack>
+        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
+          <CreateUser v-bind:modal="true"></CreateUser>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'investor-amount-form' : ''">
-          <EditStack v-bind:modal="true"></EditStack>
+        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
+          <EditUser v-bind:modal="true"></EditUser>
         </div>
       </q-dialog>
     </q-card-section>
@@ -55,28 +56,28 @@ import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const EditStack = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateStack = defineAsyncComponent(() => import("./Create.vue"));
+const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "StackHolderIndexPage",
+  name: "IndexPage",
 
   components: {
-    EditStack,
-    CreateStack,
+    EditUser,
+    CreateUser,
   },
 
   computed: {
-    ...mapFields("stockholder", ["filter.search", "filter"]),
+    ...mapFields("bankcash", ["filter.search", "filter"]),
   },
   setup() {
     const { getGetters } = useStoreModule();
-    const { showEditModal } = getGetters("stockholder", ["showEditModal"]);
-    const { showCreateModal } = getGetters("stockholder", ["showCreateModal"]);
+    const { showEditModal } = getGetters("bankcash", ["showEditModal"]);
+    const { showCreateModal } = getGetters("bankcash", ["showCreateModal"]);
 
     return {
       hasEditPermission: true,
-      dataStore: "stockholder",
+      dataStore: "bankcash",
       aditionalActions: false,
       showEditModal,
       showCreateModal,
@@ -86,8 +87,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.investor-amount-form {
-  width: 70%;
-  max-width: 70%;
+.branch-form {
+  width: 60%;
+  max-width: 60%;
 }
 </style>

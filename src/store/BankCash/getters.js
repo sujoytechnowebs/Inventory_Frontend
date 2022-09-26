@@ -27,12 +27,6 @@ export function showEditModal(state) {
   return state.modals.editItem;
 }
 
-//  This is Test
-
-export function showViewProductsModal(state) {
-  return state.modals.viewProductsModal;
-}
-
-export function getViewProductsDetails(state) {
-  return state.viewProductsDetails;
+export function lastUpdated(state) {
+  return state.lastUpdated;
 }

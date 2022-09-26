@@ -6,7 +6,6 @@
         :data-store="dataStore"
         :hasEditPermission="hasEditPermission"
         :aditionalActions="aditionalActions"
-        :columns="columns"
         :filter="filter"
         :canEdit="false"
       >
@@ -33,6 +32,14 @@
             </div>
           </div>
         </template>
+        <template v-slot:aditionalActions="actionRow">
+          <q-btn
+            label="See Products"
+            no-caps
+            flat
+            @click="productEdit(actionRow.row)"
+          />
+        </template>
       </QDataTable>
 
       <q-dialog
@@ -46,9 +53,11 @@
         </div>
       </q-dialog>
 
-      <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+      <!-- Purchase Return Details -->
+
+      <q-dialog v-model="showViewProductsModal">
+        <div :class="$q.platform.is.desktop ? 'my-card' : ''">
+          <ViewProducts />
         </div>
       </q-dialog>
     </q-card-section>
@@ -60,34 +69,62 @@ import { mapFields } from "vuex-map-fields";
 import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
+import ViewProducts from "./_components/ViewProducts.vue";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
 const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
   name: "IndexPage",
 
   components: {
-    EditUser,
     CreateUser,
+    ViewProducts,
   },
 
   computed: {
     ...mapFields("purchasereturn", ["filter.search", "filter"]),
   },
   setup() {
-    const { getGetters } = useStoreModule();
+    const { getGetters, getMutations } = useStoreModule();
     const { showEditModal } = getGetters("purchasereturn", ["showEditModal"]);
     const { showCreateModal } = getGetters("purchasereturn", [
       "showCreateModal",
     ]);
 
+    // Test This is new
+
+    const ViewProducts = defineAsyncComponent(() =>
+      import("./_components/ViewProducts.vue")
+    );
+
+    const { showViewProductsModal } = getGetters("purchasereturndetails", [
+      "showViewProductsModal",
+    ]);
+    const { setViewProductsModal } = getMutations("purchasereturndetails", [
+      "setViewProductsModal",
+    ]);
+
+    const { setViewProductsDetails } = getMutations("purchasereturndetails", [
+      "setViewProductsDetails",
+    ]);
+
+    const { setModalItem } = getMutations("purchasereturndetails", [
+      "setModalItem",
+    ]);
+
+    const productEdit = (data) => {
+      setViewProductsDetails(data);
+      setViewProductsModal(true);
+    };
+
     return {
       hasEditPermission: true,
       dataStore: "purchasereturn",
-      aditionalActions: false,
-      showEditModal,
+      aditionalActions: true,
+      productEdit,
       showCreateModal,
+      showViewProductsModal,
+      setViewProductsModal,
     };
   },
 });
@@ -97,6 +134,11 @@ export default defineComponent({
 .branch-form {
   width: 70%;
   max-width: 70%;
+}
+
+.my-card {
+  width: 30%;
+  max-width: 30%;
 }
 </style>
 

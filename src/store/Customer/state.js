@@ -3,6 +3,13 @@ export default function () {
     // items: {
     columns: [
       {
+        name: "customer_id",
+        align: "left",
+        label: "Customer Serial No.",
+        field: (row) => row?.user_group?.customer_id,
+        sortable: true,
+      },
+      {
         name: "account_name",
         align: "left",
         label: "Full Name",
@@ -21,6 +28,13 @@ export default function () {
         align: "left",
         label: "Role",
         field: (row) => row?.account?.type,
+        sortable: true,
+      },
+      {
+        name: "role",
+        align: "left",
+        label: "Document",
+        field: (row) => row?.account?.media?.url,
         sortable: true,
       },
       { name: "actions", align: "right", label: "Actions" },
@@ -73,10 +87,10 @@ export default function () {
       group_id: "",
       group_role: "",
       DOB: "",
-      aadhar_card_no: "",
       opening_balance: "",
       opening_balance_type: "",
       voter_card_no: null,
+      voter_media_id: "",
       role: "customer",
     },
     editItem: {
@@ -104,7 +118,6 @@ export default function () {
       group_id: "",
       group_role: "",
       DOB: "",
-      aadhar_card_no: "",
       opening_balance: "",
       opening_balance_type: "",
       voter_card_no: null,

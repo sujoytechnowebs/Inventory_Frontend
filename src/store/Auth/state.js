@@ -38,7 +38,7 @@ export default function () {
       password: "",
       confirmed_password: "",
     },
-    active_branch: 1,
+    active_branch: null,
     forgetStep: 1,
     signUpStep: 1,
     change_email: {
@@ -48,7 +48,7 @@ export default function () {
     reset_password: {
       old_password: "",
       password: "",
-      password_confirmation: ""
+      password_confirmation: "",
     },
     credentials: {
       email: "admin@test.com",

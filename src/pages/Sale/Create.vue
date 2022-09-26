@@ -12,23 +12,92 @@
         <div class="row q-col-gutter-md">
           <div class="col-12 col-md-8 col-lg-8 scroll-bar q-pr-md">
             <p class="head">Sell Details</p>
+            <!-- Test Testing -->
             <div class="row q-col-gutter-md">
-              <div class="col-12 col-md-3 col-lg-3">
-                <QSearch
-                  v-model="customer_id"
-                  label="Customer Name"
-                  option-value="id"
-                  option-label="name"
-                  data-store="user"
-                  action="getCustomer"
-                  :multiple="false"
-                  :error-message="$getValidationErrors('customer_id')"
-                  :error="$hasValidationErrors('customer_id')"
-                  @update:modelValue="onCustomerSelect"
-                ></QSearch>
+              <div class="col-12">
+                <q-select
+                  outlined
+                  v-model="cust_type"
+                  :options="cust_option"
+                  label="Customer Type"
+                  dense
+                  option-value="value"
+                  option-label="label"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
+                ></q-select>
               </div>
+            </div>
 
-              <!-- Test Div -->
+            <!-- Test -->
+
+            <div class="row q-col-gutter-md q-pb-md q-pt-md">
+              <div class="col-12 col-md-6 col-lg-6">
+                <div v-if="cust_type === 'cust_non_regis'">
+                  <q-input
+                    outlined
+                    dense
+                    v-model="customer_name"
+                    label="Customer Name"
+                  />
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6">
+                <div v-if="cust_type === 'cust_non_regis'">
+                  <q-input
+                    outlined
+                    dense
+                    v-model="customer_phone"
+                    label="Customer Phone"
+                    type="number"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <div v-if="cust_type === 'cust_non_regis'">
+                  <q-input
+                    outlined
+                    dense
+                    v-model="customer_address"
+                    label="Customer Address"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row q-col-gutter-md">
+              <div class="col-12 col-md-6 col-lg-6">
+                <div v-if="cust_type === 'cust_regis'">
+                  <QSearch
+                    v-model="customer_id"
+                    label="Customer Name"
+                    option-value="user_id"
+                    option-label="customer_id"
+                    data-store="user"
+                    action="getSerialNo"
+                    :multiple="false"
+                    :error-message="$getValidationErrors('customer_id')"
+                    :error="$hasValidationErrors('customer_id')"
+                    @update:modelValue="onCustomerSelect"
+                  ></QSearch>
+                </div>
+              </div>
+            </div>
+
+            <!-- Test Div -->
+            <div class="row q-col-gutter-md">
+              <div v-if="customer_id != null">
+                <div class="col-12 col-md-3 col-lg-3">
+                  <q-input
+                    outlined
+                    dense
+                    v-model="name"
+                    label="User Name"
+                    readonly
+                  />
+                </div>
+              </div>
               <div v-if="customer_id != null">
                 <div class="col-12 col-md-3 col-lg-3">
                   <q-input
@@ -117,22 +186,47 @@
                   </q-input>
                 </div>
               </div>
+
               <div class="col-12 col-md-4 col-lg-4">
-                <q-select
-                  outlined
-                  v-model="payment_method"
-                  :options="payment"
-                  label="Payment Method"
-                  dense
-                  option-value="value"
-                  option-label="label"
-                  option-disable="inactive"
-                  emit-value
-                  map-options
-                  :error-message="$getValidationErrors('payment_method')"
-                  :error="$hasValidationErrors('payment_method')"
-                ></q-select>
+                <div v-if="cust_type === 'cust_regis'">
+                  <q-select
+                    outlined
+                    v-model="payment_method"
+                    :options="payment"
+                    label="Payment Method"
+                    dense
+                    option-value="value"
+                    option-label="label"
+                    option-disable="inactive"
+                    emit-value
+                    map-options
+                    :error-message="$getValidationErrors('payment_method')"
+                    :error="$hasValidationErrors('payment_method')"
+                  ></q-select>
+                </div>
+                <!-- </div> -->
+
+                <!-- Non Customer Payment -->
+
+                <!-- <div class="col-12 col-md-4 col-lg-4"> -->
+                <div v-if="cust_type === 'cust_non_regis'">
+                  <q-select
+                    outlined
+                    v-model="payment_method"
+                    :options="non_payment"
+                    label="Payment Method"
+                    dense
+                    option-value="value"
+                    option-label="label"
+                    option-disable="inactive"
+                    emit-value
+                    map-options
+                    :error-message="$getValidationErrors('payment_method')"
+                    :error="$hasValidationErrors('payment_method')"
+                  ></q-select>
+                </div>
               </div>
+
               <div class="col-12 col-md-4 col-lg-4">
                 <q-select
                   outlined
@@ -168,7 +262,7 @@
                     dense
                     type="number"
                     readonly
-                    label="Loan Amount"
+                    label="Products Total Price"
                     :error-message="
                       $getValidationErrors('grand_item_rate_total')
                     "
@@ -246,6 +340,20 @@
                   </q-input>
                 </div>
 
+                <!-- Loan Amount -->
+
+                <div class="col-12 col-md-6 col-lg-6">
+                  <q-input
+                    ref="loan_after_downpayment"
+                    outlined
+                    v-model="loan_after_downpayment"
+                    dense
+                    label="Loan Amount"
+                    readonly
+                  >
+                  </q-input>
+                </div>
+
                 <!-- No of EWI -->
 
                 <div class="col-12 col-md-6 col-lg-6">
@@ -319,16 +427,20 @@
                 <!-- Another Test -->
                 <div class="q-pl-md">
                   <q-card class="my-card" flat bordered>
-                    <q-card-section class="q-pt-xs">
+                    <q-card-section class="q-pt-md">
                       <div class="row q-col-gutter-md">
+                        <div class="col-12">
+                          <span class="loan-details q-pr-sm"
+                            >Product Total Price:</span
+                          >{{ grand_item_rate_total }}
+                        </div>
                         <div class="col-12">
                           <span class="loan-details q-pr-sm"
                             >Loan Processing Fees:</span
                           >{{ loan_with_processing_fees }}
                         </div>
                         <div class="col-12">
-                          <span class="loan-details q-pr-sm"
-                            >Amount After DownPayment:</span
+                          <span class="loan-details q-pr-sm">Loan Amount:</span
                           >{{ loan_after_downpayment }}
                         </div>
                         <div class="col-12">
@@ -414,6 +526,16 @@ export default {
           label: "Ewi",
         },
       ],
+      non_payment: [
+        {
+          value: "cash",
+          label: "Cash",
+        },
+        {
+          value: "bank",
+          label: "Bank",
+        },
+      ],
       options: [
         {
           value: "received",
@@ -422,6 +544,16 @@ export default {
         {
           value: "deliverd",
           label: "Delivered",
+        },
+      ],
+      cust_option: [
+        {
+          value: "cust_non_regis",
+          label: "Non Registered Customer",
+        },
+        {
+          value: "cust_regis",
+          label: "Registered Customer",
         },
       ],
     };
@@ -453,6 +585,11 @@ export default {
       "newItem.loan_with_processing_fees",
       "newItem.per_ewi",
       "newItem.occupation",
+      "newItem.name",
+      "newItem.customer_name",
+      "newItem.customer_address",
+      "newItem.customer_phone",
+      "newItem.cust_type",
     ]),
     ...mapGetters("auth", ["getActiveBranch"]),
   },
@@ -486,8 +623,9 @@ export default {
     onCustomerSelect() {
       console.log("on user select", this.customer_id);
       this.getItem(this.customer_id).then((response) => {
-        this.monthly_income = response.data.monthly_income;
-        this.occupation = response.data.occupation;
+        this.monthly_income = response.data.user_group.monthly_income;
+        this.occupation = response.data.user_group.occupation;
+        this.name = response.data.name;
       });
     },
   },
