@@ -60,6 +60,11 @@
               v-model="payment_method"
               dense
               :options="pays"
+              option-value="value"
+              option-label="label"
+              option-disable="inactive"
+              emit-value
+              map-options
               label="Payment Methods"
               :error-message="$getValidationErrors('payment_method')"
               :error="$hasValidationErrors('payment_method')"
@@ -71,6 +76,11 @@
               dense
               v-model="status"
               :options="options"
+              option-value="value"
+              option-label="label"
+              option-disable="inactive"
+              emit-value
+              map-options
               label="Status"
               :error-message="$getValidationErrors('status')"
               :error="$hasValidationErrors('status')"
@@ -122,8 +132,31 @@ export default {
       dataStore: "purchasereturn",
       validationErrors: ref({}),
       modelValue: ref(),
-      options: ["received", "delivered"],
-      pays: ["cash", "bank", "due"],
+      // options: ["received", "delivered"],
+      options: [
+        {
+          value: "received",
+          label: "Received",
+        },
+        {
+          value: "delivered",
+          label: "Delivered",
+        },
+      ],
+      pays: [
+        {
+          value: "bank",
+          label: "Bank",
+        },
+        {
+          value: "cash",
+          label: "Cash",
+        },
+        {
+          value: "due",
+          label: "Due",
+        },
+      ],
     };
   },
 

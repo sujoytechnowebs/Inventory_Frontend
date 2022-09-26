@@ -2,6 +2,7 @@ import { api, axios } from "boot/axios";
 
 const endPoint = "/users";
 const mediaEndPoint = "/media";
+const customerBranchWiseEndPoint = "/branch_wise_customer";
 import moment from "moment";
 
 export function getItems({ commit, state }, props) {
@@ -22,7 +23,7 @@ export function getItems({ commit, state }, props) {
 
   return new Promise((resolve, reject) => {
     axios
-      .get(endPoint, {
+      .get(customerBranchWiseEndPoint, {
         params: params,
       })
       .then((response) => {

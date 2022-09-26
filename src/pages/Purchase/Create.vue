@@ -80,6 +80,11 @@
                   dense
                   option-dense
                   :options="pays"
+                  option-value="value"
+                  option-label="label"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
                   label="Payment Method"
                   :error-message="$getValidationErrors('payment_method')"
                   :error="$hasValidationErrors('payment_method')"
@@ -164,7 +169,20 @@ export default {
       validationErrors: ref({}),
       modelValue: ref(),
       options: ["Received", "Pending"],
-      pays: ["bank", "cash"],
+      pays: [
+        {
+          value: "bank",
+          label: "Bank",
+        },
+        {
+          value: "cash",
+          label: "Cash",
+        },
+        {
+          value: "due",
+          label: "Due",
+        },
+      ],
     };
   },
 

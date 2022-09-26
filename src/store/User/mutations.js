@@ -56,12 +56,12 @@ export function setEditItem(state, payload) {
   state.editItem.account_no = payload.account.account_no;
   state.editItem.ifsc = payload.account.ifsc;
   state.editItem.bank_branch = payload.account.bank_branch;
-  state.editItem.branch_id = payload.account.branch.name;
+  state.editItem.branch_id = payload.account.branch_id;
   state.editItem.opening_balance = payload.account.opening_balance;
   state.editItem.opening_balance_type = payload.account.opening_balance_type;
   state.editItem.aadhar_card_no = payload.account.aadhar_card_no;
   state.editItem.voter_card_no = payload.account.voter_card_no;
-  state.editItem.city_id = payload.account.city.city_name;
+  state.editItem.city_id = payload.account.city_id;
 }
 
 export function setEditModal(state, payload) {
