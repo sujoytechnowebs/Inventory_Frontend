@@ -319,7 +319,7 @@
         </template>
       </q-input>
     </div>
-    <div class="col-12">
+    <!-- <div class="col-12">
       <q-uploader
         label="Upload Aadhar Document"
         square
@@ -328,7 +328,7 @@
         class="full-width"
         :factory="factoryFn"
       />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -368,24 +368,24 @@ export default {
     ]),
   },
 
-  methods: {
-    ...mapActions("user", ["media"]),
+  // methods: {
+  //   ...mapActions("user", ["media"]),
 
-    factoryFn(files) {
-      let formData = new FormData();
-      formData.append("attachment_type", "document");
-      formData.append("file", files[0]);
-      return new Promise((resolve) => {
-        this.media(formData)
-          .then((res) => {
-            resolve({
-              url: res.data.media.url,
-            });
-          })
-          .finally(() => {});
-      });
-    },
-  },
+  //   factoryFn(files) {
+  //     let formData = new FormData();
+  //     formData.append("attachment_type", "document");
+  //     formData.append("file", files[0]);
+  //     return new Promise((resolve) => {
+  //       this.media(formData)
+  //         .then((res) => {
+  //           resolve({
+  //             url: res.data.media.url,
+  //           });
+  //         })
+  //         .finally(() => {});
+  //     });
+  //   },
+  // },
 };
 </script>
 
