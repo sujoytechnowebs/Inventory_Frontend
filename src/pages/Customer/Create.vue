@@ -325,6 +325,21 @@
               </template>
             </q-input>
           </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+            <q-field
+              :error-message="$getValidationErrors('voter_media_id')"
+              :error="$hasValidationErrors('voter_media_id')"
+            >
+              <q-uploader
+                label="Upload Voter Document"
+                square
+                flat
+                bordered
+                class="full-width"
+                :factory="factoryFn"
+              />
+            </q-field>
+          </div>
         </div>
       </QCreateForm>
     </q-card>
@@ -414,9 +429,7 @@ export default {
       return new Promise((resolve) => {
         this.media(formData)
           .then((res) => {
-            resolve({
-              url: res.data.media.url,
-            });
+            resolve(true);
           })
           .finally(() => {});
       });

@@ -34,7 +34,7 @@ export default function () {
         name: "total_amount",
         align: "left",
         label: "Amount",
-        field: (row) => row.purchase.total_amount,
+        field: (row) => row?.total_amount,
         sortable: true,
       },
       {

@@ -94,6 +94,16 @@ const routes = [
       },
 
       {
+        path: "bank-cash",
+        component: () => import("pages/BankCash/Index.vue"),
+        meta: {
+          name: "bank-cash",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+
+      {
         path: "ewi-details",
         component: () => import("pages/EWI/Index.vue"),
         meta: {

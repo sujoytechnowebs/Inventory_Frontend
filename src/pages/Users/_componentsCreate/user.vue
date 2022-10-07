@@ -260,6 +260,21 @@
         </template>
       </q-input>
     </div>
+    <div class="col-12">
+      <q-field
+        :error-message="$getValidationErrors('voter_media_id')"
+        :error="$hasValidationErrors('voter_media_id')"
+      >
+        <q-uploader
+          label="Upload Voter Document"
+          square
+          flat
+          bordered
+          class="full-width"
+          :factory="factoryFn"
+        />
+      </q-field>
+    </div>
   </div>
 </template>
 
@@ -306,6 +321,7 @@ export default {
       "newItem.opening_balance",
       "newItem.opening_balance_type",
       "newItem.voter_card_no",
+      "newItem.voter_media_id",
     ]),
   },
 

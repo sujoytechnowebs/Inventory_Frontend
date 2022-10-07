@@ -451,9 +451,15 @@ const linksList = [
         show: "",
       },
       {
-        title: "Cash Book",
+        title: "Cash Balance",
         icon: "hlw",
         link: "/cashbook",
+        show: "",
+      },
+      {
+        title: "Bank Balance",
+        icon: "hlw",
+        link: "/bank-cash",
         show: "",
       },
     ],

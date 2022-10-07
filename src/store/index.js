@@ -31,6 +31,10 @@ import profitloss from "./ProfitLoss";
 import customer from "./Customer";
 import cashbook from "./Cashbook";
 import stockholder from "./StockHolder";
+import bankcash from "./BankCash";
+import purchasereturndetails from "./PurchaseReturnDetails";
+import saledetails from "./SaleDetails";
+import salereturndetails from "./SaleReturnDetails";
 
 /*
  * If not building with SSR mode, you can
@@ -76,6 +80,10 @@ export default store(function (/* { ssrContext } */) {
       customer,
       cashbook,
       stockholder,
+      bankcash,
+      purchasereturndetails,
+      saledetails,
+      salereturndetails,
     },
 
     // enable strict mode (adds overhead!)
