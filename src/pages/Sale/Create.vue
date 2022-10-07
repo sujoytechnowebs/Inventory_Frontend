@@ -122,6 +122,18 @@
                 </div>
               </div>
 
+              <!-- <div v-if="customer_id != null">
+                <div class="col-12 col-md-3 col-lg-3">
+                  <q-input
+                    outlined
+                    dense
+                    v-model="day"
+                    label="Group Day"
+                    readonly
+                  />
+                </div>
+              </div> -->
+
               <div class="col-12 col-md-3 col-lg-3">
                 <QSearch
                   v-model="branch_id"
@@ -272,6 +284,18 @@
                 </div>
 
                 <!-- EWI Start Date -->
+
+                <div v-if="customer_id != null">
+                  <div class="col-12 col-md-6 col-lg-6">
+                    <q-input
+                      outlined
+                      dense
+                      v-model="day"
+                      label="Group Day"
+                      readonly
+                    />
+                  </div>
+                </div>
 
                 <div class="col-12 col-md-6 col-lg-6">
                   <q-input
@@ -590,6 +614,7 @@ export default {
       "newItem.customer_address",
       "newItem.customer_phone",
       "newItem.cust_type",
+      "newItem.day",
     ]),
     ...mapGetters("auth", ["getActiveBranch"]),
   },
@@ -626,6 +651,7 @@ export default {
         this.monthly_income = response.data.user_group.monthly_income;
         this.occupation = response.data.user_group.occupation;
         this.name = response.data.name;
+        this.day = response.data.user_group.group.day;
       });
     },
   },

@@ -21,6 +21,11 @@
       <q-card-section>
         <span class="product_head">Quantity:</span> {{ item.quantity }}
       </q-card-section>
+
+      <q-card-section>
+        <span class="product_head">Sale Price:</span>
+        {{ item.product.sale_price }}
+      </q-card-section>
     </div>
   </q-card>
 </template>

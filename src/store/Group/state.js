@@ -46,6 +46,10 @@ export default function () {
       code: "",
       branch_id: "",
       address: "",
+      village: "",
+      pin: "",
+      day: "",
+      responsible_by: "",
     },
     editItem: {
       id: "",
@@ -53,6 +57,10 @@ export default function () {
       code: "",
       branch_id: "",
       address: "",
+      village: "",
+      pin: "",
+      day: "",
+      responsible_by: "",
     },
     modals: {
       createItem: false,

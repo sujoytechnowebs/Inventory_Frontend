@@ -14,7 +14,7 @@
           <div
             class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
           >
-            Customer Management Table
+            User Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-8">
@@ -94,13 +94,13 @@
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'customer-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'user-form' : ''">
           <CreateUser v-bind:modal="true"></CreateUser>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'customer-form' : ''">
+        <div :class="$q.platform.is.desktop ? 'user-form' : ''">
           <EditUser v-bind:modal="true"></EditUser>
         </div>
       </q-dialog>
@@ -113,7 +113,6 @@ import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
-import { Tnotify } from "../../libs/custom.js";
 import useStoreModule from "../../libs/useStoreModule.js";
 
 const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
@@ -128,16 +127,16 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("customer", ["filter.search", "filter"]),
+    ...mapFields("user", ["filter.search", "filter"]),
   },
-  data() {
+  setup() {
     const { getGetters } = useStoreModule();
-    const { showEditModal } = getGetters("customer", ["showEditModal"]);
-    const { showCreateModal } = getGetters("customer", ["showCreateModal"]);
+    const { showEditModal } = getGetters("user", ["showEditModal"]);
+    const { showCreateModal } = getGetters("user", ["showCreateModal"]);
 
     return {
       hasEditPermission: true,
-      dataStore: "customer",
+      dataStore: "user",
       aditionalActions: false,
       showEditModal,
       showCreateModal,
@@ -145,7 +144,7 @@ export default defineComponent({
   },
 
   methods: {
-    ...mapActions("customer", ["getItems"]),
+    ...mapActions("user", ["getItems"]),
 
     setEditModal(props) {
       this.$store.commit(`${this.dataStore}/setEditModal`, true);
@@ -208,8 +207,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.customer-form {
-  width: 80%;
-  max-width: 80%;
+.user-form {
+  width: 60%;
+  max-width: 60%;
 }
 </style>
