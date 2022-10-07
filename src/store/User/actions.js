@@ -55,6 +55,28 @@ export function getCustomer({ commit, state }, props) {
   });
 }
 
+// Staff Filter
+
+export function getStaff({ commit, state }, props) {
+  var params = {
+    all: props.all,
+    role: "user",
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get(endPoint, {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
 // Investor Filter
 
 export function getInvestor({ commit, state }, props) {

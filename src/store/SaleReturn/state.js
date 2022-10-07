@@ -6,14 +6,14 @@ export default function () {
         name: "customer_id",
         align: "left",
         label: "Customer",
-        field: (row) => row.sales_info.customer.name,
+        field: (row) => row?.sales_info?.customer?.name,
         sortable: true,
       },
       {
         name: "branch",
         align: "left",
         label: "Branch",
-        field: (row) => row.sales_info.branch.name,
+        field: (row) => row?.sales_info?.branch?.name,
         sortable: true,
       },
       {

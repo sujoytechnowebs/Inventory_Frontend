@@ -256,7 +256,7 @@
                   :error="$hasValidationErrors('city_id')"
                 ></QSearch>
               </div>
-              <div class="col-12">
+              <!-- <div class="col-12">
                 <span class="customer_form_title text-weight-medium"
                   >Current Address</span
                 >
@@ -266,6 +266,18 @@
                 >
                   <q-editor v-model="address_1" class="full-width"></q-editor>
                 </q-field>
+              </div> -->
+
+              <!-- Testing Address -->
+              <div class="col-12">
+                <q-input
+                  outlined
+                  dense
+                  v-model="address_1"
+                  label="Address"
+                  :error-message="$getValidationErrors('address_1')"
+                  :error="$hasValidationErrors('address_1')"
+                ></q-input>
               </div>
 
               <div class="col-12 col-md-6 col-lg-6">
@@ -402,6 +414,8 @@ export default {
       "editItem.phone",
       "editItem.city_id",
       "editItem.address_1",
+      "editItem.village",
+      "editItem.pin",
       "editItem.postcode",
       "editItem.aadhar_card_no",
       "editItem.occupation",

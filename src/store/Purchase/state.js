@@ -20,7 +20,7 @@ export default function () {
         name: "vendor_id",
         align: "left",
         label: "Vendor Name",
-        field: (row) => row.vendor.name,
+        field: (row) => row?.vendor?.name,
         sortable: true,
       },
 
@@ -28,7 +28,7 @@ export default function () {
         name: "branch_id",
         align: "left",
         label: "Branch",
-        field: (row) => row.branch.name,
+        field: (row) => row?.branch?.name,
         sortable: true,
       },
       {

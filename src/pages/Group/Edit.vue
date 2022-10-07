@@ -34,7 +34,7 @@
               :error="$hasValidationErrors('branch_id')"
             ></QSearch>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <!-- <div class="col-12 col-md-6 col-lg-6">
             <p class="address_head">Please Write The Address:</p>
 
             <q-field
@@ -43,6 +43,74 @@
             >
               <q-editor v-model="address" class="full-width"></q-editor>
             </q-field>
+          </div> -->
+          <div class="col-12 col-md-6 col-lg-6">
+            <q-select
+              outlined
+              v-model="day"
+              dense
+              :options="days_select"
+              label
+              option-value="value"
+              option-label="label"
+              option-disable="inactive"
+              emit-value
+              map-options
+              :error-message="$getValidationErrors('day')"
+              :error="$hasValidationErrors('day')"
+            >
+              <template v-slot:label>
+                Day
+                <span class="text-weight-bold text-negative">*</span>
+              </template>
+            </q-select>
+          </div>
+          <div class="col-12 col-md-6 col-lg-6">
+            <QSearch
+              v-model="responsible_by"
+              label="Responsible Staff"
+              option-value="id"
+              option-label="name"
+              data-store="user"
+              action="getStaff"
+              :multiple="false"
+              :error-message="$getValidationErrors('responsible_by')"
+              :error="$hasValidationErrors('responsible_by')"
+            ></QSearch>
+          </div>
+        </div>
+        <div class="row q-col-gutter-md">
+          <p class="grp_adr">Group Address:</p>
+          <div class="col-12">
+            <q-input
+              outlined
+              dense
+              v-model="address"
+              label="Address"
+              :error-message="$getValidationErrors('address')"
+              :error="$hasValidationErrors('address')"
+            ></q-input>
+          </div>
+          <div class="col-12 col-md-6 col-lg-6">
+            <q-input
+              outlined
+              dense
+              v-model="village"
+              label="Village"
+              :error-message="$getValidationErrors('village')"
+              :error="$hasValidationErrors('village')"
+            ></q-input>
+          </div>
+          <div class="col-12 col-md-6 col-lg-6">
+            <q-input
+              outlined
+              dense
+              v-model="pin"
+              type="number"
+              label="Pin Code"
+              :error-message="$getValidationErrors('pin')"
+              :error="$hasValidationErrors('pin')"
+            ></q-input>
           </div>
         </div>
       </QEditForm>
@@ -63,13 +131,43 @@ export default {
       saveaction: "group/updateItem",
       validationErrors: ref({}),
       modelValue: ref(),
+      days_select: [
+        {
+          value: "mon",
+          label: "Monday",
+        },
+        {
+          value: "tue",
+          label: "Tuesday",
+        },
+        {
+          value: "wed",
+          label: "Wednesday",
+        },
+        {
+          value: "thu",
+          label: "Thrusday",
+        },
+        {
+          value: "fri",
+          label: "Friday",
+        },
+        {
+          value: "sat",
+          label: "Saturday",
+        },
+      ],
     };
   },
   computed: {
     ...mapFields("group", [
       "editItem.name",
-      "editItem.branch_id",
       "editItem.address",
+      "editItem.branch_id",
+      "editItem.village",
+      "editItem.pin",
+      "editItem.day",
+      "editItem.responsible_by",
     ]),
   },
 };

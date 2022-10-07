@@ -92,6 +92,8 @@ export default function () {
       voter_card_no: null,
       voter_media_id: "",
       role: "customer",
+      village: "",
+      pin: "",
     },
     editItem: {
       name: "",

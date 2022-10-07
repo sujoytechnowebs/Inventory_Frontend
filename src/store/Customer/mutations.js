@@ -37,6 +37,8 @@ export function resetForm(state) {
     opening_balance_type: "",
     voter_card_no: null,
     role: "customer",
+    village: "",
+    pin: "",
   };
 }
 
@@ -89,6 +91,8 @@ export function setEditItem(state, payload) {
   state.editItem.account_name = payload.account.account_name;
   state.editItem.aadhar_card_no = payload.account.aadhar_card_no;
   state.editItem.voter_card_no = payload.account.voter_card_no;
+  state.editItem.name = payload.village;
+  state.editItem.name = payload.pin;
 }
 
 export function setEditModal(state, payload) {
