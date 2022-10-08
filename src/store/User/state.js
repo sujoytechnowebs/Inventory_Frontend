@@ -23,6 +23,13 @@ export default function () {
         field: (row) => row.user_role.role.role,
         sortable: true,
       },
+      {
+        name: "role",
+        align: "left",
+        label: "Document",
+        field: (row) => row?.account?.media?.url,
+        sortable: true,
+      },
       { name: "actions", align: "right", label: "Actions" },
     ],
     visibleColumns: [
