@@ -36,13 +36,13 @@
 
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'city-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreateTax v-bind:modal="true"></CreateTax>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'city-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+          <EditTax v-bind:modal="true"></EditTax>
         </div>
       </q-dialog>
     </q-card-section>
@@ -55,15 +55,15 @@ import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditTax = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateTax = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "TaxIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditTax,
+    CreateTax,
   },
 
   computed: {

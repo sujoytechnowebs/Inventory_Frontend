@@ -177,7 +177,7 @@ import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "CashBookIndexPage",
 
   components: {},
 
@@ -252,10 +252,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-.branch-form {
-  width: 80%;
-  max-width: 80%;
-}
-</style>

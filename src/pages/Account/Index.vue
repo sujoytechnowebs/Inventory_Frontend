@@ -34,18 +34,11 @@
             </div>
           </div>
         </template>
-        <!-- <template v-slot:aditionalActions="props">
-          <q-btn
-            label="View More"
-            flat
-            @click="setViewMoreDetails(props)"
-          ></q-btn>
-        </template> -->
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'account-create-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreateAccount v-bind:modal="true"></CreateAccount>
         </div>
       </q-dialog>
     </q-card-section>
@@ -65,13 +58,13 @@ import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const CreateAccount = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "AccountIndexPage",
 
   components: {
-    CreateUser,
+    CreateAccount,
   },
 
   computed: {
@@ -82,24 +75,11 @@ export default defineComponent({
 
     const { showCreateModal } = getGetters("account", ["showCreateModal"]);
 
-    // const { setViewMoreDetailsMutation } = getMutations("account", [
-    //   "setViewMoreDetailsMutation",
-    // ]);
-
-    // const setViewMoreDetails = (props) => {
-    //   console.log("Checking props val", props.row);
-    // };
-
-    // const setViewMoreDetails = (payload) => {
-    //   setViewMoreDetailsMutation(payload);
-    // };
-
     return {
       hasEditPermission: true,
       dataStore: "account",
       aditionalActions: true,
       alert: ref(false),
-      // setViewMoreDetails,
       showCreateModal,
     };
   },

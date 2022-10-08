@@ -253,7 +253,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "LoansEditPage",
+  name: "LoansVerifyPage",
   setup() {
     return {
       modal: true,

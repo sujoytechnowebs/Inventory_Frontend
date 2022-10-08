@@ -22,18 +22,6 @@
             >
             </q-input>
           </div>
-          <!-- <div class="col-12 col-md-6 col-lg-6">
-            <q-input
-              ref="code"
-              outlined
-              v-model="code"
-              dense
-              label="Branch Code"
-              :error-message="$getValidationErrors('code')"
-              :error="$hasValidationErrors('code')"
-            >
-            </q-input>
-          </div> -->
           <div class="col-12 col-md-4 col-lg-4">
             <q-input
               ref="postcode"
@@ -79,7 +67,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "BranchEditPage",
+  name: "BankEditCreatePage",
   setup() {
     return {
       modal: true,

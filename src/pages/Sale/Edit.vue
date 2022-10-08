@@ -55,7 +55,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "UsersEditPage",
+  name: "SaleEditPage",
   setup() {
     return {
       modal: true,

@@ -37,13 +37,13 @@
 
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'receipt-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreateReceipt v-bind:modal="true"></CreateReceipt>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'receipt-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+          <EditReceipt v-bind:modal="true"></EditReceipt>
         </div>
       </q-dialog>
     </q-card-section>
@@ -56,15 +56,15 @@ import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditReceipt = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateReceipt = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "ReceiptIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditReceipt,
+    CreateReceipt,
   },
 
   computed: {
@@ -74,16 +74,6 @@ export default defineComponent({
     const { getGetters } = useStoreModule();
     const { showEditModal } = getGetters("receipt", ["showEditModal"]);
     const { showCreateModal } = getGetters("receipt", ["showCreateModal"]);
-    // const { showReceiptDetailModel } = getGetters("receipt", [
-    //   "showReceiptDetailModel",
-    // ]);
-    // const { setReceiptDetailModel } = getMutations("receipt", [
-    //   "setReceiptDetailModel",
-    // ]);
-
-    // const ReceiptEdit = (params) => {
-    //   setReceiptDetailModel(true);
-    // };
 
     return {
       hasEditPermission: true,
@@ -91,8 +81,6 @@ export default defineComponent({
       aditionalActions: false,
       showEditModal,
       showCreateModal,
-      // showReceiptDetailModel,
-      // ReceiptEdit,
     };
   },
 });

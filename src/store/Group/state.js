@@ -30,6 +30,13 @@ export default function () {
         field: (row) => row?.response?.account?.phone,
         sortable: true,
       },
+      {
+        name: "conduct_time",
+        align: "left",
+        label: "Conduct Time",
+        field: "conduct_time",
+        sortable: true,
+      },
       { name: "actions", align: "right", label: "Actions" },
     ],
     visibleColumns: ["name"],
@@ -57,6 +64,7 @@ export default function () {
       pin: "",
       day: "",
       responsible_by: "",
+      conduct_time: "",
     },
     editItem: {
       id: "",
@@ -68,6 +76,7 @@ export default function () {
       pin: "",
       day: "",
       responsible_by: "",
+      conduct_time: "",
     },
     modals: {
       createItem: false,

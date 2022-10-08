@@ -227,20 +227,6 @@
                   :error="$hasValidationErrors('city_name')"
                 ></QSearch>
               </div>
-              <!-- <div class="col-12">
-                <span class="customer_form_title text-weight-medium"
-                  >Current Address</span
-                >
-                <q-field
-                  :error-message="$getValidationErrors('address_1')"
-                  :error="$hasValidationErrors('address_1')"
-                >
-                  <q-editor v-model="address_1" class="full-width"></q-editor>
-                </q-field>
-              </div> -->
-
-              <!-- Testing Address -->
-
               <div class="col-12">
                 <q-input
                   outlined
@@ -370,7 +356,7 @@
                 flat
                 bordered
                 class="full-width"
-                :factory="factoryFn"
+                :factory="factoryFnVoter"
               />
             </q-field>
           </div>
@@ -386,7 +372,7 @@ import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 
 export default {
-  name: "CustomerPage",
+  name: "CustomerCreatePage",
   setup() {
     return {
       modal: ref(true),
@@ -456,14 +442,27 @@ export default {
   },
 
   methods: {
-    ...mapActions("customer", ["media"]),
+    ...mapActions("customer", ["media", "mediaVoter"]),
 
     factoryFn(files) {
       let formData = new FormData();
-      formData.append("attachment_type", "document");
+      formData.append("attachment_type", "image");
       formData.append("file", files[0]);
       return new Promise((resolve) => {
         this.media(formData)
+          .then((res) => {
+            resolve(true);
+          })
+          .finally(() => {});
+      });
+    },
+
+    factoryFnVoter(files) {
+      let formDatas = new FormData();
+      formDatas.append("attachment_type", "image");
+      formDatas.append("file", files[0]);
+      return new Promise((resolve) => {
+        this.mediaVoter(formDatas)
           .then((res) => {
             resolve(true);
           })

@@ -12,18 +12,6 @@
           <div class="col-12">
             <div class="row q-col-gutter-md">
               <div class="col-12 col-md-6 col-lg-6">
-                <!-- <QSearch
-                  v-model="group_id"
-                  label="Group Name"
-                  option-value="id"
-                  option-label="name"
-                  data-store="group"
-                  action="getItems"
-                  readonly
-                  :multiple="false"
-                  :error-message="$getValidationErrors('group_id')"
-                  :error="$hasValidationErrors('group_id')"
-                ></QSearch> -->
                 <q-input
                   ref="group_id"
                   outlined
@@ -41,26 +29,6 @@
                 </q-input>
               </div>
               <div class="col-12 col-md-6 col-lg-6">
-                <!-- <q-select
-                  outlined
-                  v-model="group_role"
-                  dense
-                  :options="grp_role_options"
-                  label
-                  option-value="value"
-                  option-label="label"
-                  option-disable="inactive"
-                  emit-value
-                  map-options
-                  readonly
-                  :error-message="$getValidationErrors('group_role')"
-                  :error="$hasValidationErrors('group_role')"
-                >
-                  <template v-slot:label>
-                    Group Role
-                    <span class="text-weight-bold text-negative">*</span>
-                  </template>
-                </q-select> -->
                 <q-input
                   ref="group_role"
                   outlined
@@ -84,6 +52,7 @@
                   v-model="account_name"
                   dense
                   label
+                  @keydown="checkKeyDownAlphaNumeric($event)"
                   :error-message="$getValidationErrors('account_name')"
                   :error="$hasValidationErrors('account_name')"
                 >
@@ -152,6 +121,7 @@
                   v-model="spouse_parent_name"
                   dense
                   label
+                  @keydown="checkKeyDownAlphaNumeric($event)"
                   :error-message="$getValidationErrors('spouse_parent_name')"
                   :error="$hasValidationErrors('spouse_parent_name')"
                 >
@@ -196,6 +166,7 @@
                   v-model="occupation"
                   dense
                   label
+                  @keydown="checkKeyDownAlphaNumeric($event)"
                   :error-message="$getValidationErrors('occupation')"
                   :error="$hasValidationErrors('occupation')"
                 >
@@ -234,6 +205,7 @@
                   dense
                   label
                   type="number"
+                  v-on:keypress="NumbersOnly"
                   :error-message="$getValidationErrors('monthly_income')"
                   :error="$hasValidationErrors('monthly_income')"
                 >
@@ -256,19 +228,6 @@
                   :error="$hasValidationErrors('city_id')"
                 ></QSearch>
               </div>
-              <!-- <div class="col-12">
-                <span class="customer_form_title text-weight-medium"
-                  >Current Address</span
-                >
-                <q-field
-                  :error-message="$getValidationErrors('address_1')"
-                  :error="$hasValidationErrors('address_1')"
-                >
-                  <q-editor v-model="address_1" class="full-width"></q-editor>
-                </q-field>
-              </div> -->
-
-              <!-- Testing Address -->
               <div class="col-12">
                 <q-input
                   outlined
@@ -361,7 +320,7 @@ import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 
 export default {
-  name: "UsersEditPage",
+  name: "CustomerEditPage",
   setup() {
     return {
       modal: true,
@@ -428,6 +387,31 @@ export default {
       "editItem.opening_balance_type",
       "editItem.voter_card_no",
     ]),
+  },
+
+  methods: {
+    // Validation
+
+    NumbersOnly(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
+
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
+      }
+    },
   },
 };
 </script>

@@ -358,7 +358,7 @@ export default {
 
     factoryFn(files) {
       let formData = new FormData();
-      formData.append("attachment_type", "document");
+      formData.append("attachment_type", "image");
       formData.append("file", files[0]);
       return new Promise((resolve) => {
         this.media(formData)

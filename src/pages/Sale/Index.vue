@@ -44,13 +44,13 @@
 
       <q-dialog v-model="showCreateModal" fullscreen class="sale-form-dialog">
         <div :class="$q.platform.is.desktop ? 'sale-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreateSale v-bind:modal="true"></CreateSale>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'sale-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+          <EditSale v-bind:modal="true"></EditSale>
         </div>
       </q-dialog>
 
@@ -70,15 +70,15 @@ import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 import ViewProducts from "./_components/ViewProducts.vue";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditSale = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateSale = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "SaleIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditSale,
+    CreateSale,
     ViewProducts,
   },
 
@@ -89,8 +89,6 @@ export default defineComponent({
     const { getGetters, getMutations } = useStoreModule();
     const { showEditModal } = getGetters("sale", ["showEditModal"]);
     const { showCreateModal } = getGetters("sale", ["showCreateModal"]);
-
-    // Test This is new
 
     const ViewProducts = defineAsyncComponent(() =>
       import("./_components/ViewProducts.vue")

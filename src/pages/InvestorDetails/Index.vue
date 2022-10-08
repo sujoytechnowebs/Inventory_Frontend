@@ -35,14 +35,14 @@
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+        <div :class="$q.platform.is.desktop ? 'investor-details-form' : ''">
+          <CreateInvestorDetails v-bind:modal="true"></CreateInvestorDetails>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+        <div :class="$q.platform.is.desktop ? 'investor-details-form' : ''">
+          <EditInvestorDetails v-bind:modal="true"></EditInvestorDetails>
         </div>
       </q-dialog>
     </q-card-section>
@@ -55,15 +55,17 @@ import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditInvestorDetails = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateInvestorDetails = defineAsyncComponent(() =>
+  import("./Create.vue")
+);
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "InvestorDetailsIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditInvestorDetails,
+    CreateInvestorDetails,
   },
 
   computed: {
@@ -88,7 +90,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.branch-form {
+.investor-details-form {
   width: 40%;
   max-width: 40%;
 }

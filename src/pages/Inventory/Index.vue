@@ -46,13 +46,13 @@
 
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'inventory-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreateInventory v-bind:modal="true"></CreateInventory>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'inventory-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+          <EditInventory v-bind:modal="true"></EditInventory>
         </div>
       </q-dialog>
     </q-card-section>
@@ -100,15 +100,15 @@ import { defineComponent, ref } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditInventory = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateInventory = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "InventoryIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditInventory,
+    CreateInventory,
   },
 
   computed: {
@@ -131,7 +131,6 @@ export default defineComponent({
 
   methods: {
     exportInExcel() {
-      // console.log("export pdf");
       this.$store
         .dispatch(`${this.dataStore}/getReport`, {
           export_excel: 1,
@@ -146,7 +145,6 @@ export default defineComponent({
     // Pdf download
 
     exportInPdf() {
-      // console.log("export pdf");
       this.$store
         .dispatch(`${this.dataStore}/getReportPdf`, {
           export_excel: 1,

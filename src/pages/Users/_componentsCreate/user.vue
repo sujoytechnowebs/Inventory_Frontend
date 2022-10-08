@@ -28,7 +28,6 @@
             v-model="name"
             dense
             label
-            @keydown="checkKeyDownAlphaNumeric($event)"
             :error-message="$getValidationErrors('name')"
             :error="$hasValidationErrors('name')"
           >
@@ -271,7 +270,7 @@
           flat
           bordered
           class="full-width"
-          :factory="factoryFn"
+          :factory="factoryFnVoter"
         />
       </q-field>
     </div>
@@ -326,14 +325,27 @@ export default {
   },
 
   methods: {
-    ...mapActions("user", ["media"]),
+    ...mapActions("user", ["media", "mediaVoter"]),
 
     factoryFn(files) {
       let formData = new FormData();
-      formData.append("attachment_type", "document");
+      formData.append("attachment_type", "image");
       formData.append("file", files[0]);
       return new Promise((resolve) => {
         this.media(formData)
+          .then((res) => {
+            resolve(true);
+          })
+          .finally(() => {});
+      });
+    },
+
+    factoryFnVoter(files) {
+      let formDatas = new FormData();
+      formDatas.append("attachment_type", "image");
+      formDatas.append("file", files[0]);
+      return new Promise((resolve) => {
+        this.mediaVoter(formDatas)
           .then((res) => {
             resolve(true);
           })

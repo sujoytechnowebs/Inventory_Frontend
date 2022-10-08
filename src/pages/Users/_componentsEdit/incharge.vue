@@ -11,6 +11,7 @@
             v-model="account_name"
             dense
             label
+            @keydown="checkKeyDownAlphaNumeric($event)"
             :error-message="$getValidationErrors('account_name')"
             :error="$hasValidationErrors('account_name')"
           >
@@ -156,6 +157,7 @@
         v-model="bank_branch"
         dense
         label="Bank Branch"
+        @keydown="checkKeyDownAlphaNumeric($event)"
         :error-message="$getValidationErrors('bank_branch')"
         :error="$hasValidationErrors('bank_branch')"
       />
@@ -274,6 +276,29 @@ export default {
       "editItem.opening_balance",
       "editItem.opening_balance_type",
     ]),
+  },
+
+  methods: {
+    NumbersOnly(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+      if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+      ) {
+        evt.preventDefault();
+      } else {
+        return true;
+      }
+    },
+
+    checkKeyDownAlphaNumeric(event) {
+      if (!/[a-zA-Z\s]/.test(event.key)) {
+        this.ignoredValue = event.key ? event.key : "";
+        event.preventDefault();
+      }
+    },
   },
 };
 </script>

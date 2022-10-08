@@ -44,7 +44,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "UsersEditPage",
+  name: "GroupUserEditPage",
   setup() {
     return {
       modal: true,

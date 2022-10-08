@@ -362,6 +362,12 @@ const linksList = [
         link: "/customers",
         show: "",
       },
+      {
+        title: "Group Loan Summary",
+        icon: "hlw",
+        link: "/groups-summary",
+        show: "",
+      },
     ],
   },
   {
@@ -426,6 +432,12 @@ const linksList = [
     link: "/profile",
     show: "",
     childs: [
+      {
+        title: "Balance Status",
+        icon: "hlw",
+        link: "/balance_status",
+        show: "",
+      },
       {
         title: "Accounts",
         icon: "hlw",
@@ -560,8 +572,8 @@ export default defineComponent({
           return false;
         } else {
           console.log("watch in else");
-          SessionStorage.set("active_branch", newValue);
-          changeActiveBranch(newValue);
+          SessionStorage.set("active_branch", newValue ? newValue : "");
+          changeActiveBranch(newValue ? newValue : "");
         }
       }
     });

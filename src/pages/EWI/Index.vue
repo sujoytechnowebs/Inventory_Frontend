@@ -7,6 +7,7 @@
         :hasEditPermission="hasEditPermission"
         :aditionalActions="aditionalActions"
         :columns="columns"
+        :customBodySlot="true"
         :filter="filter"
         :canDelete="false"
         :canAdd="false"
@@ -71,13 +72,8 @@
                         v-model="status"
                         :options="options"
                         label="Status"
-                        :rules="[
-                          (val) =>
-                            (val && !validationErrors.status > 0) ||
-                            validationErrors.status
-                              ? validationErrors.status
-                              : 'Please Choose The Status',
-                        ]"
+                        :error-message="$getValidationErrors('status')"
+                        :error="$hasValidationErrors('status')"
                       ></q-select>
                     </div>
 
@@ -88,13 +84,8 @@
                         outlined
                         v-model="ewi_date"
                         mask="date"
-                        :rules="[
-                          (val) =>
-                            (val && !validationErrors.ewi_date > 0) ||
-                            validationErrors.ewi_date
-                              ? validationErrors.ewi_date
-                              : 'Please Choose The EWI Date',
-                        ]"
+                        :error-message="$getValidationErrors('ewi_date')"
+                        :error="$hasValidationErrors('ewi_date')"
                       >
                         <template v-slot:prepend>
                           <q-icon name="event" class="cursor-pointer">
@@ -125,13 +116,8 @@
                         outlined
                         v-model="group_code"
                         label="Group Code"
-                        :rules="[
-                          (val) =>
-                            (val && !validationErrors.group_code > 0) ||
-                            validationErrors.group_code
-                              ? validationErrors.group_code
-                              : 'Please Write The Group Code',
-                        ]"
+                        :error-message="$getValidationErrors('group_code')"
+                        :error="$hasValidationErrors('group_code')"
                       ></q-input>
                     </div>
                   </div>
@@ -155,6 +141,63 @@
             </q-dialog>
           </div>
         </template>
+
+        <template v-slot:customBodySlot="bodyRow">
+          <q-tr :props="bodyRow">
+            <q-td key="loan_id">
+              {{ bodyRow.row?.loan?.application_no }}
+            </q-td>
+            <q-td key="name">
+              {{ bodyRow.row?.loan?.group_user?.user?.name }}
+            </q-td>
+            <q-td key="name">
+              {{ bodyRow.row?.loan?.branch?.name }}
+            </q-td>
+            <q-td key="ewi_no">
+              {{ bodyRow.row?.ewi_no }}
+            </q-td>
+            <q-td key="ewi_date">
+              {{ bodyRow.row?.ewi_date }}
+            </q-td>
+            <q-td key="ewi">
+              {{ bodyRow.row?.ewi }}
+            </q-td>
+            <q-td key="status">
+              {{ bodyRow.row?.status }}
+            </q-td>
+            <q-td key="collected_date">
+              {{ bodyRow.row?.collected_date }}
+            </q-td>
+
+            <q-td key="actions" align="right">
+              <span
+                v-if="
+                  bodyRow.row.status === 'due' ||
+                  bodyRow.row.status === 'partial collected'
+                "
+              >
+                <q-btn
+                  label="Instant Pay"
+                  no-caps
+                  flat
+                  @click="instantPay(bodyRow.row.id)"
+                />
+              </span>
+
+              <span v-if="bodyRow.row.status !== 'collected'">
+                <q-btn
+                  label="Custom Pay"
+                  no-caps
+                  flat
+                  @click="setEditModal(bodyRow.row)"
+                >
+                  <q-tooltip> Edit </q-tooltip>
+                </q-btn>
+              </span>
+            </q-td>
+          </q-tr>
+        </template>
+
         <template v-slot:aditionalActions="props">
           <addpay v-bind:id="props.row.id" v-bind:status="props.row.status" />
         </template>
@@ -162,13 +205,13 @@
 
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'EWI-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreateEWI v-bind:modal="true"></CreateEWI>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'EWI-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+          <EditEWI v-bind:modal="true"></EditEWI>
         </div>
       </q-dialog>
     </q-card-section>
@@ -180,20 +223,19 @@ import { mapFields } from "vuex-map-fields";
 import { defineComponent, ref } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
+import { mapActions } from "vuex";
 
 const addpay = defineAsyncComponent(() => import("./_components/addpay.vue"));
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
-
-// Test
+const EditEWI = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateEWI = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "EwiIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditEWI,
+    CreateEWI,
     addpay,
   },
 
@@ -211,25 +253,32 @@ export default defineComponent({
     const { showEditModal } = getGetters("ewi", ["showEditModal"]);
     const { showCreateModal } = getGetters("ewi", ["showCreateModal"]);
 
-    // Test
-
-    // const { instantPay } = getAction("ewi", ["instantPay"]);
+    const { instantPay } = getAction("ewi", ["instantPay"]);
 
     return {
       hasEditPermission: true,
       dataStore: "ewi",
-      // ewiReports: "export-ewi",
       aditionalActions: true,
       showEditModal,
       showCreateModal,
       options: ["due", "collected"],
       alert: ref(false),
+      instantPay,
     };
   },
 
   methods: {
+    ...mapActions("ewi", ["getItems"]),
+
+    setEditModal(props) {
+      this.$store.commit(`${this.dataStore}/setEditModal`, true);
+      this.$store.commit(
+        `${this.dataStore}/setEditItem`,
+        Object.assign({}, props)
+      );
+    },
+
     exportInExcel() {
-      // console.log("export pdf");
       this.$store
         .dispatch(`${this.dataStore}/getReport`, {
           export_excel: 1,
@@ -244,7 +293,6 @@ export default defineComponent({
     // Pdf download
 
     exportInPdf() {
-      // console.log("export pdf");
       this.$store
         .dispatch(`${this.dataStore}/getReportPdf`, {
           export_excel: 1,

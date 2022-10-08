@@ -319,16 +319,6 @@
         </template>
       </q-input>
     </div>
-    <!-- <div class="col-12">
-      <q-uploader
-        label="Upload Aadhar Document"
-        square
-        flat
-        bordered
-        class="full-width"
-        :factory="factoryFn"
-      />
-    </div> -->
   </div>
 </template>
 

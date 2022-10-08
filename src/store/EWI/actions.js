@@ -153,7 +153,7 @@ export function getReportPdf({ commit, state }, props) {
 
   return new Promise((resolve, reject) => {
     axios
-      .get("export-pdf", {
+      .get("ewi-report-pdf", {
         params: params,
       })
       .then((response) => {

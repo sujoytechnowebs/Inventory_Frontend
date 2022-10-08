@@ -85,7 +85,6 @@
               </div>
             </div>
 
-            <!-- Test Div -->
             <div class="row q-col-gutter-md">
               <div v-if="customer_id != null">
                 <div class="col-12 col-md-3 col-lg-3">
@@ -121,18 +120,6 @@
                   />
                 </div>
               </div>
-
-              <!-- <div v-if="customer_id != null">
-                <div class="col-12 col-md-3 col-lg-3">
-                  <q-input
-                    outlined
-                    dense
-                    v-model="day"
-                    label="Group Day"
-                    readonly
-                  />
-                </div>
-              </div> -->
 
               <div class="col-12 col-md-3 col-lg-3">
                 <QSearch
@@ -216,11 +203,7 @@
                     :error="$hasValidationErrors('payment_method')"
                   ></q-select>
                 </div>
-                <!-- </div> -->
 
-                <!-- Non Customer Payment -->
-
-                <!-- <div class="col-12 col-md-4 col-lg-4"> -->
                 <div v-if="cust_type === 'cust_non_regis'">
                   <q-select
                     outlined
@@ -266,7 +249,7 @@
 
                 <!-- Loan Amount -->
 
-                <div class="col-12">
+                <!-- <div class="col-12">
                   <q-input
                     ref="grand_item_rate_total"
                     outlined
@@ -281,7 +264,7 @@
                     :error="$hasValidationErrors('grand_item_rate_total')"
                   >
                   </q-input>
-                </div>
+                </div> -->
 
                 <!-- EWI Start Date -->
 
@@ -366,7 +349,7 @@
 
                 <!-- Loan Amount -->
 
-                <div class="col-12 col-md-6 col-lg-6">
+                <!-- <div class="col-12 col-md-6 col-lg-6">
                   <q-input
                     ref="loan_after_downpayment"
                     outlined
@@ -376,7 +359,7 @@
                     readonly
                   >
                   </q-input>
-                </div>
+                </div> -->
 
                 <!-- No of EWI -->
 
@@ -456,21 +439,21 @@
                         <div class="col-12">
                           <span class="loan-details q-pr-sm"
                             >Product Total Price:</span
-                          >{{ grand_item_rate_total }}
+                          >{{ grand_item_rate_total.toFixed(2) }}
                         </div>
                         <div class="col-12">
                           <span class="loan-details q-pr-sm"
                             >Loan Processing Fees:</span
-                          >{{ loan_with_processing_fees }}
+                          >{{ loan_with_processing_fees.toFixed(2) }}
                         </div>
                         <div class="col-12">
                           <span class="loan-details q-pr-sm">Loan Amount:</span
-                          >{{ loan_after_downpayment }}
+                          >{{ loan_after_downpayment.toFixed(2) }}
                         </div>
                         <div class="col-12">
                           <span class="loan-details q-pr-sm"
                             >Amount Per EWI:</span
-                          >{{ per_ewi }}
+                          >{{ per_ewi.toFixed(2) }}
                         </div>
                       </div>
                     </q-card-section>
@@ -494,7 +477,6 @@
                       <p class="total_head">Total Cost:</p>
                     </div>
                     <div class="col-6">
-                      <!-- {{ loan_amount }} -->
                       {{ grand_item_rate_total }}
                     </div>
                   </div>
