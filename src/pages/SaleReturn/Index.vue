@@ -44,13 +44,13 @@
 
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'sale-return-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreateSaleReturn v-bind:modal="true"></CreateSaleReturn>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'sale-return-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+          <EditSaleReturn v-bind:modal="true"></EditSaleReturn>
         </div>
       </q-dialog>
 
@@ -70,15 +70,15 @@ import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 import ViewProducts from "./_components/ViewProducts.vue";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditSaleReturn = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateSaleReturn = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "SaleReturnIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditSaleReturn,
+    CreateSaleReturn,
     ViewProducts,
   },
 

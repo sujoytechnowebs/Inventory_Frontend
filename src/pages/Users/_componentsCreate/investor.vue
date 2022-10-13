@@ -29,7 +29,6 @@
             v-model="name"
             dense
             label="User Name"
-            @keydown="checkKeyDownAlphaNumeric($event)"
             :error-message="$getValidationErrors('name')"
             :error="$hasValidationErrors('name')"
           >
@@ -160,7 +159,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "customerPage",
+  name: "investorPage",
   setup() {
     return {
       options: ["Own", "Rent", "Tea Estate"],

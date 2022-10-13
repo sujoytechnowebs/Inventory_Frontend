@@ -36,13 +36,13 @@
 
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreateBranch v-bind:modal="true"></CreateBranch>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+          <EditBranch v-bind:modal="true"></EditBranch>
         </div>
       </q-dialog>
     </q-card-section>
@@ -55,15 +55,15 @@ import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditBranch = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateBranch = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "BranchIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditBranch,
+    CreateBranch,
   },
 
   computed: {

@@ -52,6 +52,13 @@ export default function () {
         sortable: true,
       },
       {
+        name: "loan_amount",
+        align: "left",
+        label: "Loan Amount",
+        field: "loan_amount",
+        sortable: true,
+      },
+      {
         name: "status",
         align: "left",
         label: "status",

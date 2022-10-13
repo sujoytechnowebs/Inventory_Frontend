@@ -75,15 +75,6 @@ const routes = [
         },
       },
       {
-        path: "check-in",
-        component: () => import("pages/CheckIn/Index.vue"),
-        meta: {
-          name: "checkin",
-          requiresAuth: true,
-          // acl: "user.index",
-        },
-      },
-      {
         path: "loans",
         component: () => import("pages/Loan/Index.vue"),
         meta: {
@@ -253,6 +244,24 @@ const routes = [
         meta: {
           name: "cashbook-page",
           requiresAuth: true,
+        },
+      },
+      {
+        path: "balance_status",
+        component: () => import("pages/OpeningClose/Index.vue"),
+        meta: {
+          name: "balance-status",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+      {
+        path: "groups-summary",
+        component: () => import("pages/GroupSummary/Index.vue"),
+        meta: {
+          name: "group-summary",
+          requiresAuth: true,
+          // acl: "user.index",
         },
       },
     ],

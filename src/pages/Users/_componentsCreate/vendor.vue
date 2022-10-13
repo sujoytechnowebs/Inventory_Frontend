@@ -44,7 +44,6 @@
             v-model="name"
             dense
             label
-            @keydown="checkKeyDownAlphaNumeric($event)"
             :error-message="$getValidationErrors('name')"
             :error="$hasValidationErrors('name')"
           >
@@ -164,7 +163,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "customerPage",
+  name: "vendorPage",
   setup() {
     return {
       modal: ref(true),

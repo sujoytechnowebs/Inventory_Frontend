@@ -72,7 +72,7 @@
 <script>
 import { ref } from "vue";
 export default {
-  name: "IndexPage",
+  name: "CalculatorPage",
   data() {
     return {
       loan_amount: null,

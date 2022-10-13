@@ -48,18 +48,6 @@
               :error="$hasValidationErrors('city_id')"
             ></QSearch>
           </div>
-          <!-- <div class="col-12 col-md-6 col-lg-6">
-            <q-input
-              ref="code"
-              outlined
-              v-model="code"
-              dense
-              label="Branch Code"
-              :error-message="$getValidationErrors('code')"
-              :error="$hasValidationErrors('code')"
-            >
-            </q-input>
-          </div> -->
           <div class="col-12">
             <p class="address_head">Please Write Address:</p>
             <q-field
@@ -80,7 +68,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "CityCreatePage",
+  name: "BranchCreatePage",
   setup() {
     return {
       modal: ref(true),

@@ -150,16 +150,12 @@ export default defineComponent({
       "removePaymentDetails",
     ]);
 
-    onMounted(() => {
-      //
-    });
+    onMounted(() => {});
 
     const addPayment = () => {
-      // console.error("addReceipt called", to_account.value);
       setPaymentDetails(to_account.value);
     };
 
-    // Testing Purpose
     const deleteReceipt = (index) => {
       console.log("data", index);
       removePaymentDetails(index);

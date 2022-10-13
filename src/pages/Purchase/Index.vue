@@ -48,13 +48,13 @@
         class="purchase-form-dialog"
       >
         <div :class="$q.platform.is.desktop ? 'purchase-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreatePurchase v-bind:modal="true"></CreatePurchase>
         </div>
       </q-dialog>
 
       <q-dialog class="purchase-form-dialog" v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'purchase-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+          <EditPurchase v-bind:modal="true"></EditPurchase>
         </div>
       </q-dialog>
 
@@ -63,17 +63,6 @@
           <ViewProducts />
         </div>
       </q-dialog>
-
-      <!-- <q-dialog
-        v-model="showViewProductsModal"
-        persistent
-        transition-show="slide-up"
-        transition-hide="slide-down"
-      >
-        <div :class="$q.platform.is.desktop ? 'purchase-form' : ''">
-          <Products />
-        </div>
-      </q-dialog> -->
     </q-card-section>
   </div>
 </template>
@@ -85,15 +74,15 @@ import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 import ViewProducts from "./_components/ViewProducts.vue";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditPurchase = defineAsyncComponent(() => import("./Edit.vue"));
+const CreatePurchase = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "PurchaseIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditPurchase,
+    CreatePurchase,
     ViewProducts,
   },
 
@@ -110,8 +99,6 @@ export default defineComponent({
     const { setProductDetailModel } = getMutations("purchase", [
       "setProductDetailModel",
     ]);
-
-    // Test This is new
 
     const ViewProducts = defineAsyncComponent(() =>
       import("./_components/ViewProducts.vue")

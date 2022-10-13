@@ -24,6 +24,14 @@
               label="Calculator"
               @click="calculator = true"
             />
+            <!-- <q-btn
+              label="Download Report"
+              no-caps
+              outline
+              color="primary"
+              @click="alert = true"
+            >
+            </q-btn> -->
           </div>
           <div class="col-xs-12 col-sm-4 col-md-4 row justify-end items-center">
             <div class="col-12">
@@ -125,16 +133,39 @@
 
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'loan-create-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreateLoan v-bind:modal="true"></CreateLoan>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'loan-create-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+          <EditLoan v-bind:modal="true"></EditLoan>
         </div>
       </q-dialog>
     </q-card-section>
+  </div>
+
+  <!-- Dialog Box Appear -->
+
+  <div>
+    <q-dialog v-model="alert">
+      <q-card>
+        <q-card-actions align="right">
+          <q-btn flat round dense icon="close" color="primary" v-close-popup>
+            <q-tooltip> Close </q-tooltip>
+          </q-btn>
+        </q-card-actions>
+
+        <q-card-section>
+          <p>Hello</p>
+        </q-card-section>
+
+        <q-card-actions align="between">
+          <q-btn flat label="Download Excel" no-caps @click="exportInExcel" />
+          <q-btn flat label="Download PDF" no-caps @click="exportInPdf" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -147,8 +178,8 @@ import useStoreModule from "../../libs/useStoreModule.js";
 import { showHideCreateModal } from "src/store/Loan/mutations.js";
 import { showHideApproveModal } from "src/store/Loan/mutations.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditLoan = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateLoan = defineAsyncComponent(() => import("./Create.vue"));
 
 const Verify = defineAsyncComponent(() => import("./_components/verify.vue"));
 const Approve = defineAsyncComponent(() => import("./_components/approve.vue"));
@@ -162,11 +193,11 @@ const Disburse = defineAsyncComponent(() =>
 );
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "LoanIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditLoan,
+    CreateLoan,
     Verify,
     Approve,
     Disburse,
@@ -200,6 +231,8 @@ export default defineComponent({
       cancel: ref(false),
       preview: ref(false),
       disburse: ref(false),
+
+      alert: ref(false),
     };
   },
 

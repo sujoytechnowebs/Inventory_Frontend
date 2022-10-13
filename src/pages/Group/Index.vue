@@ -45,13 +45,13 @@
 
     <q-dialog v-model="showCreateModal">
       <div :class="$q.platform.is.desktop ? 'group-form' : ''">
-        <CreateUser v-bind:modal="true"></CreateUser>
+        <CreateGroup v-bind:modal="true"></CreateGroup>
       </div>
     </q-dialog>
 
     <q-dialog v-model="showEditModal">
       <div :class="$q.platform.is.desktop ? 'group-form' : ''">
-        <EditUser v-bind:modal="true"></EditUser>
+        <EditGroup v-bind:modal="true"></EditGroup>
       </div>
     </q-dialog>
     <q-dialog v-model="showViewMembersModal">
@@ -67,19 +67,19 @@ import { ref, defineComponent, defineAsyncComponent } from "vue";
 import { mapFields } from "vuex-map-fields";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditGroup = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateGroup = defineAsyncComponent(() => import("./Create.vue"));
 
 const ViewMembers = defineAsyncComponent(() =>
   import("./_components/ViewMembers.vue")
 );
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "GroupIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditGroup,
+    CreateGroup,
     ViewMembers,
   },
 

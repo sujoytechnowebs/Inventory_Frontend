@@ -5,25 +5,25 @@
         <div class="col-12 col-md-6 col-lg-6">
           <q-card flat bordered class="full-height">
             <QCreateForm
-            v-bind:modal="false"
-            :widgets="false"
-            save-action="auth/changeEmail"
-            data-store="auth"
-            title="Change Email"
-            save-button-label="Change Email"
+              v-bind:modal="false"
+              :widgets="false"
+              save-action="auth/changeEmail"
+              data-store="auth"
+              title="Change Email"
+              save-button-label="Change Email"
             >
               <q-card-section>
                 <div class="row q-col-gutter-md">
                   <div class="col-12">
-                    <q-input 
-                    type="email"
-                    outlined 
-                    dense 
-                    label="Current Email"
-                    v-model="current_email" 
-                    ref="current_email"
-                    :error-message="$getValidationErrors('current_email')"
-                    :error="$hasValidationErrors('current_email')"
+                    <q-input
+                      type="email"
+                      outlined
+                      dense
+                      label="Current Email"
+                      v-model="current_email"
+                      ref="current_email"
+                      :error-message="$getValidationErrors('current_email')"
+                      :error="$hasValidationErrors('current_email')"
                     >
                       <template v-slot:prepend>
                         <q-icon name="mail" />
@@ -31,14 +31,15 @@
                     </q-input>
                   </div>
                   <div class="col-12">
-                    <q-input 
-                    type="email"
-                    outlined 
-                    dense label="New Email"
-                    v-model="email" 
-                    ref="email"
-                    :error-message="$getValidationErrors('email')"
-                    :error="$hasValidationErrors('email')"
+                    <q-input
+                      type="email"
+                      outlined
+                      dense
+                      label="New Email"
+                      v-model="email"
+                      ref="email"
+                      :error-message="$getValidationErrors('email')"
+                      :error="$hasValidationErrors('email')"
                     >
                       <template v-slot:prepend>
                         <q-icon name="mail" />
@@ -47,22 +48,19 @@
                   </div>
                 </div>
               </q-card-section>
-              <!-- <q-card-section>
-                <q-btn color="primary" label="Change Email" unelevated />
-              </q-card-section> -->
-              </QCreateForm>
-            </q-card>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-card flat bordered class="full-height">
-              <QCreateForm
+            </QCreateForm>
+          </q-card>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+          <q-card flat bordered class="full-height">
+            <QCreateForm
               v-bind:modal="false"
               :widgets="false"
               save-action="auth/resetPassword"
               data-store="auth"
               title="Reset Password"
               save-button-label="Reset Password"
-              >
+            >
               <q-card-section>
                 <div class="row q-col-gutter-md">
                   <div class="col-12">
@@ -119,7 +117,9 @@
                       :type="isPwd ? 'password' : 'text'"
                       label="Confirm New Password"
                       ref="password_confirmation"
-                      :error-message="$getValidationErrors('password_confirmation')"
+                      :error-message="
+                        $getValidationErrors('password_confirmation')
+                      "
                       :error="$hasValidationErrors('password_confirmation')"
                     >
                       <template v-slot:prepend>
@@ -156,7 +156,6 @@ export default {
   },
 
   computed: {
-    // ...mapFields("auth", ["authUser"]),
     ...mapFields("auth", [
       "authUser.email",
       "editItem.branch_id",
@@ -176,8 +175,7 @@ export default {
       "change_email.email",
       "reset_password.old_password",
       "reset_password.password",
-      "reset_password.password_confirmation"
-      
+      "reset_password.password_confirmation",
     ]),
   },
 };

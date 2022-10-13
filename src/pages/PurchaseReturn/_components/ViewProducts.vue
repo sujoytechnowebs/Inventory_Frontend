@@ -1,7 +1,3 @@
-<!-- <template>
-  <p>Hello</p>
-</template> -->
-
 <template>
   <q-card>
     <q-card-actions align="between">

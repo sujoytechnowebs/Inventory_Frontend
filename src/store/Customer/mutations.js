@@ -104,6 +104,11 @@ export function setLastUpdated(state, payload) {
 }
 
 export function setMedia(state, payload) {
+  console.log("checking payload", payload);
   state.newItem.aadhar_media_id = payload.media_id;
+}
+
+export function setMediaVoter(state, payload) {
+  console.log("checking payload", payload);
   state.newItem.voter_media_id = payload.media_id;
 }

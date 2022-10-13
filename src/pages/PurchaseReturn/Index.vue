@@ -48,8 +48,8 @@
         fullscreen
         v-model="showCreateModal"
       >
-        <div :class="$q.platform.is.desktop ? 'branch-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+        <div :class="$q.platform.is.desktop ? 'purchase-return-form' : ''">
+          <CreatePurchaseReturn v-bind:modal="true"></CreatePurchaseReturn>
         </div>
       </q-dialog>
 
@@ -71,13 +71,13 @@ import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 import ViewProducts from "./_components/ViewProducts.vue";
 
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const CreatePurchaseReturn = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
   name: "IndexPage",
 
   components: {
-    CreateUser,
+    CreatePurchaseReturn,
     ViewProducts,
   },
 
@@ -131,7 +131,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.branch-form {
+.purchase-return-form {
   width: 70%;
   max-width: 70%;
 }

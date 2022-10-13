@@ -3,6 +3,7 @@
     class="full-width"
     outlined
     dense
+    clearable
     v-model="search"
     use-input
     input-debounce="0"

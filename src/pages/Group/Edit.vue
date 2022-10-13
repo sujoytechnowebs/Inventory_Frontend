@@ -34,17 +34,7 @@
               :error="$hasValidationErrors('branch_id')"
             ></QSearch>
           </div>
-          <!-- <div class="col-12 col-md-6 col-lg-6">
-            <p class="address_head">Please Write The Address:</p>
-
-            <q-field
-              :error-message="$getValidationErrors('address')"
-              :error="$hasValidationErrors('address')"
-            >
-              <q-editor v-model="address" class="full-width"></q-editor>
-            </q-field>
-          </div> -->
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-4 col-lg-4">
             <q-select
               outlined
               v-model="day"
@@ -65,7 +55,7 @@
               </template>
             </q-select>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-4 col-lg-4">
             <QSearch
               v-model="responsible_by"
               label="Responsible Staff"
@@ -77,6 +67,39 @@
               :error-message="$getValidationErrors('responsible_by')"
               :error="$hasValidationErrors('responsible_by')"
             ></QSearch>
+          </div>
+
+          <div class="col-12 col-md-4 col-lg-4">
+            <q-input
+              outlined
+              dense
+              label="Contact Time"
+              v-model="conduct_time"
+              mask="time"
+              :error-message="$getValidationErrors('conduct_time')"
+              :error="$hasValidationErrors('conduct_time')"
+            >
+              <template v-slot:prepend>
+                <q-icon name="access_time" class="cursor-pointer">
+                  <q-popup-proxy
+                    cover
+                    transition-show="scale"
+                    transition-hide="scale"
+                  >
+                    <q-time v-model="conduct_time">
+                      <div class="row items-center justify-end">
+                        <q-btn
+                          v-close-popup
+                          label="Close"
+                          color="primary"
+                          flat
+                        />
+                      </div>
+                    </q-time>
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
           </div>
         </div>
         <div class="row q-col-gutter-md">
@@ -123,7 +146,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "UsersEditPage",
+  name: "GroupEditPage",
   setup() {
     return {
       modal: true,
@@ -168,6 +191,7 @@ export default {
       "editItem.pin",
       "editItem.day",
       "editItem.responsible_by",
+      "editItem.conduct_time",
     ]),
   },
 };

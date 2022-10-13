@@ -35,6 +35,8 @@ import bankcash from "./BankCash";
 import purchasereturndetails from "./PurchaseReturnDetails";
 import saledetails from "./SaleDetails";
 import salereturndetails from "./SaleReturnDetails";
+import openingclose from "./OpeningClose";
+import groupsummary from "./GroupSummary";
 
 /*
  * If not building with SSR mode, you can
@@ -84,6 +86,8 @@ export default store(function (/* { ssrContext } */) {
       purchasereturndetails,
       saledetails,
       salereturndetails,
+      openingclose,
+      groupsummary,
     },
 
     // enable strict mode (adds overhead!)

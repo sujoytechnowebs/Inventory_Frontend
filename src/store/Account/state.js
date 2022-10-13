@@ -23,34 +23,6 @@ export default function () {
         field: "email",
         sortable: true,
       },
-      // {
-      //   name: "city_id",
-      //   align: "left",
-      //   label: "City",
-      //   field: (row) => row?.city?.city_name,
-      //   sortable: true,
-      // },
-      // {
-      //   name: "address_1",
-      //   align: "left",
-      //   label: "Address 1",
-      //   field: "address_1",
-      //   sortable: true,
-      // },
-      // {
-      //   name: "address_2",
-      //   align: "left",
-      //   label: "Address 2",
-      //   field: "address_2",
-      //   sortable: true,
-      // },
-      // {
-      //   name: "postcode",
-      //   align: "left",
-      //   label: "PostCode",
-      //   field: "postcode",
-      //   sortable: true,
-      // },
       {
         name: "branch_id",
         align: "left",
@@ -58,13 +30,7 @@ export default function () {
         field: (row) => row?.branch?.name,
         sortable: true,
       },
-      // {
-      //   name: "adhaar_media_id",
-      //   align: "left",
-      //   label: "Adhaar",
-      //   field: "adhaar_media_id",
-      //   sortable: true,
-      // },
+
       {
         name: "type",
         align: "left",

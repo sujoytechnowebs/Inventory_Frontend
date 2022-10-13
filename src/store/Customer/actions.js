@@ -206,3 +206,21 @@ export function media({ commit, state }, props) {
       });
   });
 }
+
+export function mediaVoter({ commit, state }, props) {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(mediaEndPoint, props, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        commit("setMediaVoter", response.data);
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}

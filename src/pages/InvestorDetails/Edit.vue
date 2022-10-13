@@ -81,7 +81,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "UsersEditPage",
+  name: "InvestorDetailsEditPage",
   setup() {
     return {
       modal: true,

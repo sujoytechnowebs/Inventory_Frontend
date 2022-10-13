@@ -52,9 +52,6 @@ import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
-
 import DateRangePicker from "daterange-picker-vue3";
 import "daterange-picker-vue3/dist/daterange-picker-vue3.css";
 
@@ -68,8 +65,6 @@ export default defineComponent({
   },
   setup() {
     const { getGetters } = useStoreModule();
-    const { showEditModal } = getGetters("profitloss", ["showEditModal"]);
-    const { showCreateModal } = getGetters("profitloss", ["showCreateModal"]);
 
     const { getAction } = useStoreModule();
     const { getItem } = getAction("profitloss", ["getItem"]);
@@ -95,16 +90,10 @@ export default defineComponent({
         });
     };
 
-    // onMounted(() => {
-    //   getProfitLoss();
-    // });
-
     return {
       hasEditPermission: true,
       dataStore: "profitloss",
       aditionalActions: false,
-      showEditModal,
-      showCreateModal,
       myDateRange,
       data,
       getProfitLoss,

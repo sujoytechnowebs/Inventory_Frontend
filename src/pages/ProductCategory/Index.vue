@@ -36,13 +36,13 @@
 
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'productcategory-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreateProductCategory v-bind:modal="true"></CreateProductCategory>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'productcategory-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+          <EditProductCategory v-bind:modal="true"></EditProductCategory>
         </div>
       </q-dialog>
     </q-card-section>
@@ -55,15 +55,17 @@ import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditProductCategory = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateProductCategory = defineAsyncComponent(() =>
+  import("./Create.vue")
+);
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "ProductCategoryIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditProductCategory,
+    CreateProductCategory,
   },
 
   computed: {

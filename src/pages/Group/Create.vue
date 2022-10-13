@@ -35,7 +35,7 @@
               :error="$hasValidationErrors('branch_id')"
             ></QSearch>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-4 col-lg-4">
             <q-select
               outlined
               v-model="day"
@@ -56,7 +56,7 @@
               </template>
             </q-select>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12 col-md-4 col-lg-4">
             <QSearch
               v-model="responsible_by"
               label="Responsible Staff"
@@ -69,17 +69,40 @@
               :error="$hasValidationErrors('responsible_by')"
             ></QSearch>
           </div>
-        </div>
-        <!-- <div class="col-12 col-md-6 col-lg-6">
-          <p class="address_head">Please Write The Address:</p>
 
-          <q-field
-            :error-message="$getValidationErrors('address')"
-            :error="$hasValidationErrors('address')"
-          >
-            <q-editor v-model="address" class="full-width"></q-editor>
-          </q-field>
-        </div> -->
+          <div class="col-12 col-md-4 col-lg-4">
+            <q-input
+              outlined
+              dense
+              label="Contact Time"
+              v-model="conduct_time"
+              mask="time"
+              :error-message="$getValidationErrors('conduct_time')"
+              :error="$hasValidationErrors('conduct_time')"
+            >
+              <template v-slot:prepend>
+                <q-icon name="access_time" class="cursor-pointer">
+                  <q-popup-proxy
+                    cover
+                    transition-show="scale"
+                    transition-hide="scale"
+                  >
+                    <q-time v-model="conduct_time">
+                      <div class="row items-center justify-end">
+                        <q-btn
+                          v-close-popup
+                          label="Close"
+                          color="primary"
+                          flat
+                        />
+                      </div>
+                    </q-time>
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+          </div>
+        </div>
         <div class="row q-col-gutter-md">
           <p class="grp_adr">Group Address:</p>
           <div class="col-12">
@@ -174,6 +197,7 @@ export default {
       "newItem.pin",
       "newItem.day",
       "newItem.responsible_by",
+      "newItem.conduct_time",
     ]),
     ...mapGetters("auth", ["getActiveBranch"]),
   },

@@ -74,5 +74,8 @@ export function setLastUpdated(state, payload) {
 
 export function setMedia(state, payload) {
   state.newItem.aadhar_media_id = payload.media_id;
+}
+
+export function setMediaVoter(state, payload) {
   state.newItem.voter_media_id = payload.media_id;
 }

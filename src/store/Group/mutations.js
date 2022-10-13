@@ -16,6 +16,7 @@ export function resetForm(state) {
     pin: "",
     day: "",
     responsible_by: "",
+    conduct_time: "",
   };
 }
 
@@ -29,6 +30,7 @@ export function setEditItem(state, payload) {
   state.editItem.responsible_by = payload.response.id;
   state.editItem.village = payload.village;
   state.editItem.pin = payload.pin;
+  state.editItem.conduct_time = payload.conduct_time;
 }
 
 export function setEditModal(state, payload) {

@@ -4,7 +4,7 @@ const endPoint = "/accounts";
 const endAccounts = "/set-asset-account";
 import moment from "moment";
 
-export function getItems({ commit, state }, props) {
+export function getItems({ commit, state, rootState }, props) {
   if (props.pagination.descending == true) {
     var direction = "DESC";
   } else {
@@ -17,6 +17,7 @@ export function getItems({ commit, state }, props) {
     page: props.pagination.page,
     rowsPerPage: props.pagination.rowsPerPage,
     search: props.search ? props.search : state.filter.search,
+    branch_id: rootState.auth.active_branch,
   };
 
   return new Promise((resolve, reject) => {

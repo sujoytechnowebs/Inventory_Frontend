@@ -39,10 +39,6 @@
         >
         </q-input>
       </div>
-      <!-- <div class="col-3 col-md-1 col-lg-1">
-        <q-input ref="discount" v-model="data.discount" dense label="Discount">
-        </q-input>
-      </div> -->
       <div class="col-3 col-md-1 col-lg-1">
         <q-input
           ref="quantity"
@@ -118,19 +114,11 @@ export default defineComponent({
   },
 
   computed: {
-    // ...mapFields("purchasedetails", [
-    //   "newItem.product_id",
-    //   "newItem.item_rate",
-    //   "newItem.discount",
-    //   "newItem.quantity",
-    //   "newItem.tax_class_id",
-    // ]),
     ...mapMultiRowFields("sale", ["newItem.salesDetails"]),
   },
 
   setup(props, { emit }) {
     const product = ref([]);
-    // let arr_data = ref([]);
 
     const { getMutations } = useStoreModule();
     const { setProductDetails } = getMutations("sale", ["setProductDetails"]);
@@ -146,20 +134,9 @@ export default defineComponent({
 
     const { setTotalRate } = getMutations("sale", ["setTotalRate"]);
 
-    onMounted(() => {
-      // arr_data.value = props.value;
-    });
+    onMounted(() => {});
 
     const addProduct = () => {
-      // let mData = product.value;
-      // mData.item_rate = null;
-      // mData.discount = null;
-      // mData.quantity = null;
-      // mData.discount = null;
-      // mData.tax_class_id = null;
-      // mData.product_id = product.value.id;
-      // arr_data.value.push(mData);
-      // emit("update:modelValue", arr_data.value);
       console.log("product.value", product.value.id);
       setProductDetails(product.value);
       calculateLoanAmount();
@@ -175,14 +152,9 @@ export default defineComponent({
 
     const deleteProduct = (index) => {
       console.log("data", index);
-      // arr_data.value.splice(data);
-      // emit("update:modelValue", arr_data.value);
+
       removeProductDetails(index);
     };
-
-    // const editProduct = () => {
-    //   setProductDetails(arr_data.value);
-    // };
 
     return {
       product,

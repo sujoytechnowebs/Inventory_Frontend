@@ -120,9 +120,10 @@ export function deleteItem({ commit, state }, item) {
 
 export function getReport({ commit, state }, props) {
   var params = {
-    status: state?.filter?.status,
-    ewi_date: state?.filter?.ewi_date,
-    group_code: state?.filter?.group_code,
+    account_type: state?.filter?.account_type,
+    fromDate: state?.filter?.fromDate,
+    toDate: state?.filter?.toDate,
+    transType: state?.filter?.transType,
   };
 
   return new Promise((resolve, reject) => {

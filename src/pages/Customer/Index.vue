@@ -95,13 +95,13 @@
 
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'customer-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreateCustomer v-bind:modal="true"></CreateCustomer>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'customer-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+          <EditCustomer v-bind:modal="true"></EditCustomer>
         </div>
       </q-dialog>
     </q-card-section>
@@ -116,15 +116,15 @@ import { defineAsyncComponent } from "vue";
 import { Tnotify } from "../../libs/custom.js";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditCustomer = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateCustomer = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "CustomerIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditCustomer,
+    CreateCustomer,
   },
 
   computed: {
@@ -153,12 +153,6 @@ export default defineComponent({
         `${this.dataStore}/setEditItem`,
         Object.assign({}, props)
       );
-      // this.$store
-      //   .dispatch(`${this.dataStore}/getItem`, props.user_id)
-      //   .then((response) => {
-      //     this.$store.commit(`${this.dataStore}/setEditModal`, true);
-      //   })
-      //   .catch((error) => {});
     },
 
     onClickDelete(props) {

@@ -23,7 +23,7 @@
     </QDataTable>
     <q-dialog v-model="showEditModal">
       <div :class="$q.platform.is.desktop ? 'editMember-form' : ''">
-        <EditUser v-bind:modal="true"></EditUser>
+        <ViewUser v-bind:modal="true"></ViewUser>
       </div>
     </q-dialog>
   </q-card>
@@ -36,13 +36,13 @@ import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../../libs/useStoreModule.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
+const ViewUser = defineAsyncComponent(() => import("./Edit.vue"));
 
 export default defineComponent({
   name: "GroupMemberPage",
 
   components: {
-    EditUser,
+    ViewUser,
   },
 
   computed: {
@@ -58,9 +58,6 @@ export default defineComponent({
     const close = () => {
       setViewMembersModal(false);
     };
-    // const { setViewMembersModal } = getMutations("groupuser", [
-    //       "setViewMembersModal",
-    //     ]);
 
     return {
       hasEditPermission: true,

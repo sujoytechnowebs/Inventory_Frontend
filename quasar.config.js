@@ -169,8 +169,8 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: `Quasar App`,
-        short_name: `Quasar App`,
+        name: `Test`,
+        short_name: `Test`,
         description: `A Quasar Project`,
         display: "standalone",
         orientation: "portrait",

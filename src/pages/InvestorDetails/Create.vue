@@ -98,7 +98,7 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "CityCreatePage",
+  name: "InvestorDetailsCreatePage",
   setup() {
     return {
       modal: ref(true),

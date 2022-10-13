@@ -36,13 +36,13 @@
 
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'stocktransfer-form' : ''">
-          <CreateUser v-bind:modal="true"></CreateUser>
+          <CreateStockTransfer v-bind:modal="true"></CreateStockTransfer>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
         <div :class="$q.platform.is.desktop ? 'stocktransfer-form' : ''">
-          <EditUser v-bind:modal="true"></EditUser>
+          <EditStockTransfer v-bind:modal="true"></EditStockTransfer>
         </div>
       </q-dialog>
     </q-card-section>
@@ -55,15 +55,15 @@ import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
-const EditUser = defineAsyncComponent(() => import("./Edit.vue"));
-const CreateUser = defineAsyncComponent(() => import("./Create.vue"));
+const EditStockTransfer = defineAsyncComponent(() => import("./Edit.vue"));
+const CreateStockTransfer = defineAsyncComponent(() => import("./Create.vue"));
 
 export default defineComponent({
-  name: "IndexPage",
+  name: "StockTransferIndexPage",
 
   components: {
-    EditUser,
-    CreateUser,
+    EditStockTransfer,
+    CreateStockTransfer,
   },
 
   computed: {
