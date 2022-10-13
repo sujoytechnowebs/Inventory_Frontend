@@ -25,19 +25,35 @@
                 ></QSearch>
               </div>
               <div class="col-12 col-md-5 col-lg-5">
-                <QSearch
-                  class="extra-height"
-                  v-model="branch_id"
-                  label="Branch"
-                  option-value="id"
-                  option-label="name"
-                  data-store="branch"
-                  action="getItems"
-                  :multiple="false"
-                  readonly
-                  :error-message="$getValidationErrors('branch_id')"
-                  :error="$hasValidationErrors('branch_id')"
-                ></QSearch>
+                <div v-if="branch_id != ''">
+                  <QSearch
+                    class="extra-height"
+                    v-model="branch_id"
+                    label="Branch"
+                    option-value="id"
+                    option-label="name"
+                    data-store="branch"
+                    action="getItems"
+                    readonly
+                    :multiple="false"
+                    :error-message="$getValidationErrors('branch_id')"
+                    :error="$hasValidationErrors('branch_id')"
+                  ></QSearch>
+                </div>
+                <div v-if="branch_id === ''">
+                  <QSearch
+                    class="extra-height"
+                    v-model="branch_id"
+                    label="Branch"
+                    option-value="id"
+                    option-label="name"
+                    data-store="branch"
+                    action="getItems"
+                    :multiple="false"
+                    :error-message="$getValidationErrors('branch_id')"
+                    :error="$hasValidationErrors('branch_id')"
+                  ></QSearch>
+                </div>
               </div>
             </div>
             <div class="row q-col-gutter-md">

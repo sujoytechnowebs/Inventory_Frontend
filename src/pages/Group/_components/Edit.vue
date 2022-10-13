@@ -56,7 +56,11 @@ export default {
     };
   },
   computed: {
-    ...mapFields("groupuser", ["editItem.group_id", "editItem.group_role"]),
+    ...mapFields("groupuser", [
+      "editItem.group_id",
+      "editItem.group_role",
+      "editItem.user_id",
+    ]),
   },
 };
 </script>

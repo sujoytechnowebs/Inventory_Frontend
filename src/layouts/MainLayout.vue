@@ -11,7 +11,9 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Amar Furniture </q-toolbar-title>
+        <q-toolbar-title>
+          {{ siteName }}
+        </q-toolbar-title>
 
         <div :class="$q.platform.is.desktop ? '' : 'hide-diff-paltform'">
           <QSearch
@@ -28,19 +30,6 @@
         <div>
           <q-btn-dropdown flat label="Accounts">
             <div class="row no-wrap q-pa-md">
-              <div class="column items-center">
-                <div class="text-h6 q-mb-md">Settings</div>
-                <q-btn
-                  to="/profile"
-                  color="primary"
-                  size="sm"
-                  label="Profile"
-                  class="q-ma-sm"
-                />
-              </div>
-
-              <q-separator vertical inset class="q-mx-lg" />
-
               <div class="column items-center">
                 <div class="q-mb-md">
                   <span class="profile_head q-mr-sm">Name:</span
@@ -66,7 +55,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      :width="270"
+      :width="220"
       class="bg-primary text-white"
     >
       <q-list>
@@ -108,207 +97,9 @@ import { mapFields } from "vuex-map-fields";
 import { LocalStorage as SessionStorage } from "quasar";
 import { acl } from "../boot/acl.js";
 
-// const linksList = [
-//   {
-//     title: "User",
-//     icon: "account_circle",
-//     show: "",
-//     childs: [
-//       {
-//         title: "Users Management",
-//         icon: "hlw",
-//         link: "/users",
-//         show: "user.index",
-//       },
-//       {
-//         title: "Stock Holder",
-//         icon: "hlw",
-//         link: "/stock-holder",
-//         show: "investorEquity.index",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Branch",
-//     icon: "share",
-//     // link: "/cities",
-//     show: "",
-//     childs: [
-//       {
-//         title: "State",
-//         icon: "hlw",
-//         link: "/states",
-//         show: "",
-//       },
-//       {
-//         title: "Branch",
-//         icon: "hlw",
-//         link: "/branches",
-//         show: "branch.index",
-//       },
-//       {
-//         title: "City",
-//         icon: "hlw",
-//         link: "/cities",
-//         show: "city.index",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Group",
-//     icon: "group_work",
-//     link: "/profile",
-//     show: "",
-//     childs: [
-//       {
-//         title: "Customer",
-//         icon: "hlw",
-//         link: "/customers",
-//         show: "",
-//       },
-//       {
-//         title: "Group Name",
-//         icon: "hlw",
-//         link: "/groups",
-//         show: "",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Accounts",
-//     icon: "account_balance",
-//     link: "/profile",
-//     show: "",
-//     childs: [
-//       {
-//         title: "Accounts",
-//         icon: "hlw",
-//         link: "/accounts",
-//         show: "account.index",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Product",
-//     icon: "style",
-//     link: "/profile",
-//     show: "",
-//     childs: [
-//       {
-//         title: "Products Management",
-//         icon: "hlw",
-//         link: "/products",
-//         show: "",
-//       },
-//       {
-//         title: "Products Category",
-//         icon: "hlw",
-//         link: "/products-category",
-//         show: "",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Ledgers",
-//     icon: "menu_book",
-//     link: "/profile",
-//     show: "",
-//     childs: [
-//       {
-//         title: "Purchase",
-//         icon: "hlw",
-//         link: "/purchase",
-//         show: "",
-//       },
-//       {
-//         title: "Purchase Return",
-//         icon: "hlw",
-//         link: "/purchase-return",
-//         show: "",
-//       },
-//       {
-//         title: "Sales",
-//         icon: "hlw",
-//         link: "/sale",
-//         show: "",
-//       },
-//       {
-//         title: "Sales Return",
-//         icon: "hlw",
-//         link: "/sale-return",
-//         show: "",
-//       },
-//       {
-//         title: "Inventory",
-//         icon: "hlw",
-//         link: "/inventory",
-//         show: "",
-//       },
-//       {
-//         title: "Stock Transfer",
-//         icon: "hlw",
-//         link: "/stock-transfer",
-//         show: "",
-//       },
-//       {
-//         title: "Receipt",
-//         icon: "hlw",
-//         link: "/receipt",
-//         show: "",
-//       },
-//       {
-//         title: "Payment",
-//         icon: "hlw",
-//         link: "/payment",
-//         show: "",
-//       },
-//       {
-//         title: "Profit & Loss",
-//         icon: "hlw",
-//         link: "/profit-loss",
-//         show: "",
-//       },
-//       {
-//         title: "Cash Book",
-//         icon: "hlw",
-//         link: "/cashbook",
-//         show: "",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Loan",
-//     icon: "real_estate_agent",
-//     link: "/profile",
-//     show: "",
-//     childs: [
-//       {
-//         title: "Loan Management",
-//         icon: "hlw",
-//         link: "/loans",
-//         show: "",
-//       },
-//       {
-//         title: "EWI Details",
-//         icon: "hlw",
-//         link: "/ewi-details",
-//         show: "",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Profile",
-//     icon: "manage_accounts",
-//     link: "/profile",
-//     show: "",
-//   },
-// ];
-
-// Test
-
 const linksList = [
   {
-    title: "Users Management",
+    title: "Users",
     icon: "account_circle",
     show: "",
     childs: [
@@ -327,7 +118,7 @@ const linksList = [
     ],
   },
   {
-    title: "Center Management",
+    title: "Center",
     icon: "share",
     // link: "/cities",
     show: "",
@@ -363,7 +154,7 @@ const linksList = [
         show: "",
       },
       {
-        title: "Group Loan Summary",
+        title: "Group Loan",
         icon: "hlw",
         link: "/groups-summary",
         show: "",
@@ -371,7 +162,7 @@ const linksList = [
     ],
   },
   {
-    title: "Product Management",
+    title: "Product",
     icon: "account_balance",
     link: "/profile",
     show: "",
@@ -388,6 +179,14 @@ const linksList = [
         link: "/products",
         show: "product.index",
       },
+    ],
+  },
+  {
+    title: "Transfer",
+    icon: "move_up",
+    link: "",
+    show: "",
+    childs: [
       {
         title: "Inventory",
         icon: "hlw",
@@ -427,7 +226,7 @@ const linksList = [
     ],
   },
   {
-    title: "Ledger Management",
+    title: "Ledger",
     icon: "menu_book",
     link: "/profile",
     show: "",
@@ -477,7 +276,7 @@ const linksList = [
     ],
   },
   {
-    title: "Loan Management",
+    title: "Loan",
     icon: "real_estate_agent",
     link: "/profile",
     show: "",
@@ -506,6 +305,12 @@ const linksList = [
 
 export default defineComponent({
   name: "MainLayout",
+
+  computed: {
+    siteName() {
+      return process.env.SITE_NAME;
+    },
+  },
 
   components: {
     EssentialLink,

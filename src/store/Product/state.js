@@ -3,6 +3,13 @@ export default function () {
     // items: {
     columns: [
       {
+        name: "productSlNo",
+        align: "left",
+        label: "Serial No.",
+        field: "productSlNo",
+        sortable: true,
+      },
+      {
         name: "name",
         align: "left",
         label: "Product Name",

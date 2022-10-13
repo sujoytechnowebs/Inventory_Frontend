@@ -117,28 +117,97 @@
           ></QSearch>
         </div>
 
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-          <span class="text-weight-medium incharge_form_title"
-            >Present Address</span
-          >
-          <q-field
+        <div class="col-12">
+          <p class="incharge_form_title text-weight-medium">Address:</p>
+          <q-input
+            ref="address_1"
+            outlined
+            v-model="address_1"
+            label="Address"
+            dense
             :error-message="$getValidationErrors('address_1')"
             :error="$hasValidationErrors('address_1')"
           >
-            <q-editor v-model="address_1" class="full-width"></q-editor>
-          </q-field>
+          </q-input>
         </div>
 
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-          <span class="text-weight-medium incharge_form_title"
-            >Permanent Address</span
+        <div class="col-12 col-md-4 col-lg-4">
+          <q-input
+            ref="address_1"
+            outlined
+            v-model="address_1"
+            label="Near"
+            dense
+            :error-message="$getValidationErrors('address_1')"
+            :error="$hasValidationErrors('address_1')"
           >
-          <q-field
-            :error-message="$getValidationErrors('address_2')"
-            :error="$hasValidationErrors('address_2')"
+          </q-input>
+        </div>
+
+        <div class="col-12 col-md-4 col-lg-4">
+          <q-input
+            ref="address_1"
+            outlined
+            v-model="address_1"
+            label="Village"
+            dense
+            :error-message="$getValidationErrors('address_1')"
+            :error="$hasValidationErrors('address_1')"
           >
-            <q-editor v-model="address_2" class="full-width"></q-editor>
-          </q-field>
+          </q-input>
+        </div>
+
+        <div class="col-12 col-md-4 col-lg-4">
+          <q-input
+            ref="address_1"
+            outlined
+            v-model="address_1"
+            label="Post Office"
+            dense
+            :error-message="$getValidationErrors('address_1')"
+            :error="$hasValidationErrors('address_1')"
+          >
+          </q-input>
+        </div>
+
+        <div class="col-12 col-md-4 col-lg-4">
+          <q-input
+            ref="address_1"
+            outlined
+            v-model="address_1"
+            label="Block"
+            dense
+            :error-message="$getValidationErrors('address_1')"
+            :error="$hasValidationErrors('address_1')"
+          >
+          </q-input>
+        </div>
+
+        <div class="col-12 col-md-4 col-lg-4">
+          <q-input
+            ref="address_1"
+            outlined
+            v-model="address_1"
+            label="District"
+            dense
+            :error-message="$getValidationErrors('address_1')"
+            :error="$hasValidationErrors('address_1')"
+          >
+          </q-input>
+        </div>
+
+        <div class="col-12 col-md-4 col-lg-4">
+          <q-input
+            ref="address_1"
+            outlined
+            v-model="address_1"
+            label="Pin code"
+            dense
+            v-on:keypress="NumbersOnly"
+            :error-message="$getValidationErrors('address_1')"
+            :error="$hasValidationErrors('address_1')"
+          >
+          </q-input>
         </div>
 
         <div class="col-12 col-md-6 col-lg-6">

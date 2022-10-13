@@ -10,6 +10,13 @@ export default function () {
         sortable: true,
       },
       {
+        name: "name",
+        align: "left",
+        label: "Group",
+        field: (row) => row?.user_group?.group?.name,
+        sortable: true,
+      },
+      {
         name: "account_name",
         align: "left",
         label: "Full Name",

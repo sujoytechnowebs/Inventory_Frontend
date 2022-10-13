@@ -9,6 +9,7 @@
         :columns="columns"
         :filter="filter"
         :canAdd="false"
+        :canEdit="false"
       >
         <template v-slot:top>
           <div
@@ -16,25 +17,8 @@
           >
             Loan Management Table
           </div>
-          <div
-            class="text-h6 text-weight-bold q-mt-sm q-mb-sm text-grey-8 col-xs-12 col-sm-4 col-md-4"
-          >
-            <q-btn
-              color="purple"
-              label="Calculator"
-              @click="calculator = true"
-            />
-            <!-- <q-btn
-              label="Download Report"
-              no-caps
-              outline
-              color="primary"
-              @click="alert = true"
-            >
-            </q-btn> -->
-          </div>
-          <div class="col-xs-12 col-sm-4 col-md-4 row justify-end items-center">
-            <div class="col-12">
+          <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
+            <div class="col-8">
               <q-input
                 outlined
                 dense

@@ -38,6 +38,9 @@
             <q-td key="customer_id">
               {{ bodyRow.row?.user_group?.customer_id }}
             </q-td>
+            <q-td key="name">
+              {{ bodyRow.row?.user_group?.group?.name }}
+            </q-td>
             <q-td key="account_name">
               {{ bodyRow.row?.account?.account_name }}
             </q-td>

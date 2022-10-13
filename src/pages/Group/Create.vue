@@ -157,6 +157,10 @@ export default {
       modelValue: ref(),
       days_select: [
         {
+          value: "sun",
+          label: "Sunday",
+        },
+        {
           value: "mon",
           label: "Monday",
         },
