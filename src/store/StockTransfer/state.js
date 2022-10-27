@@ -1,3 +1,5 @@
+import { dateConvert } from "src/boot/dateConvert";
+
 export default function () {
   return {
     // items: {
@@ -6,7 +8,7 @@ export default function () {
         name: "date",
         align: "left",
         label: "Date",
-        field: "date",
+        field: (row) => dateConvert.format(row?.date),
         sortable: true,
       },
       {

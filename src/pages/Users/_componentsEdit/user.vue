@@ -98,116 +98,95 @@
           ></QSearch>
         </div>
 
-        <!-- <div class="col-12 col-md-6 col-lg-6">
-          <p class="address_head">Please Write The Present Address:</p>
-          <q-field
-            :error-message="$getValidationErrors('address_1')"
-            :error="$hasValidationErrors('address_1')"
-          >
-            <q-editor v-model="address_1" class="full-width"></q-editor>
-          </q-field>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-6">
-          <p class="address_head">Please Write The Permanent Address:</p>
-
-          <q-field
-            :error-message="$getValidationErrors('address_2')"
-            :error="$hasValidationErrors('address_2')"
-          >
-            <q-editor v-model="address_2" class="full-width"></q-editor>
-          </q-field>
-        </div> -->
-
         <div class="col-12">
           <p class="incharge_form_title text-weight-medium">Address:</p>
           <q-input
-            ref="address_1"
+            ref="address"
             outlined
-            v-model="address_1"
+            v-model="address"
             label="Address"
             dense
-            :error-message="$getValidationErrors('address_1')"
-            :error="$hasValidationErrors('address_1')"
+            :error-message="$getValidationErrors('address')"
+            :error="$hasValidationErrors('address')"
           >
           </q-input>
         </div>
 
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
-            ref="address_1"
+            ref="near"
             outlined
-            v-model="address_1"
+            v-model="near"
             label="Near"
             dense
-            :error-message="$getValidationErrors('address_1')"
-            :error="$hasValidationErrors('address_1')"
+            :error-message="$getValidationErrors('near')"
+            :error="$hasValidationErrors('near')"
           >
           </q-input>
         </div>
 
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
-            ref="address_1"
+            ref="village"
             outlined
-            v-model="address_1"
+            v-model="village"
             label="Village"
             dense
-            :error-message="$getValidationErrors('address_1')"
-            :error="$hasValidationErrors('address_1')"
+            :error-message="$getValidationErrors('village')"
+            :error="$hasValidationErrors('village')"
           >
           </q-input>
         </div>
 
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
-            ref="address_1"
+            ref="post"
             outlined
-            v-model="address_1"
+            v-model="post"
             label="Post Office"
             dense
-            :error-message="$getValidationErrors('address_1')"
-            :error="$hasValidationErrors('address_1')"
+            :error-message="$getValidationErrors('post')"
+            :error="$hasValidationErrors('post')"
           >
           </q-input>
         </div>
 
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
-            ref="address_1"
+            ref="block"
             outlined
-            v-model="address_1"
+            v-model="block"
             label="Block"
             dense
-            :error-message="$getValidationErrors('address_1')"
-            :error="$hasValidationErrors('address_1')"
+            :error-message="$getValidationErrors('block')"
+            :error="$hasValidationErrors('block')"
           >
           </q-input>
         </div>
 
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
-            ref="address_1"
+            ref="district"
             outlined
-            v-model="address_1"
+            v-model="district"
             label="District"
             dense
-            :error-message="$getValidationErrors('address_1')"
-            :error="$hasValidationErrors('address_1')"
+            :error-message="$getValidationErrors('district')"
+            :error="$hasValidationErrors('district')"
           >
           </q-input>
         </div>
 
         <div class="col-12 col-md-4 col-lg-4">
           <q-input
-            ref="address_1"
+            ref="pin"
             outlined
-            v-model="address_1"
+            v-model="pin"
             label="Pin code"
             dense
             v-on:keypress="NumbersOnly"
-            :error-message="$getValidationErrors('address_1')"
-            :error="$hasValidationErrors('address_1')"
+            :error-message="$getValidationErrors('pin')"
+            :error="$hasValidationErrors('pin')"
           >
           </q-input>
         </div>
@@ -370,8 +349,6 @@ export default {
       "editItem.account_name",
       "editItem.phone",
       "editItem.city_id",
-      "editItem.address_1",
-      "editItem.address_2",
       "editItem.branch_id",
       "editItem.aadhar_card_no",
       "editItem.account_no",
@@ -380,6 +357,13 @@ export default {
       "editItem.voter_card_no",
       "editItem.opening_balance",
       "editItem.opening_balance_type",
+      "editItem.address",
+      "editItem.near",
+      "editItem.village",
+      "editItem.post",
+      "editItem.block",
+      "editItem.district",
+      "editItem.pin",
     ]),
   },
 

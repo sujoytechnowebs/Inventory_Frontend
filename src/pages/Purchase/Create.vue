@@ -60,8 +60,7 @@
               <div class="col-12 col-md-3 col-lg-3">
                 <q-input
                   outlined
-                  v-model="date_of_purchase"
-                  mask="date"
+                  v-model="view_date_of_purchase"
                   placeholder="Purchase Date"
                   dense
                   :error-message="$getValidationErrors('date_of_purchase')"
@@ -74,7 +73,7 @@
                         transition-show="scale"
                         transition-hide="scale"
                       >
-                        <q-date v-model="date_of_purchase">
+                        <q-date v-model="date_of_purchase" mask="YYYY/MM/DD">
                           <div class="row items-center justify-end">
                             <q-btn
                               v-close-popup
@@ -218,6 +217,9 @@ export default {
       "newItem.grand_item_rate_total",
     ]),
     ...mapGetters("auth", ["getActiveBranch"]),
+    view_date_of_purchase() {
+      return this.$dateConvert.format(this.date_of_purchase);
+    },
   },
 };
 </script>

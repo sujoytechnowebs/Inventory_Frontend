@@ -7,7 +7,7 @@
         class="card_height flex justify-center items-center"
       >
         <q-card-section>
-          <div class="balance_head">Opening Balance:</div>
+          <div class="balance_head">Opening Balance</div>
           <div class="text-center balance_field">₹ {{ data.openingBal }}</div>
         </q-card-section>
       </q-card>
@@ -19,7 +19,7 @@
         class="card_height flex justify-center items-center"
       >
         <q-card-section>
-          <div class="balance_head">EWI Collect:</div>
+          <div class="balance_head">EWI Collect</div>
           <div class="text-center balance_field">₹ {{ data.openingBal }}</div>
         </q-card-section>
       </q-card>
@@ -31,7 +31,7 @@
         class="card_height flex justify-center items-center"
       >
         <q-card-section>
-          <div class="balance_head">Cash Sale Collect:</div>
+          <div class="balance_head">Cash Sale Collect</div>
           <div class="text-center balance_field">₹ {{ data.openingBal }}</div>
         </q-card-section>
       </q-card>
@@ -43,7 +43,7 @@
         class="card_height flex justify-center items-center"
       >
         <q-card-section>
-          <div class="balance_head">Downpayment Collect:</div>
+          <div class="balance_head">Downpayment Collect</div>
           <div class="text-center balance_field">₹ {{ data.openingBal }}</div>
         </q-card-section>
       </q-card>
@@ -55,7 +55,7 @@
         class="card_height flex justify-center items-center"
       >
         <q-card-section>
-          <div class="balance_head">Processing Fees:</div>
+          <div class="balance_head">Processing Fees</div>
           <div class="text-center balance_field">₹ {{ data.openingBal }}</div>
         </q-card-section>
       </q-card>
@@ -67,7 +67,7 @@
         class="card_height flex justify-center items-center"
       >
         <q-card-section>
-          <div class="balance_head">Others:</div>
+          <div class="balance_head">Others</div>
           <div class="text-center balance_field">₹ {{ data.openingBal }}</div>
         </q-card-section>
       </q-card>
@@ -79,7 +79,7 @@
         class="card_height flex justify-center items-center"
       >
         <q-card-section>
-          <div class="balance_head">Expenses:</div>
+          <div class="balance_head">Expenses</div>
           <div class="text-center balance_field">₹ {{ data.openingBal }}</div>
         </q-card-section>
       </q-card>
@@ -92,7 +92,7 @@
         class="card_height flex justify-center items-center"
       >
         <q-card-section>
-          <div class="balance_head">Closing Balance:</div>
+          <div class="balance_head">Closing Balance</div>
           <div class="text-center balance_field">₹ {{ data.openingBal }}</div>
         </q-card-section>
       </q-card>

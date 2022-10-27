@@ -1,3 +1,5 @@
+import { dateConvert } from "src/boot/dateConvert";
+
 export default function () {
   return {
     // items: {
@@ -34,7 +36,7 @@ export default function () {
         name: "ewi_date",
         align: "left",
         label: "EWI Date",
-        field: "ewi_date",
+        field: (row) => dateConvert.format(row.ewi_date),
         sortable: true,
       },
       {
@@ -55,7 +57,7 @@ export default function () {
         name: "collected_date",
         align: "left",
         label: "Collected Date",
-        field: "collected_date",
+        field: (row) => dateConvert.format(row.collected_date),
         sortable: true,
       },
       { name: "actions", align: "right", label: "Actions" },

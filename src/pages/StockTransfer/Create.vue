@@ -39,9 +39,8 @@
             <q-input
               outlined
               dense
-              v-model="date"
+              v-model="view_date_of_transfer"
               placeholder="Please Enter The Date"
-              mask="date"
               :error-message="$getValidationErrors('date')"
               :error="$hasValidationErrors('date')"
             >
@@ -121,6 +120,9 @@ export default {
       "newItem.to_branch_id",
       "newItem.quantity",
     ]),
+    view_date_of_transfer() {
+      return this.$dateConvert.format(this.date);
+    },
   },
 };
 </script>

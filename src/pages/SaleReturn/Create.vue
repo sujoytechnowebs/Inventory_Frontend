@@ -26,8 +26,7 @@
           <div class="col-12 col-sm-6 col-md-2 col-lg-2">
             <q-input
               outlined
-              v-model="date_of_return"
-              mask="date"
+              v-model="view_date_of_saleReturn"
               placeholder="Sale Date"
               dense
               :error-message="$getValidationErrors('date_of_return')"
@@ -138,6 +137,9 @@ export default {
       "newItem.status",
       "newItem.salesReturnDetails",
     ]),
+    view_date_of_saleReturn() {
+      return this.$dateConvert.format(this.date_of_return);
+    },
   },
 };
 </script>
