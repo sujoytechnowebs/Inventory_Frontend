@@ -51,8 +51,8 @@ export default function () {
       password_confirmation: "",
     },
     credentials: {
-      email: "admin@test.com",
-      password: "123456",
+      email: "",
+      password: "",
     },
   };
 }
