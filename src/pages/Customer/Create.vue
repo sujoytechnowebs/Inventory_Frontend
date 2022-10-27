@@ -228,66 +228,96 @@
                 ></QSearch>
               </div>
               <div class="col-12">
+                <p class="incharge_form_title text-weight-medium">Address:</p>
                 <q-input
+                  ref="address_1"
                   outlined
-                  dense
                   v-model="address_1"
                   label="Address"
+                  dense
                   :error-message="$getValidationErrors('address_1')"
                   :error="$hasValidationErrors('address_1')"
-                ></q-input>
-              </div>
-              <div class="col-12 col-md-6 col-lg-6">
-                <q-input
-                  outlined
-                  dense
-                  v-model="village"
-                  label="Village"
-                  :error-message="$getValidationErrors('village')"
-                  :error="$hasValidationErrors('village')"
-                ></q-input>
-              </div>
-              <div class="col-12 col-md-6 col-lg-6">
-                <q-input
-                  outlined
-                  dense
-                  v-model="pin"
-                  type="number"
-                  label="Pin Code"
-                  :error-message="$getValidationErrors('pin')"
-                  :error="$hasValidationErrors('pin')"
-                ></q-input>
-              </div>
-
-              <div class="col-12 col-md-6 col-lg-6">
-                <q-input
-                  ref="opening_balance"
-                  outlined
-                  v-model="opening_balance"
-                  label="Opening Balance"
-                  v-on:keypress="NumbersOnly"
-                  dense
-                  :error-message="$getValidationErrors('opening_balance')"
-                  :error="$hasValidationErrors('opening_balance')"
                 >
                 </q-input>
               </div>
 
-              <div class="col-12 col-md-6 col-lg-6">
-                <q-select
+              <div class="col-12 col-md-4 col-lg-4">
+                <q-input
+                  ref="address_1"
                   outlined
+                  v-model="address_1"
+                  label="Near"
                   dense
-                  v-model="opening_balance_type"
-                  :options="options"
-                  option-value="value"
-                  option-label="label"
-                  option-disable="inactive"
-                  emit-value
-                  map-options
-                  label="Opening Balance Type"
-                  :error-message="$getValidationErrors('opening_balance_type')"
-                  :error="$hasValidationErrors('opening_balance_type')"
-                ></q-select>
+                  :error-message="$getValidationErrors('address_1')"
+                  :error="$hasValidationErrors('address_1')"
+                >
+                </q-input>
+              </div>
+
+              <div class="col-12 col-md-4 col-lg-4">
+                <q-input
+                  ref="address_1"
+                  outlined
+                  v-model="address_1"
+                  label="Village"
+                  dense
+                  :error-message="$getValidationErrors('address_1')"
+                  :error="$hasValidationErrors('address_1')"
+                >
+                </q-input>
+              </div>
+
+              <div class="col-12 col-md-4 col-lg-4">
+                <q-input
+                  ref="address_1"
+                  outlined
+                  v-model="address_1"
+                  label="Post Office"
+                  dense
+                  :error-message="$getValidationErrors('address_1')"
+                  :error="$hasValidationErrors('address_1')"
+                >
+                </q-input>
+              </div>
+
+              <div class="col-12 col-md-4 col-lg-4">
+                <q-input
+                  ref="address_1"
+                  outlined
+                  v-model="address_1"
+                  label="Block"
+                  dense
+                  :error-message="$getValidationErrors('address_1')"
+                  :error="$hasValidationErrors('address_1')"
+                >
+                </q-input>
+              </div>
+
+              <div class="col-12 col-md-4 col-lg-4">
+                <q-input
+                  ref="address_1"
+                  outlined
+                  v-model="address_1"
+                  label="District"
+                  dense
+                  :error-message="$getValidationErrors('address_1')"
+                  :error="$hasValidationErrors('address_1')"
+                >
+                </q-input>
+              </div>
+
+              <div class="col-12 col-md-4 col-lg-4">
+                <q-input
+                  ref="address_1"
+                  outlined
+                  v-model="address_1"
+                  label="Pin code"
+                  dense
+                  v-on:keypress="NumbersOnly"
+                  :error-message="$getValidationErrors('address_1')"
+                  :error="$hasValidationErrors('address_1')"
+                >
+                </q-input>
               </div>
             </div>
           </div>
@@ -435,8 +465,6 @@ export default {
       "newItem.group_id",
       "newItem.group_role",
       "newItem.DOB",
-      "newItem.opening_balance",
-      "newItem.opening_balance_type",
       "newItem.voter_card_no",
     ]),
   },

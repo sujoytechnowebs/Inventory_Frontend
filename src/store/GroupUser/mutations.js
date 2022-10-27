@@ -7,9 +7,12 @@ export function showHideCreateModal(state, payload) {
 }
 
 export function setEditItem(state, payload) {
-  state.editItem.id = payload.id;
-  state.editItem.group_id = payload.group_name;
+  state.editItem.id = payload.group_id;
+  state.editItem.group_user_id = payload.group_user_id;
+  state.editItem.group_id = payload.group_id;
+  state.editItem.group_name = payload.group_name;
   state.editItem.group_role = payload.group_role;
+  state.editItem.user_id = payload.user_id;
 }
 
 export function setEditModal(state, payload) {

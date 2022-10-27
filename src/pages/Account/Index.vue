@@ -6,10 +6,9 @@
         :data-store="dataStore"
         :hasEditPermission="hasEditPermission"
         :aditionalActions="aditionalActions"
+        :customBodySlot="true"
         :columns="columns"
         :filter="filter"
-        :canEdit="false"
-        :canDelete="false"
       >
         <template v-slot:top>
           <div
@@ -34,6 +33,52 @@
             </div>
           </div>
         </template>
+
+        <!-- Test -->
+
+        <template v-slot:customBodySlot="bodyRow">
+          <q-tr :props="bodyRow">
+            <q-td key="account_name">
+              {{ bodyRow.row?.account_name }}
+            </q-td>
+            <q-td key="phone">
+              {{ bodyRow.row?.phone }}
+            </q-td>
+            <q-td key="email">
+              {{ bodyRow.row?.email }}
+            </q-td>
+            <q-td key="branch_id">
+              {{ bodyRow.row?.branch?.name }}
+            </q-td>
+            <q-td key="type">
+              {{ bodyRow.row?.type }}
+            </q-td>
+            <q-td key="account_no">
+              {{ bodyRow.row?.account_no }}
+            </q-td>
+            <q-td key="ifsc">
+              {{ bodyRow.row?.ifsc }}
+            </q-td>
+            <q-td key="bank_branch">
+              {{ bodyRow.row?.bank_branch }}
+            </q-td>
+            <q-td key="actions" align="right">
+              <span v-if="bodyRow.row?.is_nominal === 1">
+                <q-btn
+                  flat
+                  round
+                  dense
+                  color="red"
+                  icon="close"
+                  class="q-ml-sm"
+                  @click="onClickDelete(bodyRow.row)"
+                >
+                  <q-tooltip> Delete </q-tooltip>
+                </q-btn>
+              </span>
+            </q-td>
+          </q-tr>
+        </template>
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
@@ -54,6 +99,7 @@
 <script>
 import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
+import { mapActions } from "vuex";
 import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
@@ -82,6 +128,53 @@ export default defineComponent({
       alert: ref(false),
       showCreateModal,
     };
+  },
+
+  methods: {
+    ...mapActions("account", ["getItems"]),
+
+    onClickDelete(props) {
+      console.log("this is props", props);
+      this.$q
+        .dialog({
+          title: `Delete Confirmation`,
+          message: "Are you sure to delete this item?",
+          ok: {
+            label: "Delete",
+            unelevated: true,
+            color: "red-5",
+          },
+          cancel: {
+            unelevated: true,
+            color: "",
+            textColor: "black",
+          },
+          persistent: true,
+        })
+        .onOk(() => {
+          this.loading = false;
+          this.$store
+            .dispatch(this.dataStore + "/deleteItem", props)
+            .then((res) => {
+              Tnotify(
+                {
+                  message: "Item Deleted successfully",
+                  type: "positive",
+                },
+                this
+              );
+            })
+            .catch((err) => {
+              Tnotify(
+                {
+                  message: err.message,
+                  type: "negative",
+                },
+                this
+              );
+            });
+        });
+    },
   },
 });
 </script>

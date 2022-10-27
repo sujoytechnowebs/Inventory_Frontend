@@ -105,9 +105,7 @@ export function setTotalRate(state, index) {
 
 export function calculationAfterDownPayment(state, payload) {
   state.newItem.loan_after_downpayment =
-    state.newItem.grand_item_rate_total +
-    state.newItem.loan_with_processing_fees -
-    payload;
+    state.newItem.grand_item_rate_total - payload;
 }
 
 export function calculationAfterProcessingFees(state, payload) {

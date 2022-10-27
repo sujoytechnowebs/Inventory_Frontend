@@ -8,9 +8,7 @@
         </p>
       </q-card-section>
       <q-card-section class="header">
-        <p class="q-ma-none text-weight-light text-grey-9">
-          Welcome Amar Furniture
-        </p>
+        <p class="q-ma-none text-weight-light text-grey-9">Welcome Here</p>
       </q-card-section>
     </q-card>
   </q-page>

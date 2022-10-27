@@ -19,26 +19,40 @@
 
   <div class="row q-col-gutter-md q-pa-md">
     <div class="col-12 col-md-4 col-lg-4">
-      <q-card class="my-card">
+      <q-card
+        flat
+        bordered
+        class="card_height flex justify-center items-center"
+      >
         <q-card-section>
-          <span class="calculate_head"> Gross Profit: </span>
-          {{ data.gross_profit }}
+          <div class="calculate_head">Gross Profit:</div>
+          <div class="text-center balance_field">₹ {{ data.gross_profit }}</div>
         </q-card-section>
       </q-card>
     </div>
     <div class="col-12 col-md-4 col-lg-4">
-      <q-card class="my-card">
+      <q-card
+        flat
+        bordered
+        class="card_height flex justify-center items-center"
+      >
         <q-card-section
-          ><span class="calculate_head">Total Expense:</span>
-          {{ data.totalExpense }}
+          ><div class="calculate_head">Total Expense:</div>
+          <div class="text-center balance_field">₹ {{ data.totalExpense }}</div>
         </q-card-section>
       </q-card>
     </div>
     <div class="col-12 col-md-4 col-lg-4">
-      <q-card class="my-card">
+      <q-card
+        flat
+        bordered
+        class="card_height flex justify-center items-center"
+      >
         <q-card-section>
-          <span class="calculate_head">Profit/Loss:</span
-          >{{ data.total_profitOrLoss }}
+          <div class="calculate_head">Profit/Loss:</div>
+          <div class="text-center balance_field">
+            ₹ {{ data.total_profitOrLoss }}
+          </div>
         </q-card-section>
       </q-card>
     </div>
@@ -108,7 +122,15 @@ export default defineComponent({
 }
 
 .calculate_head {
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.card_height {
+  min-height: 250px;
+}
+
+.balance_field {
+  font-size: 1.1rem;
 }
 </style>

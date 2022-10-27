@@ -145,6 +145,26 @@ export function getSerialNo({ commit, state }, props) {
   });
 }
 
+// Staff & Incharge & Admin Filter
+
+export function AllStaffs({ commit, state }, props) {
+  var params = {
+    all: props.all,
+  };
+  return new Promise((resolve, reject) => {
+    axios
+      .get("users_staff", {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
 export function getRoles({ commit, state }, props) {
   var params = {
     search: props.search,

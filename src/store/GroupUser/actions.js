@@ -83,9 +83,10 @@ export function createItem({ commit, state }) {
 }
 
 export function updateItem({ commit, state }) {
+  console.log(state.editItem.group_user_id);
   return new Promise((resolve, reject) => {
     axios
-      .put(endPoint + "/" + state.editItem.id, state.editItem)
+      .put(endPoint + "/" + state.editItem.group_user_id, state.editItem)
       .then((response) => {
         if (response.data) {
           commit("setLastUpdated", moment());

@@ -50,9 +50,10 @@ export default function () {
     // },
     newItem: {},
     editItem: {
-      group_id: "",
-      group_role: "",
+      id: "",
+      user_id: "",
       group_name: "",
+      group_role: "",
     },
     modalItem: {
       id: "",

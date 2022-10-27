@@ -122,18 +122,33 @@
               </div>
 
               <div class="col-12 col-md-3 col-lg-3">
-                <QSearch
-                  v-model="branch_id"
-                  label="Branch"
-                  option-value="id"
-                  option-label="name"
-                  data-store="branch"
-                  action="getItems"
-                  :multiple="false"
-                  readonly
-                  :error-message="$getValidationErrors('branch_id')"
-                  :error="$hasValidationErrors('branch_id')"
-                ></QSearch>
+                <div v-if="branch_id != ''">
+                  <QSearch
+                    v-model="branch_id"
+                    label="Branch"
+                    option-value="id"
+                    option-label="name"
+                    data-store="branch"
+                    action="getItems"
+                    :multiple="false"
+                    readonly
+                    :error-message="$getValidationErrors('branch_id')"
+                    :error="$hasValidationErrors('branch_id')"
+                  ></QSearch>
+                </div>
+                <div v-if="branch_id === ''">
+                  <QSearch
+                    v-model="branch_id"
+                    label="Branch"
+                    option-value="id"
+                    option-label="name"
+                    data-store="branch"
+                    action="getItems"
+                    :multiple="false"
+                    :error-message="$getValidationErrors('branch_id')"
+                    :error="$hasValidationErrors('branch_id')"
+                  ></QSearch>
+                </div>
               </div>
             </div>
             <div>
@@ -249,23 +264,6 @@
 
                 <!-- Loan Amount -->
 
-                <!-- <div class="col-12">
-                  <q-input
-                    ref="grand_item_rate_total"
-                    outlined
-                    v-model="grand_item_rate_total"
-                    dense
-                    type="number"
-                    readonly
-                    label="Products Total Price"
-                    :error-message="
-                      $getValidationErrors('grand_item_rate_total')
-                    "
-                    :error="$hasValidationErrors('grand_item_rate_total')"
-                  >
-                  </q-input>
-                </div> -->
-
                 <!-- EWI Start Date -->
 
                 <div v-if="customer_id != null">
@@ -349,18 +347,6 @@
 
                 <!-- Loan Amount -->
 
-                <!-- <div class="col-12 col-md-6 col-lg-6">
-                  <q-input
-                    ref="loan_after_downpayment"
-                    outlined
-                    v-model="loan_after_downpayment"
-                    dense
-                    label="Loan Amount"
-                    readonly
-                  >
-                  </q-input>
-                </div> -->
-
                 <!-- No of EWI -->
 
                 <div class="col-12 col-md-6 col-lg-6">
@@ -419,10 +405,10 @@
                   <QSearch
                     v-model="application_received_by"
                     label="Application Receive"
-                    option-value="id"
+                    option-value="users_id"
                     option-label="name"
                     data-store="user"
-                    action="getItems"
+                    action="AllStaffs"
                     :multiple="false"
                     :error-message="
                       $getValidationErrors('application_received_by')
@@ -513,7 +499,7 @@ export default {
       dataStore: "sale",
       validationErrors: ref({}),
       modelValue: ref(),
-      noEwi: ["25", "34", "40", "44", "52"],
+      noEwi: ["15", "25", "35", "40", "45", "52"],
       payment: [
         {
           value: "cash",

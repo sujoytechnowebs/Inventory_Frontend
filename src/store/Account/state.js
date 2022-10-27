@@ -59,7 +59,14 @@ export default function () {
         field: "bank_branch",
         sortable: true,
       },
-      // { name: "actions", align: "right", label: "Actions" },
+      // {
+      //   name: "is_nominal",
+      //   align: "left",
+      //   label: "Nominal",
+      //   field: "is_nominal",
+      //   sortable: true,
+      // },
+      { name: "actions", align: "right", label: "Actions" },
     ],
     visibleColumns: ["name"],
     data: [],
@@ -83,6 +90,7 @@ export default function () {
       branch_id: null,
       opening_balance: null,
       balance_type: "",
+      is_nominal: 1,
     },
     editItem: {
       account_name: null,

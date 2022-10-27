@@ -135,6 +135,7 @@ export default {
       "newItem.branch_id",
       "newItem.opening_balance",
       "newItem.balance_type",
+      "newItem.is_nominal",
     ]),
   },
 

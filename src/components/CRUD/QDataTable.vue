@@ -82,6 +82,7 @@
       @click="setCreateModal(true)"
       v-show="canAdd"
       v-if="hasEditPermission"
+      class="q-ma-xl"
     />
   </q-page-sticky>
 </template>
@@ -174,7 +175,6 @@ export default defineComponent({
       rowsNumber: 0,
     });
 
-
     const filters = reactive(props.filter);
     const dataStore = reactive(props.dataStore);
 
@@ -182,9 +182,9 @@ export default defineComponent({
     const { getItems } = getAction(dataStore, ["getItems"]);
     const { setItems } = getMutations(dataStore, ["setItems"]);
     const { setLastUpdated } = getMutations(dataStore, ["setLastUpdated"]);
-    
+
     // const { records } = getGetters(dataStore, ["records"]);
-    const records = ref([])
+    const records = ref([]);
 
     const { columns } = getGetters(dataStore, ["columns"]);
     const { lastUpdated } = getGetters(dataStore, ["lastUpdated"]);
@@ -214,21 +214,19 @@ export default defineComponent({
       loading.value = true;
       getItems(params)
         .then((response) => {
-
-
           // set data to proper variables
           pagination.value.page = response?.data?.current_page;
           pagination.value.rowsPerPage = response?.data?.per_page;
           pagination.value.rowsNumber = response?.data?.total;
           pagination.value.sortBy = params.pagination.sortBy;
           pagination.value.descending = params.pagination.descending;
-    
+
           // create item object to update the store
           let tableData = {};
           tableData.pagination = pagination;
           tableData.filter = props.filter;
           tableData.data = response?.data?.data;
-    
+
           records.value = response?.data?.data;
           // setItems(tableData)
         })
@@ -305,7 +303,7 @@ export default defineComponent({
     });
 
     watch(lastUpdated, async (newValue, oldValue) => {
-      if(lastUpdated.value != null){
+      if (lastUpdated.value != null) {
         onRequest({
           pagination: pagination.value,
           filter: filters,
