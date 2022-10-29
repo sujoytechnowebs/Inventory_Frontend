@@ -172,8 +172,7 @@
                     dense
                     outlined
                     label="Date of Sales"
-                    v-model="date_of_sales"
-                    mask="date"
+                    v-model="view_date_of_sale"
                     :error-message="$getValidationErrors('date_of_sales')"
                     :error="$hasValidationErrors('date_of_sales')"
                   >
@@ -499,7 +498,7 @@ export default {
       dataStore: "sale",
       validationErrors: ref({}),
       modelValue: ref(),
-      noEwi: ["15", "25", "35", "40", "45", "52"],
+      noEwi: [15, 25, 35, 40, 45, 52],
       payment: [
         {
           value: "cash",
@@ -585,6 +584,9 @@ export default {
       "newItem.day",
     ]),
     ...mapGetters("auth", ["getActiveBranch"]),
+    view_date_of_sale() {
+      return this.$dateConvert.format(this.date_of_sales);
+    },
   },
   methods: {
     ...mapActions("user", ["getItem"]),

@@ -5,7 +5,7 @@
         v-model="product"
         label="Product Name"
         option-value="id"
-        option-label="productSlNo"
+        option-label="name"
         data-store="product"
         action="getItems"
         :multiple="false"

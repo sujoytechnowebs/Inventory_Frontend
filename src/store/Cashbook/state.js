@@ -1,3 +1,5 @@
+import { dateConvert } from "src/boot/dateConvert";
+
 export default function () {
   return {
     // items: {
@@ -34,7 +36,7 @@ export default function () {
         name: "date_of_transaction",
         align: "left",
         label: "Date",
-        field: "date_of_transaction",
+        field: (row) => dateConvert.format(row?.date_of_transaction),
         sortable: true,
       },
       {

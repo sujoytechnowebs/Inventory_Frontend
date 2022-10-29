@@ -1,3 +1,5 @@
+import { dateConvert } from "src/boot/dateConvert";
+
 export default function () {
   return {
     // items: {
@@ -34,7 +36,7 @@ export default function () {
         name: "date_of_sales",
         align: "left",
         label: "Date of Sale",
-        field: "date_of_sales",
+        field: (row) => dateConvert.format(row.date_of_sales),
         sortable: true,
       },
       {
@@ -95,7 +97,7 @@ export default function () {
       application_received_date: "",
       application_received_by: "",
       ewi_start_date: "",
-      no_of_ewi: "",
+      no_of_ewi: null,
       loan_amount: null,
       processing_fees: 2,
       down_payment: "",

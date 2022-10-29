@@ -15,8 +15,6 @@ export function resetForm(state) {
     account_name: "",
     phone: null,
     city_id: null,
-    address_1: "",
-    address_2: "",
     postcode: null,
     aadhar_media_id: null,
     account_no: null,
@@ -32,10 +30,16 @@ export function resetForm(state) {
     group_id: "",
     group_role: "",
     DOB: "",
-    aadhar_card_no: "",
     opening_balance: "",
     opening_balance_type: "",
     voter_card_no: null,
+    address: "",
+    near: "",
+    village: "",
+    post: "",
+    block: "",
+    district: "",
+    pin: "",
   };
 }
 
@@ -62,6 +66,13 @@ export function setEditItem(state, payload) {
   state.editItem.aadhar_card_no = payload.account.aadhar_card_no;
   state.editItem.voter_card_no = payload.account.voter_card_no;
   state.editItem.city_id = payload.account.city_id;
+  state.editItem.address = payload.account.address;
+  state.editItem.near = payload.account.near;
+  state.editItem.village = payload.account.village;
+  state.editItem.post = payload.account.post;
+  state.editItem.block = payload.account.block;
+  state.editItem.district = payload.account.district;
+  state.editItem.pin = payload.account.pin;
 }
 
 export function setEditModal(state, payload) {

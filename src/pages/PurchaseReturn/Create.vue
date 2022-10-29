@@ -27,8 +27,7 @@
               outlined
               dense
               label="Purchase Return Date"
-              v-model="date_of_return"
-              mask="date"
+              v-model="view_date_of_return"
               :error-message="$getValidationErrors('date_of_return')"
               :error="$hasValidationErrors('date_of_return')"
             >
@@ -174,6 +173,10 @@ export default {
       "newItem.purchase_return_details",
     ]),
     ...mapGetters("auth", ["getActiveBranch"]),
+
+    view_date_of_return() {
+      return this.$dateConvert.format(this.date_of_return);
+    },
   },
 };
 </script>

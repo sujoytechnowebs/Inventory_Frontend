@@ -1,3 +1,5 @@
+import { dateConvert } from "src/boot/dateConvert";
+
 export default function () {
   return {
     // items: {
@@ -27,14 +29,14 @@ export default function () {
         name: "application_approve_date",
         align: "left",
         label: "Date",
-        field: (row) => row?.application_received_date,
+        field: (row) => dateConvert.format(row.application_received_date),
         sortable: true,
       },
       {
         name: "ewi_start_date",
         align: "left",
         label: "EWI Start",
-        field: "ewi_start_date",
+        field: (row) => dateConvert.format(row.ewi_start_date),
         sortable: true,
       },
       {

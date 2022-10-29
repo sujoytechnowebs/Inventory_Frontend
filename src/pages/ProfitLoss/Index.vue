@@ -25,7 +25,7 @@
         class="card_height flex justify-center items-center"
       >
         <q-card-section>
-          <div class="calculate_head">Gross Profit:</div>
+          <div class="calculate_head">Gross Profit</div>
           <div class="text-center balance_field">₹ {{ data.gross_profit }}</div>
         </q-card-section>
       </q-card>
@@ -37,7 +37,7 @@
         class="card_height flex justify-center items-center"
       >
         <q-card-section
-          ><div class="calculate_head">Total Expense:</div>
+          ><div class="calculate_head">Total Expense</div>
           <div class="text-center balance_field">₹ {{ data.totalExpense }}</div>
         </q-card-section>
       </q-card>
@@ -49,7 +49,7 @@
         class="card_height flex justify-center items-center"
       >
         <q-card-section>
-          <div class="calculate_head">Profit/Loss:</div>
+          <div class="calculate_head">Profit/Loss</div>
           <div class="text-center balance_field">
             ₹ {{ data.total_profitOrLoss }}
           </div>

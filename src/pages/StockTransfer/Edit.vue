@@ -18,6 +18,7 @@
               data-store="product"
               action="getItems"
               :multiple="false"
+              readonly
               :error-message="$getValidationErrors('product_id')"
               :error="$hasValidationErrors('product_id')"
             ></QSearch>
@@ -39,11 +40,11 @@
             <q-input
               outlined
               dense
-              v-model="date"
+              v-model="view_date_of_transfer"
               placeholder="Please Enter The Date"
-              mask="date"
               :error-message="$getValidationErrors('date')"
               :error="$hasValidationErrors('date')"
+              readonly
             >
               <template v-slot:prepend>
                 <q-icon name="event" class="cursor-pointer">
@@ -78,6 +79,7 @@
               :multiple="false"
               :error-message="$getValidationErrors('from_branch_id')"
               :error="$hasValidationErrors('from_branch_id')"
+              readonly
             ></QSearch>
           </div>
           <div class="col-12 col-md-6 col-lg-6">
@@ -91,6 +93,7 @@
               :multiple="false"
               :error-message="$getValidationErrors('to_branch_id')"
               :error="$hasValidationErrors('to_branch_id')"
+              readonly
             ></QSearch>
           </div>
         </div>
@@ -113,6 +116,9 @@ export default {
       "editItem.to_branch_id",
       "editItem.quantity",
     ]),
+    view_date_of_transfer() {
+      return this.$dateConvert.format(this.date);
+    },
   },
   setup() {
     return {
