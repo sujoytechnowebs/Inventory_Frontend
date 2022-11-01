@@ -40,9 +40,7 @@
           v-if="hasEditPermission"
           v-show="canEdit"
         >
-          <q-tooltip>
-            {{ $t("edit") }}
-          </q-tooltip>
+          <q-tooltip> edit </q-tooltip>
         </q-btn>
         <q-btn
           flat
@@ -54,9 +52,7 @@
           @click="onClickView(props.row)"
           v-if="viewLink != ''"
         >
-          <q-tooltip>
-            {{ $t("view") }}
-          </q-tooltip>
+          <q-tooltip> view </q-tooltip>
         </q-btn>
         <q-btn
           flat
@@ -67,9 +63,7 @@
           @click="onClickDelete(props.row)"
           v-show="canDelete"
         >
-          <q-tooltip>
-            {{ $t("delete") }}
-          </q-tooltip>
+          <q-tooltip> delete </q-tooltip>
         </q-btn>
       </q-td>
     </template>

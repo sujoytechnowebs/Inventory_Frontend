@@ -102,33 +102,33 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapMultiRowFields("purchase", ["newItem.purchase_details"]),
+    ...mapMultiRowFields("purchase", ["editItem.purchase_details"]),
   },
 
   setup(props, { emit }) {
     const product = ref([]);
 
     const { getMutations } = useStoreModule();
-    const { setProductDetails } = getMutations("purchase", [
-      "setProductDetails",
+    const { settingProductDetails } = getMutations("purchase", [
+      "settingProductDetails",
     ]);
 
-    const { removeProductDetails } = getMutations("purchase", [
-      "removeProductDetails",
+    const { removingProductDetails } = getMutations("purchase", [
+      "removingProductDetails",
     ]);
 
     onMounted(() => {});
 
     const addProduct = () => {
       console.log("product.value", product.value.id);
-      setProductDetails(product.value);
+      settingProductDetails(product.value);
     };
 
     // Testing Purpose
 
     const deleteProduct = (index) => {
       console.log("data", index);
-      removeProductDetails(index);
+      removingProductDetails(index);
     };
 
     return {

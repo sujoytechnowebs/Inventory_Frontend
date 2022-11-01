@@ -13,12 +13,22 @@
       >
         <template v-slot:top>
           <div
-            class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-4 col-md-4"
+            class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
           >
             Loan Management Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
-            <div class="col-8">
+            <div class="col-6">
+              <q-btn
+                label="Disburse Report"
+                no-caps
+                outline
+                color="primary"
+                @click="alert = true"
+              >
+              </q-btn>
+            </div>
+            <div class="col-6">
               <q-input
                 outlined
                 dense
@@ -85,6 +95,15 @@
             <q-btn flat class="q-ml-sm" label="sale product" to="/sale">
             </q-btn>
           </span>
+
+          <!-- Proposal Report -->
+
+          <q-btn
+            label="Proposal Report"
+            no-caps
+            flat
+            @click="proposalReport(actionsRow.row.id)"
+          />
         </template>
       </QDataTable>
 
@@ -133,15 +152,76 @@
 
   <div>
     <q-dialog v-model="alert">
-      <q-card>
-        <q-card-actions align="right">
-          <q-btn flat round dense icon="close" color="primary" v-close-popup>
-            <q-tooltip> Close </q-tooltip>
-          </q-btn>
-        </q-card-actions>
+      <q-card class="my-card">
+        <div class="bg-primary text-white">
+          <q-card-actions align="between">
+            <p class="dialog-head q-pt-md q-pl-sm">Disburse Report</p>
+            <q-btn flat round dense icon="close" v-close-popup>
+              <q-tooltip> Close </q-tooltip>
+            </q-btn>
+          </q-card-actions>
+        </div>
 
         <q-card-section>
-          <p>Hello</p>
+          <div class="row q-col-gutter-md">
+            <div class="col-12">
+              <q-input
+                outlined
+                dense
+                v-model="groupCode"
+                type="number"
+                label="Group Code"
+              />
+            </div>
+            <div class="col-12">
+              <q-input dense outlined v-model="fromDate">
+                <template v-slot:prepend>
+                  <q-icon name="event" class="cursor-pointer">
+                    <q-popup-proxy
+                      cover
+                      transition-show="scale"
+                      transition-hide="scale"
+                    >
+                      <q-date v-model="fromDate">
+                        <div class="row items-center justify-end">
+                          <q-btn
+                            v-close-popup
+                            label="Close"
+                            color="primary"
+                            flat
+                          />
+                        </div>
+                      </q-date>
+                    </q-popup-proxy>
+                  </q-icon>
+                </template>
+              </q-input>
+            </div>
+            <div class="col-12">
+              <q-input dense outlined v-model="toDate">
+                <template v-slot:prepend>
+                  <q-icon name="event" class="cursor-pointer">
+                    <q-popup-proxy
+                      cover
+                      transition-show="scale"
+                      transition-hide="scale"
+                    >
+                      <q-date v-model="toDate">
+                        <div class="row items-center justify-end">
+                          <q-btn
+                            v-close-popup
+                            label="Close"
+                            color="primary"
+                            flat
+                          />
+                        </div>
+                      </q-date>
+                    </q-popup-proxy>
+                  </q-icon>
+                </template>
+              </q-input>
+            </div>
+          </div>
         </q-card-section>
 
         <q-card-actions align="between">
@@ -161,6 +241,7 @@ import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 import { showHideCreateModal } from "src/store/Loan/mutations.js";
 import { showHideApproveModal } from "src/store/Loan/mutations.js";
+import { mapActions } from "vuex";
 
 const EditLoan = defineAsyncComponent(() => import("./Edit.vue"));
 const CreateLoan = defineAsyncComponent(() => import("./Create.vue"));
@@ -189,7 +270,13 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("loan", ["filter.search", "filter"]),
+    ...mapFields("loan", [
+      "filter.search",
+      "filter.groupCode",
+      "filter.fromDate",
+      "filter.toDate",
+      "filter",
+    ]),
   },
   setup() {
     const { getGetters } = useStoreModule();
@@ -221,6 +308,8 @@ export default defineComponent({
   },
 
   methods: {
+    ...mapActions("loan", ["getItems"]),
+
     OnVerify(payload) {
       console.log("on verify clicked", payload);
       this.$store.commit("loan/showHideVerifyModal", true);
@@ -241,6 +330,45 @@ export default defineComponent({
         "http://127.0.0.1:8000/storage/media/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721_6.jpg.href",
         "_blank"
       );
+    },
+
+    // Proposal Report
+
+    proposalReport(proposal_id) {
+      this.$store
+        .dispatch(`${this.dataStore}/getReportProposal`, {
+          proposal_id: proposal_id,
+        })
+        .then((response) => {
+          window.open(response.data.tempUrl, "_system");
+        })
+        .catch((error) => {});
+    },
+
+    // Disburse Report
+
+    exportInExcel() {
+      this.$store
+        .dispatch(`${this.dataStore}/getReport`, {
+          export_excel: 1,
+          pagination: this.pagination,
+        })
+        .then((response) => {
+          window.open(response.data.temp_url, "_system");
+        })
+        .catch((error) => {});
+    },
+
+    exportInPdf() {
+      this.$store
+        .dispatch(`${this.dataStore}/getReportPdf`, {
+          export_excel: 1,
+          pagination: this.pagination,
+        })
+        .then((response) => {
+          window.open(response.data.tempUrl, "_system");
+        })
+        .catch((error) => {});
     },
   },
 });
@@ -265,5 +393,15 @@ export default defineComponent({
 .approve-form-width {
   width: 70%;
   max-width: 70%;
+}
+
+.my-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.dialog-head {
+  font-size: 1rem;
+  font-weight: 500;
 }
 </style>

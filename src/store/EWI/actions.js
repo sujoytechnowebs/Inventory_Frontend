@@ -181,3 +181,18 @@ export function instantPay({ commit, state }, id) {
       });
   });
 }
+
+// Invoice Download
+
+export function getReportInvoice({ commit, state }, props) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`ewi_payment_slip-print/${props.invoice_id}`)
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}

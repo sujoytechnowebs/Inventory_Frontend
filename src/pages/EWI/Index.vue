@@ -157,20 +157,33 @@
               {{ bodyRow.row?.ewi_no }}
             </q-td>
             <q-td key="ewi_date">
-              {{ bodyRow.row?.ewi_date }}
-              <!-- {{ bodyRow.row?.this.$dateConvert.format(this.ewi_date) }} -->
+              {{ $dateConvert.format(bodyRow.row.ewi_date) }}
             </q-td>
             <q-td key="ewi">
               {{ bodyRow.row?.ewi }}
             </q-td>
             <q-td key="status">
-              {{ bodyRow.row?.status }}
+              <span v-if="bodyRow.row?.status === 'collected'">
+                <q-chip color="positive" class="text-white">
+                  {{ bodyRow.row?.status }}
+                </q-chip>
+              </span>
+              <span v-if="bodyRow.row?.status === 'partial collected'">
+                <q-chip color="blue-7" class="text-white">
+                  {{ bodyRow.row?.status }}
+                </q-chip>
+              </span>
+              <span v-if="bodyRow.row?.status === 'due'">
+                <q-chip color="red-7" class="text-white">
+                  {{ bodyRow.row?.status }}
+                </q-chip>
+              </span>
             </q-td>
             <q-td key="collected_date">
-              {{ bodyRow.row?.collected_date }}
+              {{ $dateConvert.format(bodyRow.row.collected_date) }}
             </q-td>
 
-            <q-td key="actions" align="right">
+            <q-td key="payment" align="right">
               <span
                 v-if="
                   bodyRow.row.status === 'due' ||
@@ -194,6 +207,24 @@
                 >
                   <q-tooltip> Edit </q-tooltip>
                 </q-btn>
+              </span>
+            </q-td>
+
+            <q-td key="invoice" align="right">
+              <!-- Test -->
+
+              <span
+                v-if="
+                  bodyRow.row.status === 'collected' ||
+                  bodyRow.row.status === 'partial collected'
+                "
+              >
+                <q-btn
+                  label="EWI Invoice"
+                  no-caps
+                  flat
+                  @click="invoicePrint(bodyRow.row.id)"
+                />
               </span>
             </q-td>
           </q-tr>
@@ -225,6 +256,8 @@ import { defineComponent, ref } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 import { mapActions } from "vuex";
+
+import { dateConvert } from "src/boot/dateConvert";
 
 // import { dateConvert } from "src/boot/dateConvert";
 
@@ -307,6 +340,19 @@ export default defineComponent({
         })
         .then((response) => {
           window.open(response.data.temp_url, "_system");
+        })
+        .catch((error) => {});
+    },
+
+    // Invoice Print
+
+    invoicePrint(invoice_id) {
+      this.$store
+        .dispatch(`${this.dataStore}/getReportInvoice`, {
+          invoice_id: invoice_id,
+        })
+        .then((response) => {
+          window.open(response.data.tempUrl, "_system");
         })
         .catch((error) => {});
     },

@@ -42,13 +42,13 @@
         </template>
       </QDataTable>
 
-      <q-dialog v-model="showCreateModal">
+      <q-dialog v-model="showCreateModal" fullscreen class="sale-form-dialog">
         <div :class="$q.platform.is.desktop ? 'sale-return-form' : ''">
           <CreateSaleReturn v-bind:modal="true"></CreateSaleReturn>
         </div>
       </q-dialog>
 
-      <q-dialog v-model="showEditModal">
+      <q-dialog v-model="showEditModal" fullscreen class="sale-form-dialog">
         <div :class="$q.platform.is.desktop ? 'sale-return-form' : ''">
           <EditSaleReturn v-bind:modal="true"></EditSaleReturn>
         </div>
@@ -134,5 +134,16 @@ export default defineComponent({
 .sale-return-form {
   width: 100%;
   max-width: 100%;
+}
+</style>
+
+<style>
+.sale-form-dialog .q-dialog__inner {
+  padding: 0 !important;
+  background: white;
+}
+.sale-form-dialog .q-dialog__inner.q-dialog__inner--minimized > div {
+  max-height: 100vh !important;
+  overflow: scroll;
 }
 </style>
