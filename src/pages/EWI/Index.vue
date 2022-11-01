@@ -158,6 +158,7 @@
             </q-td>
             <q-td key="ewi_date">
               {{ bodyRow.row?.ewi_date }}
+              <!-- {{ bodyRow.row?.this.$dateConvert.format(this.ewi_date) }} -->
             </q-td>
             <q-td key="ewi">
               {{ bodyRow.row?.ewi }}
@@ -225,6 +226,8 @@ import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 import { mapActions } from "vuex";
 
+// import { dateConvert } from "src/boot/dateConvert";
+
 const addpay = defineAsyncComponent(() => import("./_components/addpay.vue"));
 
 const EditEWI = defineAsyncComponent(() => import("./Edit.vue"));
@@ -247,6 +250,10 @@ export default defineComponent({
       "filter.search",
       "filter",
     ]),
+
+    // ewi_date_format() {
+    //   return this.$dateConvert.format(this.ewi_date);
+    // },
   },
   setup() {
     const { getGetters, getAction } = useStoreModule();

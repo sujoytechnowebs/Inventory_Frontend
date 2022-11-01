@@ -1,19 +1,22 @@
 <template>
   <q-form ref="createForm" @submit.prevent="submitForm">
-    <q-card-section class="row items-center q-pb-none">
-      <div class="text-h5 q-ml-sm">{{ title }}</div>
-      <q-space />
-      <q-btn
-        v-if="modal"
-        icon="close"
-        flat
-        round
-        dense
-        @click="setCreateModal(false)"
-      >
-        <q-tooltip> Close </q-tooltip>
-      </q-btn>
-    </q-card-section>
+    <div class="bg-primary text-white q-pb-md">
+      <q-card-section class="row items-center q-pb-none">
+        <div class="text-h5 q-ml-sm">{{ title }}</div>
+
+        <q-space />
+        <q-btn
+          v-if="modal"
+          icon="close"
+          flat
+          round
+          dense
+          @click="setCreateModal(false)"
+        >
+          <q-tooltip> Close </q-tooltip>
+        </q-btn>
+      </q-card-section>
+    </div>
     <q-card-section>
       <slot ref="test_c"></slot>
     </q-card-section>
@@ -33,7 +36,7 @@
         :icon="saveButtonIcon"
         :label="saveButtonLabel"
         type="submit"
-        color="blue-5"
+        color="blue-10"
         unelevated
         :loading="submitting"
       >

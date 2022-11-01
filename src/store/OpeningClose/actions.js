@@ -1,6 +1,7 @@
 import { api, axios } from "boot/axios";
 
-const endPoint = "/opening-closing-balance";
+// const endPoint = "/opening-closing-balance";
+const endPoint = "/day_wise_summary";
 import moment from "moment";
 
 export function getOpeningClosingSummary({ commit, state }) {
