@@ -114,20 +114,20 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapMultiRowFields("sale", ["newItem.salesDetails"]),
+    ...mapMultiRowFields("sale", ["editItem.salesDetails"]),
   },
 
   setup(props, { emit }) {
     const product = ref([]);
 
     const { getMutations } = useStoreModule();
-    const { setProductDetails } = getMutations("sale", ["setProductDetails"]);
+    const { editProductDetails } = getMutations("sale", ["editProductDetails"]);
     const { calculateLoanAmount } = getMutations("sale", [
       "calculateLoanAmount",
     ]);
 
-    const { removeProductDetails } = getMutations("sale", [
-      "removeProductDetails",
+    const { removingProductDetails } = getMutations("sale", [
+      "removingProductDetails",
     ]);
 
     // Testing Calculations
@@ -138,7 +138,7 @@ export default defineComponent({
 
     const addProduct = () => {
       console.log("product.value", product.value.id);
-      setProductDetails(product.value);
+      editProductDetails(product.value);
       calculateLoanAmount();
     };
 
@@ -153,7 +153,7 @@ export default defineComponent({
     const deleteProduct = (index) => {
       console.log("data", index);
 
-      removeProductDetails(index);
+      removingProductDetails(index);
     };
 
     return {

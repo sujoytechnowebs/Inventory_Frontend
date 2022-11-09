@@ -26,10 +26,25 @@ export function resetForm(state) {
 
 export function setEditItem(state, payload) {
   state.editItem.id = payload.id;
-  state.editItem.name = payload.name;
-  state.editItem.code = payload.code;
   state.editItem.branch_id = payload.branch_id;
-  state.editItem.address = payload.address;
+  state.editItem.date_of_sales = payload.date_of_sales;
+  state.editItem.payment_method = payload.payment_method;
+  state.editItem.note = payload.note;
+  state.editItem.status = payload.status;
+  state.editItem.application_received_date =
+    payload.loan.application_received_date; // Let me check
+  state.editItem.application_received_by = payload.application_received_by; // Let me check
+  state.editItem.ewi_start_date = payload.ewi_start_date; // Let me check
+  state.editItem.no_of_ewi = payload.no_of_ewi; // Let me check
+  state.editItem.loan_amount = payload.loan_amount; // Let me check
+  state.editItem.processing_fees = payload.processing_fees; // Let me check
+  state.editItem.monthly_income = payload.monthly_income; // Let me check
+  state.editItem.occupation = payload.occupation; // Let me check
+  state.editItem.name = payload.name; // Let me check
+  state.editItem.customer_name = payload.customer_name; // Let me check
+  state.editItem.customer_address = payload.customer_address; // Let me check
+  state.editItem.customer_phone = payload.customer_phone; // Let me check
+  state.editItem.cust_type = payload.cust_type; // Let me check
 }
 
 export function setEditModal(state, payload) {
@@ -52,10 +67,33 @@ export function addNewOption(state, payload) {
   state.newItem.purchase.push(option);
 }
 
+export function addEditOption(state, payload) {
+  let option = {
+    id: state.editItem.purchase.length + 1,
+    notes: "",
+  };
+  state.editItem.purchase.push(option);
+}
+
 export function setProductDetails(state, payload) {
   console.log("payload", payload);
   // state.newItem.purchase_details = payload;
   state.newItem.salesDetails.push({
+    item_rate: payload.sale_price,
+    quantity: null,
+    discount: 0,
+    custom_price: false,
+    product_id: payload.id,
+    product_name: payload.name,
+  });
+}
+
+// Edit page
+
+export function editProductDetails(state, payload) {
+  console.log("payload", payload);
+  // state.newItem.purchase_details = payload;
+  state.editItem.salesDetails.push({
     item_rate: payload.sale_price,
     quantity: null,
     discount: 0,
@@ -71,6 +109,17 @@ export function removeProductDetails(state, payload) {
   if (payload > -1) {
     // only splice array when item is found
     state.newItem.salesDetails.splice(payload, 1); // 2nd parameter means remove one item only
+  }
+}
+
+// Edit page
+
+export function removingProductDetails(state, payload) {
+  console.log("payload", state);
+
+  if (payload > -1) {
+    // only splice array when item is found
+    state.editItem.salesDetails.splice(payload, 1); // 2nd parameter means remove one item only
   }
 }
 
