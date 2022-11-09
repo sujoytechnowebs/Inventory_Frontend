@@ -42,7 +42,7 @@ export default function () {
       {
         name: "ewi",
         align: "left",
-        label: "EWI Amount",
+        label: "EWI Due",
         field: "ewi",
         sortable: true,
       },
@@ -60,7 +60,8 @@ export default function () {
         field: (row) => dateConvert.format(row.collected_date),
         sortable: true,
       },
-      { name: "actions", align: "right", label: "Actions" },
+      { name: "payment", align: "center", label: "Payment" },
+      { name: "invoice", align: "right", label: "Invoice" },
     ],
     visibleColumns: ["name"],
     data: [],

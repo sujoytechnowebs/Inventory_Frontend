@@ -81,6 +81,9 @@ export default function () {
     },
     filter: {
       search: "",
+      groupCode: null,
+      fromDate: "",
+      toDate: "",
       trashed: false,
     },
     lastUpdated: "",

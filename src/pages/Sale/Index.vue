@@ -39,6 +39,15 @@
             flat
             @click="productEdit(actionRow.row)"
           />
+
+          <!-- Invoice Button -->
+
+          <q-btn
+            label="Invoice Print"
+            no-caps
+            flat
+            @click="invoicePrint(actionRow.row.id)"
+          />
         </template>
       </QDataTable>
 
@@ -69,6 +78,7 @@ import { defineComponent } from "vue";
 import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 import ViewProducts from "./_components/ViewProducts.vue";
+import { mapActions } from "vuex";
 
 const EditSale = defineAsyncComponent(() => import("./Edit.vue"));
 const CreateSale = defineAsyncComponent(() => import("./Create.vue"));
@@ -122,6 +132,21 @@ export default defineComponent({
       showViewProductsModal,
       setViewProductsModal,
     };
+  },
+
+  methods: {
+    ...mapActions("sale", ["getItems"]),
+
+    // Invoice Print
+
+    invoicePrint(invoice_id) {
+      this.$store
+        .dispatch(`${this.dataStore}/getReport`, { invoice_id: invoice_id })
+        .then((response) => {
+          window.open(response.data.tempUrl, "_system");
+        })
+        .catch((error) => {});
+    },
   },
 });
 </script>

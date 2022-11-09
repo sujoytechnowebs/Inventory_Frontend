@@ -265,16 +265,31 @@ export function getReport({ commit, state }, props) {
 
 export function getReportPdf({ commit, state }, props) {
   var params = {
-    status: state?.filter?.status,
-    ewi_date: state?.filter?.ewi_date,
-    group_code: state?.filter?.group_code,
+    groupCode: state?.filter?.groupCode,
+    fromDate: state?.filter?.fromDate,
+    toDate: state?.filter?.toDate,
   };
 
   return new Promise((resolve, reject) => {
     axios
-      .get("ewi-report-pdf", {
+      .get("loan-disburse-report", {
         params: params,
       })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+// Invoice Download
+
+export function getReportProposal({ commit, state }, props) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`sale-invoice-pdf/${props.proposal_id}`)
       .then((response) => {
         resolve(response);
       })

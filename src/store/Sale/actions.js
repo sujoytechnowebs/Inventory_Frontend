@@ -134,3 +134,18 @@ export function incomesource({ commit, state }, id) {
       });
   });
 }
+
+// Invoice Download
+
+export function getReport({ commit, state }, props) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`sale-invoice-pdf/${props.invoice_id}`)
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
