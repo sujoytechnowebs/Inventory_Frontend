@@ -43,7 +43,7 @@
           <!-- Invoice Button -->
 
           <q-btn
-            label="Invoice Print"
+            label="Invoice"
             no-caps
             flat
             @click="invoicePrint(actionRow.row.id)"
@@ -57,7 +57,7 @@
         </div>
       </q-dialog>
 
-      <q-dialog v-model="showEditModal">
+      <q-dialog v-model="showEditModal" fullscreen class="sale-form-dialog">
         <div :class="$q.platform.is.desktop ? 'sale-form' : ''">
           <EditSale v-bind:modal="true"></EditSale>
         </div>

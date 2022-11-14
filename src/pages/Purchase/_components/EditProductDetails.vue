@@ -36,6 +36,11 @@
       >
       </q-input>
     </div>
+
+    <!-- Product Name commented -->
+
+    <!-- {{ data.product.name }} -->
+
     <div class="col-12 col-md-2 col-lg-2">
       <q-input
         ref="item_rate"

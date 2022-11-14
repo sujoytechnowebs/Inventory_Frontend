@@ -4,9 +4,9 @@
       <QEditForm
         :modal="modal"
         :widgets="true"
-        save-action="sale/createItem"
+        save-action="sale/updateItem"
         :data-store="dataStore"
-        title="Add Sales"
+        title="Update Sales"
       >
         <q-separator class="q-mb-md" />
         <div class="row q-col-gutter-md">
@@ -486,7 +486,7 @@ const editSales = defineAsyncComponent(() =>
 );
 
 export default {
-  name: "SaleEditPage",
+  name: "SaleCreatePage",
 
   components: {
     editSales,

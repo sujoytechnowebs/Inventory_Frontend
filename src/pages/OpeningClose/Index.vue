@@ -90,7 +90,7 @@
       </q-card>
     </div>
 
-    <div class="col-12 col-md-3 col-lg-3">
+    <!-- <div class="col-12 col-md-3 col-lg-3">
       <q-card flat bordered class="card_height">
         <q-card-section>
           <div class="balance_head flex justify-center q-pt-lg q-pb-lg">
@@ -106,7 +106,7 @@
           </div>
         </q-card-section>
       </q-card>
-    </div>
+    </div> -->
 
     <div class="col-12 col-md-3 col-lg-3">
       <q-card flat bordered class="card_height">

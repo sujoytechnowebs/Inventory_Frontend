@@ -4,9 +4,9 @@
       <QEditForm
         :modal="modal"
         :widgets="true"
-        save-action="purchase/createItem"
+        save-action="purchase/updateItem"
         :data-store="dataStore"
-        title="Add Purchase"
+        title="Update Purchase"
       >
         <div class="row q-col-gutter-md">
           <div class="col-12 col-sm-8 col-md-9 col-lg-9 scroll-bar q-pr-md">

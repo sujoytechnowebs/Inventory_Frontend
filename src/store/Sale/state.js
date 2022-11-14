@@ -115,6 +115,7 @@ export default function () {
       cust_type: "",
     },
     editItem: {
+      id: null,
       customer_id: null,
       branch_id: null,
       date_of_sales: "",
