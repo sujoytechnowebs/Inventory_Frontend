@@ -76,7 +76,6 @@
       @click="setCreateModal(true)"
       v-show="canAdd"
       v-if="hasEditPermission"
-      class="q-ma-xl"
     />
   </q-page-sticky>
 </template>

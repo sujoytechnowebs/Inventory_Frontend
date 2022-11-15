@@ -29,3 +29,7 @@ export function setEditModal(state, payload) {
 export function setLastUpdated(state, payload) {
   state.lastUpdated = payload;
 }
+
+export function setPrintData(state, payload) {
+  state.printableData = payload;
+}

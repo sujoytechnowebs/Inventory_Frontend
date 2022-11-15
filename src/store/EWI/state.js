@@ -78,6 +78,8 @@ export default function () {
       status: "",
       ewi_date: "",
       group_code: "",
+      groupId: "",
+      date: "",
       trashed: false,
     },
     lastUpdated: "",
@@ -92,6 +94,7 @@ export default function () {
       payment_method: "",
       paymentAmount: null,
     },
+    printableData: {},
     modals: {
       createItem: false,
       editItem: false,

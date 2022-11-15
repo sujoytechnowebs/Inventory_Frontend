@@ -14,12 +14,22 @@
       >
         <template v-slot:top>
           <div
-            class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-6 col-md-6"
+            class="text-h6 text-weight-bold text-grey-8 col-xs-12 col-sm-4 col-md-4"
           >
             EWI Management Table
           </div>
-          <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
-            <div class="col-6">
+          <div class="col-xs-12 col-sm-8 col-md-8 row justify-end items-center">
+            <div class="col-12 col-md-4 col-lg-4 q-pt-sm">
+              <q-btn
+                label="Collection Sheet"
+                no-caps
+                outline
+                color="primary"
+                @click="alert2 = true"
+              >
+              </q-btn>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4 q-pt-sm">
               <q-btn
                 label="Download Report"
                 no-caps
@@ -29,7 +39,17 @@
               >
               </q-btn>
             </div>
-            <div class="col-6">
+            <!-- <div class="col-4">
+              <q-btn
+                label="Test Receipt"
+                no-caps
+                outline
+                color="primary"
+                @click="testPrint"
+              >
+              </q-btn>
+            </div> -->
+            <div class="col-12 col-md-4 col-lg-4 q-pt-sm">
               <q-input
                 outlined
                 dense
@@ -43,6 +63,84 @@
                 </template>
               </q-input>
             </div>
+          </div>
+
+          <!-- Collection Dialog Box Appear -->
+
+          <div>
+            <q-dialog v-model="alert2">
+              <q-card>
+                <q-card-actions align="right">
+                  <q-btn
+                    flat
+                    round
+                    dense
+                    icon="close"
+                    color="primary"
+                    v-close-popup
+                  >
+                    <q-tooltip> Close </q-tooltip>
+                  </q-btn>
+                </q-card-actions>
+
+                <q-card-section>
+                  <div class="row q-col-gutter-md">
+                    <div class="col-12">
+                      <q-input
+                        dense
+                        label="Date"
+                        outlined
+                        v-model="date"
+                        mask="date"
+                        :error-message="$getValidationErrors('date')"
+                        :error="$hasValidationErrors('date')"
+                      >
+                        <template v-slot:prepend>
+                          <q-icon name="event" class="cursor-pointer">
+                            <q-popup-proxy
+                              cover
+                              transition-show="scale"
+                              transition-hide="scale"
+                            >
+                              <q-date v-model="date">
+                                <div class="row items-center justify-end">
+                                  <q-btn
+                                    v-close-popup
+                                    label="Close"
+                                    color="primary"
+                                    flat
+                                  />
+                                </div>
+                              </q-date>
+                            </q-popup-proxy>
+                          </q-icon>
+                        </template>
+                      </q-input>
+                    </div>
+
+                    <div class="col-12">
+                      <q-input
+                        dense
+                        outlined
+                        v-model="groupId"
+                        label="Group Code"
+                        :error-message="$getValidationErrors('groupId')"
+                        :error="$hasValidationErrors('groupId')"
+                      ></q-input>
+                    </div>
+                  </div>
+                </q-card-section>
+
+                <q-card-actions align="right">
+                  <q-btn
+                    flat
+                    label="Download"
+                    no-caps
+                    @click="exportCollectionSheet"
+                  />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
           </div>
 
           <!-- Dialog Box Appear -->
@@ -223,7 +321,7 @@
                   label="EWI Invoice"
                   no-caps
                   flat
-                  @click="invoicePrint(bodyRow.row.id)"
+                  @click="invoicePrint(bodyRow.row)"
                 />
               </span>
             </q-td>
@@ -281,6 +379,8 @@ export default defineComponent({
       "filter.ewi_date",
       "filter.group_code",
       "filter.search",
+      "filter.groupId",
+      "filter.date",
       "filter",
     ]),
 
@@ -295,6 +395,12 @@ export default defineComponent({
 
     const { instantPay } = getAction("ewi", ["instantPay"]);
 
+    // const testPrint = () => {
+    //   router.push({
+    //     path: "/print/ewi-receipt",
+    //   });
+    // };
+
     return {
       hasEditPermission: true,
       dataStore: "ewi",
@@ -303,7 +409,9 @@ export default defineComponent({
       showCreateModal,
       options: ["due", "collected"],
       alert: ref(false),
+      alert2: ref(false),
       instantPay,
+      // testPrint,
     };
   },
 
@@ -344,17 +452,35 @@ export default defineComponent({
         .catch((error) => {});
     },
 
-    // Invoice Print
+    // Collection Sheet download
 
-    invoicePrint(invoice_id) {
+    exportCollectionSheet() {
       this.$store
-        .dispatch(`${this.dataStore}/getReportInvoice`, {
-          invoice_id: invoice_id,
+        .dispatch(`${this.dataStore}/getReportCollection`, {
+          export_excel: 1,
+          pagination: this.pagination,
         })
         .then((response) => {
           window.open(response.data.tempUrl, "_system");
         })
         .catch((error) => {});
+    },
+
+    // Invoice Print
+
+    invoicePrint(row) {
+      this.$store.commit(`${this.dataStore}/setPrintData`, row);
+      // .then((response) => {
+      this.$router.push({ name: "ewi-receipt" });
+      // });
+      // this.$store
+      //   .dispatch(`${this.dataStore}/getReportInvoice`, {
+      //     invoice_id: invoice_id,
+      //   })
+      //   .then((response) => {
+      //     window.open(response.data.tempUrl, "_system");
+      //   })
+      //   .catch((error) => {});
     },
   },
 });

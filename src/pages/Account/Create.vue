@@ -95,6 +95,10 @@ export default {
       modelValue: ref(),
       account_type: [
         {
+          value: "income",
+          label: "Income",
+        },
+        {
           value: "expense",
           label: "Expense",
         },

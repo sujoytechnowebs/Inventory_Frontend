@@ -165,6 +165,28 @@ export function getReportPdf({ commit, state }, props) {
   });
 }
 
+//Report Collection Sheet in pdf is here
+
+export function getReportCollection({ commit, state }, props) {
+  var params = {
+    groupId: state?.filter?.groupId,
+    date: state?.filter?.date,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get("ewi_collection_sheet", {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
 // Test
 
 export function instantPay({ commit, state }, id) {

@@ -42,12 +42,19 @@
 
           <!-- Invoice Button -->
 
-          <q-btn
-            label="Invoice"
-            no-caps
-            flat
-            @click="invoicePrint(actionRow.row.id)"
-          />
+          <span
+            v-if="
+              actionRow.row?.status === 'received' ||
+              actionRow.row?.status === 'delivered'
+            "
+          >
+            <q-btn
+              label="Invoice"
+              no-caps
+              flat
+              @click="invoicePrint(actionRow.row.id)"
+            />
+          </span>
         </template>
       </QDataTable>
 

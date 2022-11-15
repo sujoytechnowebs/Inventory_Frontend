@@ -103,6 +103,7 @@ const routes = [
           // acl: "user.index",
         },
       },
+
       {
         path: "receipt",
         component: () => import("pages/Receipt/Index.vue"),
@@ -262,6 +263,22 @@ const routes = [
           name: "group-summary",
           requiresAuth: true,
           // acl: "user.index",
+        },
+      },
+    ],
+  },
+
+  {
+    path: "/print/",
+    component: () => import("layouts/PrintLayout.vue"),
+    children: [
+      {
+        name: "ewi-receipt",
+        path: "ewi-receipt",
+        component: () => import("pages/EWI/Print.vue"),
+        meta: {
+          name: "receipt",
+          requiresAuth: true,
         },
       },
     ],
