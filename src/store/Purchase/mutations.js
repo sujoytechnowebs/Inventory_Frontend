@@ -30,7 +30,8 @@ export function setEditItem(state, payload) {
   // state.editItem.purchase_details = payload.purchase_details;
   payload.purchase_details.map((item) => {
     state.editItem.purchase_details.push({
-      product_name: item.product.name,
+      product_id: payload.id,
+      product_name: payload.name,
       discount: item.discount,
       item_rate: item.item_rate,
       quantity: item.quantity,

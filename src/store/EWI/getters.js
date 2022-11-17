@@ -30,3 +30,7 @@ export function showEditModal(state) {
 export function lastUpdated(state) {
   return state.lastUpdated;
 }
+
+export function getPrintData(state) {
+  return state.printableData;
+}

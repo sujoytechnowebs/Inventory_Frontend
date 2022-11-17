@@ -424,21 +424,21 @@
                         <div class="col-12">
                           <span class="loan-details q-pr-sm"
                             >Product Total Price:</span
-                          >{{ grand_item_rate_total.toFixed(2) }}
+                          >{{ grand_item_rate_total.toFixed(0) }}
                         </div>
                         <div class="col-12">
                           <span class="loan-details q-pr-sm"
                             >Loan Processing Fees:</span
-                          >{{ loan_with_processing_fees.toFixed(2) }}
+                          >{{ loan_with_processing_fees.toFixed(0) }}
                         </div>
                         <div class="col-12">
                           <span class="loan-details q-pr-sm">Loan Amount:</span
-                          >{{ loan_after_downpayment.toFixed(2) }}
+                          >{{ loan_after_downpayment.toFixed(0) }}
                         </div>
                         <div class="col-12">
                           <span class="loan-details q-pr-sm"
                             >Amount Per EWI:</span
-                          >{{ per_ewi.toFixed(2) }}
+                          >{{ per_ewi.toFixed(0) }}
                         </div>
                       </div>
                     </q-card-section>

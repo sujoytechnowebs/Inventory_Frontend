@@ -74,9 +74,9 @@
           </div>
         </q-card-section>
 
-        <q-card-actions align="between">
-          <q-btn flat label="Download Excel" no-caps @click="exportInExcel" />
-          <q-btn flat label="Download PDF" no-caps @click="exportInPdf" />
+        <q-card-actions align="right">
+          <!-- <q-btn flat label="Download Excel" no-caps @click="exportInExcel" /> -->
+          <q-btn flat label="Download" no-caps @click="exportInPdf" />
         </q-card-actions>
       </q-card>
     </q-dialog>
