@@ -469,18 +469,17 @@ export default defineComponent({
     // Invoice Print
 
     invoicePrint(row) {
-      this.$store.commit(`${this.dataStore}/setPrintData`, row);
       // .then((response) => {
-      this.$router.push({ name: "ewi-receipt" });
       // });
-      // this.$store
-      //   .dispatch(`${this.dataStore}/getReportInvoice`, {
-      //     invoice_id: invoice_id,
-      //   })
-      //   .then((response) => {
-      //     window.open(response.data.tempUrl, "_system");
-      //   })
-      //   .catch((error) => {});
+      this.$store
+        .dispatch(`${this.dataStore}/getReportInvoice`, {
+          invoice_id: row.id,
+        })
+        .then((response) => {
+          this.$store.commit(`${this.dataStore}/setPrintData`, response.data);
+          this.$router.push({ name: "ewi-receipt" });
+        })
+        .catch((error) => {});
     },
   },
 });

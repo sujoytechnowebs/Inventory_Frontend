@@ -17,7 +17,7 @@
             User Table
           </div>
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
-            <div class="col-8">
+            <div class="col-8 col-md-6 col-lg-6">
               <q-input
                 outlined
                 dense
@@ -134,7 +134,7 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapFields("user", ["filter.search", "filter"]),
+    ...mapFields("user", ["filter.search", "filter.exceptRole", "filter"]),
   },
   setup() {
     const { getGetters } = useStoreModule();

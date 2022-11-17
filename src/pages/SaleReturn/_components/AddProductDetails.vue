@@ -20,12 +20,58 @@
         @click="addProduct()"
       />
     </div>
+  </div>
+  <!-- <div
+    class="row q-col-gutter-md"
+    v-for="(data, index) in salesReturnDetails"
+    :key="data.id"
+  >
+    <div class="col-12 col-md-6 col-lg-6">
+      <q-input
+        ref="product_id"
+        v-model="data.product_name"
+        dense
+        label="Product"
+        readonly
+      >
+      </q-input>
+    </div>
+
+    <div class="col-12 col-md-5 col-lg-5">
+      <q-input
+        ref="quantity"
+        v-model="data.quantity"
+        dense
+        type="number"
+        label="Quantity"
+      >
+      </q-input>
+    </div>
+
     <div
-      class="row q-col-gutter-md"
-      v-for="(data, index) in salesReturnDetails"
-      :key="data.id"
+      :class="
+        $q.platform.is.mobile
+          ? 'col-12 flex justify-end'
+          : 'col-12 col-sm-1 col-md-1 col-lg-1'
+      "
     >
-      <div class="col-12 col-md-4 col-lg-4">
+      <q-btn
+        icon="delete"
+        color="red"
+        size="sm"
+        round
+        @click="deleteProduct(index)"
+      />
+    </div>
+  </div> -->
+
+  <div v-for="(data, index) in salesReturnDetails" :key="data.id">
+    <div
+      class="row q-col-gutter-md row_even_colour q-pb-md q-mt-sm"
+      v-if="(index + 1) % 2 === 0"
+    >
+      <div class="product_list q-mt-md">{{ index + 1 }}<span>)</span></div>
+      <div class="col-4 col-md-4 col-lg-4">
         <q-input
           ref="product_id"
           v-model="data.product_name"
@@ -35,8 +81,7 @@
         >
         </q-input>
       </div>
-
-      <div class="col-12 col-md-4 col-lg-4">
+      <div class="col-4 col-md-4 col-lg-4">
         <q-input
           ref="quantity"
           v-model="data.quantity"
@@ -46,14 +91,42 @@
         >
         </q-input>
       </div>
-
-      <div
-        :class="
-          $q.platform.is.mobile
-            ? 'col-12 flex justify-end'
-            : 'col-12 col-sm-1 col-md-1 col-lg-1'
-        "
-      >
+      <div class="col-2 col-md-2 col-lg-2">
+        <q-btn
+          icon="delete"
+          color="red"
+          size="sm"
+          round
+          @click="deleteProduct(index)"
+        />
+      </div>
+    </div>
+    <div
+      class="row q-col-gutter-md row_odd_colour q-pb-md q-mt-sm"
+      v-if="(index + 1) % 2 === 1"
+    >
+      <div class="product_list q-mt-md">{{ index + 1 }}<span>)</span></div>
+      <div class="col-4 col-md-4 col-lg-4">
+        <q-input
+          ref="product_id"
+          v-model="data.product_name"
+          dense
+          label="Product"
+          readonly
+        >
+        </q-input>
+      </div>
+      <div class="col-4 col-md-4 col-lg-4">
+        <q-input
+          ref="quantity"
+          v-model="data.quantity"
+          dense
+          type="number"
+          label="Quantity"
+        >
+        </q-input>
+      </div>
+      <div class="col-2 col-md-2 col-lg-2">
         <q-btn
           icon="delete"
           color="red"
@@ -120,3 +193,17 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.row_even_colour {
+  background-color: rgb(255, 255, 255);
+}
+
+.row_odd_colour {
+  background-color: #e3e9e3;
+}
+
+.product_list {
+  font-size: 1rem;
+}
+</style>

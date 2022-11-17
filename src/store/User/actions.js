@@ -17,6 +17,7 @@ export function getItems({ commit, state }, props) {
     page: props.pagination.page,
     rowsPerPage: props.pagination.rowsPerPage,
     search: props.search ? props.search : state.filter.search,
+    exceptRole: props.exceptRole ? props.exceptRole : state.filter.exceptRole,
   };
 
   return new Promise((resolve, reject) => {
