@@ -51,6 +51,7 @@ export default function () {
     },
     filter: {
       search: "",
+      exceptRole: "customer",
       trashed: false,
     },
     lastUpdated: "",

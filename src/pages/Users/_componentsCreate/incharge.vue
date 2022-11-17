@@ -312,6 +312,7 @@
           square
           flat
           bordered
+          auto-upload
           class="full-width"
           :factory="factoryFn"
         />
@@ -343,6 +344,7 @@
           square
           flat
           bordered
+          auto-upload
           class="full-width"
           :factory="factoryFnVoter"
         />

@@ -266,7 +266,7 @@
   <q-separator class="q-mb-md" />
   <p class="incharge_form_title">Other Details</p>
   <div class="row q-col-gutter-md">
-    <div class="col-12 col-md-4 col-lg-4">
+    <div class="col-12 col-md-6 col-lg-6">
       <q-input
         ref="aadhar_card_no"
         outlined
@@ -283,22 +283,7 @@
         </template>
       </q-input>
     </div>
-    <div class="col-12">
-      <q-field
-        :error-message="$getValidationErrors('aadhar_media_id')"
-        :error="$hasValidationErrors('aadhar_media_id')"
-      >
-        <q-uploader
-          label="Upload Aadhar Document"
-          square
-          flat
-          bordered
-          class="full-width"
-          :factory="factoryFn"
-        />
-      </q-field>
-    </div>
-    <div class="col-12 col-md-4 col-lg-4">
+    <div class="col-12 col-md-6 col-lg-6">
       <q-input
         ref="voter_card_no"
         outlined
