@@ -45,7 +45,8 @@
           <span
             v-if="
               actionRow.row?.status === 'received' ||
-              actionRow.row?.status === 'delivered'
+              actionRow.row?.status === 'delivered' ||
+              actionRow.row?.status === 'deliverd'
             "
           >
             <q-btn

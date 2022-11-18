@@ -119,7 +119,7 @@ const linksList = [
   },
   {
     title: "Center",
-    icon: "share",
+    icon: "workspaces",
     // link: "/cities",
     show: "",
     childs: [
@@ -262,17 +262,17 @@ const linksList = [
         show: "",
       },
       {
-        title: "Cash Balance",
+        title: "Cash Bank Balance",
         icon: "hlw",
         link: "/cashbook",
         show: "",
       },
-      {
-        title: "Bank Balance",
-        icon: "hlw",
-        link: "/bank-cash",
-        show: "",
-      },
+      // {
+      //   title: "Bank Balance",
+      //   icon: "hlw",
+      //   link: "/bank-cash",
+      //   show: "",
+      // },
     ],
   },
   {

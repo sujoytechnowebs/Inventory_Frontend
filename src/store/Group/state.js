@@ -37,6 +37,13 @@ export default function () {
         field: "conduct_time",
         sortable: true,
       },
+      {
+        name: "day",
+        align: "left",
+        label: "Day",
+        field: "day",
+        sortable: true,
+      },
       { name: "actions", align: "right", label: "Actions" },
     ],
     visibleColumns: ["name"],

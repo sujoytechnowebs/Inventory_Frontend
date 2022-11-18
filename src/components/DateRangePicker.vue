@@ -100,101 +100,17 @@ export default {
 };
 </script>
 <style>
-/* .reportrange-text[data-v-1ebd09d2] {
-  background: black !important;
-  border: 1px solid #616161 !important;
-  height: 40px;
-  border-radius: 4px;
-} */
 .reportrange-text {
   border: none !important;
 }
-/* .input_box_click {
+.input_box_click {
   display: none !important;
-} */
-/* .daterangepicker.openscenter:after,
-.daterangepicker.openscenter:before {
-  left: 288px;
-  right: 0;
-  width: 0;
-  margin-left: auto;
-  margin-right: auto;
-} */
-.daterangepicker.openscenter[data-v-74709826] {
-  right: auto;
-  left: -11%;
-  -webkit-transform: translate(-50%);
-  transform: translate(-50%);
 }
-/* .calendars[data-v-74709826] {
-  background-color: red;
-} */
-/* .daterangepicker.show-calendar .drp-buttons,
-.daterangepicker.show-calendar .drp-calendar {
-  display: block;
-  background-color: black;
-} */
-/* .daterangepicker {
-  background-color: #616161;
-} */
-/* td[data-v-98ac2448],
-th[data-v-98ac2448] {
-  padding: 2px;
-  background-color: #000;
-} */
-/* .daterangepicker .calendar-table {
-  border: 1px solid #000;
-  border-radius: 4px;
-  background-color: black;
-} */
-/* .daterangepicker td.off,
-.daterangepicker td.off.end-date,
-.daterangepicker td.off.in-range,
-.daterangepicker td.off.start-date {
-  background-color: black;
-  border-color: #000;
-  color: black;
-} */
-/* .daterangepicker td.in-range {
-  background-color: #14add2;
-  border-color: transparent;
-  color: #ffff;
-  border-radius: 0;
-} */
-/* .daterangepicker .btn-primary,
-.daterangepicker .btn-success {
-  background-color: #7b7b7b;
-  color: #fff;
-} */
-/* .daterangepicker .calendar-table .next span,
-.daterangepicker .calendar-table .prev span {
-  color: #fff;
-  border: solid #ffff;
-  border-width: 0 2px 2px 0;
-  border-radius: 0;
-  display: inline-block;
-  padding: 3px;
-} */
-/* .daterangepicker .ranges li.active {
-  background-color: #14add2;
-  color: #fff;
-} */
 
-/* .reportrange-text[data-v-74709826] {
-  padding-top: 0;
-  background: black !important;
-  height: auto !important;
-  border: none !important;
-} */
-/* .vue-daterange-picker {
+.vue-daterange-picker {
   width: 100%;
-  font-size: 12px;
-} */
+}
 
-/* .daterangepicker .btn-secondary {
-  background-color: #000;
-  color: #fff;
-} */
 .daterangepicker .drp-selected {
   display: inline-block;
   font-size: 12px;

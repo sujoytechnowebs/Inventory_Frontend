@@ -11,14 +11,21 @@
           action="getItems"
           :multiple="false"
           dataType="object"
+          @clear="product = null"
         ></QSearch>
+        <span
+          class="warning-text"
+          v-if="$hasValidationErrors('purchase_details')"
+        >
+          {{ $getValidationErrors("purchase_details") }}
+        </span>
       </div>
       <div class="col-6">
         <q-btn
-          color="white"
-          text-color="black"
+          color="primary"
           label="Add Product"
           @click="addProduct()"
+          :disabled="product == null"
         />
       </div>
     </div>
@@ -194,7 +201,7 @@ export default defineComponent({
   },
 
   setup(props, { emit }) {
-    const product = ref([]);
+    const product = ref(null);
 
     const { getMutations } = useStoreModule();
     const { setProductDetails } = getMutations("sale", ["setProductDetails"]);
@@ -276,5 +283,9 @@ export default defineComponent({
 
 .row_odd_colour {
   background-color: #e3e9e3;
+}
+
+.warning-text {
+  color: red;
 }
 </style>

@@ -10,60 +10,24 @@
         action="getItems"
         :multiple="false"
         dataType="object"
+        @clear="product = null"
       ></QSearch>
+      <span
+        class="warning-text"
+        v-if="$hasValidationErrors('purchase_details')"
+      >
+        {{ $getValidationErrors("purchase_details") }}
+      </span>
     </div>
     <div class="col-6">
       <q-btn
-        color="white"
-        text-color="black"
+        color="primary"
         label="Add Product"
         @click="addProduct()"
+        :disabled="product == null"
       />
     </div>
   </div>
-  <!-- <div
-    class="row q-col-gutter-md"
-    v-for="(data, index) in salesReturnDetails"
-    :key="data.id"
-  >
-    <div class="col-12 col-md-6 col-lg-6">
-      <q-input
-        ref="product_id"
-        v-model="data.product_name"
-        dense
-        label="Product"
-        readonly
-      >
-      </q-input>
-    </div>
-
-    <div class="col-12 col-md-5 col-lg-5">
-      <q-input
-        ref="quantity"
-        v-model="data.quantity"
-        dense
-        type="number"
-        label="Quantity"
-      >
-      </q-input>
-    </div>
-
-    <div
-      :class="
-        $q.platform.is.mobile
-          ? 'col-12 flex justify-end'
-          : 'col-12 col-sm-1 col-md-1 col-lg-1'
-      "
-    >
-      <q-btn
-        icon="delete"
-        color="red"
-        size="sm"
-        round
-        @click="deleteProduct(index)"
-      />
-    </div>
-  </div> -->
 
   <div v-for="(data, index) in salesReturnDetails" :key="data.id">
     <div
@@ -158,7 +122,7 @@ export default defineComponent({
   },
 
   setup(props, { emit }) {
-    const product = ref([]);
+    const product = ref(null);
 
     const { getMutations } = useStoreModule();
     const { setProductDetails } = getMutations("salereturn", [
@@ -205,5 +169,9 @@ export default defineComponent({
 
 .product_list {
   font-size: 1rem;
+}
+
+.warning-text {
+  color: red;
 }
 </style>
