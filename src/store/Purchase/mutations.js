@@ -27,17 +27,18 @@ export function setEditItem(state, payload) {
   state.editItem.note = payload.note;
   state.editItem.status = payload.status;
   state.editItem.payment_method = payload.payment_method;
-  // state.editItem.purchase_details = payload.purchase_details;
-  payload.purchase_details.map((item) => {
-    state.editItem.purchase_details.push({
-      product_id: payload.id,
-      product_name: payload.name,
-      discount: item.discount,
-      item_rate: item.item_rate,
-      quantity: item.quantity,
-      sales_rate: item.sales_rate,
-    });
-  });
+  state.editItem.purchase_details = payload.purchase_details;
+  // payload.purchase_details.map((item) => {
+  //   console.log("item", item);
+  //   state.editItem.purchase_details.push({
+  //     product_id: item.product.id,
+  //     product_name: item.product.name,
+  //     discount: item.discount,
+  //     item_rate: item.item_rate,
+  //     quantity: item.quantity,
+  //     sales_rate: item.sales_rate,
+  //   });
+  // });
 }
 
 export function setProductDetails(state, payload) {
@@ -61,7 +62,7 @@ export function settingProductDetails(state, payload) {
     discount: 0,
     sales_rate: null,
     product_id: payload.id,
-    product_name: payload.name,
+    product: { name: payload.name },
     total: 0,
   });
 }

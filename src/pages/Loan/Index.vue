@@ -174,7 +174,12 @@
               />
             </div>
             <div class="col-12">
-              <q-input dense outlined v-model="fromDate">
+              <q-input
+                dense
+                outlined
+                v-model="from_date_format"
+                label="From Date"
+              >
                 <template v-slot:prepend>
                   <q-icon name="event" class="cursor-pointer">
                     <q-popup-proxy
@@ -198,7 +203,7 @@
               </q-input>
             </div>
             <div class="col-12">
-              <q-input dense outlined v-model="toDate">
+              <q-input dense outlined v-model="to_date_format" label="To Date">
                 <template v-slot:prepend>
                   <q-icon name="event" class="cursor-pointer">
                     <q-popup-proxy
@@ -277,6 +282,12 @@ export default defineComponent({
       "filter.toDate",
       "filter",
     ]),
+    from_date_format() {
+      return this.$dateConvert.format(this.fromDate);
+    },
+    to_date_format() {
+      return this.$dateConvert.format(this.toDate);
+    },
   },
   setup() {
     const { getGetters } = useStoreModule();

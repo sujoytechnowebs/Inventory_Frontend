@@ -1,6 +1,11 @@
 <template>
   <div class="row q-col-gutter-md">
     <div class="col-6 col-md-6 col-lg-6">
+      <!-- <q-field
+        :error-message="$getValidationErrors('purchase_details')"
+        :error="$hasValidationErrors('purchase_details')"
+        dense
+      > -->
       <QSearch
         v-model="product"
         label="Product Name"
@@ -10,17 +15,28 @@
         action="getItems"
         :multiple="false"
         dataType="object"
+        @clear="product = null"
       ></QSearch>
+      <span
+        class="warning-text"
+        v-if="$hasValidationErrors('purchase_details')"
+      >
+        {{ $getValidationErrors("purchase_details") }}
+      </span>
+      <!-- </q-field> -->
     </div>
     <div class="col-6 col-md-6 col-lg-6">
       <q-btn
-        color="white"
-        text-color="black"
+        color="primary"
         label="Add Product"
         @click="addProduct()"
+        :disabled="product == null"
       />
     </div>
+
     <div v-for="(data, index) in purchase_details" :key="data.id">
+      <!-- <div v-if="product.id === 1" class="kk">Hello</div> -->
+
       <div
         class="row q-col-gutter-md row_even_colour q-pb-md q-mt-sm"
         v-if="(index + 1) % 2 === 0"
@@ -165,7 +181,7 @@ export default defineComponent({
   },
 
   setup(props, { emit }) {
-    const product = ref([]);
+    const product = ref(null);
 
     const { getMutations } = useStoreModule();
 
@@ -242,5 +258,9 @@ export default defineComponent({
 
 .row_odd_colour {
   background-color: #e3e9e3;
+}
+
+.warning-text {
+  color: red;
 }
 </style>

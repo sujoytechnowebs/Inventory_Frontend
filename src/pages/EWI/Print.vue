@@ -10,7 +10,7 @@
     <b>Ewi Amount:</b> {{ getPrintData.ewiAmount }}
   </div>
   <div class="normal_margin">
-    <b>Current EWI:</b> {{ getPrintData.current_ewi }}
+    <b>Total Paid EWI:</b> {{ getPrintData.current_ewi }}
   </div>
   <div class="normal_margin">
     <b>Total Amount:</b> {{ getPrintData.amount }}

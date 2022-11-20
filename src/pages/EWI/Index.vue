@@ -164,12 +164,27 @@
                 <q-card-section>
                   <div class="row q-col-gutter-md">
                     <div class="col-12">
-                      <q-select
+                      <!-- <q-select
                         outlined
                         dense
                         v-model="status"
                         :options="options"
                         label="Status"
+                        :error-message="$getValidationErrors('status')"
+                        :error="$hasValidationErrors('status')"
+                      ></q-select> -->
+
+                      <q-select
+                        outlined
+                        dense
+                        v-model="status"
+                        :options="status_type"
+                        label="Status"
+                        option-value="value"
+                        option-label="label"
+                        option-disable="inactive"
+                        emit-value
+                        map-options
                         :error-message="$getValidationErrors('status')"
                         :error="$hasValidationErrors('status')"
                       ></q-select>
@@ -180,8 +195,7 @@
                         dense
                         label="EWI Date"
                         outlined
-                        v-model="ewi_date"
-                        mask="date"
+                        v-model="ewi_date_format"
                         :error-message="$getValidationErrors('ewi_date')"
                         :error="$hasValidationErrors('ewi_date')"
                       >
@@ -293,6 +307,11 @@
                   no-caps
                   flat
                   @click="instantPay(bodyRow.row.id)"
+                  @click.prevent="
+                    playSound(
+                      'http://soundbible.com/mp3/Air Plane Ding-SoundBible.com-496729130.mp3'
+                    )
+                  "
                 />
               </span>
 
@@ -384,9 +403,9 @@ export default defineComponent({
       "filter",
     ]),
 
-    // ewi_date_format() {
-    //   return this.$dateConvert.format(this.ewi_date);
-    // },
+    ewi_date_format() {
+      return this.$dateConvert.format(this.ewi_date);
+    },
   },
   setup() {
     const { getGetters, getAction } = useStoreModule();
@@ -407,7 +426,21 @@ export default defineComponent({
       aditionalActions: true,
       showEditModal,
       showCreateModal,
-      options: ["due", "collected"],
+      // options: ["due", "collected"],
+      status_type: [
+        {
+          value: "all",
+          label: "All",
+        },
+        {
+          value: "due",
+          label: "Due",
+        },
+        {
+          value: "collected",
+          label: "Collected",
+        },
+      ],
       alert: ref(false),
       alert2: ref(false),
       instantPay,
@@ -480,6 +513,15 @@ export default defineComponent({
           this.$router.push({ name: "ewi-receipt" });
         })
         .catch((error) => {});
+    },
+
+    // Test
+
+    playSound(sound) {
+      if (sound) {
+        var audio = new Audio(sound);
+        audio.play();
+      }
     },
   },
 });
