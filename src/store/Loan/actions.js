@@ -284,12 +284,12 @@ export function getReportPdf({ commit, state }, props) {
   });
 }
 
-// Invoice Download
+// Proposal Bengali Form
 
 export function getReportProposal({ commit, state }, props) {
   return new Promise((resolve, reject) => {
     axios
-      .get(`sale-invoice-pdf/${props.proposal_id}`)
+      .get(`loan-proposal-form/${props.proposal_id}`)
       .then((response) => {
         resolve(response);
       })

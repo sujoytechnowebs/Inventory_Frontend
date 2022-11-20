@@ -284,6 +284,24 @@ const routes = [
     ],
   },
 
+  // Test By Sujoy
+
+  {
+    path: "/print/",
+    component: () => import("layouts/BengaliLayout.vue"),
+    children: [
+      {
+        name: "bengali-receipt",
+        path: "bengali-receipt",
+        component: () => import("pages/Loan/BengaliPrint"),
+        meta: {
+          name: "receipt",
+          requiresAuth: true,
+        },
+      },
+    ],
+  },
+
   {
     path: "/",
     component: () => import("layouts/GuestLayout.vue"),

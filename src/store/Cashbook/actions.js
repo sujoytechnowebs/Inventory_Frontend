@@ -123,7 +123,7 @@ export function getReport({ commit, state }, props) {
     account_type: state?.filter?.account_type,
     fromDate: state?.filter?.fromDate,
     toDate: state?.filter?.toDate,
-    transType: state?.filter?.transType,
+    branch_id: state?.filter?.branch_id,
   };
 
   return new Promise((resolve, reject) => {

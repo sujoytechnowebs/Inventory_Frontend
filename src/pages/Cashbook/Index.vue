@@ -129,7 +129,7 @@
                       </q-input>
                     </div>
                     <div class="col-12">
-                      <q-select
+                      <!-- <q-select
                         outlined
                         dense
                         v-model="transType"
@@ -142,7 +142,18 @@
                         map-options
                         :error-message="$getValidationErrors('transType')"
                         :error="$hasValidationErrors('transType')"
-                      />
+                      /> -->
+                      <QSearch
+                        v-model="branch_id"
+                        label="Branch"
+                        option-value="id"
+                        option-label="name"
+                        data-store="branch"
+                        action="getItems"
+                        :multiple="false"
+                        :error-message="$getValidationErrors('branch_id')"
+                        :error="$hasValidationErrors('branch_id')"
+                      ></QSearch>
                     </div>
                   </div>
                 </q-card-section>
@@ -186,7 +197,7 @@ export default defineComponent({
       "filter.account_type",
       "filter.fromDate",
       "filter.toDate",
-      "filter.transType",
+      "filter.branch_id",
       "filter",
     ]),
   },

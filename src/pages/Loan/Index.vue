@@ -102,7 +102,7 @@
             label="Proposal Report"
             no-caps
             flat
-            @click="proposalReport(actionsRow.row.id)"
+            @click="proposalReport(actionsRow.row)"
           />
         </template>
       </QDataTable>
@@ -345,13 +345,25 @@ export default defineComponent({
 
     // Proposal Report
 
-    proposalReport(proposal_id) {
+    proposalReport(row) {
+      // this.$store.commit(`${this.dataStore}/setBengaliData`, data);
+      // this.$router.push({ name: "bengali-receipt" });
+
+      // this.$store
+      //   .dispatch(`${this.dataStore}/getItem`, proposal_id)
+      //   .then((response) => {
+      //     // this.$store.commit(${this.dataStore}/getReportProposal``)
+      //     // // window.open(response.data.tempUrl, "_system");
+      //   })
+      //   .catch((error) => {});
+
       this.$store
         .dispatch(`${this.dataStore}/getReportProposal`, {
-          proposal_id: proposal_id,
+          proposal_id: row.id,
         })
         .then((response) => {
-          window.open(response.data.tempUrl, "_system");
+          this.$store.commit(`${this.dataStore}/setBengaliData`, response.data);
+          this.$router.push({ name: "bengali-receipt" });
         })
         .catch((error) => {});
     },

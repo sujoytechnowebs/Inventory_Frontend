@@ -76,3 +76,7 @@ export function setDisburseData(state, payload) {
   state.disburseItem.id = payload.id;
   state.disburseItem.ewi_start_date = payload.ewi_start_date;
 }
+
+export function setBengaliData(state, payload) {
+  state.printBengaliData = payload;
+}

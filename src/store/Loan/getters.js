@@ -34,3 +34,7 @@ export function showDisburseModal(state) {
 export function lastUpdated(state) {
   return state.lastUpdated;
 }
+
+export function getBengaliData(state) {
+  return state.printBengaliData;
+}

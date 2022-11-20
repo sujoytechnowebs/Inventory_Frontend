@@ -156,7 +156,7 @@ export default function () {
       id: "",
       ewi_start_date: "",
     },
-
+    printBengaliData: {},
     modals: {
       createItem: false,
       editItem: false,
