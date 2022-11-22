@@ -50,6 +50,13 @@ export default function () {
         label: "Collected Date",
         sortable: true,
       },
+      // Test 1
+      {
+        name: "hello",
+        align: "left",
+        label: "Hello",
+        sortable: true,
+      },
       { name: "payment", align: "center", label: "Payment" },
       { name: "invoice", align: "right", label: "Invoice" },
     ],

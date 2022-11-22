@@ -312,6 +312,10 @@
               {{ $dateConvert.format(bodyRow.row.collected_date) }}
             </q-td>
 
+            <q-td key="hello">
+              {{ bodyRow.row?.ewi - bodyRow.row?.ewi }}
+            </q-td>
+
             <q-td key="payment" align="right">
               <span
                 v-if="
