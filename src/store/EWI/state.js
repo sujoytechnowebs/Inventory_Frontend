@@ -52,9 +52,9 @@ export default function () {
       },
       // Test 1
       {
-        name: "hello",
+        name: "loanAmount",
         align: "left",
-        label: "Hello",
+        label: "Loan Amount",
         sortable: true,
       },
       { name: "payment", align: "center", label: "Payment" },
