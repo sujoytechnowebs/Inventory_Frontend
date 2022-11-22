@@ -4,9 +4,9 @@
       <div class="col-6">
         <QSearch
           v-model="product"
-          label="Product Name"
+          label="Product"
           option-value="id"
-          option-label="name"
+          option-label="productSlNo"
           data-store="product"
           action="getItems"
           :multiple="false"

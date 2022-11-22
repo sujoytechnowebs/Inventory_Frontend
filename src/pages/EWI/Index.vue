@@ -19,7 +19,7 @@
             EWI Management Table
           </div>
           <div class="col-xs-12 col-sm-8 col-md-8 row justify-end items-center">
-            <div class="col-12 col-md-4 col-lg-4 q-pt-sm">
+            <div class="col-12 col-md-3 col-lg-3 q-pt-sm">
               <q-btn
                 label="Collection Sheet"
                 no-caps
@@ -29,7 +29,7 @@
               >
               </q-btn>
             </div>
-            <div class="col-12 col-md-4 col-lg-4 q-pt-sm">
+            <div class="col-12 col-md-3 col-lg-3 q-pt-sm">
               <q-btn
                 label="Download Report"
                 no-caps
@@ -49,7 +49,24 @@
               >
               </q-btn>
             </div> -->
-            <div class="col-12 col-md-4 col-lg-4 q-pt-sm">
+
+            <!-- Test By Sujoy -->
+
+            <div class="col-12 col-md-3 col-lg-3 q-pt-lg q-pr-sm">
+              <QSearch
+                v-model="groupId"
+                label="Group"
+                option-value="id"
+                option-label="name"
+                data-store="group"
+                action="getItems"
+                :multiple="false"
+                :error-message="$getValidationErrors('groupId')"
+                :error="$hasValidationErrors('groupId')"
+              ></QSearch>
+            </div>
+
+            <div class="col-12 col-md-3 col-lg-3 q-pt-sm">
               <q-input
                 outlined
                 dense
@@ -308,9 +325,7 @@
                   flat
                   @click="instantPay(bodyRow.row.id)"
                   @click.prevent="
-                    playSound(
-                      'http://soundbible.com/mp3/Air Plane Ding-SoundBible.com-496729130.mp3'
-                    )
+                    playSound(require('../../assets/sound/ringtone.mp3'))
                   "
                 />
               </span>

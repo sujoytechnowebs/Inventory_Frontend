@@ -61,7 +61,7 @@ export default function () {
       account_type: "",
       fromDate: "",
       toDate: "",
-      transType: "",
+      branch_id: null,
       trashed: false,
     },
     lastUpdated: "",

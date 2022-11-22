@@ -18,6 +18,7 @@ export function getItems({ commit, state }, props) {
     page: props.pagination.page,
     rowsPerPage: props.pagination.rowsPerPage,
     search: props.search ? props.search : state.filter.search,
+    groupId: props.groupId ? props.groupId : state.filter.groupId,
   };
 
   return new Promise((resolve, reject) => {
