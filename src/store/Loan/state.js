@@ -157,12 +157,14 @@ export default function () {
       ewi_start_date: "",
     },
     printBengaliData: {},
+    customerData: {},
     modals: {
       createItem: false,
       editItem: false,
       verify: false,
       approve: false,
       disburse: false,
+      details: false,
     },
   };
 }

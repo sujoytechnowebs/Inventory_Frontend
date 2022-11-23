@@ -4,6 +4,8 @@ const endPoint = "/ledgers";
 import moment from "moment";
 
 export function getItems({ commit, state }, props) {
+  console.error("Props => ", props);
+
   if (props.pagination.descending == true) {
     var direction = "DESC";
   } else {
@@ -16,6 +18,12 @@ export function getItems({ commit, state }, props) {
     page: props.pagination.page,
     rowsPerPage: props.pagination.rowsPerPage,
     search: props.search ? props.search : state.filter.search,
+    account_type: props.account_type
+      ? props.account_type
+      : state.filter.account_type,
+    fromDate: props.fromDate ? props.fromDate : state.filter.fromDate,
+    toDate: props.toDate ? props.toDate : state.filter.toDate,
+    branch_id: props.branch_id ? props.branch_id : state.filter.branch_id,
   };
 
   return new Promise((resolve, reject) => {

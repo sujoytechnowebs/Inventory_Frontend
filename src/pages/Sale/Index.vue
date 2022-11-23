@@ -7,7 +7,6 @@
         :hasEditPermission="hasEditPermission"
         :aditionalActions="aditionalActions"
         :filter="filter"
-        :canEdit="false"
       >
         <template v-slot:top>
           <div

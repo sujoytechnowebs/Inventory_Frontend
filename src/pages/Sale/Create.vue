@@ -40,6 +40,13 @@
                     dense
                     v-model="customer_name"
                     label="Customer Name"
+                    :rules="[
+                      (val) =>
+                        (val && !validationErrors.customer_name > 0) ||
+                        validationErrors.customer_name
+                          ? validationErrors.customer_name
+                          : 'Please write the customer name',
+                    ]"
                   />
                 </div>
               </div>
