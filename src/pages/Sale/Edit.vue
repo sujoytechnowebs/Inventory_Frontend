@@ -15,18 +15,24 @@
             <!-- Test Testing -->
             <div class="row q-col-gutter-md">
               <div class="col-12">
-                <q-select
-                  outlined
-                  v-model="cust_type"
-                  :options="cust_option"
-                  label="Customer Type"
-                  dense
-                  option-value="value"
-                  option-label="label"
-                  option-disable="inactive"
-                  emit-value
-                  map-options
-                ></q-select>
+                <div v-if="customer_id != null">
+                  <q-input
+                    outlined
+                    dense
+                    v-model="cust_type1"
+                    label="Customer Type"
+                    readonly
+                  />
+                </div>
+                <div v-if="customer_name != null">
+                  <q-input
+                    outlined
+                    dense
+                    v-model="cust_type2"
+                    label="Customer Type"
+                    readonly
+                  />
+                </div>
               </div>
             </div>
 
@@ -34,7 +40,7 @@
 
             <div class="row q-col-gutter-md q-pb-md q-pt-md">
               <div class="col-12 col-md-6 col-lg-6">
-                <div v-if="cust_type === 'cust_non_regis'">
+                <div v-if="customer_name != null">
                   <q-input
                     outlined
                     dense
@@ -44,7 +50,7 @@
                 </div>
               </div>
               <div class="col-12 col-md-6 col-lg-6">
-                <div v-if="cust_type === 'cust_non_regis'">
+                <div v-if="customer_name != null">
                   <q-input
                     outlined
                     dense
@@ -55,7 +61,7 @@
                 </div>
               </div>
               <div class="col-12">
-                <div v-if="cust_type === 'cust_non_regis'">
+                <div v-if="customer_name != null">
                   <q-input
                     outlined
                     dense
@@ -68,7 +74,7 @@
 
             <div class="row q-col-gutter-md">
               <div class="col-12 col-md-6 col-lg-6">
-                <div v-if="cust_type === 'cust_regis'">
+                <div v-if="customer_id != null">
                   <QSearch
                     v-model="customer_id"
                     label="Customer Name"
@@ -201,38 +207,38 @@
               </div>
 
               <div class="col-12 col-md-4 col-lg-4">
-                <div v-if="cust_type === 'cust_regis'">
-                  <q-select
-                    outlined
-                    v-model="payment_method"
-                    :options="payment"
-                    label="Payment Method"
-                    dense
-                    option-value="value"
-                    option-label="label"
-                    option-disable="inactive"
-                    emit-value
-                    map-options
-                    :error-message="$getValidationErrors('payment_method')"
-                    :error="$hasValidationErrors('payment_method')"
-                  ></q-select>
+                <div v-if="customer_id != null">
+                <q-select
+                  outlined
+                  v-model="payment_method"
+                  :options="payment"
+                  label="Payment Method"
+                  dense
+                  option-value="value"
+                  option-label="label"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
+                  :error-message="$getValidationErrors('payment_method')"
+                  :error="$hasValidationErrors('payment_method')"
+                ></q-select>
                 </div>
 
-                <div v-if="cust_type === 'cust_non_regis'">
-                  <q-select
-                    outlined
-                    v-model="payment_method"
-                    :options="non_payment"
-                    label="Payment Method"
-                    dense
-                    option-value="value"
-                    option-label="label"
-                    option-disable="inactive"
-                    emit-value
-                    map-options
-                    :error-message="$getValidationErrors('payment_method')"
-                    :error="$hasValidationErrors('payment_method')"
-                  ></q-select>
+                <div v-if="customer_name != null">
+                <q-select
+                  outlined
+                  v-model="payment_method"
+                  :options="non_payment"
+                  label="Payment Method"
+                  dense
+                  option-value="value"
+                  option-label="label"
+                  option-disable="inactive"
+                  emit-value
+                  map-options
+                  :error-message="$getValidationErrors('payment_method')"
+                  :error="$hasValidationErrors('payment_method')"
+                ></q-select>
                 </div>
               </div>
 
@@ -486,7 +492,7 @@ const editSales = defineAsyncComponent(() =>
 );
 
 export default {
-  name: "SaleCreatePage",
+  name: "SaleEditPage",
 
   components: {
     editSales,
@@ -533,20 +539,20 @@ export default {
           label: "Received",
         },
         {
-          value: "deliverd",
+          value: "delivered",
           label: "Delivered",
         },
       ],
-      cust_option: [
-        {
-          value: "cust_non_regis",
-          label: "Non Registered Customer",
-        },
-        {
-          value: "cust_regis",
-          label: "Registered Customer",
-        },
-      ],
+      // cust_option: [
+      //   {
+      //     value: "cust_non_regis",
+      //     label: "Non Registered Customer",
+      //   },
+      //   {
+      //     value: "cust_regis",
+      //     label: "Registered Customer",
+      //   },
+      // ],
     };
   },
 
@@ -580,7 +586,8 @@ export default {
       "editItem.customer_name",
       "editItem.customer_address",
       "editItem.customer_phone",
-      "editItem.cust_type",
+      "editItem.cust_type1",
+      "editItem.cust_type2",
       "editItem.day",
     ]),
     ...mapGetters("auth", ["getActiveBranch"]),

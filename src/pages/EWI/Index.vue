@@ -252,19 +252,14 @@
                   </div>
                 </q-card-section>
 
-                <q-card-actions align="between">
-                  <q-btn
+                <q-card-actions align="right">
+                  <!-- <q-btn
                     flat
                     label="Download Excel"
                     no-caps
                     @click="exportInExcel"
-                  />
-                  <q-btn
-                    flat
-                    label="Download PDF"
-                    no-caps
-                    @click="exportInPdf"
-                  />
+                  /> -->
+                  <q-btn flat label="Download" no-caps @click="exportInPdf" />
                 </q-card-actions>
               </q-card>
             </q-dialog>
@@ -313,7 +308,9 @@
             </q-td>
 
             <q-td key="loanAmount">
-              {{ bodyRow.row?.loan.loan_amount - bodyRow.row?.loan.down_payment }}
+              {{
+                bodyRow.row?.loan?.loan_amount - bodyRow.row?.loan?.down_payment
+              }}
             </q-td>
 
             <q-td key="payment" align="right">
@@ -351,7 +348,7 @@
 
               <span
                 v-if="
-                  bodyRow.row.status === 'collected' ||
+                  bodyRow.row.status === 'due' ||
                   bodyRow.row.status === 'partial collected'
                 "
               >
@@ -525,7 +522,7 @@ export default defineComponent({
       // });
       this.$store
         .dispatch(`${this.dataStore}/getReportInvoice`, {
-          invoice_id: row.id,
+          invoice_id: row.loan_id,
         })
         .then((response) => {
           this.$store.commit(`${this.dataStore}/setPrintData`, response.data);

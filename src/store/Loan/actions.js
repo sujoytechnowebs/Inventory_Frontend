@@ -298,3 +298,18 @@ export function getReportProposal({ commit, state }, props) {
       });
   });
 }
+
+// Test By Sujoy
+
+export function getAllDetails({ commit, state }, props) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`loan-payment-summery/${props.loan_id}`)
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}

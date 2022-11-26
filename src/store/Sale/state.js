@@ -130,7 +130,7 @@ export default function () {
       loan_amount: null,
       processing_fees: 2,
       down_payment: "",
-      calculations: "", // This is the test field
+      calculations: "",
       grand_item_rate_total: 0,
       loan_with_processing_fees: 0,
       loan_after_downpayment: 0,
@@ -141,7 +141,9 @@ export default function () {
       customer_name: "",
       customer_address: "",
       customer_phone: "",
-      cust_type: "",
+      cust_type1: "Registered Customer",
+      cust_type2: "Non Registered Customer",
+      day: "",
     },
     modals: {
       createItem: false,

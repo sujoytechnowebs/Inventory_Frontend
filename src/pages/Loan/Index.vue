@@ -10,6 +10,7 @@
         :filter="filter"
         :canAdd="false"
         :canEdit="false"
+        :canDelete="false"
       >
         <template v-slot:top>
           <div
@@ -104,6 +105,15 @@
             flat
             @click="proposalReport(actionsRow.row)"
           />
+
+          <!-- Customer Loan Details -->
+
+          <q-btn
+            label="Details"
+            no-caps
+            flat
+            @click="allDetails(actionsRow.row)"
+          />
         </template>
       </QDataTable>
 
@@ -134,6 +144,14 @@
         </div>
       </q-dialog>
 
+      <!-- Sujoy Popup Model -->
+
+      <q-dialog v-model="showDetailsModal">
+        <div :class="$q.platform.is.desktop ? 'details-form-width' : ''">
+          <div><Details /></div>
+        </div>
+      </q-dialog>
+
       <q-dialog v-model="showCreateModal">
         <div :class="$q.platform.is.desktop ? 'loan-create-form' : ''">
           <CreateLoan v-bind:modal="true"></CreateLoan>
@@ -147,6 +165,15 @@
       </q-dialog>
     </q-card-section>
   </div>
+
+  <!-- Sujoy Test -->
+  <!-- <q-dialog v-model="test">
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">Alert</div>
+      </q-card-section>
+    </q-card>
+  </q-dialog> -->
 
   <!-- Dialog Box Appear -->
 
@@ -229,9 +256,9 @@
           </div>
         </q-card-section>
 
-        <q-card-actions align="between">
-          <q-btn flat label="Download Excel" no-caps @click="exportInExcel" />
-          <q-btn flat label="Download PDF" no-caps @click="exportInPdf" />
+        <q-card-actions align="right">
+          <!-- <q-btn flat label="Download Excel" no-caps @click="exportInExcel" /> -->
+          <q-btn flat label="Download" no-caps @click="exportInPdf" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -262,6 +289,8 @@ const Disburse = defineAsyncComponent(() =>
   import("./_components/disburse.vue")
 );
 
+const Details = defineAsyncComponent(() => import("./_components/details.vue"));
+
 export default defineComponent({
   name: "LoanIndexPage",
 
@@ -272,6 +301,7 @@ export default defineComponent({
     Approve,
     Disburse,
     Calculator,
+    Details,
   },
 
   computed: {
@@ -290,12 +320,13 @@ export default defineComponent({
     },
   },
   setup() {
-    const { getGetters } = useStoreModule();
+    const { getGetters, getMutations } = useStoreModule();
     const { showEditModal } = getGetters("loan", ["showEditModal"]);
     const { showCreateModal } = getGetters("loan", ["showCreateModal"]);
     const { showVerifyModal } = getGetters("loan", ["showVerifyModal"]);
     const { showApproveModal } = getGetters("loan", ["showApproveModal"]);
     const { showDisburseModal } = getGetters("loan", ["showDisburseModal"]);
+    const { showDetailsModal } = getGetters("loan", ["showDetailsModal"]);
 
     return {
       hasEditPermission: true,
@@ -306,6 +337,7 @@ export default defineComponent({
       showVerifyModal,
       showApproveModal,
       showDisburseModal,
+      showDetailsModal,
 
       verify: ref(false),
       approve: ref(false),
@@ -315,6 +347,7 @@ export default defineComponent({
       disburse: ref(false),
 
       alert: ref(false),
+      test: ref(false),
     };
   },
 
@@ -334,6 +367,20 @@ export default defineComponent({
     OnDisburse(payload) {
       this.$store.commit("loan/showHideDisburseModal", true);
       this.$store.commit("loan/setDisburseData", payload);
+    },
+
+    // Test By Sujoy
+
+    allDetails(row) {
+      this.$store
+        .dispatch(`${this.dataStore}/getAllDetails`, {
+          loan_id: row.id,
+        })
+        .then((response) => {
+          this.$store.commit(`${this.dataStore}/setAllData`, response.data);
+          this.$store.commit(`${this.dataStore}/setDetailsModal`, true);
+        })
+        .catch((error) => {});
     },
 
     download() {
@@ -426,5 +473,10 @@ export default defineComponent({
 .dialog-head {
   font-size: 1rem;
   font-weight: 500;
+}
+
+.details-form-width {
+  width: 45%;
+  max-width: 45%;
 }
 </style>

@@ -10,61 +10,6 @@
       >
         <div class="row q-mt-md q-mb-md q-col-gutter-md">
           <div class="col-12">
-            <QSearch
-              v-model="collected_by"
-              label="Collected By"
-              option-value="id"
-              option-label="name"
-              data-store="user"
-              action="getItems"
-              :multiple="false"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.collected_by > 0) ||
-                  validationErrors.collected_by
-                    ? validationErrors.collected_by
-                    : 'Please Chose The User Name',
-              ]"
-            ></QSearch>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <q-input
-              outlined
-              label="Collected Date"
-              dense
-              v-model="collected_date"
-              mask="date"
-              :rules="[
-                (val) =>
-                  (val && !validationErrors.collected_date > 0) ||
-                  validationErrors.collected_date
-                    ? validationErrors.collected_date
-                    : 'Please Chose The Collected Date',
-              ]"
-            >
-              <template v-slot:prepend>
-                <q-icon name="event" class="cursor-pointer">
-                  <q-popup-proxy
-                    cover
-                    transition-show="scale"
-                    transition-hide="scale"
-                  >
-                    <q-date v-model="collected_date">
-                      <div class="row items-center justify-end">
-                        <q-btn
-                          v-close-popup
-                          label="Close"
-                          color="primary"
-                          flat
-                        />
-                      </div>
-                    </q-date>
-                  </q-popup-proxy>
-                </q-icon>
-              </template>
-            </q-input>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
             <q-select
               outlined
               v-model="payment_method"
@@ -80,7 +25,7 @@
               ]"
             />
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12">
             <q-input
               ref="ewi"
               outlined
@@ -98,7 +43,7 @@
             >
             </q-input>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12">
             <q-input
               ref="paymentAmount"
               outlined

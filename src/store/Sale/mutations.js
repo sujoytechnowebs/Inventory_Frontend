@@ -31,20 +31,44 @@ export function setEditItem(state, payload) {
   state.editItem.payment_method = payload.payment_method;
   state.editItem.note = payload.note;
   state.editItem.status = payload.status;
-  state.editItem.application_received_date =
-    payload.loan.application_received_date; // Let me check
-  state.editItem.application_received_by = payload.application_received_by; // Let me check
-  state.editItem.ewi_start_date = payload.ewi_start_date; // Let me check
-  state.editItem.no_of_ewi = payload.no_of_ewi; // Let me check
-  state.editItem.loan_amount = payload.loan_amount; // Let me check
-  state.editItem.processing_fees = payload.processing_fees; // Let me check
-  state.editItem.monthly_income = payload.monthly_income; // Let me check
-  state.editItem.occupation = payload.occupation; // Let me check
-  state.editItem.name = payload.name; // Let me check
-  state.editItem.customer_name = payload.customer_name; // Let me check
-  state.editItem.customer_address = payload.customer_address; // Let me check
-  state.editItem.customer_phone = payload.customer_phone; // Let me check
-  state.editItem.cust_type = payload.cust_type; // Let me check
+
+  // Guest Customer
+  state.editItem.customer_name = payload?.guest_customer?.customer_name
+    ? payload.guest_customer.customer_name
+    : null;
+  state.editItem.customer_address = payload?.guest_customer?.customer_address
+    ? payload.guest_customer.customer_address
+    : null;
+  state.editItem.customer_phone = payload?.guest_customer?.customer_phone
+    ? payload.guest_customer.customer_phone
+    : null;
+
+  // Registered Customer
+
+  state.editItem.customer_id = payload.customer_id;
+
+  state.editItem.no_of_ewi = payload?.loan?.no_of_ewi
+    ? payload.loan.no_of_ewi
+    : null;
+  state.editItem.down_payment = payload?.loan?.down_payment
+    ? payload.loan.down_payment
+    : null;
+  state.editItem.application_received_date = payload?.loan
+    ?.application_received_date
+    ? payload.loan.application_received_date
+    : null;
+  state.editItem.application_received_by = payload?.loan
+    ?.application_received_by
+    ? payload.loan.application_received_by
+    : null;
+  state.editItem.ewi_start_date = payload?.loan?.ewi_start_date
+    ? payload.loan.ewi_start_date
+    : null;
+  state.editItem.day = payload?.customer?.user_group.group.day
+    ? payload.customer.user_group.group.day
+    : null;
+
+  state.editItem.salesDetails = payload.sales_details;
 }
 
 export function setEditModal(state, payload) {
@@ -97,9 +121,9 @@ export function editProductDetails(state, payload) {
     item_rate: payload.sale_price,
     quantity: null,
     discount: 0,
-    custom_price: false,
+    // custom_price: false,
     product_id: payload.id,
-    product_name: payload.name,
+    product: { name: payload.name },
   });
 }
 

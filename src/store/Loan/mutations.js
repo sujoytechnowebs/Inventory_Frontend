@@ -30,7 +30,9 @@ export function setEditItem(state, payload) {
   state.editItem.application_received_date = payload.application_received_date;
   state.editItem.application_received_by = payload.application_received_by;
   state.editItem.ewi_start_date = payload.ewi_start_date;
-  state.editItem.loan_amount = payload.loan_amount;
+  state.editItem.loan_amount = payload?.loan_amount
+    ? payload.loan_amount
+    : null;
   state.editItem.processing_fees = payload.processing_fees;
   state.editItem.down_payment = payload.down_payment;
   state.editItem.status = payload.status;
@@ -80,3 +82,18 @@ export function setDisburseData(state, payload) {
 export function setBengaliData(state, payload) {
   state.printBengaliData = payload;
 }
+
+// Test By Sujoy
+
+export function setAllData(state, payload) {
+  state.customerData = payload;
+}
+
+export function setDetailsModal(state, payload) {
+  state.modals.details = payload;
+}
+
+// export function setViewCustomersModal(state, payload) {
+//   console.log("loan mutation", payload);
+//   state.modals.details = payload;
+// }

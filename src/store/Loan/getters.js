@@ -38,3 +38,17 @@ export function lastUpdated(state) {
 export function getBengaliData(state) {
   return state.printBengaliData;
 }
+
+// Test By Sujoy
+
+export function getCustomerData(state) {
+  return state.customerData;
+}
+
+export function showDetailsModal(state) {
+  return state.modals.details;
+}
+
+// export function getModelClose(state) {
+//   return state.modals.details;
+// }
