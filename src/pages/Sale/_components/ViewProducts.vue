@@ -1,27 +1,29 @@
 <template>
   <q-card>
-    <q-card-actions align="between">
-      <p class="product_list q-pt-md q-pl-sm">Product List</p>
-      <q-btn flat dense round icon="clear" @click="closeModel(false)" />
-    </q-card-actions>
+    <div class="bg-primary text-white">
+      <q-card-actions align="between">
+        <p class="product_list q-pt-md q-pl-sm">Product List</p>
+        <q-btn flat dense round icon="clear" @click="closeModel(false)" />
+      </q-card-actions>
+    </div>
 
     <div
       v-for="item in getViewProductsDetails.sales_details"
       class="row"
       :key="item"
     >
-      <q-card-section>
+      <div class="col-12 q-pl-sm q-pt-md">
         <span class="product_head">Product Name:</span> {{ item.product.name }}
-      </q-card-section>
+      </div>
 
-      <q-card-section>
+      <div class="col-12 q-pl-sm q-pt-md">
         <span class="product_head">Quantity:</span> {{ item.quantity }}
-      </q-card-section>
+      </div>
 
-      <q-card-section>
+      <div class="col-12 q-pl-sm q-pt-md q-pb-md">
         <span class="product_head">Sale Price:</span>
         {{ item.product.sale_price }}
-      </q-card-section>
+      </div>
     </div>
   </q-card>
 </template>
@@ -61,7 +63,7 @@ export default defineComponent({
 
 <style scoped>
 .product_list {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 600;
 }
 

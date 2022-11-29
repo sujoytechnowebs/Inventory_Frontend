@@ -37,7 +37,7 @@ export function setLastUpdated(state, payload) {
 export function setProductDetails(state, payload) {
   console.log("payload", payload);
   state.newItem.purchase_return_details.push({
-    quantity: null,
+    quantity: 1,
     product_id: payload.id,
     product_name: payload.name,
   });

@@ -21,12 +21,14 @@
           <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
             <div class="col-6">
               <q-btn
-                label="Disburse Report"
-                no-caps
-                outline
-                color="primary"
+                flat
+                round
+                dense
+                icon="cloud_download"
+                class="q-ml-sm"
                 @click="alert = true"
               >
+                <q-tooltip> Disburse Report </q-tooltip>
               </q-btn>
             </div>
             <div class="col-6">

@@ -37,7 +37,7 @@ export function setProductDetailModel(state, payload) {
 export function setProductDetails(state, payload) {
   console.log("payload", payload);
   state.newItem.salesReturnDetails.push({
-    quantity: null,
+    quantity: 1,
 
     product_id: payload.id,
     product_name: payload.name,

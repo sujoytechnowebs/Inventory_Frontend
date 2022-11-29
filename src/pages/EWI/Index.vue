@@ -21,22 +21,26 @@
           <div class="col-xs-12 col-sm-8 col-md-8 row justify-end items-center">
             <div class="col-12 col-md-3 col-lg-3 q-pt-sm">
               <q-btn
-                label="Collection Sheet"
-                no-caps
-                outline
-                color="primary"
+                flat
+                round
+                dense
+                icon="system_update_alt"
+                class="q-ml-sm"
                 @click="alert2 = true"
               >
+                <q-tooltip> Collection Sheet </q-tooltip>
               </q-btn>
             </div>
             <div class="col-12 col-md-3 col-lg-3 q-pt-sm">
               <q-btn
-                label="Download Report"
-                no-caps
-                outline
-                color="primary"
+                flat
+                round
+                dense
+                icon="cloud_download"
+                class="q-ml-sm"
                 @click="alert = true"
               >
+                <q-tooltip> Download Report </q-tooltip>
               </q-btn>
             </div>
             <!-- <div class="col-4">
@@ -353,11 +357,15 @@
                 "
               >
                 <q-btn
-                  label="EWI Invoice"
-                  no-caps
                   flat
+                  round
+                  dense
+                  icon="receipt_long"
+                  color="primary"
                   @click="invoicePrint(bodyRow.row)"
-                />
+                >
+                  <q-tooltip> EWI Invoice </q-tooltip>
+                </q-btn>
               </span>
             </q-td>
           </q-tr>

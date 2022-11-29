@@ -18,23 +18,26 @@
           >
             Transaction Table
           </div>
-          <div class="col-xs-12 col-sm-6 col-md-6 row justify-end items-center">
-            <div class="col-6">
-              <q-btn
-                outline
-                label="Download Report"
-                color="primary"
-                @click="alert = true"
-              />
-            </div>
-            <div class="col-6">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <q-btn
+              flat
+              round
+              dense
+              icon="cloud_download"
+              class="q-ml-sm"
+              @click="alert = true"
+            >
+              <q-tooltip> Download Report </q-tooltip>
+            </q-btn>
+
+            <!-- <div class="col-6">
               <q-btn
                 outline
                 label="Transaction Details"
                 color="primary"
                 @click="alertNew = true"
               />
-            </div>
+            </div> -->
             <!-- <div class="col">
               <q-btn
                 flat
@@ -136,6 +139,104 @@
                 color="primary"
                 @click="alertNew = true"
               />
+            </div> -->
+          </div>
+
+          <!-- Test -->
+
+          <div class="col-12 row select_border q-mt-md">
+            <div class="col-12 col-md-4 col-lg-4 q-pt-md q-pl-md q-pr-md">
+              <q-select
+                outlined
+                dense
+                v-model="account_type"
+                :options="type_account"
+                label="Account Type"
+                option-value="value"
+                option-label="label"
+                option-disable="inactive"
+                emit-value
+                map-options
+                :error-message="$getValidationErrors('account_type')"
+                :error="$hasValidationErrors('account_type')"
+              />
+            </div>
+            <div class="col-12 col-md-4 col-lg-4 q-pt-md q-pl-md q-pr-md">
+              <q-input
+                outlined
+                dense
+                v-model="fromDate"
+                label="From Date"
+                mask="date"
+                :error-message="$getValidationErrors('fromDate')"
+                :error="$hasValidationErrors('fromDate')"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="event" class="cursor-pointer">
+                    <q-popup-proxy
+                      cover
+                      transition-show="scale"
+                      transition-hide="scale"
+                    >
+                      <q-date v-model="fromDate">
+                        <div class="row items-center justify-end">
+                          <q-btn
+                            v-close-popup
+                            label="Close"
+                            color="primary"
+                            flat
+                          />
+                        </div>
+                      </q-date>
+                    </q-popup-proxy>
+                  </q-icon>
+                </template>
+              </q-input>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4 q-pt-md q-pl-md q-pr-md">
+              <q-input
+                outlined
+                dense
+                v-model="toDate"
+                label="To Date"
+                mask="date"
+                :error-message="$getValidationErrors('toDate')"
+                :error="$hasValidationErrors('toDate')"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="event" class="cursor-pointer">
+                    <q-popup-proxy
+                      cover
+                      transition-show="scale"
+                      transition-hide="scale"
+                    >
+                      <q-date v-model="toDate">
+                        <div class="row items-center justify-end">
+                          <q-btn
+                            v-close-popup
+                            label="Close"
+                            color="primary"
+                            flat
+                          />
+                        </div>
+                      </q-date>
+                    </q-popup-proxy>
+                  </q-icon>
+                </template>
+              </q-input>
+            </div>
+            <!-- <div class="col-3 q-pt-md q-pl-md q-pr-md">
+              <QSearch
+                v-model="branch_id"
+                label="Branch"
+                option-value="id"
+                option-label="name"
+                data-store="branch"
+                action="getItems"
+                :multiple="false"
+                :error-message="$getValidationErrors('branch_id')"
+                :error="$hasValidationErrors('branch_id')"
+              ></QSearch>
             </div> -->
           </div>
 
@@ -498,3 +599,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.select_border {
+  border-style: solid;
+  border-width: 1px;
+}
+</style>

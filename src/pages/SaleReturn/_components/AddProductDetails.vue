@@ -52,6 +52,7 @@
           dense
           type="number"
           label="Quantity"
+          readonly
         >
         </q-input>
       </div>
@@ -87,6 +88,7 @@
           dense
           type="number"
           label="Quantity"
+          readonly
         >
         </q-input>
       </div>

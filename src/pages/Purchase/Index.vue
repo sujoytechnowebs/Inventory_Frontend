@@ -144,8 +144,8 @@ export default defineComponent({
 }
 
 .my-card {
-  width: 60%;
-  max-width: 60%;
+  width: 20%;
+  max-width: 20%;
 }
 </style>
 

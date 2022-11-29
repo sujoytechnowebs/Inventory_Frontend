@@ -37,6 +37,7 @@ import saledetails from "./SaleDetails";
 import salereturndetails from "./SaleReturnDetails";
 import openingclose from "./OpeningClose";
 import groupsummary from "./GroupSummary";
+import ledger from "./Ledger";
 
 /*
  * If not building with SSR mode, you can
@@ -88,6 +89,7 @@ export default store(function (/* { ssrContext } */) {
       salereturndetails,
       openingclose,
       groupsummary,
+      ledger,
     },
 
     // enable strict mode (adds overhead!)

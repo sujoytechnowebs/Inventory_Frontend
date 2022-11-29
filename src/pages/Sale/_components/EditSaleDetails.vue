@@ -30,7 +30,17 @@
       >
         <div class="product_list q-mt-md">{{ index + 1 }}<span>)</span></div>
 
-        <div class="col-10 col-md-2 col-lg-2">
+        <div class="col-3 col-md-1 col-lg-1">
+          <q-input
+            ref="product_id"
+            v-model="data.product.productSlNo"
+            dense
+            label="Serial"
+            readonly
+          >
+          </q-input>
+        </div>
+        <div class="col-3 col-md-1 col-lg-1">
           <q-input
             ref="product_id"
             v-model="data.product.name"
@@ -47,6 +57,7 @@
             v-model="data.quantity"
             dense
             label="Quantity"
+            readonly
           >
           </q-input>
         </div>
@@ -104,7 +115,17 @@
       >
         <div class="product_list q-mt-md">{{ index + 1 }}<span>)</span></div>
 
-        <div class="col-10 col-md-2 col-lg-2">
+        <div class="col-3 col-md-1 col-lg-1">
+          <q-input
+            ref="product_id"
+            v-model="data.product.productSlNo"
+            dense
+            label="Serial"
+            readonly
+          >
+          </q-input>
+        </div>
+        <div class="col-3 col-md-1 col-lg-1">
           <q-input
             ref="product_id"
             v-model="data.product.name"
@@ -121,6 +142,7 @@
             v-model="data.quantity"
             dense
             label="Quantity"
+            readonly
           >
           </q-input>
         </div>
