@@ -44,12 +44,12 @@ export function setEditItem(state, payload) {
 export function setProductDetails(state, payload) {
   state.newItem.purchase_details.push({
     item_rate: null,
-    discount: null,
-    quantity: null,
+    quantity: 1,
     discount: 0,
     sales_rate: null,
     product_id: payload.id,
     product_name: payload.name,
+    product_serial_no: payload.productSlNo,
     total: 0,
   });
 }
@@ -57,12 +57,11 @@ export function setProductDetails(state, payload) {
 export function settingProductDetails(state, payload) {
   state.editItem.purchase_details.push({
     item_rate: null,
-    discount: null,
-    quantity: null,
+    quantity: 1,
     discount: 0,
     sales_rate: null,
     product_id: payload.id,
-    product: { name: payload.name },
+    product: { name: payload.name, productSlNo: payload.productSlNo },
     total: 0,
   });
 }
@@ -84,8 +83,7 @@ export function setTotalRate(state, index) {
 export function editProductDetails(state, payload) {
   state.editItem.purchase_details.push({
     item_rate: null,
-    discount: null,
-    quantity: null,
+    quantity: 1,
     discount: 0,
     sales_rate: null,
     product_id: payload.id,

@@ -232,6 +232,12 @@ const linksList = [
     show: "",
     childs: [
       {
+        title: "Ledger",
+        icon: "hlw",
+        link: "/ledger",
+        show: "",
+      },
+      {
         title: "Balance Status",
         icon: "hlw",
         link: "/balance_status",

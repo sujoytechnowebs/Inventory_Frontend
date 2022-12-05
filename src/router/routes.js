@@ -247,6 +247,18 @@ const routes = [
           requiresAuth: true,
         },
       },
+
+      // Ledger View
+
+      {
+        path: "ledger",
+        component: () => import("pages/Ledger/Index.vue"),
+        meta: {
+          name: "ledger-page",
+          requiresAuth: true,
+        },
+      },
+
       {
         path: "balance_status",
         component: () => import("pages/OpeningClose/Index.vue"),

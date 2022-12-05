@@ -1,11 +1,9 @@
 import { api, axios } from "boot/axios";
 
-const endPoint = "/accounts";
-const endAccounts = "/set-asset-account";
-const endAccountsUpdate = "/nominal-account-update";
+const endPoint = "/ledgerView";
 import moment from "moment";
 
-export function getItems({ commit, state, rootState }, props) {
+export function getItems({ commit, state }, props) {
   if (props.pagination.descending == true) {
     var direction = "DESC";
   } else {
@@ -18,7 +16,6 @@ export function getItems({ commit, state, rootState }, props) {
     page: props.pagination.page,
     rowsPerPage: props.pagination.rowsPerPage,
     search: props.search ? props.search : state.filter.search,
-    branch_id: rootState.auth.active_branch,
   };
 
   return new Promise((resolve, reject) => {
@@ -43,27 +40,6 @@ export function getRoles({ commit, state }, props) {
   return new Promise((resolve, reject) => {
     axios
       .get("roles", {
-        params: params,
-      })
-      .then((response) => {
-        resolve(response);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
-}
-
-// Accounts Type
-
-export function getAccountsType({ commit, state }, props) {
-  var params = {
-    all: props.all,
-  };
-
-  return new Promise((resolve, reject) => {
-    axios
-      .get(endAccounts, {
         params: params,
       })
       .then((response) => {
@@ -109,7 +85,7 @@ export function createItem({ commit, state }) {
 export function updateItem({ commit, state }) {
   return new Promise((resolve, reject) => {
     axios
-      .put(endAccountsUpdate + "/" + state.editItem.id, state.editItem)
+      .put(endPoint + "/" + state.editItem.id, state.editItem)
       .then((response) => {
         if (response.data) {
           commit("setLastUpdated", moment());

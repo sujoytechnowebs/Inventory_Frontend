@@ -137,8 +137,8 @@ export default defineComponent({
 }
 
 .my-card {
-  width: 30%;
-  max-width: 30%;
+  width: 20%;
+  max-width: 20%;
 }
 </style>
 

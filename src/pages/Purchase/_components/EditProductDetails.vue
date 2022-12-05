@@ -37,7 +37,17 @@
     >
       <!-- <span v-if="(index + 1) % 2 === 0" class="kk"> Hello </span> -->
       <div class="product_list q-mt-md">{{ index + 1 }}<span>)</span></div>
-      <div class="col-3 col-md-3 col-lg-3">
+      <div class="col-3 col-md-1 col-lg-1">
+        <q-input
+          ref="product_id"
+          v-model="data.product.productSlNo"
+          dense
+          label="Product"
+          readonly
+        >
+        </q-input>
+      </div>
+      <div class="col-3 col-md-1 col-lg-1">
         <q-input
           ref="product_id"
           v-model="data.product.name"
@@ -66,6 +76,7 @@
           dense
           v-on:keypress="NumbersOnly"
           label="Qty"
+          readonly
         >
         </q-input>
       </div>
@@ -95,7 +106,17 @@
     >
       <!-- <span v-if="(index + 1) % 2 === 0" class="kk"> Hello </span> -->
       <div class="product_list q-mt-md">{{ index + 1 }}<span>)</span></div>
-      <div class="col-3 col-md-3 col-lg-3">
+      <div class="col-3 col-md-1 col-lg-1">
+        <q-input
+          ref="product_id"
+          v-model="data.product.productSlNo"
+          dense
+          label="Product"
+          readonly
+        >
+        </q-input>
+      </div>
+      <div class="col-3 col-md-1 col-lg-1">
         <q-input
           ref="product_id"
           v-model="data.product.name"
@@ -124,6 +145,7 @@
           dense
           v-on:keypress="NumbersOnly"
           label="Qty"
+          readonly
         >
         </q-input>
       </div>

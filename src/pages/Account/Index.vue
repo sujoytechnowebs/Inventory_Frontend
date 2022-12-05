@@ -68,6 +68,18 @@
                   flat
                   round
                   dense
+                  color="accent"
+                  icon="edit"
+                  class="q-ml-sm"
+                  @click="setEditModal(bodyRow.row)"
+                >
+                  <q-tooltip> Edit </q-tooltip>
+                </q-btn>
+
+                <q-btn
+                  flat
+                  round
+                  dense
                   color="red"
                   icon="close"
                   class="q-ml-sm"
@@ -88,6 +100,12 @@
       </q-dialog>
     </q-card-section>
 
+    <q-dialog v-model="showEditModal">
+      <div :class="$q.platform.is.desktop ? 'account-form' : ''">
+        <EditAccount v-bind:modal="true"></EditAccount>
+      </div>
+    </q-dialog>
+
     <q-dialog v-model="setViewMoreDetails">
       <div :class="$q.platform.is.desktop ? 'account-form' : ''">
         <ViewDetails></ViewDetails>
@@ -105,12 +123,14 @@ import { defineAsyncComponent } from "vue";
 import useStoreModule from "../../libs/useStoreModule.js";
 
 const CreateAccount = defineAsyncComponent(() => import("./Create.vue"));
+const EditAccount = defineAsyncComponent(() => import("./Edit.vue"));
 
 export default defineComponent({
   name: "AccountIndexPage",
 
   components: {
     CreateAccount,
+    EditAccount,
   },
 
   computed: {
@@ -120,6 +140,7 @@ export default defineComponent({
     const { getGetters, getMutations } = useStoreModule();
 
     const { showCreateModal } = getGetters("account", ["showCreateModal"]);
+    const { showEditModal } = getGetters("account", ["showEditModal"]);
 
     return {
       hasEditPermission: true,
@@ -127,11 +148,26 @@ export default defineComponent({
       aditionalActions: true,
       alert: ref(false),
       showCreateModal,
+      showEditModal,
     };
   },
 
   methods: {
     ...mapActions("account", ["getItems"]),
+
+    setEditModal(props) {
+      this.$store.commit(`${this.dataStore}/setEditModal`, true);
+      this.$store.commit(
+        `${this.dataStore}/setEditItem`,
+        Object.assign({}, props)
+      );
+      // this.$store
+      //   .dispatch(`${this.dataStore}/getItem`, props.user_id)
+      //   .then((response) => {
+      //     this.$store.commit(`${this.dataStore}/setEditModal`, true);
+      //   })
+      //   .catch((error) => {});
+    },
 
     onClickDelete(props) {
       console.log("this is props", props);
@@ -181,8 +217,8 @@ export default defineComponent({
 
 <style scoped>
 .account-form {
-  width: 80%;
-  max-width: 80%;
+  width: 50%;
+  max-width: 50%;
 }
 
 .account-create-form {

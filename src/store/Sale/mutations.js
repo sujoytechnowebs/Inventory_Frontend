@@ -104,11 +104,12 @@ export function setProductDetails(state, payload) {
   // state.newItem.purchase_details = payload;
   state.newItem.salesDetails.push({
     item_rate: payload.sale_price,
-    quantity: null,
+    quantity: 1,
     discount: 0,
     custom_price: false,
     product_id: payload.id,
     product_name: payload.name,
+    product_sn: payload.productSlNo,
   });
 }
 
@@ -119,11 +120,11 @@ export function editProductDetails(state, payload) {
   // state.newItem.purchase_details = payload;
   state.editItem.salesDetails.push({
     item_rate: payload.sale_price,
-    quantity: null,
+    quantity: 1,
     discount: 0,
     // custom_price: false,
     product_id: payload.id,
-    product: { name: payload.name },
+    product: { name: payload.name, productSlNo: payload.productSlNo },
   });
 }
 
