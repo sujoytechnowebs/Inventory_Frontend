@@ -145,7 +145,7 @@
           <!-- Test -->
 
           <div class="col-12 row select_border q-mt-md">
-            <div class="col-12 col-md-4 col-lg-4 q-pt-md q-pl-md q-pr-md">
+            <div class="col-12 col-md-3 col-lg-3 q-pt-md q-pl-md q-pr-md">
               <q-select
                 outlined
                 dense
@@ -161,7 +161,7 @@
                 :error="$hasValidationErrors('account_type')"
               />
             </div>
-            <div class="col-12 col-md-4 col-lg-4 q-pt-md q-pl-md q-pr-md">
+            <div class="col-12 col-md-3 col-lg-3 q-pt-md q-pl-md q-pr-md">
               <q-input
                 outlined
                 dense
@@ -193,7 +193,7 @@
                 </template>
               </q-input>
             </div>
-            <div class="col-12 col-md-4 col-lg-4 q-pt-md q-pl-md q-pr-md">
+            <div class="col-12 col-md-3 col-lg-3 q-pt-md q-pl-md q-pr-md">
               <q-input
                 outlined
                 dense
@@ -225,7 +225,7 @@
                 </template>
               </q-input>
             </div>
-            <!-- <div class="col-3 q-pt-md q-pl-md q-pr-md">
+            <div class="col-12 col-md-3 col-lg-3 q-pt-md q-pl-md q-pr-md">
               <QSearch
                 v-model="branch_id"
                 label="Branch"
@@ -237,7 +237,7 @@
                 :error-message="$getValidationErrors('branch_id')"
                 :error="$hasValidationErrors('branch_id')"
               ></QSearch>
-            </div> -->
+            </div>
           </div>
 
           <!-- Dialog Box Appear Another -->
