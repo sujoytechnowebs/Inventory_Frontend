@@ -104,7 +104,7 @@ export function setProductDetails(state, payload) {
   // state.newItem.purchase_details = payload;
   state.newItem.salesDetails.push({
     item_rate: payload.sale_price,
-    quantity: 1,
+    quantity: null,
     discount: 0,
     custom_price: false,
     product_id: payload.id,
@@ -120,7 +120,7 @@ export function editProductDetails(state, payload) {
   // state.newItem.purchase_details = payload;
   state.editItem.salesDetails.push({
     item_rate: payload.sale_price,
-    quantity: 1,
+    quantity: null,
     discount: 0,
     // custom_price: false,
     product_id: payload.id,

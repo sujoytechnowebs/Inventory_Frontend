@@ -56,8 +56,7 @@
             @keyup="inputValue(index)"
             v-model="data.quantity"
             dense
-            label="Quantity"
-            readonly
+            label="Qty"
           >
           </q-input>
         </div>
@@ -141,8 +140,7 @@
             @keyup="inputValue(index)"
             v-model="data.quantity"
             dense
-            label="Quantity"
-            readonly
+            label="Qty"
           >
           </q-input>
         </div>

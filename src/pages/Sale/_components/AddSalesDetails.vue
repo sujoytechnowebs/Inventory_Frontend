@@ -65,7 +65,6 @@
             v-model="data.quantity"
             dense
             label="Qty"
-            readonly
           >
           </q-input>
         </div>
@@ -151,7 +150,6 @@
             v-model="data.quantity"
             dense
             label="Qty"
-            readonly
           >
           </q-input>
         </div>
