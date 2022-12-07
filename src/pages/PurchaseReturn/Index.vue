@@ -145,7 +145,7 @@ export default defineComponent({
 <style>
 .return-form-dialog .q-dialog__inner {
   padding: 0 !important;
-  background: white;
+  /* background: white; */
 }
 
 .return-form-dialog .q-dialog__inner .q-dialog__inner--minimized > div {
