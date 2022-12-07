@@ -540,7 +540,7 @@ export default {
           label: "Received",
         },
         {
-          value: "deliverd",
+          value: "delivered",
           label: "Delivered",
         },
       ],

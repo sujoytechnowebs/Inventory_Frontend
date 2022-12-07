@@ -140,7 +140,7 @@ export default defineComponent({
 <style>
 .sale-form-dialog .q-dialog__inner {
   padding: 0 !important;
-  background: white;
+  /* background: white; */
 }
 .sale-form-dialog .q-dialog__inner.q-dialog__inner--minimized > div {
   max-height: 100vh !important;

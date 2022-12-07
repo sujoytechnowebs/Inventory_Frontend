@@ -5,6 +5,13 @@ export default function () {
     // items: {
     columns: [
       {
+        name: "opening_bal",
+        align: "left",
+        label: "Opening Balance",
+        field: "opening_bal",
+        sortable: true,
+      },
+      {
         name: "date_of_transaction",
         align: "left",
         label: "Date",
@@ -35,7 +42,7 @@ export default function () {
       {
         name: "available_bal",
         align: "left",
-        label: "Balance",
+        label: "Available",
         field: "available_bal",
         sortable: true,
       },
