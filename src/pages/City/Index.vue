@@ -87,7 +87,7 @@ export default defineComponent({
 
 <style scoped>
 .city-form {
-  width: 50%;
-  max-width: 50%;
+  width: 100%;
+  min-width: 50%;
 }
 </style>

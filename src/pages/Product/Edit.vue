@@ -67,6 +67,7 @@
               v-model="item_description"
               dense
               label="Product Description"
+              type="textarea"
               :error-message="$getValidationErrors('item_description')"
               :error="$hasValidationErrors('item_description')"
             >

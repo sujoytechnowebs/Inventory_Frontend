@@ -105,6 +105,16 @@ const routes = [
       },
 
       {
+        path: "emi-details",
+        component: () => import("pages/EMI/Index.vue"),
+        meta: {
+          name: "emi-details",
+          requiresAuth: true,
+          // acl: "user.index",
+        },
+      },
+
+      {
         path: "receipt",
         component: () => import("pages/Receipt/Index.vue"),
         meta: {
@@ -293,6 +303,18 @@ const routes = [
           requiresAuth: true,
         },
       },
+
+      // EMI Receipt
+
+      {
+        name: "emi-receipt",
+        path: "emi-receipt",
+        component: () => import("pages/EMI/Print.vue"),
+        meta: {
+          name: "emireceipt",
+          requiresAuth: true,
+        },
+      },
     ],
   },
 
@@ -360,6 +382,39 @@ const routes = [
       //         requiresAuth: false
       //     }
       // },
+    ],
+  },
+
+  // Customer Layout
+
+  {
+    path: "/",
+    component: () => import("layouts/CustomerLayout.vue"),
+    children: [
+      {
+        path: "/customer-product-category",
+        component: () => import("pages/CustomerInterface/ProductCategory.vue"),
+        meta: {
+          name: "customer-product-category",
+          requiresAuth: false,
+        },
+      },
+      {
+        path: "/customer-products",
+        component: () => import("pages/CustomerInterface/Products.vue"),
+        meta: {
+          name: "customer-products",
+          requiresAuth: false,
+        },
+      },
+      {
+        path: "/product-details",
+        component: () => import("pages/CustomerInterface/ProductDetails.vue"),
+        meta: {
+          name: "product-details",
+          requiresAuth: false,
+        },
+      },
     ],
   },
 

@@ -35,13 +35,13 @@
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'productcategory-form' : ''">
+        <div :class="$q.platform.is.desktop ? '' : ''">
           <CreateProductCategory v-bind:modal="true"></CreateProductCategory>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'productcategory-form' : ''">
+        <div :class="$q.platform.is.desktop ? '' : ''">
           <EditProductCategory v-bind:modal="true"></EditProductCategory>
         </div>
       </q-dialog>
@@ -89,9 +89,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.productcategory-form {
-  width: 50%;
-  max-width: 50%;
-}
-</style>
+<style scoped></style>

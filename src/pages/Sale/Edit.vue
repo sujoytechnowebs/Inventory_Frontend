@@ -208,37 +208,37 @@
 
               <div class="col-12 col-md-4 col-lg-4">
                 <div v-if="customer_id != null">
-                <q-select
-                  outlined
-                  v-model="payment_method"
-                  :options="payment"
-                  label="Payment Method"
-                  dense
-                  option-value="value"
-                  option-label="label"
-                  option-disable="inactive"
-                  emit-value
-                  map-options
-                  :error-message="$getValidationErrors('payment_method')"
-                  :error="$hasValidationErrors('payment_method')"
-                ></q-select>
+                  <q-select
+                    outlined
+                    v-model="payment_method"
+                    :options="payment"
+                    label="Payment Method"
+                    dense
+                    option-value="value"
+                    option-label="label"
+                    option-disable="inactive"
+                    emit-value
+                    map-options
+                    :error-message="$getValidationErrors('payment_method')"
+                    :error="$hasValidationErrors('payment_method')"
+                  ></q-select>
                 </div>
 
                 <div v-if="customer_name != null">
-                <q-select
-                  outlined
-                  v-model="payment_method"
-                  :options="non_payment"
-                  label="Payment Method"
-                  dense
-                  option-value="value"
-                  option-label="label"
-                  option-disable="inactive"
-                  emit-value
-                  map-options
-                  :error-message="$getValidationErrors('payment_method')"
-                  :error="$hasValidationErrors('payment_method')"
-                ></q-select>
+                  <q-select
+                    outlined
+                    v-model="payment_method"
+                    :options="non_payment"
+                    label="Payment Method"
+                    dense
+                    option-value="value"
+                    option-label="label"
+                    option-disable="inactive"
+                    emit-value
+                    map-options
+                    :error-message="$getValidationErrors('payment_method')"
+                    :error="$hasValidationErrors('payment_method')"
+                  ></q-select>
                 </div>
               </div>
 
@@ -262,6 +262,200 @@
           </div>
           <div class="col-12 col-md-4 col-lg-4">
             <div v-if="payment_method === 'ewi'">
+              <p class="head">Loan Details</p>
+
+              <div class="row q-col-gutter-md">
+                <!-- Loan Rearrange -->
+
+                <!-- Loan Amount -->
+
+                <!-- EWI Start Date -->
+
+                <div v-if="customer_id != null">
+                  <div class="col-12 col-md-6 col-lg-6">
+                    <q-input
+                      outlined
+                      dense
+                      v-model="day"
+                      label="Group Day"
+                      readonly
+                    />
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                  <q-input
+                    outlined
+                    dense
+                    v-model="ewi_start_date"
+                    mask="date"
+                    label="EWI Start Date"
+                    :error-message="$getValidationErrors('ewi_start_date')"
+                    :error="$hasValidationErrors('ewi_start_date')"
+                  >
+                    <template v-slot:prepend>
+                      <q-icon name="event" class="cursor-pointer">
+                        <q-popup-proxy
+                          cover
+                          transition-show="scale"
+                          transition-hide="scale"
+                        >
+                          <q-date v-model="ewi_start_date">
+                            <div class="row items-center justify-end">
+                              <q-btn
+                                v-close-popup
+                                label="Close"
+                                color="primary"
+                                flat
+                              />
+                            </div>
+                          </q-date>
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input>
+                </div>
+
+                <!-- Processing Fess -->
+
+                <div class="col-12 col-md-6 col-lg-6">
+                  <q-input
+                    ref="processing_fees"
+                    outlined
+                    type="number"
+                    v-model="processing_fees"
+                    dense
+                    label="Processing Fees(%)"
+                    :error-message="$getValidationErrors('processing_fees')"
+                    :error="$hasValidationErrors('processing_fees')"
+                    @update:modelValue="onProcessingFees"
+                  >
+                  </q-input>
+                </div>
+
+                <!-- Down Payment -->
+
+                <div class="col-12 col-md-6 col-lg-6">
+                  <q-input
+                    ref="down_payment"
+                    outlined
+                    type="number"
+                    v-model="down_payment"
+                    dense
+                    label="Down Payment"
+                    :error-message="$getValidationErrors('down_payment')"
+                    :error="$hasValidationErrors('down_payment')"
+                    @update:modelValue="onDownPayment"
+                  >
+                  </q-input>
+                </div>
+
+                <!-- Loan Amount -->
+
+                <!-- No of EWI -->
+
+                <div class="col-12 col-md-6 col-lg-6">
+                  <q-select
+                    outlined
+                    v-model="no_of_ewi"
+                    dense
+                    :options="noEwi"
+                    label="No. of EWI"
+                    :error-message="$getValidationErrors('no_of_ewi')"
+                    :error="$hasValidationErrors('no_of_ewi')"
+                    @update:modelValue="onEWI"
+                  ></q-select>
+                </div>
+
+                <!-- Receive Date -->
+
+                <div class="col-12 col-md-6 col-lg-6">
+                  <q-input
+                    outlined
+                    dense
+                    v-model="application_received_date"
+                    mask="date"
+                    label="Application Receive Date"
+                    :error-message="
+                      $getValidationErrors('application_received_date')
+                    "
+                    :error="$hasValidationErrors('application_received_date')"
+                  >
+                    <template v-slot:prepend>
+                      <q-icon name="event" class="cursor-pointer">
+                        <q-popup-proxy
+                          cover
+                          transition-show="scale"
+                          transition-hide="scale"
+                        >
+                          <q-date v-model="application_received_date">
+                            <div class="row items-center justify-end">
+                              <q-btn
+                                v-close-popup
+                                label="Close"
+                                color="primary"
+                                flat
+                              />
+                            </div>
+                          </q-date>
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input>
+                </div>
+
+                <!-- Receive By -->
+
+                <div class="col-12 col-md-6 col-lg-6">
+                  <QSearch
+                    v-model="application_received_by"
+                    label="Application Receive"
+                    option-value="users_id"
+                    option-label="name"
+                    data-store="user"
+                    action="AllStaffs"
+                    :multiple="false"
+                    :error-message="
+                      $getValidationErrors('application_received_by')
+                    "
+                    :error="$hasValidationErrors('application_received_by')"
+                  ></QSearch>
+                </div>
+
+                <!-- Another Test -->
+                <div class="q-pl-md">
+                  <q-card class="my-card" flat bordered>
+                    <q-card-section class="q-pt-md">
+                      <div class="row q-col-gutter-md">
+                        <div class="col-12">
+                          <span class="loan-details q-pr-sm"
+                            >Product Total Price:</span
+                          >{{ grand_item_rate_total.toFixed(0) }}
+                        </div>
+                        <div class="col-12">
+                          <span class="loan-details q-pr-sm"
+                            >Loan Processing Fees:</span
+                          >{{ loan_with_processing_fees.toFixed(0) }}
+                        </div>
+                        <div class="col-12">
+                          <span class="loan-details q-pr-sm">Loan Amount:</span
+                          >{{ loan_after_downpayment.toFixed(0) }}
+                        </div>
+                        <div class="col-12">
+                          <span class="loan-details q-pr-sm"
+                            >Amount Per EWI:</span
+                          >{{ per_ewi.toFixed(0) }}
+                        </div>
+                      </div>
+                    </q-card-section>
+                  </q-card>
+                </div>
+              </div>
+            </div>
+
+            <!-- EMI Payment Method -->
+
+            <div v-if="payment_method === 'emi'">
               <p class="head">Loan Details</p>
 
               <div class="row q-col-gutter-md">
@@ -520,7 +714,11 @@ export default {
         },
         {
           value: "ewi",
-          label: "Ewi",
+          label: "EWI",
+        },
+        {
+          value: "emi",
+          label: "EMI",
         },
       ],
       non_payment: [

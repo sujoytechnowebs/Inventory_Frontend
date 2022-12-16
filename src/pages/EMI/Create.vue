@@ -4,9 +4,9 @@
       <QCreateForm
         :modal="modal"
         :widgets="true"
-        save-action="city/createItem"
+        save-action="emi/createItem"
         :data-store="dataStore"
-        title="Add City"
+        title="Add Users"
       >
         <div class="row q-mt-md q-mb-md q-col-gutter-md">
           <div class="col-12">
@@ -16,9 +16,13 @@
               v-model="city_name"
               dense
               label="City Name"
-              @keydown="checkKeyDownAlphaNumeric($event)"
-              :error-message="$getValidationErrors('city_name')"
-              :error="$hasValidationErrors('city_name')"
+              :rules="[
+                (val) =>
+                  (val && !validationErrors.city_name > 0) ||
+                  validationErrors.city_name
+                    ? validationErrors.city_name
+                    : 'Please write the city name',
+              ]"
             >
             </q-input>
           </div>
@@ -32,8 +36,13 @@
               data-store="state"
               action="getItems"
               :multiple="false"
-              :error-message="$getValidationErrors('state_id')"
-              :error="$hasValidationErrors('state_id')"
+              :rules="[
+                (val) =>
+                  (val && !validationErrors.state_id > 0) ||
+                  validationErrors.state_id
+                    ? validationErrors.state_id
+                    : 'Please choose the state name',
+              ]"
             ></QSearch>
           </div>
         </div>
@@ -47,27 +56,18 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  name: "CityCreatePage",
+  name: "EWICreatePage",
   setup() {
     return {
       modal: ref(true),
-      dataStore: "city",
+      dataStore: "emi",
       validationErrors: ref({}),
       modelValue: ref(),
     };
   },
 
   computed: {
-    ...mapFields("city", ["newItem.city_name", "newItem.state_id"]),
-  },
-
-  methods: {
-    checkKeyDownAlphaNumeric(event) {
-      if (!/[a-zA-Z\s]/.test(event.key)) {
-        this.ignoredValue = event.key ? event.key : "";
-        event.preventDefault();
-      }
-    },
+    ...mapFields("emi", ["newItem.city_name", "newItem.state_id"]),
   },
 };
 </script>
