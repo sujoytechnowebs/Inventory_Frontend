@@ -35,22 +35,29 @@ export default function () {
       {
         name: "ewi_start_date",
         align: "left",
-        label: "EWI Start",
+        label: "(EWI/EMI) Start",
         field: (row) => dateConvert.format(row.ewi_start_date),
         sortable: true,
       },
       {
         name: "no_of_ewi",
         align: "left",
-        label: "EWI Terms",
+        label: "(EWI/EMI) Terms",
         field: "no_of_ewi",
         sortable: true,
       },
       {
         name: "ewi_amount",
         align: "left",
-        label: "EWI Amount",
+        label: "(EWI/EMI) Amount",
         field: "ewi_amount",
+        sortable: true,
+      },
+      {
+        name: "payment_method",
+        align: "left",
+        label: "Loan Type",
+        field: (row) => row?.sale?.payment_method,
         sortable: true,
       },
       {

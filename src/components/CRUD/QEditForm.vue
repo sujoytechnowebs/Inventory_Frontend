@@ -3,7 +3,7 @@
     <q-form ref="editForm" @submit.prevent="submitForm">
       <div class="bg-primary text-white q-pb-md">
         <q-card-section class="row items-center q-pb-none">
-          <div class="text-h5 q-ml-sm">{{ title }}</div>
+          <div class="edit_form q-ml-sm">{{ title }}</div>
           <q-space />
           <q-btn
             v-if="modal"
@@ -152,4 +152,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.edit_form {
+  font-size: 1.1rem;
+}
+</style>

@@ -38,6 +38,7 @@ import salereturndetails from "./SaleReturnDetails";
 import openingclose from "./OpeningClose";
 import groupsummary from "./GroupSummary";
 import ledger from "./Ledger";
+import emi from "./EMI";
 
 /*
  * If not building with SSR mode, you can
@@ -90,6 +91,7 @@ export default store(function (/* { ssrContext } */) {
       openingclose,
       groupsummary,
       ledger,
+      emi,
     },
 
     // enable strict mode (adds overhead!)

@@ -87,7 +87,7 @@ export default defineComponent({
 
 <style scoped>
 .branch-form {
-  width: 60%;
-  max-width: 60%;
+  width: 100%;
+  min-width: 60%;
 }
 </style>

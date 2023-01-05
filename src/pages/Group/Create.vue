@@ -35,7 +35,7 @@
               :error="$hasValidationErrors('branch_id')"
             ></QSearch>
           </div>
-          <div class="col-12 col-md-4 col-lg-4">
+          <div class="col-12 col-md-3 col-lg-3">
             <q-select
               outlined
               v-model="day"
@@ -56,7 +56,30 @@
               </template>
             </q-select>
           </div>
-          <div class="col-12 col-md-4 col-lg-4">
+
+          <div class="col-12 col-md-3 col-lg-3">
+            <q-select
+              outlined
+              v-model="EMIdate"
+              dense
+              :options="date_select"
+              label
+              option-value="value"
+              option-label="label"
+              option-disable="inactive"
+              emit-value
+              map-options
+              :error-message="$getValidationErrors('EMIdate')"
+              :error="$hasValidationErrors('EMIdate')"
+            >
+              <template v-slot:label>
+                Date
+                <span class="text-weight-bold text-negative">*</span>
+              </template>
+            </q-select>
+          </div>
+
+          <div class="col-12 col-md-3 col-lg-3">
             <QSearch
               v-model="responsible_by"
               label="Responsible Staff"
@@ -69,8 +92,7 @@
               :error="$hasValidationErrors('responsible_by')"
             ></QSearch>
           </div>
-
-          <div class="col-12 col-md-4 col-lg-4">
+          <div class="col-12 col-md-3 col-lg-3">
             <q-input
               outlined
               dense
@@ -185,6 +207,11 @@ export default {
           label: "Saturday",
         },
       ],
+
+      date_select: [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24, 25, 26, 27, 28,
+      ],
     };
   },
 
@@ -200,6 +227,7 @@ export default {
       "newItem.village",
       "newItem.pin",
       "newItem.day",
+      "newItem.EMIdate",
       "newItem.responsible_by",
       "newItem.conduct_time",
     ]),

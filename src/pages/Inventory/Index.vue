@@ -47,13 +47,13 @@
       </QDataTable>
 
       <q-dialog v-model="showCreateModal">
-        <div :class="$q.platform.is.desktop ? 'inventory-form' : ''">
+        <div :class="$q.platform.is.desktop ? '' : ''">
           <CreateInventory v-bind:modal="true"></CreateInventory>
         </div>
       </q-dialog>
 
       <q-dialog v-model="showEditModal">
-        <div :class="$q.platform.is.desktop ? 'inventory-form' : ''">
+        <div :class="$q.platform.is.desktop ? '' : ''">
           <EditInventory v-bind:modal="true"></EditInventory>
         </div>
       </q-dialog>
@@ -162,11 +162,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.inventory-form {
-  width: 50%;
-  max-width: 50%;
-}
-
 .download_report_size {
   width: 500px;
 }

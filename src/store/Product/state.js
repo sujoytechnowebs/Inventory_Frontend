@@ -37,13 +37,6 @@ export default function () {
         field: "sale_price",
         sortable: true,
       },
-      {
-        name: "item_description",
-        align: "left",
-        label: "Description",
-        field: "item_description",
-        sortable: true,
-      },
       { name: "actions", align: "right", label: "Actions" },
     ],
     visibleColumns: [

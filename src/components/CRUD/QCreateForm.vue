@@ -2,7 +2,7 @@
   <q-form ref="createForm" @submit.prevent="submitForm">
     <div class="bg-primary text-white q-pb-md">
       <q-card-section class="row items-center q-pb-none">
-        <div class="text-h5 q-ml-sm">{{ title }}</div>
+        <div class="create_form q-ml-sm">{{ title }}</div>
 
         <q-space />
         <q-btn
@@ -150,4 +150,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.create_form {
+  font-size: 1.1rem;
+}
+</style>

@@ -1,7 +1,8 @@
 import { api, axios } from "boot/axios";
 
-const endPoint = "/products";
-const mediaEndPoint = "/media";
+const endPoint = "/emi_index";
+const instantendPoint = "/emi-instant-payment";
+const endCollection = "/emi_payment_slip_print";
 import moment from "moment";
 
 export function getItems({ commit, state }, props) {
@@ -17,6 +18,7 @@ export function getItems({ commit, state }, props) {
     page: props.pagination.page,
     rowsPerPage: props.pagination.rowsPerPage,
     search: props.search ? props.search : state.filter.search,
+    groupId: props.groupId ? props.groupId : state.filter.groupId,
   };
 
   return new Promise((resolve, reject) => {
@@ -86,7 +88,7 @@ export function createItem({ commit, state }) {
 export function updateItem({ commit, state }) {
   return new Promise((resolve, reject) => {
     axios
-      .put(endPoint + "/" + state.editItem.id, state.editItem)
+      .put(endCollection + "/" + state.editItem.id, state.editItem)
       .then((response) => {
         if (response.data) {
           commit("setLastUpdated", moment());
@@ -118,16 +120,98 @@ export function deleteItem({ commit, state }, item) {
   });
 }
 
-export function media({ commit, state }, props) {
+//Report List in excel is here
+
+export function getReport({ commit, state }, props) {
+  var params = {
+    status: state?.filter?.status,
+    ewi_date: state?.filter?.ewi_date,
+    group_code: state?.filter?.group_code,
+  };
+
   return new Promise((resolve, reject) => {
     axios
-      .post(mediaEndPoint, props, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      .get("export-ewi", {
+        params: params,
       })
       .then((response) => {
-        commit("setMedia", response.data);
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+//Report List in pdf is here
+
+export function getReportPdf({ commit, state }, props) {
+  var params = {
+    status: state?.filter?.status,
+    ewi_date: state?.filter?.ewi_date,
+    group_code: state?.filter?.group_code,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get("ewi-report-pdf", {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+//Report Collection Sheet in pdf is here
+
+export function getReportCollection({ commit, state }, props) {
+  var params = {
+    groupId: state?.filter?.groupId,
+    date: state?.filter?.date,
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .get("emi-collection-sheet", {
+        params: params,
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+// Test
+
+export function instantPay({ commit, state }, id) {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(instantendPoint + "/" + id)
+      .then((response) => {
+        commit("setEditItem", response.data);
+        commit("setLastUpdated", moment());
+        resolve(response);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
+// Invoice Download
+
+export function getReportInvoice({ commit, state }, props) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`emi_payment_slip_print/${props.invoice_id}`)
+      .then((response) => {
         resolve(response);
       })
       .catch((err) => {
