@@ -467,7 +467,6 @@
                 <!-- EWI Start Date -->
 
                 <div v-if="customer_id != null">
-
                   <div class="col-12 col-md-6 col-lg-6">
                     <q-input
                       outlined
@@ -555,8 +554,8 @@
                     outlined
                     v-model="no_of_ewi"
                     dense
-                    :options="noEwi"
-                    label="No. of EWI"
+                    :options="noEmi"
+                    label="No. of EMI"
                     :error-message="$getValidationErrors('no_of_ewi')"
                     :error="$hasValidationErrors('no_of_ewi')"
                     @update:modelValue="onEWI"
@@ -639,7 +638,7 @@
                         </div>
                         <div class="col-12">
                           <span class="loan-details q-pr-sm"
-                            >Amount Per EWI:</span
+                            >Amount Per EMI:</span
                           >{{ per_ewi.toFixed(0) }}
                         </div>
                       </div>
@@ -701,6 +700,7 @@ export default {
       validationErrors: ref({}),
       modelValue: ref(),
       noEwi: [15, 25, 35, 40, 45, 52],
+      noEmi: [6, 8, 10, 12, 15],
       payment: [
         {
           value: "cash",
