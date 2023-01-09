@@ -218,8 +218,8 @@ export default defineComponent({
 
     const { getMutations } = useStoreModule();
     const { editProductDetails } = getMutations("sale", ["editProductDetails"]);
-    const { calculateLoanAmount } = getMutations("sale", [
-      "calculateLoanAmount",
+    const { calculateLoanAmountEdit } = getMutations("sale", [
+      "calculateLoanAmountEdit",
     ]);
 
     const { removingProductDetails } = getMutations("sale", [
@@ -228,20 +228,20 @@ export default defineComponent({
 
     // Testing Calculations
 
-    const { setTotalRate } = getMutations("sale", ["setTotalRate"]);
+    const { setTotalRateEdit } = getMutations("sale", ["setTotalRateEdit"]);
 
     onMounted(() => {});
 
     const addProduct = () => {
       console.log("product.value", product.value.id);
       editProductDetails(product.value);
-      calculateLoanAmount();
+      calculateLoanAmountEdit();
     };
 
     // Testing calculations
 
     const inputValue = (index) => {
-      setTotalRate(index);
+      setTotalRateEdit(index);
     };
 
     // Testing Purpose
