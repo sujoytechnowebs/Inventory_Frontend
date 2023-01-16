@@ -3,6 +3,7 @@ import { api, axios } from "boot/axios";
 const endPoint = "/emi_index";
 const instantendPoint = "/emi-instant-payment";
 const endCollection = "/emi_payment_slip_print";
+const customCollection = "/emi-custom-payment";
 import moment from "moment";
 
 export function getItems({ commit, state }, props) {
@@ -88,7 +89,7 @@ export function createItem({ commit, state }) {
 export function updateItem({ commit, state }) {
   return new Promise((resolve, reject) => {
     axios
-      .put(endCollection + "/" + state.editItem.id, state.editItem)
+      .put(customCollection + "/" + state.editItem.id, state.editItem)
       .then((response) => {
         if (response.data) {
           commit("setLastUpdated", moment());

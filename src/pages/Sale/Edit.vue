@@ -424,31 +424,34 @@
 
                 <!-- Another Test -->
                 <div class="q-pl-md">
-                  <q-card class="my-card" flat bordered>
-                    <q-card-section class="q-pt-md">
-                      <div class="row q-col-gutter-md">
-                        <div class="col-12">
-                          <span class="loan-details q-pr-sm"
-                            >Product Total Price:</span
-                          >{{ grand_item_rate_total.toFixed(0) }}
+                  <div v-if="grand_item_rate_total != ''">
+                    <q-card class="my-card" flat bordered>
+                      <q-card-section class="q-pt-md">
+                        <div class="row q-col-gutter-md">
+                          <div class="col-12">
+                            <span class="loan-details q-pr-sm"
+                              >Product Total Price:</span
+                            >{{ grand_item_rate_total.toFixed(0) }}
+                          </div>
+                          <div class="col-12">
+                            <span class="loan-details q-pr-sm"
+                              >Loan Processing Fees:</span
+                            >{{ loan_with_processing_fees.toFixed(0) }}
+                          </div>
+                          <div class="col-12">
+                            <span class="loan-details q-pr-sm"
+                              >Loan Amount:</span
+                            >{{ loan_after_downpayment.toFixed(0) }}
+                          </div>
+                          <div class="col-12">
+                            <span class="loan-details q-pr-sm"
+                              >Amount Per EWI:</span
+                            >{{ per_ewi.toFixed(0) }}
+                          </div>
                         </div>
-                        <div class="col-12">
-                          <span class="loan-details q-pr-sm"
-                            >Loan Processing Fees:</span
-                          >{{ loan_with_processing_fees.toFixed(0) }}
-                        </div>
-                        <div class="col-12">
-                          <span class="loan-details q-pr-sm">Loan Amount:</span
-                          >{{ loan_after_downpayment.toFixed(0) }}
-                        </div>
-                        <div class="col-12">
-                          <span class="loan-details q-pr-sm"
-                            >Amount Per EWI:</span
-                          >{{ per_ewi.toFixed(0) }}
-                        </div>
-                      </div>
-                    </q-card-section>
-                  </q-card>
+                      </q-card-section>
+                    </q-card>
+                  </div>
                 </div>
               </div>
             </div>
@@ -467,13 +470,15 @@
 
                 <div v-if="customer_id != null">
                   <div class="col-12 col-md-6 col-lg-6">
-                    <q-input
-                      outlined
-                      dense
-                      v-model="day"
-                      label="Group Day"
-                      readonly
-                    />
+                    <div class="col-12 col-md-6 col-lg-6">
+                      <q-input
+                        outlined
+                        dense
+                        v-model="EMIdate"
+                        label="EMI Date"
+                        readonly
+                      />
+                    </div>
                   </div>
                 </div>
 
@@ -618,31 +623,34 @@
 
                 <!-- Another Test -->
                 <div class="q-pl-md">
-                  <q-card class="my-card" flat bordered>
-                    <q-card-section class="q-pt-md">
-                      <div class="row q-col-gutter-md">
-                        <div class="col-12">
-                          <span class="loan-details q-pr-sm"
-                            >Product Total Price:</span
-                          >{{ grand_item_rate_total.toFixed(0) }}
+                  <div v-if="grand_item_rate_total != ''">
+                    <q-card class="my-card" flat bordered>
+                      <q-card-section class="q-pt-md">
+                        <div class="row q-col-gutter-md">
+                          <div class="col-12">
+                            <span class="loan-details q-pr-sm"
+                              >Product Total Price:</span
+                            >{{ grand_item_rate_total.toFixed(0) }}
+                          </div>
+                          <div class="col-12">
+                            <span class="loan-details q-pr-sm"
+                              >Loan Processing Fees:</span
+                            >{{ loan_with_processing_fees.toFixed(0) }}
+                          </div>
+                          <div class="col-12">
+                            <span class="loan-details q-pr-sm"
+                              >Loan Amount:</span
+                            >{{ loan_after_downpayment.toFixed(0) }}
+                          </div>
+                          <div class="col-12">
+                            <span class="loan-details q-pr-sm"
+                              >Amount Per EWI:</span
+                            >{{ per_ewi.toFixed(0) }}
+                          </div>
                         </div>
-                        <div class="col-12">
-                          <span class="loan-details q-pr-sm"
-                            >Loan Processing Fees:</span
-                          >{{ loan_with_processing_fees.toFixed(0) }}
-                        </div>
-                        <div class="col-12">
-                          <span class="loan-details q-pr-sm">Loan Amount:</span
-                          >{{ loan_after_downpayment.toFixed(0) }}
-                        </div>
-                        <div class="col-12">
-                          <span class="loan-details q-pr-sm"
-                            >Amount Per EWI:</span
-                          >{{ per_ewi.toFixed(0) }}
-                        </div>
-                      </div>
-                    </q-card-section>
-                  </q-card>
+                      </q-card-section>
+                    </q-card>
+                  </div>
                 </div>
               </div>
             </div>
@@ -796,14 +804,17 @@ export default {
   methods: {
     ...mapActions("user", ["getItem"]),
     onDownPayment() {
-      this.$store.commit("sale/calculationAfterDownPayment", this.down_payment);
+      this.$store.commit(
+        "sale/calculationAfterDownPaymentEdit",
+        this.down_payment
+      );
     },
 
     // Processing Fees
 
     onProcessingFees() {
       this.$store.commit(
-        "sale/calculationAfterProcessingFees",
+        "sale/calculationAfterProcessingFeesEdit",
         this.processing_fees
       );
     },
@@ -811,7 +822,7 @@ export default {
     // EWI Calculation
 
     onEWI() {
-      this.$store.commit("sale/ewicalculation", this.no_of_ewi);
+      this.$store.commit("sale/ewicalculationEdit", this.no_of_ewi);
     },
 
     // Income Calculation
@@ -827,6 +838,7 @@ export default {
         this.occupation = response.data.user_group.occupation;
         this.name = response.data.name;
         this.day = response.data.user_group.group.day;
+        this.EMIdate = response.data.user_group.group.EMIdate;
       });
     },
   },

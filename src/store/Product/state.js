@@ -68,6 +68,7 @@ export default function () {
       barcode: "",
       item_description: "",
       sale_price: null,
+      product_photo_id: null,
     },
     editItem: {
       name: "",

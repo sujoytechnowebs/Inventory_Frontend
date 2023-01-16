@@ -32,3 +32,7 @@ export function setEditModal(state, payload) {
 export function setLastUpdated(state, payload) {
   state.lastUpdated = payload;
 }
+
+export function setMedia(state, payload) {
+  state.newItem.product_photo_id = payload.media_id;
+}

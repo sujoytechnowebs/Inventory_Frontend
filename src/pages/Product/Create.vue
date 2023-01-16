@@ -117,6 +117,7 @@ export default {
       "newItem.barcode",
       "newItem.sale_price",
       "newItem.item_description",
+      "newItem.product_photo_id",
     ]),
   },
 

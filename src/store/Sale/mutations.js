@@ -190,3 +190,45 @@ export function calculationAfterProcessingFees(state, payload) {
 export function ewicalculation(state, payload) {
   state.newItem.per_ewi = state.newItem.loan_after_downpayment / payload;
 }
+
+// edit page for testing myself
+
+export function calculateLoanAmountEdit(state, payload) {
+  state.editItem.loan_amount = 0;
+  if (state.editItem.salesDetails.length > 0) {
+    state.editItem.salesDetails.map((item) => {
+      state.editItem.loan_amount =
+        state.editItem.loan_amount + parseInt(item.item_rate);
+    });
+  }
+}
+
+export function setTotalRateEdit(state, index) {
+  let currentObj = state.editItem.salesDetails[index];
+  let quantity = currentObj.quantity ? currentObj.quantity : 1;
+  let item_rate = currentObj.item_rate ? currentObj.item_rate : 0;
+  currentObj.total = parseFloat(item_rate) * parseFloat(quantity);
+  state.editItem.salesDetails[index] = currentObj;
+
+  var total = 0;
+  state.editItem.salesDetails.forEach((item) => {
+    total += parseFloat(item.total);
+  });
+  state.editItem.grand_item_rate_total = parseFloat(total);
+  state.editItem.loan_with_processing_fees =
+    (state.editItem.grand_item_rate_total * 2) / 100;
+}
+
+export function calculationAfterDownPaymentEdit(state, payload) {
+  state.editItem.loan_after_downpayment =
+    state.editItem.grand_item_rate_total - payload;
+}
+
+export function calculationAfterProcessingFeesEdit(state, payload) {
+  state.editItem.loan_with_processing_fees =
+    (state.editItem.grand_item_rate_total * payload) / 100;
+}
+
+export function ewicalculationEdit(state, payload) {
+  state.editItem.per_ewi = state.editItem.loan_after_downpayment / payload;
+}
