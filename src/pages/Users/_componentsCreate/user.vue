@@ -340,13 +340,15 @@
         :error="$hasValidationErrors('voter_media_id')"
       >
         <q-uploader
-          label="Upload Voter Document"
+          label="Upload Voter Document (Max size 150kb)"
           square
           flat
           bordered
           auto-upload
+          max-file-size="150000"
           class="full-width"
           :factory="factoryFnVoter"
+          @rejected="onRejected"
         />
       </q-field>
     </div>
@@ -366,8 +368,6 @@ export default {
     const $q = useQuasar();
 
     function onRejected(rejectedEntries) {
-      // Notify plugin needs to be installed
-      // https://quasar.dev/quasar-plugins/notify#Installation
       $q.notify({
         type: "negative",
         message: `Max size cannot be more than 150kb`,

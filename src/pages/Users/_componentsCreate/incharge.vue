@@ -308,13 +308,15 @@
         :error="$hasValidationErrors('aadhar_media_id')"
       >
         <q-uploader
-          label="Upload Aadhar Document"
+          label="Upload Aadhar Document (Max size 150kb)"
           square
           flat
           bordered
           auto-upload
+          max-file-size="150000"
           class="full-width"
           :factory="factoryFn"
+          @rejected="onRejected"
         />
       </q-field>
     </div>
@@ -340,13 +342,15 @@
         :error="$hasValidationErrors('voter_media_id')"
       >
         <q-uploader
-          label="Upload Voter Document"
+          label="Upload Voter Document (Max size 150kb)"
           square
           flat
           bordered
           auto-upload
+          max-file-size="150000"
           class="full-width"
           :factory="factoryFnVoter"
+          @rejected="onRejected"
         />
       </q-field>
     </div>
@@ -358,10 +362,23 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 
+import { useQuasar } from "quasar";
+
 export default {
   name: "inchargePage",
   setup() {
+    const $q = useQuasar();
+
+    function onRejected(rejectedEntries) {
+      $q.notify({
+        type: "negative",
+        message: `Max size cannot be more than 150kb`,
+        position: "top-right",
+      });
+    }
+
     return {
+      onRejected,
       modal: ref(true),
       validationErrors: ref({}),
       options: [
