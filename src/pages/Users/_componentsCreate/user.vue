@@ -371,6 +371,7 @@ export default {
       $q.notify({
         type: "negative",
         message: `Max size cannot be more than 150kb`,
+        position: "top-right",
       });
     }
 
