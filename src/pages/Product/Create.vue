@@ -9,7 +9,7 @@
         title="Add Products"
       >
         <div class="row q-col-gutter-md">
-          <div class="col-12 col-md-6 col-lg-6">
+          <div class="col-12">
             <div class="col-12">
               <q-input
                 ref="name"
@@ -17,7 +17,6 @@
                 v-model="name"
                 dense
                 label="Product Name"
-                @keydown="checkKeyDownAlphaNumeric($event)"
                 :error-message="$getValidationErrors('name')"
                 :error="$hasValidationErrors('name')"
               >
@@ -62,19 +61,21 @@
               </q-input>
             </div>
           </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <!-- Product Image -->
+          <!-- <div class="col-12 col-md-6 col-lg-6">
+
 
             <q-uploader
-              label="Upload Product Image"
+              label="Upload Image (Max size 150kb)"
               square
               flat
               bordered
               auto-upload
+              max-file-size="150000"
               class="full-width"
               :factory="factoryFn"
+              @rejected="onRejected"
             />
-          </div>
+          </div> -->
 
           <div class="col-12">
             <q-input
@@ -100,10 +101,23 @@ import { ref } from "vue";
 import { mapActions } from "vuex";
 import { mapFields } from "vuex-map-fields";
 
+import { useQuasar } from "quasar";
+
 export default {
   name: "ProductsCreatePage",
   setup() {
+    const $q = useQuasar();
+
+    function onRejected(rejectedEntries) {
+      $q.notify({
+        type: "negative",
+        message: `Max size cannot be more than 150kb`,
+        position: "top-right",
+      });
+    }
+
     return {
+      onRejected,
       modal: ref(true),
       dataStore: "product",
       validationErrors: ref({}),

@@ -18,6 +18,7 @@
   <div class="normal_margin"><b>Last Paid:</b> {{ getPrintData.amount }}</div>
   <div class="normal_margin"><b>Advance:</b> {{ getPrintData.adv }}</div>
   <div class="normal_margin"><b>Due:</b> {{ getPrintData.due }}</div>
+  <div class="normal_margin"><b>Outstading:</b> {{ getPrintData.os }}</div>
 </template>
 
 <script>

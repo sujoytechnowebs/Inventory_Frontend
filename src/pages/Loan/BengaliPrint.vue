@@ -18,8 +18,8 @@
     </tbody>
   </table> -->
   <div class="row justify-between">
-    <p>আমার পরিবার আসবাবপত্র</p>
-    <p>Amar Paribar Furniture</p>
+    <p>সমৃদ্ধি ঘর সংসার</p>
+    <p>Samriddhi Ghar Sansar</p>
   </div>
   <div class="text-center">
     <b><u>পণ্য ঋণ আবেদন পত্র</u></b>

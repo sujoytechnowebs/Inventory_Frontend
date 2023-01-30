@@ -324,7 +324,7 @@
                   bodyRow.row.status === 'partial collected'
                 "
               >
-                <q-btn
+                <!-- <q-btn
                   label="Instant Pay"
                   no-caps
                   flat
@@ -332,17 +332,17 @@
                   @click.prevent="
                     playSound(require('../../assets/sound/ringtone.mp3'))
                   "
-                />
+                /> -->
               </span>
 
               <span v-if="bodyRow.row.status !== 'collected'">
                 <q-btn
-                  label="Custom Pay"
+                  label="Make Payment"
                   no-caps
                   flat
                   @click="setEditModal(bodyRow.row)"
                 >
-                  <q-tooltip> Edit </q-tooltip>
+                  <q-tooltip> Payment </q-tooltip>
                 </q-btn>
               </span>
             </q-td>
