@@ -306,13 +306,15 @@
         :error="$hasValidationErrors('aadhar_media_id')"
       >
         <q-uploader
-          label="Upload Aadhar Document"
+          label="Upload Aadhar Document (Max size 150kb)"
           square
           flat
           bordered
           auto-upload
+          max-file-size="150000"
           class="full-width"
           :factory="factoryFn"
+          @rejected="onRejected"
         />
       </q-field>
     </div>
@@ -356,10 +358,24 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 
+import { useQuasar } from "quasar";
+
 export default {
   name: "userPage",
   setup() {
+    const $q = useQuasar();
+
+    function onRejected(rejectedEntries) {
+      // Notify plugin needs to be installed
+      // https://quasar.dev/quasar-plugins/notify#Installation
+      $q.notify({
+        type: "negative",
+        message: `Max size cannot be more than 150kb`,
+      });
+    }
+
     return {
+      onRejected,
       modal: ref(true),
       validationErrors: ref({}),
       options: ["Own", "Rent", "Tea Estate"],
