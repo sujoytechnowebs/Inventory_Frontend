@@ -306,12 +306,11 @@
         :error="$hasValidationErrors('aadhar_media_id')"
       >
         <q-uploader
-          label="Upload Aadhar Document (Max size 150kb)"
+          label="Upload Aadhar Document"
           square
           flat
           bordered
           auto-upload
-          max-file-size="150000"
           class="full-width"
           :factory="factoryFn"
           @rejected="onRejected"
@@ -340,12 +339,11 @@
         :error="$hasValidationErrors('voter_media_id')"
       >
         <q-uploader
-          label="Upload Voter Document (Max size 150kb)"
+          label="Upload Voter Document"
           square
           flat
           bordered
           auto-upload
-          max-file-size="150000"
           class="full-width"
           :factory="factoryFnVoter"
           @rejected="onRejected"

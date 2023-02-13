@@ -92,6 +92,7 @@
                 icon="close"
                 class="q-ml-sm"
                 @click="onClickDelete(bodyRow.row)"
+                v-if="authUser.user_role.role.code === 'admin'"
               >
                 <q-tooltip> Delete </q-tooltip>
               </q-btn>
@@ -140,6 +141,7 @@ export default defineComponent({
     const { getGetters } = useStoreModule();
     const { showEditModal } = getGetters("user", ["showEditModal"]);
     const { showCreateModal } = getGetters("user", ["showCreateModal"]);
+    const { authUser } = getGetters("auth", ["authUser"]);
 
     return {
       hasEditPermission: true,
@@ -147,6 +149,7 @@ export default defineComponent({
       aditionalActions: false,
       showEditModal,
       showCreateModal,
+      authUser,
     };
   },
 

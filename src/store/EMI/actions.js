@@ -150,12 +150,12 @@ export function getReportPdf({ commit, state }, props) {
   var params = {
     status: state?.filter?.status,
     ewi_date: state?.filter?.ewi_date,
-    group_code: state?.filter?.group_code,
+    groupCode: state?.filter?.groupCode,
   };
 
   return new Promise((resolve, reject) => {
     axios
-      .get("ewi-report-pdf", {
+      .get("emi_loan_repayment_schedule", {
         params: params,
       })
       .then((response) => {

@@ -16,7 +16,6 @@
               v-model="name"
               dense
               label="Product Name"
-              @keydown="checkKeyDownAlphaNumeric($event)"
               :error-message="$getValidationErrors('name')"
               :error="$hasValidationErrors('name')"
             >

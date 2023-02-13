@@ -31,7 +31,7 @@
                 <q-tooltip> Collection Sheet </q-tooltip>
               </q-btn>
             </div>
-            <!-- <div class="col-12 col-md-3 col-lg-3 q-pt-sm">
+            <div class="col-12 col-md-3 col-lg-3 q-pt-sm">
               <q-btn
                 flat
                 round
@@ -42,7 +42,7 @@
               >
                 <q-tooltip> Download Report </q-tooltip>
               </q-btn>
-            </div> -->
+            </div>
             <!-- <div class="col-4">
               <q-btn
                 label="Test Receipt"
@@ -247,10 +247,10 @@
                       <q-input
                         dense
                         outlined
-                        v-model="group_code"
+                        v-model="groupCode"
                         label="Group Code"
-                        :error-message="$getValidationErrors('group_code')"
-                        :error="$hasValidationErrors('group_code')"
+                        :error-message="$getValidationErrors('groupCode')"
+                        :error="$hasValidationErrors('groupCode')"
                       ></q-input>
                     </div>
                   </div>
@@ -324,7 +324,7 @@
                   bodyRow.row.status === 'partial_collected'
                 "
               >
-                <q-btn
+                <!-- <q-btn
                   label="Instant Pay"
                   no-caps
                   flat
@@ -332,17 +332,17 @@
                   @click.prevent="
                     playSound(require('../../assets/sound/ringtone.mp3'))
                   "
-                />
+                /> -->
               </span>
 
               <span v-if="bodyRow.row.status !== 'collected'">
                 <q-btn
-                  label="Custom Pay"
+                  label="Make Payment"
                   no-caps
                   flat
                   @click="setEditModal(bodyRow.row)"
                 >
-                  <q-tooltip> Edit </q-tooltip>
+                  <q-tooltip> Payment </q-tooltip>
                 </q-btn>
               </span>
             </q-td>
@@ -422,6 +422,7 @@ export default defineComponent({
       "filter.ewi_date",
       "filter.group_code",
       "filter.search",
+      "filter.groupCode",
       "filter.groupId",
       "filter.date",
       "filter",

@@ -23,6 +23,7 @@
   </div>
   <div class="normal_margin"><b>Overdue:</b> {{ getPrintData.overDue }}</div>
   <div class="normal_margin"><b>Advance:</b> {{ getPrintData.advance }}</div>
+  <div class="normal_margin"><b>Outstading:</b> {{ getPrintData.os }}</div>
 </template>
 
 <script>

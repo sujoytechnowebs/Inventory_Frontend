@@ -357,6 +357,7 @@
                 auto-upload
                 class="full-width"
                 :factory="factoryFn"
+                @rejected="onRejected"
               />
             </q-field>
           </div>
@@ -389,6 +390,7 @@
                 auto-upload
                 class="full-width"
                 :factory="factoryFnVoter"
+                @rejected="onRejected"
               />
             </q-field>
           </div>
@@ -403,10 +405,23 @@ import { ref } from "vue";
 import { mapFields } from "vuex-map-fields";
 import { mapActions } from "vuex";
 
+import { useQuasar } from "quasar";
+
 export default {
   name: "CustomerCreatePage",
   setup() {
+    const $q = useQuasar();
+
+    function onRejected(rejectedEntries) {
+      $q.notify({
+        type: "negative",
+        message: `Max size cannot be more than 150kb`,
+        position: "top-right",
+      });
+    }
+
     return {
+      onRejected,
       modal: ref(true),
       dataStore: "customer",
       validationErrors: ref({}),
